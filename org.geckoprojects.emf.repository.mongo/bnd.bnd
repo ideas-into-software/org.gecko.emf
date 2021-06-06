@@ -1,0 +1,43 @@
+-include: \
+	${workspace}/cnf/include/jdt.bnd
+
+-enable-gecko-emf: true
+
+-buildpath: \
+	osgi.annotation;version='7.0',\
+	osgi.core;version='7.0',\
+	osgi.cmpn;version='7.0',\
+	org.gecko.emf.mongo.api;version=latest,\
+	org.gecko.emf.repository;version=project,\
+	org.mongodb.mongo-java-driver,\
+	org.gecko.emf.collections;version=latest,\
+	org.gecko.mongo.osgi.component;version=latest,\
+	org.gecko.emf.osgi.test.model,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.mongodb.bson,\
+	org.gecko.emf.osgi.api
+
+-testpath: \
+	${junit}
+	
+-dsannotations-options: inherit
+
+javac.source: 1.8
+javac.target: 1.8
+
+Bundle-Name: EMF Repository Mongo 
+Bundle-Description: EMF Mongo Repository Implementation
+Bundle-Version: 3.1.0-SNAPSHOT
+Provide-Capability: emf.repository;emf.repository=mongo
+Require-Capability: org.gecko.osgi.emf.persistence;filter:='(org.gecko.osgi.emf.persistence=mongo)'
+Private-Package: \
+	org.gecko.emf.repository.mongo.configurator,\
+	org.gecko.emf.repository.mongo.query,\
+	org.gecko.emf.repository.mongo.cm,\
+	org.gecko.emf.repository.mongo.cm.entities,\
+	org.gecko.emf.repository.mongo.impl,\
+	org.gecko.emf.repository.mongo.impl.result
+Export-Package: \
+	org.gecko.emf.repository.mongo.api,\
+	org.gecko.emf.repository.mongo.annotations

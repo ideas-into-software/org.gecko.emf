@@ -20,3 +20,4 @@ Bundle-SCM: url=https://github.com/geckoprojects-org/org.geckoprojects.emf, \
 	connection=scm:git:https://github.com/geckoprojects-org/org.geckoprojects.emf.git, \
 	developerConnection=scm:git:git@github.com:geckoprojects-org/org.geckoprojects.emf.git
 	
+emf-version: 5.0.0

@@ -1,0 +1,15 @@
+Bundle-Name: EMF Mongo Collections support
+Bundle-Description: EMF Mongo implementation for using gecko EMF collections as result
+Private-Package: org.geckoprojects.emf.mongo.collection
+Require-Capability: org.gecko.osgi.emf.persistence;filter:="(org.gecko.osgi.emf.persistence=mongo)"	
+
+Bundle-Version: 0.0.1-SNAPSHOT
+-buildpath: \
+	org.geckoprojects.emf.mongo.api,\
+	org.mongodb.driver-sync,\
+	org.geckoprojects.emf.collections,\
+	org.osgi.annotation.bundle,\
+	org.osgi.service.component.annotations,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.osgi.framework

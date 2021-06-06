@@ -20,9 +20,39 @@
 		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/";\
 		revision            = "${dependencies.project}";\
 		transitive          = false;\
+		poll_time           = 300;\
 		name                = "Project Dependencies"
 
 
 ##  All Project Deps
 dependencies.project:\
-	biz.aQute:biz.aQute.gogo.commands.provider:1.7.0
+	biz.aQute:biz.aQute.gogo.commands.provider:1.7.0,\
+	biz.aQute.bnd:aQute.libg:5.3.0,\
+	biz.aQute.bnd:biz.aQute.bndlib:5.3.0,\
+	org.eclipse.emf:org.eclipse.emf.common:2.20.0,\
+	org.eclipse.emf:org.eclipse.emf.ecore:2.23.0,\
+	org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.16.0,\
+	org.eclipse.emf:org.eclipse.emf.common:2.20.0,\
+	org.eclipse.emf:org.eclipse.emf.codegen.ecore:2.24.0,\
+	org.eclipse.emf:org.eclipse.emf.codegen:2.21.0,\
+	org.eclipse.platform:org.eclipse.osgi:3.16.200,\
+	org.eclipse.platform:org.eclipse.equinox.common:3.14.0,\
+	org.eclipse.platform:org.eclipse.equinox.supplement:1.10.100,\
+	org.eclipse.platform:org.eclipse.equinox.registry:3.10.100,\
+	org.eclipse.platform:org.eclipse.core.expressions:3.7.100,\
+	org.eclipse.platform:org.eclipse.core.runtime:3.14.0,\
+	org.eclipse.platform:org.eclipse.core.resources:3.14.0,\
+	org.eclipse.platform:org.eclipse.core.jobs:3.10.1100,\
+	org.eclipse.platform:org.eclipse.core.contenttype:3.7.900,\
+	org.eclipse.platform:org.eclipse.equinox.preferences:3.8.200,\
+	org.eclipse.platform:org.eclipse.text:3.11.0,\
+	org.eclipse.platform:org.eclipse.core.filesystem:1.7.700,\
+	org.eclipse.jdt:org.eclipse.jdt.core:3.25.0,\
+	org.freemarker:freemarker:jar:2.3.31,\
+	org.mongodb:mongodb-driver-sync:jar:4.3.0-beta2,\
+	org.mongodb:bson:jar:4.3.0-beta2,\
+	org.mongodb:mongodb-driver-core:jar:4.3.0-beta2,\
+	org.geckoprojects:org.geckoprojects.mongo.core:0.0.1-SNAPSHOT,\
+	org.apiguardian:apiguardian-api:jar:1.1.1
+	
+	

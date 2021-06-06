@@ -1,0 +1,11 @@
+-buildpath: \
+	org.gecko.emf.osgi.api;version=latest,\
+	org.osgi.annotation.bundle,\
+	org.osgi.service.component.annotations,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.osgi.annotation.versioning
+
+Bundle-Version: ${emf-version}
+
+-sub: *.bnd

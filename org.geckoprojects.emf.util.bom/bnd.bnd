@@ -1,0 +1,16 @@
+-include: \
+	${workspace}/cnf/include/jdt.bnd
+
+-diffignore: */pom.properties
+-baseline: *
+
+Bundle-Version: 1.0.10-SNAPSHOT
+
+-include: required.bndrun
+
+-buildpath: ${-runbundles}
+
+mavendeps: ${sjoin;,\\\n; ${template;-maven-dependencies;${@}}}
+
+-includeresource: resources,\
+	{template/cnf/geckoEMFUtil/geckoEMFUtil.maven=resources/template/cnf/geckoEMFUtil/geckoEMFUtil.maven}	

@@ -1,0 +1,963 @@
+[INFO] Output configured: src-gen
+[INFO] Output result: /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen
+[INFO] Running for genmodel model/basic.genmodel in /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic
+[INFO] Asked to handle resource://org.geckoprojects.emf.example.model.basic/model/basic.genmodel
+[INFO] Asked for content Descriptor resource://org.geckoprojects.emf.example.model.basic/model/basic.genmodel
+[INFO] Asked to handle resource://org.geckoprojects.emf.example.model.basic/model/basic.genmodel
+[INFO] Asked to open InputStream for resource://org.geckoprojects.emf.example.model.basic/model/basic.genmodel
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/model/basic.genmodel
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] Configuring Jet
+[INFO] subtask Generating code
+[INFO] internaly worked 0.043478260869565216 on null
+[INFO] subtask Generating Code for BasicPackage
+[INFO] internaly worked 0.043478260869565216 on null
+[INFO] internaly worked 0.043478260869565216 on null
+[INFO] internaly worked 0.043478260869565216 on null
+[INFO] Asked to handle resource://org.geckoprojects.emf.example.model.basic/model/basic.ecore
+[INFO] Asked for content Descriptor resource://org.geckoprojects.emf.example.model.basic/model/basic.ecore
+[INFO] Asked to handle resource://org.geckoprojects.emf.example.model.basic/model/basic.ecore
+[INFO] Asked to open InputStream for resource://org.geckoprojects.emf.example.model.basic/model/basic.ecore
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/model/basic.ecore
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.BasicPackage
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] Asked to handle resource://org.geckoprojects.emf.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.genmodel
+[INFO] Asked for content Descriptor resource://org.geckoprojects.emf.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.genmodel
+[INFO] Asked to handle resource://org.geckoprojects.emf.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.genmodel
+[INFO] Asked to open InputStream for resource://org.geckoprojects.emf.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.genmodel
+[INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.genmodel
+[INFO] bsn according to URIorg.eclipse.emf.ecore
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore.xmi
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
+[INFO] Could not parse BSN from /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.osgi/bin. Error was Is a directory. Returning org.geckoprojects.emf.osgi
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.osgi
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
+[INFO] Match in /var/home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
+[INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
+[INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
+[INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.genmodel with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
+[INFO] Asked to handle resource://org.geckoprojects.emf.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.ecore
+[INFO] Asked for content Descriptor resource://org.geckoprojects.emf.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.ecore
+[INFO] Asked to handle resource://org.geckoprojects.emf.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.ecore
+[INFO] Asked to open InputStream for resource://org.geckoprojects.emf.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.ecore
+[INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.ecore
+[INFO] bsn according to URIorg.eclipse.emf.ecore
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore.xmi
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
+[INFO] Could not parse BSN from /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.osgi/bin. Error was Is a directory. Returning org.geckoprojects.emf.osgi
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.osgi
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
+[INFO] Match in /var/home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
+[INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
+[INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] internaly worked 0.043478260869565216 on null
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] internaly worked 0.782608695652174 on null
+[INFO] subtask 
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.BasicPackageImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.BasicFactory
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.BasicFactoryImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.util.BasicSwitch
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.util.BasicAdapterFactory
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.util.BasicResourceFactoryImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.util.BasicResourceImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] subtask Generating OSGi configuration component for package 'model'
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] subtask Generating package info for package 'model'
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] subtask Generating Person
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.Person
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.PersonImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] subtask Generating Address
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.Address
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.AddressImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] subtask Generating Contact
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.Contact
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.ContactImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] subtask Generating Family
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.Family
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.FamilyImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] subtask Generating Business Contact
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.BusinessContact
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.BusinessContactImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] subtask Generating Tag
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.Tag
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.TagImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] subtask Generating Business Person
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.BusinessPerson
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.BusinessPersonImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] subtask Generating String String Map
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.StringStringMapImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] subtask Generating Employee Info
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.EmployeeInfo
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.EmployeeInfoImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] subtask Generating Widget
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.Widget
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.WidgetImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] subtask Generating Textwidget
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.Textwidget
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.TextwidgetImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] subtask Generating Content
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.Content
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.ContentImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] subtask Generating HL Widget
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.HLWidget
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.HLWidgetImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] subtask Generating Person Contact
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.PersonContact
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.PersonContactImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] subtask Generating Person Object
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.PersonObject
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.PersonObjectImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] subtask Generating Geometry
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.Geometry
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.GeometryImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] subtask Generating Contact Type
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.ContactType
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] subtask Generating Contact Context Type
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.ContactContextType
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] subtask Generating Gender Type
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.GenderType
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] internaly worked 1.0 on null
+[INFO] subtask 
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] bsn according to URIorg.geckoprojects.emf.example.model.basic
+[INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.basic
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] Generating code - org.eclipse.emf.codegen.ecore
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common
+[INFO]   OK - org.eclipse.emf.common

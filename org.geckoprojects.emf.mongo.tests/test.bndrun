@@ -1,0 +1,45 @@
+# We need JUnit and Mockito to resolve the test cases at runtime. 
+# Other runtime dependencies should be added as necessary
+-runbundles: \
+	org.apache.servicemix.bundles.junit;version='[4.12.0,4.12.1)',\
+	org.osgi.util.function;version='[1.1.0,1.1.1)',\
+	org.osgi.util.promise;version='[1.1.0,1.1.1)',\
+	org.osgi.util.pushstream;version='[1.0.0,1.0.1)',\
+	org.apache.felix.metatype;version='[1.2.2,1.2.3)',\
+	org.mongodb.mongo-java-driver;version='[3.9.1,3.9.2)',\
+	org.gecko.core.test;version='[2.1.0,2.1.1)',\
+	org.gecko.emf.mongo.collection;version=snapshot,\
+	org.gecko.emf.mongo.component;version=snapshot,\
+	org.gecko.emf.mongo.pushstream;version=snapshot,\
+	org.gecko.emf.mongo.tests;version=snapshot,\
+	net.bytebuddy.byte-buddy;version='[1.7.9,1.7.10)',\
+	net.bytebuddy.byte-buddy-agent;version='[1.7.9,1.7.10)',\
+	org.eclipse.emf.common;version='[2.20.0,2.20.1)',\
+	org.eclipse.emf.ecore;version='[2.23.0,2.23.1)',\
+	org.eclipse.emf.ecore.xmi;version='[2.16.0,2.16.1)',\
+	org.gecko.emf.osgi.test.model;version='[6.0.2,6.0.3)',\
+	org.mockito.mockito-core;version='[2.13.0,2.13.1)',\
+	org.objenesis;version='[2.6.0,2.6.1)',\
+	org.apache.felix.configadmin;version='[1.9.18,1.9.19)',\
+	org.apache.felix.scr;version='[2.1.24,2.1.25)',\
+	org.gecko.emf.collections;version='[2.0.16,2.0.17)',\
+	org.gecko.emf.pushstreams;version='[1.0.15,1.0.16)',\
+	org.apache.felix.log;version='[1.2.4,1.2.5)',\
+	org.gecko.emf.osgi.component;version='[4.0.0,4.0.1)',\
+	org.gecko.mongo.osgi.component;version=snapshot
+
+
+# Needed for Mockito's mocking to work
+-runsystempackages.objenesis: sun.misc,sun.reflect
+-runprovidedcapabilities: ${native_capability}
+
+# Use Felix by default
+-runfw: org.apache.felix.framework;version='[6.0.1,6.0.1]'
+-runvm: -ea
+-runrequires: \
+	bnd.identity;id='org.gecko.emf.mongo.tests',\
+	bnd.identity;id='org.gecko.emf.osgi.component'
+-runproperties: mongo.host=${def;mongo.host;localhost}
+
+-runee: JavaSE-1.8
+-runblacklist: bnd.identity;id='org.gecko.emf.osgi.json'

@@ -1,0 +1,25 @@
+src: src, src-gen
+
+Bundle-Name: EMF Mongo API bundle
+Bundle-Description: EMF Mongo API
+
+Export-Package: \
+	org.geckoprojects.emf.mongo.model,\
+	org.geckoprojects.emf.mongo.model.util,\
+	org.geckoprojects.emf.mongo,\
+	org.geckoprojects.emf.mongo.annotations
+
+-buildpath: \
+	org.osgi.annotation.bundle,\
+	org.osgi.annotation.versioning,\
+	org.osgi.framework,\
+	org.osgi.service.component.annotations,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.eclipse.emf.ecore.xmi,\
+	org.mongodb.driver-sync,\
+	org.mongodb.bson
+
+Bundle-Version: 0.0.1-SNAPSHOT
+
+Bundle-Copyright: Bryan Hunt, Data In Motion Consulting

@@ -1,0 +1,12 @@
+-buildpath: \
+	org.freemarker.freemarker,\
+	org.geckoprojects.emf.doc.mermaid,\
+	junit-jupiter-api,\
+	junit-platform-commons,\
+	org.osgi.test.common,\
+	org.osgi.test.junit5,\
+	org.apiguardian:apiguardian-api
+
+-includeresource: model/=model
+-privatepackage: org.geckoprojects.emf.doc.mermaid.itest
+Bundle-Version: 0.0.1-SNAPSHOT

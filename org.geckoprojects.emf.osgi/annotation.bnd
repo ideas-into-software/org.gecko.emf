@@ -1,0 +1,9 @@
+Export-Package: \
+	org.gecko.emf.osgi.annotation.provide,\
+	org.gecko.emf.osgi.annotation.require,\
+	org.gecko.emf.osgi.annotation
+Bundle-Name: EMF OSGi API annotations bundle
+Bundle-Description: EMF OSGi API Annotations
+Bundle-Version: ${emf-version}
+Provide-Capability: osgi.unresolvable
+Require-Capability: osgi.unresolvable;filter:="(&(must.not.resolve=*)(!(must.not.resolve=*)))"

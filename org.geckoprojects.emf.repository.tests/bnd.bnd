@@ -1,0 +1,55 @@
+-include: \
+	${workspace}/cnf/include/jdt.bnd
+
+-enable-gecko-emf: true
+
+# Discover and run all test cases annotated with the @RunWith annotation
+Test-Cases: ${classes;CONCRETE;ANNOTATED;org.junit.runner.RunWith}
+
+# Build dependencies 
+-buildpath: \
+	${junit},\
+	${mockito},\
+	osgi.annotation;version=7.0,\
+	osgi.core;version=7.0,\
+	osgi.cmpn;version=7.0,\
+	org.gecko.emf.osgi.test.model;version=latest,\
+	org.gecko.emf.repository.api;version=latest,\
+	org.gecko.emf.repository.file;version=latest
+
+
+# We need JUnit and Mockito to resolve the test cases at runtime. 
+# Other runtime dependencies should be added as necessary
+-runbundles: \
+	org.apache.servicemix.bundles.junit;version='[4.12.0,4.12.1)',\
+	org.eclipse.emf.ecore.xmi;version='[2.16.0,2.16.1)',\
+	org.osgi.util.function;version='[1.1.0,1.1.1)',\
+	org.osgi.util.promise;version='[1.1.0,1.1.1)',\
+	net.bytebuddy.byte-buddy;version='[1.7.9,1.7.10)',\
+	net.bytebuddy.byte-buddy-agent;version='[1.7.9,1.7.10)',\
+	org.apache.felix.configadmin;version='[1.9.18,1.9.19)',\
+	org.apache.felix.scr;version='[2.1.24,2.1.25)',\
+	org.eclipse.emf.common;version='[2.20.0,2.20.1)',\
+	org.eclipse.emf.ecore;version='[2.23.0,2.23.1)',\
+	org.gecko.emf.osgi.test.model;version='[3.4.0,3.4.1)',\
+	org.gecko.emf.repository.api;version=snapshot,\
+	org.gecko.emf.repository.file;version=snapshot,\
+	org.gecko.emf.repository.tests;version=snapshot,\
+	org.mockito.mockito-core;version='[2.13.0,2.13.1)',\
+	org.objenesis;version='[2.6.0,2.6.1)',\
+	org.gecko.emf.osgi.component;version='[4.0.0,4.0.1)'
+
+Bundle-Version: 2.0.15.SNAPSHOT
+Private-Package: org.gecko.emf.repository.tests
+
+-resolve.effective: active;skip:="osgi.service"
+
+# Needed for Mockito's mocking to work
+-runsystempackages.objenesis: sun.misc,sun.reflect
+
+# Use Felix by default
+-runfw: org.apache.felix.framework;version='[7.0.0,7.0.0]'
+-runvm: -ea
+-runrequires: \
+	bnd.identity;id='org.gecko.emf.repository.tests'
+-runee: JavaSE-1.8

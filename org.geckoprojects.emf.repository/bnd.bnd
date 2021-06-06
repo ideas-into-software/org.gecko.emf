@@ -1,0 +1,18 @@
+-include: \
+	${workspace}/cnf/include/jdt.bnd
+
+-enable-gecko-emf: true
+
+-buildpath: \
+	osgi.annotation;version=7.0,\
+	osgi.core;version=6.0,\
+	osgi.cmpn;version=6.0,\
+	org.gecko.emf.osgi.test.model
+
+-testpath: \
+	${junit}
+
+Bundle-Name: EMF Repository API
+Bundle-Description: EMF Repository API
+Private-Package: org.gecko.emf.repository
+-sub: *.bnd

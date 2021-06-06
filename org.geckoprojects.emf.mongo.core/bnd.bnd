@@ -1,0 +1,32 @@
+Bundle-Copyright: Bryan Hunt, Data In Motion Consulting
+Bundle-Name: EMF Mongo implementation bundle
+Bundle-Description: EMF Mongo implementation
+Bundle-Vendor: Data In Motion Consulting GmbH
+Private-Package: \
+	org.geckoprojects.emf.mongo.codecs,\
+	org.geckoprojects.emf.mongo.codecs.builder,\
+	org.geckoprojects.emf.mongo.converter,\
+	org.geckoprojects.emf.mongo.handlers,\
+	org.geckoprojects.emf.mongo.query,\
+	org.geckoprojects.emf.mongo.streams,\
+	org.geckoprojects.emf.mongo.util
+	
+Provide-Capability: org.geckoprojects.osgi.emf.persistence;org.gecko.osgi.emf.persistence=mongo
+
+-buildpath: \
+	org.mongodb.bson,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.osgi.annotation.versioning,\
+	org.osgi.annotation.bundle,\
+	org.geckoprojects.emf.mongo.api;version=latest,\
+	org.eclipse.emf.ecore.xmi,\
+	org.mongodb.driver-core,\
+	org.mongodb.driver-sync,\
+	org.geckoprojects.emf.osgi.api,\
+	org.osgi.framework,\
+	org.osgi.service.component.annotations,\
+	org.geckoprojects.emf.collections,\
+	org.geckoprojects.mongo.core
+
+Bundle-Version: 0.0.1-SNAPSHOT

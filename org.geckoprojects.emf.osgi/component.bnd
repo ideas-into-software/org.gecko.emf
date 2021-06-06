@@ -1,0 +1,18 @@
+Bundle-Name: EMF OSGi components bundle
+Bundle-Description: EMF OSGi integration
+Bundle-Version: ${emf-version}
+
+Provide-Capability: \
+	osgi.service;objectClass:List<String>="org.gecko.emf.osgi.ResourceSetFactory",\
+	osgi.service;objectClass:List<String>="org.eclipse.emf.ecore.resource.ResourceSet"
+	
+Private-Package: \
+	org.gecko.emf.osgi.ecore,\
+	org.gecko.emf.osgi.components,\
+	org.gecko.emf.osgi.components.config,\
+	org.gecko.emf.osgi.components.dynamic
+Export-Package: \
+	org.gecko.emf.osgi,\
+	org.gecko.emf.osgi.urihandler,\
+	org.gecko.emf.osgi.resourceset,\
+	org.gecko.emf.osgi.factory	

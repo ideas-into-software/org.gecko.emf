@@ -1,0 +1,24 @@
+-include: \
+	${workspace}/cnf/include/jdt.bnd
+	
+-enable-gecko-emf: true
+
+-testpath: \
+	${junit}
+	
+-includeresource model/=model,\
+	plugin.properties=plugin.properties
+
+Bundle-Name: %pluginName
+Bundle-Version: 2.0.1-SNAPSHOT
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+
+Private-Package: \
+	org.gecko.emf.utilities.configuration
+
+Export-Package: \
+	org.gecko.emf.utilities,\
+ 	org.gecko.emf.utilities.impl,\
+ 	org.gecko.emf.utilities.util
