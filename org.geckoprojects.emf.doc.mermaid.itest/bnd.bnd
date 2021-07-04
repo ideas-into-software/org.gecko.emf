@@ -5,7 +5,10 @@
 	junit-platform-commons,\
 	org.osgi.test.common,\
 	org.osgi.test.junit5,\
-	org.apiguardian:apiguardian-api
+	org.apiguardian:apiguardian-api,\
+	org.geckoprojects.osgitest;version=latest,\
+	assertj-core,\
+	org.osgi.framework
 
 -includeresource: model/=model
 -privatepackage: org.geckoprojects.emf.doc.mermaid.itest

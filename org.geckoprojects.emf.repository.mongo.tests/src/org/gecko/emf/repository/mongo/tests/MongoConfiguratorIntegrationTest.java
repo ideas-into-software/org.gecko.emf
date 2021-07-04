@@ -20,36 +20,35 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.gecko.core.tests.ServiceChecker;
-import org.gecko.emf.osgi.EMFNamespaces;
-import org.gecko.emf.osgi.EPackageConfigurator;
-import org.gecko.emf.osgi.ResourceFactoryConfigurator;
-import org.gecko.emf.osgi.model.test.Person;
-import org.gecko.emf.osgi.model.test.TestFactory;
-import org.gecko.emf.osgi.model.test.TestPackage;
-import org.gecko.emf.osgi.model.test.configurator.TestPackageConfigurator;
-import org.gecko.emf.repository.EMFRepository;
-import org.gecko.emf.repository.mongo.annotations.RequireMongoEMFRepository;
-import org.gecko.emf.repository.mongo.api.EMFMongoConfiguratorConstants;
+import org.geckoprojects.emf.osgi.EMFNamespaces;
+import org.geckoprojects.emf.osgi.EPackageConfigurator;
+import org.geckoprojects.emf.osgi.ResourceFactoryConfigurator;
+import org.geckoprojects.emf.osgi.model.test.Person;
+import org.geckoprojects.emf.osgi.model.test.configurator.TestPackageConfigurator;
+import org.geckoprojects.emf.repository.EMFRepository;
 import org.gecko.mongo.osgi.MongoClientProvider;
 import org.gecko.mongo.osgi.MongoDatabaseProvider;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.geckoprojects.emf.repository.mongo.annotations.RequireMongoEMFRepository;
+import org.geckoprojects.emf.repository.mongo.api.EMFMongoConfiguratorConstants;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceObjects;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.Configuration;
+import org.osgi.test.junit5.context.BundleContextExtension;
+import org.osgi.test.junit5.service.ServiceExtension;
 
 import com.mongodb.MongoCredential;
 import com.mongodb.client.MongoCollection;
@@ -60,7 +59,8 @@ import com.mongodb.client.MongoCollection;
  * @since 26.07.2017
  */
 @RequireMongoEMFRepository
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(BundleContextExtension.class)
+@ExtendWith(ServiceExtension.class)
 public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
 
 	@Test
@@ -80,7 +80,7 @@ public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
 
 		defaultCheck();
 		
-		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId + ")(objectClass=org.gecko.emf.osgi.ResourceSetFactory))";
+		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId + ")(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 		ServiceChecker<Object> rsfTracker = createTrackedChecker(filter, true)
 				.assertCreations(0, false);
 		
@@ -101,7 +101,7 @@ public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
 
 		EMFRepository repository = repoTracker.getTrackedService();
 
-		Person person = TestFactory.eINSTANCE.createPerson();
+		Person person = BasicFactory.eINSTANCE.createPerson();
 		person.setId("test");
 		person.setFirstName("Emil");
 		person.setLastName("Tester");
@@ -130,7 +130,7 @@ public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
 		assertNull(person.eResource());
 		assertEquals(0, rs.getResources().size());
 
-		Person personResult = repository.getEObject(TestPackage.Literals.PERSON, "test");
+		Person personResult = repository.getEObject(BasicPackage.Literals.PERSON, "test");
 		assertNotNull(personResult);
 		assertNotEquals(person, personResult);
 		assertNotEquals(r, personResult.eResource());
@@ -164,10 +164,10 @@ public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
 		
 		defaultCheck();
 		
-		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId1 + ")(objectClass=org.gecko.emf.osgi.ResourceSetFactory))";
+		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId1 + ")(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 		ServiceChecker<Object> rsfTracker1 = createTrackedChecker(filter, true)
 				.assertCreations(0, false);
-		filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId2 + ")(objectClass=org.gecko.emf.osgi.ResourceSetFactory))";
+		filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId2 + ")(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 		ServiceChecker<Object> rsfTracker2 = createTrackedChecker(filter, true)
 				.assertCreations(0, false);
 
@@ -244,10 +244,10 @@ public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
 		
 		defaultCheck();
 		
-		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId1 + ")(objectClass=org.gecko.emf.osgi.ResourceSetFactory))";
+		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId1 + ")(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 		ServiceChecker<Object> rsfTracker1 = createTrackedChecker(filter, true)
 				.assertCreations(0, false);
-		filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId2 + ")(objectClass=org.gecko.emf.osgi.ResourceSetFactory))";
+		filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId2 + ")(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 		ServiceChecker<Object> rsfTracker2 = createTrackedChecker(filter, true)
 				.assertCreations(0, false);
 
@@ -332,7 +332,7 @@ public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
 		
 		defaultCheck();
 		
-		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId + ")(objectClass=org.gecko.emf.osgi.ResourceSetFactory))";
+		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId + ")(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 		ServiceChecker<Object> rsfTracker = createTrackedChecker(filter, true)
 				.assertCreations(0, false);
 
@@ -406,7 +406,7 @@ public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
 		
 		defaultCheck();
 		
-		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId + ")(objectClass=org.gecko.emf.osgi.ResourceSetFactory))";
+		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId + ")(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 		ServiceChecker<Object> rsfTracker = createTrackedChecker(filter, true)
 				.assertCreations(0, false);
 		
@@ -489,7 +489,7 @@ public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
 
 		defaultCheck();
 		
-		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId + ")(objectClass=org.gecko.emf.osgi.ResourceSetFactory))";
+		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId + ")(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 		ServiceChecker<Object> rsfTracker = createTrackedChecker(filter, true)
 				.assertCreations(0, false);
 		

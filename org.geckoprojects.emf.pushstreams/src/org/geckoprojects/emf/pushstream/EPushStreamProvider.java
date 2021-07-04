@@ -26,7 +26,7 @@ public interface EPushStreamProvider extends EObject {
 	 * <!-- begin-model-doc -->
 	 * Creates a PushStream from the internal eventSource feature
 	 * <!-- end-model-doc -->
-	 * @model dataType="org.gecko.emf.pushstream.EPushStream" required="true"
+	 * @model dataType="org.geckoprojects.emf.pushstream.EPushStream" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='PushStreamProvider psp = getProvider();\nif (psp == null) {\n\tthrow new &lt;%java.lang.IllegalArgumentException%&gt;(\"PushStreamProvider must not be null to build a PushStream\");\n}\n&lt;%org.osgi.util.pushstream.PushEventSource%&gt;&lt;EObject&gt; es = getEventSource();\nif (es == null) {\n\tthrow new &lt;%java.lang.IllegalArgumentException%&gt;(\"SimpleEventSource must not be null to build a PushStream\");\n}\nreturn psp.buildStream(es).build();\n'"
 	 * @generated
 	 */
@@ -38,7 +38,7 @@ public interface EPushStreamProvider extends EObject {
 	 * <!-- begin-model-doc -->
 	 * Creates a new SimplePushEventSource from the given PushStreamProvider
 	 * <!-- end-model-doc -->
-	 * @model dataType="org.gecko.emf.pushstream.ESimplePushEventSource" required="true"
+	 * @model dataType="org.geckoprojects.emf.pushstream.ESimplePushEventSource" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='PushStreamProvider psp = getProvider();\nif (psp == null) {\n\tthrow new &lt;%java.lang.IllegalArgumentException%&gt;(\"PushStreamProvider must not be null to create a SimplePushEventSource\");\n}\nreturn psp.buildSimpleEventSource(EObject.class).build();\n'"
 	 * @generated
 	 */
@@ -50,7 +50,7 @@ public interface EPushStreamProvider extends EObject {
 	 * <!-- begin-model-doc -->
 	 * Creates a PushStream from the internal eventSource feature
 	 * <!-- end-model-doc -->
-	 * @model dataType="org.gecko.emf.pushstream.EPushStream" required="true"
+	 * @model dataType="org.geckoprojects.emf.pushstream.EPushStream" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='PushStreamProvider psp = getProvider();\nif (psp == null) {\n\tthrow new &lt;%java.lang.IllegalArgumentException%&gt;(\"PushStreamProvider must not be null to build a PushStream\");\n}\n&lt;%org.osgi.util.pushstream.PushEventSource%&gt;&lt;EObject&gt; es = getEventSource();\nif (es == null) {\n\tthrow new &lt;%java.lang.IllegalArgumentException%&gt;(\"SimpleEventSource must not be null to build a PushStream\");\n}\nreturn psp.buildStream(es).unbuffered().build();\n'"
 	 * @generated
 	 */
@@ -62,7 +62,7 @@ public interface EPushStreamProvider extends EObject {
 	 * <!-- begin-model-doc -->
 	 * Creates a PushStreamBuilder to customize the settings
 	 * <!-- end-model-doc -->
-	 * @model dataType="org.gecko.emf.pushstream.PushStreamBuilder"
+	 * @model dataType="org.geckoprojects.emf.pushstream.PushStreamBuilder"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='PushStreamProvider psp = getProvider();\r\nif (psp == null) {\r\n\tthrow new &lt;%java.lang.IllegalArgumentException%&gt;(\"PushStreamProvider must not be null to build a PushStream\");\r\n}\r\n&lt;%org.osgi.util.pushstream.PushEventSource%&gt;&lt;EObject&gt; es = getEventSource();\r\nif (es == null) {\r\n\tthrow new &lt;%java.lang.IllegalArgumentException%&gt;(\"SimpleEventSource must not be null to build a PushStream\");\r\n}\r\nreturn psp.buildStream(es);\r\n'"
 	 * @generated
 	 */

@@ -11,10 +11,11 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-import org.gecko.emf.osgi.EMFNamespaces;
-import org.gecko.emf.osgi.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.EMFNamespaces;
+import org.geckoprojects.emf.core.ResourceSetConfigurator;
 import org.geckoprojects.emf.mongo.InputStreamFactory;
 import org.geckoprojects.emf.mongo.OutputStreamFactory;
+import org.geckoprojects.mongo.core.MongoConstants;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -25,7 +26,6 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 
 import com.mongodb.client.MongoDatabase;
-import org.geckoprojects.mongo.core.MongoConstants;
 
 /**
  * This implementation of the ResourceSetConfigurator service will attach
@@ -75,7 +75,7 @@ public class MongoResourceSetConfiguratorComponent {
 		
 		mongoDatabases.put( mongoDatabase,properties);
 		uriHandlerProvider.addMongoDatabaseProvider(mongoDatabase);
-		updateProperties(MongoConstants.DB_PROP_DATABASE_PUBLIC_ALIAS, properties, true);
+		updateProperties(MongoConstants.DB_PROP_DATABASE_UID, properties, true);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class MongoResourceSetConfiguratorComponent {
 	
 		Map<String,Object> map=mongoDatabases.remove(mongoDatabase);
 		uriHandlerProvider.removeMongoDatabaseProvider(mongoDatabase);
-		updateProperties(MongoConstants.DB_PROP_DATABASE_PUBLIC_ALIAS, map, false);
+		updateProperties(MongoConstants.DB_PROP_DATABASE_UID, map, false);
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class MongoResourceSetConfiguratorComponent {
 		Object name = serviceProperties.get(type);
 		Object identifier = serviceProperties.get(MongoConstants.DB_PROP_DATABASE_INTERNAL_NAME);
 		
-		if (Objects.equals(type, MongoConstants.DB_PROP_DATABASE_PUBLIC_ALIAS)) {
+		if (Objects.equals(type, MongoConstants.DB_PROP_DATABASE_UID)) {
 			if (add) {
 				aliases.add(name.toString());
 				if (identifier != null && identifier instanceof String) {
@@ -151,7 +151,7 @@ public class MongoResourceSetConfiguratorComponent {
 		List<String> aliasList = new LinkedList<String>(aliases);
 		String[] aliasNames = aliasList.toArray(new String[0]);
 		if (aliasNames.length > 0) {
-			properties.put(MongoConstants.DB_PROP_DATABASE_PUBLIC_ALIAS, aliasNames);
+			properties.put(MongoConstants.DB_PROP_DATABASE_UID, aliasNames);
 		}
 		String[] ids = aliasList.stream()
 				.map(this::replaceWithIdentifier)

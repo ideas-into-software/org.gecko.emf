@@ -10,7 +10,7 @@
       <!-- @generated utilities -->
       <package
             uri="http://gecko.io/utils/1.0"
-            class="org.gecko.emf.utilities.UtilPackage"
+            class="org.geckoprojects.emf.utilities.UtilPackage"
             genModel="model/utilities.genmodel"/>
    </extension>
 
@@ -18,6 +18,6 @@
       <!-- @generated utilities -->
       <parser
             type="util"
-            class="org.gecko.emf.utilities.util.UtilResourceFactoryImpl"/>
+            class="org.geckoprojects.emf.utilities.util.UtilResourceFactoryImpl"/>
    </extension>
 </plugin>

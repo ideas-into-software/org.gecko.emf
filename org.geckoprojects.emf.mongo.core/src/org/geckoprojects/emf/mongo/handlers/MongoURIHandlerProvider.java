@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.eclipse.emf.ecore.resource.URIHandler;
-import org.gecko.emf.osgi.UriHandlerProvider;
+import org.geckoprojects.emf.core.UriHandlerProvider;
 import org.geckoprojects.emf.mongo.InputStreamFactory;
 import org.geckoprojects.emf.mongo.OutputStreamFactory;
 
@@ -33,10 +33,8 @@ public class MongoURIHandlerProvider implements UriHandlerProvider {
 	private volatile InputStreamFactory inputStreamFactory;
 	private volatile OutputStreamFactory outputStreamFactory;
 	private final Map<MongoDatabase,Map<String,Object>> mongoDatabases = new ConcurrentHashMap<MongoDatabase, Map<String,Object>>();
-	/* 
-	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.UriHandlerProvider#getURIHandler()
-	 */
+
+
 	@Override
 	public synchronized URIHandler getURIHandler() {
 		if (uriHandler == null) {

@@ -1,5 +1,3 @@
--include: \
-	${workspace}/cnf/include/jdt.bnd
 
 -diffignore: */pom.properties
 -baseline: *

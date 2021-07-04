@@ -252,10 +252,7 @@ public class EObjectBuilderImpl implements EObjectBuilder {
 	
 	
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.gecko.emf.mongo.codecs.builder.EObjectBuilder#decodeObject(org.bson.BsonReader, org.bson.codecs.DecoderContext, org.eclipse.emf.ecore.resource.ResourceSet)
-	 */
+
 	@Override
 	public EObject decodeObject(BsonReader reader, DecoderContext context, Resource resource) {
 

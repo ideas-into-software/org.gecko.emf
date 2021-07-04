@@ -1,25 +1,29 @@
--include: \
-	${workspace}/cnf/include/jdt.bnd
 
 -enable-gecko-emf: true
 
 -buildpath: \
-	osgi.annotation;version='7.0',\
-	osgi.core;version='7.0',\
-	osgi.cmpn;version='7.0',\
-	org.gecko.emf.mongo.api;version=latest,\
-	org.gecko.emf.repository;version=project,\
-	org.mongodb.mongo-java-driver,\
-	org.gecko.emf.collections;version=latest,\
-	org.gecko.mongo.osgi.component;version=latest,\
-	org.gecko.emf.osgi.test.model,\
+	org.geckoprojects.emf.mongo.api,\
+	org.geckoprojects.emf.repository;version=project,\
+	org.geckoprojects.emf.collections,\
 	org.eclipse.emf.ecore,\
 	org.eclipse.emf.common,\
 	org.mongodb.bson,\
-	org.gecko.emf.osgi.api
+	org.geckoprojects.emf.core,\
+	org.osgi.annotation.versioning,\
+	org.osgi.annotation.bundle,\
+	org.geckoprojects.emf.repository.api,\
+	org.osgi.service.component.annotations,\
+	org.osgi.service.cm,\
+	org.osgi.framework,\
+	org.eclipse.emf.ecore.xmi,\
+	org.mongodb.driver-sync,\
+	org.mongodb.driver-core,\
+	assertj-core,\
+	org.geckoprojects.mongo.core
 
 -testpath: \
-	${junit}
+	org.geckoprojects.emf.example.model.basic,\
+	junit-jupiter-api
 	
 -dsannotations-options: inherit
 
@@ -30,14 +34,14 @@ Bundle-Name: EMF Repository Mongo
 Bundle-Description: EMF Mongo Repository Implementation
 Bundle-Version: 3.1.0-SNAPSHOT
 Provide-Capability: emf.repository;emf.repository=mongo
-Require-Capability: org.gecko.osgi.emf.persistence;filter:='(org.gecko.osgi.emf.persistence=mongo)'
+Require-Capability: org.geckoprojects.emf.persistence;filter:='(org.geckoprojects.emf.persistence=mongo)'
 Private-Package: \
-	org.gecko.emf.repository.mongo.configurator,\
-	org.gecko.emf.repository.mongo.query,\
-	org.gecko.emf.repository.mongo.cm,\
-	org.gecko.emf.repository.mongo.cm.entities,\
-	org.gecko.emf.repository.mongo.impl,\
-	org.gecko.emf.repository.mongo.impl.result
+	org.geckoprojects.emf.repository.mongo.cm,\
+	org.geckoprojects.emf.repository.mongo.impl.result,\
+	org.geckoprojects.emf.repository.mongo.cm.entities,\
+	org.geckoprojects.emf.repository.mongo.configurator,\
+	org.geckoprojects.emf.repository.mongo.impl,\
+	org.geckoprojects.emf.repository.mongo.query
 Export-Package: \
-	org.gecko.emf.repository.mongo.api,\
-	org.gecko.emf.repository.mongo.annotations
+	org.geckoprojects.emf.repository.mongo.api,\
+	org.geckoprojects.emf.repository.mongo.annotations

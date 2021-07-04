@@ -18,5 +18,4 @@ Private-Package: \
 	org.osgi.annotation.versioning,\
 	org.osgi.annotation.bundle,\
 	org.osgi.service.component.annotations,\
-	org.geckoprojects.emf.osgi.annotation,\
-	org.geckoprojects.emf.osgi.api
+	org.geckoprojects.emf.core

@@ -1,0 +1,12 @@
+-buildpath: \
+	junit-jupiter-api,\
+	junit-platform-commons,\
+	org.eclipse.emf.common,\
+	org.eclipse.emf.ecore,\
+	org.geckoprojects.emf.example.model.basic,\
+	org.geckoprojects.emf.bson;version=latest,\
+	com.fasterxml.jackson.core.jackson-databind,\
+	de.undercouch.bson4jackson,\
+	com.fasterxml.jackson.core.jackson-core
+	
+Bundle-Version: 1.1.2-SNAPSHOT

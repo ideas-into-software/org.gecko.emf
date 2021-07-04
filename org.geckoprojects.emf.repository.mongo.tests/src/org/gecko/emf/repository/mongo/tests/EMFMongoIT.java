@@ -18,13 +18,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.gecko.core.tests.AbstractOSGiTest;
-import org.gecko.emf.mongo.ConverterService;
-import org.gecko.emf.mongo.InputStreamFactory;
-import org.gecko.emf.mongo.OutputStreamFactory;
-import org.gecko.emf.mongo.QueryEngine;
-import org.gecko.emf.osgi.EPackageConfigurator;
-import org.gecko.emf.osgi.ResourceFactoryConfigurator;
-import org.gecko.emf.osgi.model.test.configurator.TestPackageConfigurator;
+import org.geckoprojects.emf.mongo.ConverterService;
+import org.geckoprojects.emf.mongo.InputStreamFactory;
+import org.geckoprojects.emf.mongo.OutputStreamFactory;
+import org.geckoprojects.emf.mongo.QueryEngine;
+import org.geckoprojects.emf.osgi.EPackageConfigurator;
+import org.geckoprojects.emf.osgi.ResourceFactoryConfigurator;
+import org.geckoprojects.emf.osgi.model.test.configurator.TestPackageConfigurator;
 import org.gecko.mongo.osgi.MongoIdFactory;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
@@ -34,31 +34,26 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoClient;
 
 /**
  * Abstract basic test for a default setting
  * @author mark
  * @since 07.03.2020
  */
-public class EMFMongoIT extends AbstractOSGiTest {
+public class EMFMongoIT  {
 	
 	protected MongoClient client;
 	protected List<MongoCollection<?>> collections = new LinkedList<>();
 	protected String mongoHost = System.getProperty("mongo.host", "localhost");
 	private ServiceRegistration<?> testPackageRegistration = null;
 	
-	/**
-	 * Creates a new instance.
-	 */
-	public EMFMongoIT() {
-		super(FrameworkUtil.getBundle(EMFMongoIT.class).getBundleContext());
-	}
 
 	/* 
 	 * (non-Javadoc)
 	 * @see org.gecko.core.tests.AbstractOSGiTest#doBefore()
 	 */
-	@Override
+	@Befo
 	public void doBefore() {
 		MongoClientOptions options = MongoClientOptions.builder().build();
 		client = new MongoClient(mongoHost, options);

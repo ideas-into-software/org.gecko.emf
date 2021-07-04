@@ -26,9 +26,7 @@ import com.mongodb.client.FindIterable;
  */
 public abstract class UncachedInputContentHandler implements InputContentHandler {
 	
-	/* (non-Javadoc)
-	 * @see org.gecko.emf.mongo.InputContentHandler#enableResourceCache(java.util.Map)
-	 */
+	
 	@Override
 	public boolean enableResourceCache(Map<Object, Object> options) {
 		return false;
@@ -36,17 +34,13 @@ public abstract class UncachedInputContentHandler implements InputContentHandler
 	
 	public abstract EObject doCreateContent(FindIterable<EObject> iterable, Map<Object, Object> options);
 
-	/* (non-Javadoc)
-	 * @see org.gecko.emf.mongo.InputContentHandler#createContent(com.mongodb.client.FindIterable, java.util.Map)
-	 */
+
 	@Override
 	public EObject createContent(FindIterable<EObject> iterable, Map<Object, Object> options) {
 		return createContent(iterable, options, null);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.gecko.emf.mongo.InputContentHandler#createContent(com.mongodb.client.FindIterable, java.util.Map, java.util.List)
-	 */
+
 	@Override
 	public EObject createContent(FindIterable<EObject> iterable, Map<Object, Object> options,
 			List<Resource> resourceCache) {

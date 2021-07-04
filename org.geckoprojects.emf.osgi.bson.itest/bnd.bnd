@@ -1,7 +1,0 @@
--buildpath: \
-	junit-jupiter-api,\
-	junit-platform-commons,\
-	org.gecko.emf.osgi.test.model,\
-	org.eclipse.emf.common,\
-	org.eclipse.emf.ecore
-	

@@ -19,7 +19,7 @@ public interface ECollection extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" dataType="org.gecko.collection.EList" unique="false"
+	 * @model kind="operation" dataType="org.geckoprojects.collection.EList" unique="false"
 	 * @generated
 	 */
 	EList<EObject> getValues();

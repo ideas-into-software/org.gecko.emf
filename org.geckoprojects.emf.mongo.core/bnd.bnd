@@ -11,7 +11,7 @@ Private-Package: \
 	org.geckoprojects.emf.mongo.streams,\
 	org.geckoprojects.emf.mongo.util
 	
-Provide-Capability: org.geckoprojects.osgi.emf.persistence;org.gecko.osgi.emf.persistence=mongo
+Provide-Capability: org.geckoprojects.emf.persistence;org.geckoprojects.emf.persistence=mongo
 
 -buildpath: \
 	org.mongodb.bson,\
@@ -23,7 +23,7 @@ Provide-Capability: org.geckoprojects.osgi.emf.persistence;org.gecko.osgi.emf.pe
 	org.eclipse.emf.ecore.xmi,\
 	org.mongodb.driver-core,\
 	org.mongodb.driver-sync,\
-	org.geckoprojects.emf.osgi.api,\
+	org.geckoprojects.emf.core,\
 	org.osgi.framework,\
 	org.osgi.service.component.annotations,\
 	org.geckoprojects.emf.collections,\

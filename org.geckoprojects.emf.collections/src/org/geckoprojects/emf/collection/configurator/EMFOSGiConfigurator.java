@@ -11,10 +11,10 @@
  */
 package org.geckoprojects.emf.collection.configurator;
 
-import org.gecko.emf.osgi.EPackageConfigurator;
-import org.gecko.emf.osgi.annotation.EMFModel;
-import org.gecko.emf.osgi.annotation.provide.ProvideEMFModel;
 import org.geckoprojects.emf.collection.CollectionPackage;
+import org.geckoprojects.emf.core.EPackageConfigurator;
+import org.geckoprojects.emf.core.annotation.EMFModel;
+import org.geckoprojects.emf.core.annotation.provide.ProvideEMFModel;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -27,20 +27,13 @@ import org.osgi.service.component.annotations.Component;
 @ProvideEMFModel(name = CollectionPackage.eNAME, nsURI = CollectionPackage.eNS_URI, version = "2.0")
 public class EMFOSGiConfigurator implements EPackageConfigurator {
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.EPackageConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
-	 */
+
 	@Override
 	public void configureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {
 		CollectionPackage.eINSTANCE.getClass();
 		registry.put(CollectionPackage.eNS_URI, CollectionPackage.eINSTANCE);
 	}
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.EPackageConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
-	 */
 	@Override
 	public void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {
 		registry.remove(CollectionPackage.eNS_URI);

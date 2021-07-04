@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.gecko.emf.collections/src" modelPluginID="org.gecko.emf.collections"
-    modelName="EMFCollection" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" bundleManifest="false" containmentProxies="true"
-    complianceLevel="8.0" copyrightFields="false" operationReflection="true" runtimePlatform="RCP"
-    importOrganizing="true" cleanup="true" oSGiCompatible="true">
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.geckoprojects.emf.collections/src" editDirectory="/org.geckoprojects.emf.collections.edit/src"
+    modelPluginID="org.geckoprojects.emf.collections" modelName="EMFCollection" editPluginClass="org.geckoprojects.collection.provider.EMFCollectionEditPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    bundleManifest="false" containmentProxies="true" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="org.geckoprojects.emf.collections.edit" operationReflection="true"
+    runtimePlatform="RCP" importOrganizing="true" cleanup="true" oSGiCompatible="true">
   <foreignModel>emfcollection.ecore</foreignModel>
   <genPackages prefix="Collection" basePackage="org.gecko" disposableProviderFactory="true"
       ecorePackage="emfcollection.ecore#/">
@@ -24,11 +25,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emfcollection.ecore#//EIterable/delegate"/>
     </genClasses>
     <genClasses image="false" ecoreClass="emfcollection.ecore#//EIterableInterface">
-      <genOperations ecoreOperation="emfcollection.ecore#//EIterableInterface/iterator"/>
+      <genOperations ecoreOperation="emfcollection.ecore#//EIterableInterface/iterator"
+          body="return getDelegate() != null ? getDelegate().iterator() : null;"/>
     </genClasses>
     <genClasses ecoreClass="emfcollection.ecore#//FeaturePath">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute emfcollection.ecore#//FeaturePath/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference emfcollection.ecore#//FeaturePath/feature"/>
+      <genOperations ecoreOperation="emfcollection.ecore#//FeaturePath/getValue" body="&lt;%java.util.List%>&lt;Object> result = &lt;%org.geckoprojects.collection.helper.ECollectionsHelper%>.getFeaturePathValue(this, object);&#xA;if (result != null) {&#xA;&#x9;return &lt;%org.eclipse.emf.common.util.ECollections%>.asEList(result);&#xA;}&#xA;return &lt;%org.eclipse.emf.common.util.ECollections%>.emptyEList();">
+        <genParameters ecoreParameter="emfcollection.ecore#//FeaturePath/getValue/object"/>
+      </genOperations>
+      <genOperations ecoreOperation="emfcollection.ecore#//FeaturePath/isValid" body="if (object == null) {&#xA;&#x9;return false;&#xA;}&#xA;return &lt;%org.geckoprojects.collection.helper.ECollectionsHelper%>.validateFeaturePath(this, object.eClass());">
+        <genParameters ecoreParameter="emfcollection.ecore#//FeaturePath/isValid/object"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

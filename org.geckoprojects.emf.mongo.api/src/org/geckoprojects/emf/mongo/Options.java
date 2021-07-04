@@ -279,7 +279,7 @@ public interface Options {
 	 * all _eClass fields or look in the _superType array for the EClass URI. 
 	 * 
 	 * <code>
-	 * resourceSet.getLoadOptions().put(Options.OPTION_FILTER_ECLASS, TestPackage.Literals.MYTEST));
+	 * resourceSet.getLoadOptions().put(Options.OPTION_FILTER_ECLASS, BasicPackage.Literals.MYTEST));
 	 * </code>
 	 */
 	String OPTION_FILTER_ECLASS = "FILTER_ECLASS";
@@ -290,7 +290,7 @@ public interface Options {
 	 * Default value is <code>false</code>
 	 * 
 	 * <code>
-	 * resourceSet.getLoadOptions().put(Options.OPTION_FILTER_ECLASS, TestPackage.Literals.MYTEST));
+	 * resourceSet.getLoadOptions().put(Options.OPTION_FILTER_ECLASS, BasicPackage.Literals.MYTEST));
 	 * resourceSet.getLoadOptions().put(Options.OPTION_FILTER_ECLASS_STRICT, Boolean.TRUE));
 	 * </code>
 	 */
@@ -300,9 +300,9 @@ public interface Options {
 	 * If set to an {@link EClass} or a {@link String} EMF Mongo uses the give value as collection
 	 * 
 	 * <code>
-	 * resourceSet.getSaveOptions().put(Options.OPTION_COLLECTION_NAME, TestPackage.Literals.MYTEST));
+	 * resourceSet.getSaveOptions().put(Options.OPTION_COLLECTION_NAME, BasicPackage.Literals.MYTEST));
 	 * resourceSet.getSaveOptions().put(Options.OPTION_COLLECTION_NAME, "mycollection"));
-	 * resourceSet.getLoadOptions().put(Options.OPTION_COLLECTION_NAME, TestPackage.Literals.MYTEST));
+	 * resourceSet.getLoadOptions().put(Options.OPTION_COLLECTION_NAME, BasicPackage.Literals.MYTEST));
 	 * resourceSet.getLoadOptions().put(Options.OPTION_COLLECTION_NAME, "mycollection"));
 	 * </code>
 	 */

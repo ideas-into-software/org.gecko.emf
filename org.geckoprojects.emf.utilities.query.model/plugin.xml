@@ -19,7 +19,7 @@
       <!-- @generated query_1.0 -->
       <package
             uri="http://data-in-motion.biz/query/1.0"
-            class="org.gecko.utilities.query.QueryPackage"
+            class="org.geckoprojects.utilities.query.QueryPackage"
             genModel="model/query_1.0.genmodel"/>
    </extension>
 
@@ -27,7 +27,7 @@
       <!-- @generated query_1.0 -->
       <parser
             type="query"
-            class="org.gecko.utilities.query.util.QueryResourceFactoryImpl"/>
+            class="org.geckoprojects.utilities.query.util.QueryResourceFactoryImpl"/>
    </extension>
 
 </plugin>

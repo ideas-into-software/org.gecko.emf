@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.URIHandler;
-import org.gecko.emf.osgi.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.ResourceSetConfigurator;
 
 /**
  * {@link ResourceSetConfigurator} just handling the mongo stuff
@@ -33,10 +33,7 @@ public class MongoResourceSetConfigurator implements ResourceSetConfigurator {
 		this.provider = provider;
 	}
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.ResourceSetConfigurator#configureResourceSet(org.eclipse.emf.ecore.resource.ResourceSet)
-	 */
+
 	@Override
 	public void configureResourceSet(ResourceSet resourceSet) {
 		URIConverter uriConverter = resourceSet.getURIConverter();

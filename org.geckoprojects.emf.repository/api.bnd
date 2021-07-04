@@ -5,7 +5,7 @@ Bundle-Description: EMF Repository API
 Bundle-Vendor: Data In Motion Consulting GmbH
 Bundle-Version: 9.2.2.SNAPSHOT
 Export-Package: \
-	org.gecko.emf.repository.query,\
-	org.gecko.emf.repository,\
-	org.gecko.emf.repository.helper,\
-	org.gecko.emf.repository.exception
+	org.geckoprojects.emf.repository.query,\
+	org.geckoprojects.emf.repository,\
+	org.geckoprojects.emf.repository.helper,\
+	org.geckoprojects.emf.repository.exception

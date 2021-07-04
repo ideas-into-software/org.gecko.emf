@@ -34,8 +34,8 @@
 [INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.osgi.annotation.versioning
 [INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.osgi.framework
 [INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.osgi.service.component.annotations
-[INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.geckoprojects.emf.osgi.annotation
 [INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.osgi.annotation.bundle
+[INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.geckoprojects.emf.example.model.basic
 [INFO] Match in /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/generated/org.geckoprojects.emf.example.model.basic.jar
 [INFO] comaparing URIs resource://org.geckoprojects.emf.example.model.basic/model/basic.ecore with the requested resource://org.geckoprojects.emf.example.model.basic/model/basic.genmodel
@@ -50,8 +50,8 @@
 [INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.osgi.annotation.versioning
 [INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.osgi.framework
 [INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.osgi.service.component.annotations
-[INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.geckoprojects.emf.osgi.annotation
 [INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.osgi.annotation.bundle
+[INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.geckoprojects.emf.example.model.basicwith container using getBSN() org.geckoprojects.emf.example.model.basic
 [INFO] Match in /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/generated/org.geckoprojects.emf.example.model.basic.jar
 [INFO] comaparing URIs resource://org.geckoprojects.emf.example.model.basic/model/basic.ecore with the requested resource://org.geckoprojects.emf.example.model.basic/model/basic.ecore
@@ -65,8 +65,8 @@
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.osgi.annotation
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.example.model.basic
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
@@ -84,8 +84,8 @@
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.osgi.annotation
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.example.model.basic
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore

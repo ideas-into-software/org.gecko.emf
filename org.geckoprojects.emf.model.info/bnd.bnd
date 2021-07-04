@@ -1,0 +1,13 @@
+-buildpath: \
+	org.geckoprojects.emf.core;version=latest,\
+	org.osgi.annotation.bundle,\
+	org.osgi.service.component.annotations,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.osgi.annotation.versioning,\
+	org.geckoprojects.emf.core
+
+Bundle-Version: ${emf-version}
+
+Export-Package: org.geckoprojects.emf.model.info
+Private-Package: org.geckoprojects.emf.model.info.impl

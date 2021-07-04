@@ -35,7 +35,7 @@ public interface CustomPushStreamProvider extends EPushStreamProvider {
 	 * @return the value of the '<em>Event Source</em>' attribute.
 	 * @see #setEventSource(PushEventSource)
 	 * @see org.geckoprojects.emf.pushstream.PushStreamPackage#getCustomPushStreamProvider_EventSource()
-	 * @model dataType="org.gecko.emf.pushstream.EPushEventSource" required="true" transient="true"
+	 * @model dataType="org.geckoprojects.emf.pushstream.EPushEventSource" required="true" transient="true"
 	 * @generated
 	 */
 	PushEventSource<EObject> getEventSource();
@@ -61,7 +61,7 @@ public interface CustomPushStreamProvider extends EPushStreamProvider {
 	 * @return the value of the '<em>Provider</em>' attribute.
 	 * @see #setProvider(PushStreamProvider)
 	 * @see org.geckoprojects.emf.pushstream.PushStreamPackage#getCustomPushStreamProvider_Provider()
-	 * @model dataType="org.gecko.emf.pushstream.PushStreamProvider" required="true"
+	 * @model dataType="org.geckoprojects.emf.pushstream.PushStreamProvider" required="true"
 	 * @generated
 	 */
 	PushStreamProvider getProvider();

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see org.geckoprojects.emf.collection.CollectionPackage#getEIterable()
- * @model superTypes="org.gecko.collection.EIterableInterface"
+ * @model superTypes="org.geckoprojects.collection.EIterableInterface"
  * @generated
  */
 public interface EIterable extends EObject, Iterable<EObject> {
@@ -33,7 +33,7 @@ public interface EIterable extends EObject, Iterable<EObject> {
 	 * @return the value of the '<em>Delegate</em>' attribute.
 	 * @see #setDelegate(Iterable)
 	 * @see org.geckoprojects.emf.collection.CollectionPackage#getEIterable_Delegate()
-	 * @model dataType="org.gecko.collection.Iterable"
+	 * @model dataType="org.geckoprojects.collection.Iterable"
 	 * @generated
 	 */
 	Iterable<EObject> getDelegate();

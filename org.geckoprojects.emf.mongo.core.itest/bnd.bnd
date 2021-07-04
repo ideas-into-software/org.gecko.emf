@@ -4,22 +4,24 @@ Bundle-Version: 0.0.1-SNAPSHOT
 	junit-jupiter-api,\
 	junit-platform-commons,\
 	org.osgi.test.junit5,\
-	assertj-core,\
 	org.geckoprojects.emf.mongo.api,\
 	org.geckoprojects.emf.mongo.core,\
 	org.geckoprojects.emf.example.model.basic;version=latest,\
+	org.geckoprojects.mongo.core,\
+	org.geckoprojects.osgitest;version=latest,\
 	org.apiguardian:apiguardian-api,\
 	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
 	org.eclipse.emf.ecore.xmi,\
 	org.mongodb.bson,\
 	org.mongodb.driver-sync,\
 	org.mongodb.driver-core,\
-	org.eclipse.emf.common,\
 	org.osgi.framework,\
 	org.osgi.test.common,\
-	org.geckoprojects.emf.osgi.api,\
-	org.geckoprojects.mongo.core,\
-	org.osgi.service.cm
+	org.osgi.service.cm,\
+	org.osgi.test.assertj.framework,\
+	assertj-core;version='3.20',\
+	org.geckoprojects.emf.core
 
 Fragment-Host: org.geckoprojects.emf.mongo.core
 

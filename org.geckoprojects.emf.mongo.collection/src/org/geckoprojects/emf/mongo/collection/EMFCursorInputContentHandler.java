@@ -29,17 +29,12 @@ import com.mongodb.client.FindIterable;
 @Component(name="EIteratorInputContentHandler", service=InputContentHandler.class, property = {Constants.SERVICE_RANKING + "=20"})
 public class EMFCursorInputContentHandler extends UncachedInputContentHandler {
 	
-	/* (non-Javadoc)
-	 * @see org.gecko.emf.mongo.InputContentHandler#canHandle(java.util.Map)
-	 */
+
 	@Override
 	public boolean canHandle(Map<Object, Object> options) {
 		return Boolean.TRUE.equals(options.get(Options.OPTION_QUERY_CURSOR));
 	}
 
-	/* (non-Javadoc)
-	 * @see org.gecko.emf.mongo.UncachedInputContentHandler#doCreateContent(com.mongodb.client.FindIterable, java.util.Map)
-	 */
 	@Override
 	public EObject doCreateContent(FindIterable<EObject> iterable, Map<Object, Object> options) {
 		EIterable eIterable = CollectionFactory.eINSTANCE.createEIterable();

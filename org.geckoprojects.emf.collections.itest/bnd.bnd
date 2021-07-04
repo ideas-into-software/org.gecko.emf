@@ -3,11 +3,11 @@ Bundle-Version: 0.0.1-SNAPSHOT
 -buildpath: \
 	junit-jupiter-api,\
 	junit-platform-commons,\
-	assertj-core,\
 	org.apiguardian:apiguardian-api,\
 	org.eclipse.emf.ecore,\
 	org.eclipse.emf.common,\
 	org.eclipse.emf.ecore.xmi,\
-	org.geckoprojects.emf.collections;version=latest
+	org.geckoprojects.emf.collections;version=latest,\
+	assertj-core;version='3.20'
 
 Fragment-Host: org.geckoprojects.emf.collections

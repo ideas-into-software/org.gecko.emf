@@ -21,7 +21,7 @@ import org.osgi.util.pushstream.SimplePushEventSource;
  *
  * @see org.geckoprojects.emf.pushstream.PushStreamPackage#getSimplePushStreamProvider()
  * @model features="internalSource" 
- *        internalSourceDataType="org.gecko.emf.pushstream.ESimplePushEventSource" internalSourceTransient="true" internalSourceChangeable="false" internalSourceDerived="true" internalSourceSuppressedGetVisibility="true"
+ *        internalSourceDataType="org.geckoprojects.emf.pushstream.ESimplePushEventSource" internalSourceTransient="true" internalSourceChangeable="false" internalSourceDerived="true" internalSourceSuppressedGetVisibility="true"
  * @generated
  */
 public interface SimplePushStreamProvider extends EPushStreamProvider {
@@ -36,7 +36,7 @@ public interface SimplePushStreamProvider extends EPushStreamProvider {
 	 * @return the value of the '<em>Provider</em>' attribute.
 	 * @see #setProvider(PushStreamProvider)
 	 * @see org.geckoprojects.emf.pushstream.PushStreamPackage#getSimplePushStreamProvider_Provider()
-	 * @model dataType="org.gecko.emf.pushstream.PushStreamProvider" required="true"
+	 * @model dataType="org.geckoprojects.emf.pushstream.PushStreamProvider" required="true"
 	 * @generated
 	 */
 	PushStreamProvider getProvider();
@@ -64,7 +64,7 @@ public interface SimplePushStreamProvider extends EPushStreamProvider {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Event Source</em>' attribute.
 	 * @see org.geckoprojects.emf.pushstream.PushStreamPackage#getSimplePushStreamProvider_EventSource()
-	 * @model dataType="org.gecko.emf.pushstream.ESimplePushEventSource" required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @model dataType="org.geckoprojects.emf.pushstream.ESimplePushEventSource" required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='if (internalSource == null) {\r\n\tinternalSource = createSimplePushEventSource();\r\n}\r\nreturn internalSource;'"
 	 * @generated
 	 */

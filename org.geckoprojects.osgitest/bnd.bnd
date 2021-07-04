@@ -1,0 +1,13 @@
+Bundle-Version: 0.0.1-SNAPSHOT
+-buildpath: \
+	org.osgi.framework,\
+	org.osgi.test.common,\
+	org.osgi.test.assertj.framework,\
+	assertj-core;version='3.20'
+-privatepackage: org.geckoprojects.osgitest.events.impl
+Export-Package: \
+	org.geckoprojects.osgitest,\
+	org.geckoprojects.osgitest.assertj,\
+	org.geckoprojects.osgitest.conditions,\
+	org.geckoprojects.osgitest.events,\
+	org.geckoprojects.osgitest.predicates

@@ -1,18 +1,18 @@
--include: \
-	${workspace}/cnf/include/jdt.bnd
 
 -enable-gecko-emf: true
 
 -buildpath: \
-	osgi.annotation;version=7.0,\
-	osgi.core;version=6.0,\
-	osgi.cmpn;version=6.0,\
-	org.gecko.emf.osgi.test.model
-
+	org.geckoprojects.emf.core,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.osgi.annotation.versioning,\
+	org.osgi.annotation.bundle,\
+	org.osgi.service.component.annotations
 -testpath: \
-	${junit}
+	org.geckoprojects.emf.example.model.basic,\
+	org.eclipse.emf.ecore.xmi,\
+	junit-jupiter-api,\
+	assertj-core
 
-Bundle-Name: EMF Repository API
-Bundle-Description: EMF Repository API
-Private-Package: org.gecko.emf.repository
+
 -sub: *.bnd

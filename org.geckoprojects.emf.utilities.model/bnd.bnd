@@ -1,10 +1,6 @@
--include: \
-	${workspace}/cnf/include/jdt.bnd
-	
 -enable-gecko-emf: true
 
--testpath: \
-	${junit}
+
 	
 -includeresource model/=model,\
 	plugin.properties=plugin.properties
@@ -16,9 +12,16 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 
 Private-Package: \
-	org.gecko.emf.utilities.configuration
+	org.geckoprojects.emf.utilities.configuration
 
 Export-Package: \
-	org.gecko.emf.utilities,\
- 	org.gecko.emf.utilities.impl,\
- 	org.gecko.emf.utilities.util
+	org.geckoprojects.emf.utilities,\
+ 	org.geckoprojects.emf.utilities.impl,\
+ 	org.geckoprojects.emf.utilities.util
+-buildpath: \
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.osgi.annotation.versioning,\
+	org.osgi.service.component.annotations,\
+	org.geckoprojects.emf.core,\
+	org.eclipse.emf.ecore.xmi

@@ -1,0 +1,11 @@
+-buildpath: \
+	org.osgi.service.component.annotations,\
+	org.eclipse.emf.common,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.ecore.xmi,\
+	org.geckoprojects.emf.core
+
+Bundle-Version: ${emf-version}
+Private-Package: org.geckoprojects.emf.ecore
+Bundle-Name: EMF Ecore OSGi extension bundle
+Bundle-Description: EMF Ecore  for OSGi service extensions

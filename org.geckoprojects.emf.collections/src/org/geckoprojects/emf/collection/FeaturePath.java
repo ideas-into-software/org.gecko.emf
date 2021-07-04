@@ -70,7 +70,7 @@ public interface FeaturePath extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model objectRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='&lt;%java.util.List%&gt;&lt;Object&gt; result = &lt;%org.gecko.collection.helper.ECollectionsHelper%&gt;.getFeaturePathValue(this, object);\nif (result != null) {\n\treturn &lt;%org.eclipse.emf.common.util.ECollections%&gt;.asEList(result);\n}\nreturn &lt;%org.eclipse.emf.common.util.ECollections%&gt;.emptyEList();'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='&lt;%java.util.List%&gt;&lt;Object&gt; result = &lt;%org.geckoprojects.collection.helper.ECollectionsHelper%&gt;.getFeaturePathValue(this, object);\nif (result != null) {\n\treturn &lt;%org.eclipse.emf.common.util.ECollections%&gt;.asEList(result);\n}\nreturn &lt;%org.eclipse.emf.common.util.ECollections%&gt;.emptyEList();'"
 	 * @generated
 	 */
 	EList<Object> getValue(EObject object);
@@ -79,7 +79,7 @@ public interface FeaturePath extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model objectRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if (object == null) {\n\treturn false;\n}\nreturn &lt;%org.gecko.collection.helper.ECollectionsHelper%&gt;.validateFeaturePath(this, object.eClass());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if (object == null) {\n\treturn false;\n}\nreturn &lt;%org.geckoprojects.collection.helper.ECollectionsHelper%&gt;.validateFeaturePath(this, object.eClass());'"
 	 * @generated
 	 */
 	boolean isValid(EObject object);

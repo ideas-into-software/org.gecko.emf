@@ -1,14 +1,12 @@
 src=${^src},src-gen
 
 -buildpath: \
-	org.geckoprojects.emf.osgi.api;version=latest,\
-	org.geckoprojects.emf.osgi.annotation;version=latest,\
+	org.geckoprojects.emf.core;version=latest,\
 	org.geckoprojects.emf.example.model.basic;version=latest,\
 	org.eclipse.emf.ecore,\
 	org.eclipse.emf.common,\
 	org.osgi.annotation.versioning,\
 	org.eclipse.emf.ecore.xmi,\
-	org.geckoprojects.emf.osgi.api,\
 	org.osgi.annotation.bundle,\
 	org.osgi.service.component.annotations,\
 	org.osgi.framework

@@ -21,6 +21,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.Collections;
 import java.util.Dictionary;
 import java.util.HashMap;
@@ -30,35 +31,33 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import org.bson.Document;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.gecko.core.tests.ServiceChecker;
-import org.gecko.emf.mongo.Keywords;
-import org.gecko.emf.mongo.Options;
-import org.gecko.emf.osgi.model.test.Address;
-import org.gecko.emf.osgi.model.test.BusinessPerson;
-import org.gecko.emf.osgi.model.test.Family;
-import org.gecko.emf.osgi.model.test.Person;
-import org.gecko.emf.osgi.model.test.TestFactory;
-import org.gecko.emf.osgi.model.test.TestPackage;
-import org.gecko.emf.repository.EMFRepository;
-import org.gecko.emf.repository.exception.ConstraintValidationException;
-import org.gecko.emf.repository.mongo.api.EMFMongoConfiguratorConstants;
-import org.gecko.emf.repository.query.IQueryBuilder;
-import org.gecko.emf.repository.query.QueryRepository;
+import org.geckoprojects.emf.mongo.Keywords;
+import org.geckoprojects.emf.osgi.model.test.Address;
+import org.geckoprojects.emf.osgi.model.test.BusinessPerson;
+import org.geckoprojects.emf.osgi.model.test.Family;
+import org.geckoprojects.emf.osgi.model.test.Person;
+import org.geckoprojects.emf.osgi.model.test.TestPackage;
+import org.geckoprojects.emf.repository.EMFRepository;
+import org.geckoprojects.emf.repository.exception.ConstraintValidationException;
+import org.geckoprojects.emf.repository.query.IQueryBuilder;
+import org.geckoprojects.emf.repository.query.QueryRepository;
 import org.gecko.mongo.osgi.MongoClientProvider;
 import org.gecko.mongo.osgi.MongoDatabaseProvider;
 import org.gecko.mongo.osgi.configuration.ConfigurationProperties;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.geckoprojects.emf.repository.mongo.api.EMFMongoConfiguratorConstants;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.service.log.stream.LogStreamProvider.Options;
+import org.osgi.test.junit5.context.BundleContextExtension;
+import org.osgi.test.junit5.service.ServiceExtension;
 
 import com.mongodb.client.MongoCollection;
 
@@ -67,7 +66,8 @@ import com.mongodb.client.MongoCollection;
  * @author Mark Hoffmann
  * @since 26.07.2017
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(BundleContextExtension.class)
+@ExtendWith(ServiceExtension.class)
 public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 	@Test
@@ -114,7 +114,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		EMFRepository repository = (EMFRepository) repoChecker.trackedServiceNotNull().getTrackedService();
 
-		Person person = TestFactory.eINSTANCE.createPerson();
+		Person person = BasicFactory.eINSTANCE.createPerson();
 		person.setId("test");
 		person.setFirstName("Emil");
 		person.setLastName("Tester");
@@ -136,7 +136,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		assertNull(person.eResource());
 		assertEquals(0, rs.getResources().size());
 
-		Person personResult = repository.getEObject(TestPackage.Literals.PERSON, "test");
+		Person personResult = repository.getEObject(BasicPackage.Literals.PERSON, "test");
 		assertNotNull(personResult);
 		assertNotEquals(person, personResult);
 		assertNotEquals(r, personResult.eResource());
@@ -189,7 +189,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		EMFRepository repository = (EMFRepository) repoChecker.trackedServiceNotNull().getTrackedService();
 		QueryRepository queryRepo = (QueryRepository) repository.getAdapter(QueryRepository.class);
-		Person person = TestFactory.eINSTANCE.createPerson();
+		Person person = BasicFactory.eINSTANCE.createPerson();
 		person.setId("test");
 		person.setFirstName("Emil");
 		person.setLastName("Tester");
@@ -201,7 +201,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		assertEquals(1, personCollection.countDocuments());
 
-		person = TestFactory.eINSTANCE.createPerson();
+		person = BasicFactory.eINSTANCE.createPerson();
 		person.setId("test2");
 		person.setFirstName("Emil2");
 		person.setLastName("Tester2");
@@ -220,7 +220,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		IQueryBuilder allQuery = queryRepo.createQueryBuilder().allQuery();
 
-		List<EObject> result = queryRepo.getEObjectsByQuery(TestPackage.Literals.PERSON, allQuery.build());
+		List<EObject> result = queryRepo.getEObjectsByQuery(BasicPackage.Literals.PERSON, allQuery.build());
 
 		//only the result of our 2 saved Persons must have a related resource
 		assertEquals(2, result.size());
@@ -230,7 +230,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		assertTrue(resourceSet.getResources().isEmpty());
 
-		result = queryRepo.getEObjectsByQuery(TestPackage.Literals.PERSON, allQuery.build(), Collections.singletonMap(Options.OPTION_LAZY_RESULT_LOADING, true));
+		result = queryRepo.getEObjectsByQuery(BasicPackage.Literals.PERSON, allQuery.build(), Collections.singletonMap(Options.OPTION_LAZY_RESULT_LOADING, true));
 
 		person = (Person) result.get(0);
 
@@ -289,7 +289,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		Address address = repository.createProxy(TestPackage.eINSTANCE.getAddress(), "testAddress");
 
-		Person person = TestFactory.eINSTANCE.createPerson();
+		Person person = BasicFactory.eINSTANCE.createPerson();
 		person.setId("test");
 		person.setFirstName("Emil");
 		person.setLastName("Tester");
@@ -312,7 +312,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		assertNull(person.eResource());
 		assertEquals(0, rs.getResources().size());
 
-		Person personResult = repository.getEObject(TestPackage.Literals.PERSON, "test");
+		Person personResult = repository.getEObject(BasicPackage.Literals.PERSON, "test");
 		assertNotNull(personResult);
 		assertNotEquals(person, personResult);
 		assertNotEquals(r, personResult.eResource());
@@ -327,7 +327,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		repository.detach(person);
 
-		personResult = repository.getEObject(TestPackage.Literals.PERSON, "test");
+		personResult = repository.getEObject(BasicPackage.Literals.PERSON, "test");
 		assertNotNull(personResult);
 		assertNotEquals(person, personResult);
 		assertNotEquals(r, personResult.eResource());
@@ -387,7 +387,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		EMFRepository repository = (EMFRepository) repoChecker.trackedServiceNotNull().getTrackedService();
 
-		BusinessPerson bPerson = TestFactory.eINSTANCE.createBusinessPerson();
+		BusinessPerson bPerson = BasicFactory.eINSTANCE.createBusinessPerson();
 		bPerson.setId("bp");
 		bPerson.setFirstName("Lord");
 		bPerson.setLastName("Business");
@@ -400,13 +400,13 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		uri = repository.createUri(bPerson, saveProperties);
 		assertEquals(clientUri + "/" + db + "/Person/bp#bp", uri.toString());
 		assertEquals(Boolean.TRUE, saveProperties.get(Options.OPTION_STORE_SUPERTYPE));
-		assertEquals(TestPackage.Literals.BUSINESS_PERSON, saveProperties.get(Options.OPTION_FILTER_ECLASS));
+		assertEquals(BasicPackage.Literals.BUSINESS_PERSON, saveProperties.get(Options.OPTION_FILTER_ECLASS));
 
 		assertEquals(0, personCollection.countDocuments());
 		repository.save(bPerson, saveProperties);
 		assertEquals(1, personCollection.countDocuments());
 
-		Person person = TestFactory.eINSTANCE.createPerson();
+		Person person = BasicFactory.eINSTANCE.createPerson();
 		person.setId("test");
 		person.setFirstName("Emil");
 		person.setLastName("Tester");
@@ -417,7 +417,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		repository.save(person);
 		assertEquals(2, personCollection.countDocuments());
 
-		Address address = TestFactory.eINSTANCE.createAddress();
+		Address address = BasicFactory.eINSTANCE.createAddress();
 		address.setId("adr");
 		address.setStreet("DateSquare");
 		address.setCity("You Nork");
@@ -429,7 +429,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		uri = repository.createUri(address, saveProperties);
 		assertEquals(clientUri + "/" + db + "/Person/adr#adr", uri.toString());
 		assertEquals(Boolean.TRUE, saveProperties.get(Options.OPTION_STORE_SUPERTYPE));
-		assertEquals(TestPackage.Literals.ADDRESS, saveProperties.get(Options.OPTION_FILTER_ECLASS));
+		assertEquals(BasicPackage.Literals.ADDRESS, saveProperties.get(Options.OPTION_FILTER_ECLASS));
 
 		assertEquals(2, personCollection.countDocuments());
 		repository.save(address, saveProperties);
@@ -460,30 +460,30 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		assertNull(bPerson.eResource());
 		assertEquals(0, rs.getResources().size());
 
-		Person personResult = repository.getEObject(TestPackage.Literals.PERSON, "test");
+		Person personResult = repository.getEObject(BasicPackage.Literals.PERSON, "test");
 		assertNotNull(personResult);
 		assertNotEquals(person, personResult);
 		assertNotEquals(rp, personResult.eResource());
 
-		BusinessPerson bPersonResult = repository.getEObject(TestPackage.Literals.BUSINESS_PERSON, "bp");
+		BusinessPerson bPersonResult = repository.getEObject(BasicPackage.Literals.BUSINESS_PERSON, "bp");
 		assertNull(bPersonResult);
 		Map<String, Object> loadProperties = new HashMap<String, Object>();
 		loadProperties.put(Options.OPTION_COLLECTION_NAME, TestPackage.eINSTANCE.getPerson().getName());
-		bPersonResult = repository.getEObject(TestPackage.Literals.BUSINESS_PERSON, "bp", loadProperties);
+		bPersonResult = repository.getEObject(BasicPackage.Literals.BUSINESS_PERSON, "bp", loadProperties);
 		assertNotNull(bPersonResult);
 		assertNotEquals(bPerson, bPersonResult);
 		assertNotEquals(rbp, bPersonResult.eResource());
 
-		List<EObject> addresses = repository.getAllEObjects(TestPackage.Literals.ADDRESS, null);
+		List<EObject> addresses = repository.getAllEObjects(BasicPackage.Literals.ADDRESS, null);
 		assertTrue(addresses.isEmpty());
 
-		addresses = repository.getAllEObjects(TestPackage.Literals.ADDRESS, loadProperties);
+		addresses = repository.getAllEObjects(BasicPackage.Literals.ADDRESS, loadProperties);
 		assertEquals(1, addresses.size());
 
-		List<Person> persons = repository.getAllEObjects(TestPackage.Literals.PERSON, loadProperties);
+		List<Person> persons = repository.getAllEObjects(BasicPackage.Literals.PERSON, loadProperties);
 		assertEquals(2, persons.size());
 
-		List<EObject> objects = repository.getAllEObjects(TestPackage.Literals.PERSON);
+		List<EObject> objects = repository.getAllEObjects(BasicPackage.Literals.PERSON);
 		assertEquals(3, objects.size());
 	}
 
@@ -535,7 +535,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		EMFRepository repository = (EMFRepository) repoChecker.trackedServiceNotNull().getTrackedService();
 
-		BusinessPerson bPerson = TestFactory.eINSTANCE.createBusinessPerson();
+		BusinessPerson bPerson = BasicFactory.eINSTANCE.createBusinessPerson();
 		bPerson.setId("bp");
 		bPerson.setFirstName("Lord");
 		bPerson.setLastName("Business");
@@ -548,7 +548,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		assertEquals(0, personCollection.countDocuments());
 		repository.save(bPerson, saveProperties);
 		assertEquals(Boolean.TRUE, saveProperties.get(Options.OPTION_STORE_SUPERTYPE));
-		assertEquals(TestPackage.Literals.BUSINESS_PERSON, saveProperties.get(Options.OPTION_FILTER_ECLASS));
+		assertEquals(BasicPackage.Literals.BUSINESS_PERSON, saveProperties.get(Options.OPTION_FILTER_ECLASS));
 		assertEquals(1, personCollection.countDocuments());
 
 		Document document = (Document) personCollection.find().first();
@@ -615,7 +615,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		EMFRepository repository = (EMFRepository) repoChecker.trackedServiceNotNull().getTrackedService();
 
-		BusinessPerson bPerson = TestFactory.eINSTANCE.createBusinessPerson();
+		BusinessPerson bPerson = BasicFactory.eINSTANCE.createBusinessPerson();
 		bPerson.setId("bp");
 		bPerson.setFirstName("Lord");
 		bPerson.setLastName("Business");
@@ -628,13 +628,13 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		uri = repository.createUri(bPerson, saveProperties);
 		assertEquals(clientUri + "/" + db + "/Person/bp#bp", uri.toString());
 		assertEquals(Boolean.TRUE, saveProperties.get(Options.OPTION_STORE_SUPERTYPE));
-		assertEquals(TestPackage.Literals.BUSINESS_PERSON, saveProperties.get(Options.OPTION_FILTER_ECLASS));
+		assertEquals(BasicPackage.Literals.BUSINESS_PERSON, saveProperties.get(Options.OPTION_FILTER_ECLASS));
 
 		assertEquals(0, personCollection.countDocuments());
 		repository.save(bPerson, saveProperties);
 		assertEquals(1, personCollection.countDocuments());
 
-		Person person = TestFactory.eINSTANCE.createPerson();
+		Person person = BasicFactory.eINSTANCE.createPerson();
 		person.setId("test");
 		person.setFirstName("Emil");
 		person.setLastName("Tester");
@@ -645,7 +645,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		repository.save(person);
 		assertEquals(2, personCollection.countDocuments());
 
-		Address address = TestFactory.eINSTANCE.createAddress();
+		Address address = BasicFactory.eINSTANCE.createAddress();
 		address.setId("adr");
 		address.setStreet("DateSquare");
 		address.setCity("You Nork");
@@ -657,7 +657,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		uri = repository.createUri(address, saveProperties);
 		assertEquals(clientUri + "/" + db + "/Person/adr#adr", uri.toString());
 		assertEquals(Boolean.TRUE, saveProperties.get(Options.OPTION_STORE_SUPERTYPE));
-		assertEquals(TestPackage.Literals.ADDRESS, saveProperties.get(Options.OPTION_FILTER_ECLASS));
+		assertEquals(BasicPackage.Literals.ADDRESS, saveProperties.get(Options.OPTION_FILTER_ECLASS));
 
 		assertEquals(2, personCollection.countDocuments());
 		repository.save(address, saveProperties);
@@ -683,7 +683,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 		assertNull(bPerson.eResource());
 		assertEquals(0, rs.getResources().size());
 
-		List<Person> objects = repository.getAllEObjects(TestPackage.Literals.PERSON);
+		List<Person> objects = repository.getAllEObjects(BasicPackage.Literals.PERSON);
 		@SuppressWarnings("unused")
 		Person result = objects.get(2);
 		fail("Should not reach this line");
@@ -736,24 +736,24 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		EMFRepository repository = (EMFRepository) repoChecker.trackedServiceNotNull().getTrackedService();
 
-		Person father = TestFactory.eINSTANCE.createPerson();
+		Person father = BasicFactory.eINSTANCE.createPerson();
 		father.setFirstName("Father");
 		father.setLastName("Tester");
 		repository.save(father);
-		Person mother = TestFactory.eINSTANCE.createPerson();
+		Person mother = BasicFactory.eINSTANCE.createPerson();
 		mother.setFirstName("Mother");
 		mother.setLastName("Tester");
 		repository.save(mother);
-		Person child1 = TestFactory.eINSTANCE.createPerson();
+		Person child1 = BasicFactory.eINSTANCE.createPerson();
 		child1.setFirstName("Child1");
 		child1.setLastName("Tester");
 		repository.save(child1);
-		Person child2 = TestFactory.eINSTANCE.createPerson();
+		Person child2 = BasicFactory.eINSTANCE.createPerson();
 		child2.setFirstName("Child2");
 		child2.setLastName("Tester");
 		repository.save(child2);
 
-		Family fam = TestFactory.eINSTANCE.createFamily();
+		Family fam = BasicFactory.eINSTANCE.createFamily();
 		fam.setFather(father);
 		fam.setMother(mother);
 		fam.getChildren().add(child1);
@@ -842,14 +842,14 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		Address address = repository.createProxy(TestPackage.eINSTANCE.getAddress(), "testAddress");
 
-		Person person1 = TestFactory.eINSTANCE.createPerson();
+		Person person1 = BasicFactory.eINSTANCE.createPerson();
 		person1.setId("test1");
 		person1.setFirstName("Emil");
 		person1.setLastName("Tester");
 		person1.setAddress(address);
 		URI uri = repository.createUri(person1);
 		assertEquals(clientUri + "/" + db + "/Person/test1#test1", uri.toString());
-		Person person2 = TestFactory.eINSTANCE.createPerson();
+		Person person2 = BasicFactory.eINSTANCE.createPerson();
 		person2.setId("test2");
 		person2.setFirstName("Emil");
 		person2.setLastName("Tester");
@@ -910,7 +910,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		Address address = repository.createProxy(TestPackage.eINSTANCE.getAddress(), "testAddress");
 
-		Person person1 = TestFactory.eINSTANCE.createPerson();
+		Person person1 = BasicFactory.eINSTANCE.createPerson();
 		person1.setId("test1");
 		person1.setFirstName("Emil");
 		person1.setLastName("Tester");
@@ -921,7 +921,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		URI uri = repository.createUri(person1, idProps);
 		assertEquals(clientUri + "/" + db + "/Person/#test1", uri.toString());
-		Person person2 = TestFactory.eINSTANCE.createPerson();
+		Person person2 = BasicFactory.eINSTANCE.createPerson();
 		person2.setId("test2");
 		person2.setFirstName("Emil");
 		person2.setLastName("Tester");
@@ -981,10 +981,10 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		EMFRepository repository = (EMFRepository) repoChecker.trackedServiceNotNull().getTrackedService();
 
-		Address address = TestFactory.eINSTANCE.createAddress();
+		Address address = BasicFactory.eINSTANCE.createAddress();
 		address.setId("testAddress");
 
-		Person person = TestFactory.eINSTANCE.createPerson();
+		Person person = BasicFactory.eINSTANCE.createPerson();
 		person.setId("test");
 		person.setFirstName("Emil");
 		person.setLastName("Tester");
@@ -1044,17 +1044,17 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		EMFRepository repository = (EMFRepository) repoChecker.trackedServiceNotNull().getTrackedService();
 
-		Address address = TestFactory.eINSTANCE.createAddress();
+		Address address = BasicFactory.eINSTANCE.createAddress();
 		address.setId("testAddress");
 
-		Person person1 = TestFactory.eINSTANCE.createPerson();
+		Person person1 = BasicFactory.eINSTANCE.createPerson();
 		person1.setId("test1");
 		person1.setFirstName("Emil");
 		person1.setLastName("Tester");
 		person1.setAddress(address);
 		URI uri = repository.createUri(person1);
 		assertEquals(clientUri + "/" + db + "/Person/test1#test1", uri.toString());
-		Person person2 = TestFactory.eINSTANCE.createPerson();
+		Person person2 = BasicFactory.eINSTANCE.createPerson();
 		person2.setId("test2");
 		person2.setFirstName("Emil");
 		person2.setLastName("Tester");
@@ -1114,10 +1114,10 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		EMFRepository repository = (EMFRepository) repoChecker.trackedServiceNotNull().getTrackedService();
 
-		Address address = TestFactory.eINSTANCE.createAddress();
+		Address address = BasicFactory.eINSTANCE.createAddress();
 		address.setId("testAddress");
 
-		Person person1 = TestFactory.eINSTANCE.createPerson();
+		Person person1 = BasicFactory.eINSTANCE.createPerson();
 		person1.setId("test1");
 		person1.setFirstName("Emil");
 		person1.setLastName("Tester");
@@ -1128,7 +1128,7 @@ public class MongoRepositoryIntegrationTest extends EMFMongoIT {
 
 		URI uri = repository.createUri(person1, idProps);
 		assertEquals(clientUri + "/" + db + "/Person/#test1", uri.toString());
-		Person person2 = TestFactory.eINSTANCE.createPerson();
+		Person person2 = BasicFactory.eINSTANCE.createPerson();
 		person2.setId("test2");
 		person2.setFirstName("Emil");
 		person2.setLastName("Tester");

@@ -25,33 +25,25 @@ import com.mongodb.client.MongoCursor;
  */
 public class EMFCollectionInputContentHandler implements InputContentHandler {
 	
-	/* (non-Javadoc)
-	 * @see org.gecko.emf.mongo.InputContentHandler#canHandle(java.util.Map)
-	 */
+
 	@Override
 	public boolean canHandle(Map<Object, Object> options) {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.gecko.emf.mongo.InputContentHandler#enableResourceCache(java.util.Map)
-	 */
+
 	@Override
 	public boolean enableResourceCache(Map<Object, Object> options) {
 		return !Boolean.TRUE.equals(options.get(Options.OPTION_QUERY_CURSOR));
 	}
 
-	/* (non-Javadoc)
-	 * @see org.gecko.emf.mongo.InputContentHandler#createContent(com.mongodb.client.FindIterable, java.util.Map)
-	 */
+
 	@Override
 	public EObject createContent(FindIterable<EObject> iterable, Map<Object, Object> options) {
 		return createContent(iterable, options, Collections.emptyList());
 	}
 
-	/* (non-Javadoc)
-	 * @see org.gecko.emf.mongo.InputContentHandler#createContent(com.mongodb.client.FindIterable, java.util.Map, java.util.List)
-	 */
+
 	@Override
 	public EObject createContent(FindIterable<EObject> iterable, Map<Object, Object> options,
 			List<Resource> resourceCache) {

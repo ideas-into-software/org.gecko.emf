@@ -1,0 +1,34 @@
+
+-buildpath: \
+	org.osgi.framework,\
+	org.osgi.annotation.bundle,\
+	org.osgi.annotation.versioning,\
+	org.osgi.service.component.annotations,\
+	org.osgi.service.cm,\
+	org.osgi.service.component,\
+	org.eclipse.emf.common,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.ecore.xmi
+	
+Export-Package: \
+	org.geckoprojects.emf.core.annotation.provide,\
+	org.geckoprojects.emf.core.annotation.require,\
+	org.geckoprojects.emf.core.annotation,\
+	org.geckoprojects.emf.core,\
+	org.geckoprojects.emf.core.urihandler,\
+	org.geckoprojects.emf.core.resourceset,\
+	org.geckoprojects.emf.core.factory
+	
+Bundle-Name: EMF OSGi bundle
+Bundle-Description: EMF OSGi integration
+Bundle-Version: ${emf-version}
+
+Provide-Capability: \
+	osgi.service;objectClass:List<String>="org.geckoprojects.emf.core.ResourceSetFactory",\
+	osgi.service;objectClass:List<String>="org.eclipse.emf.ecore.resource.ResourceSet"
+	
+Private-Package: \
+	org.geckoprojects.emf.core.ecore,\
+	org.geckoprojects.emf.core.components.config,\
+	org.geckoprojects.emf.core.components.dynamic,\
+	org.geckoprojects.emf.core.components

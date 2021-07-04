@@ -9,15 +9,15 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 
-import org.gecko.emf.osgi.EPackageConfigurator;
-import org.gecko.emf.osgi.ResourceFactoryConfigurator;
+import org.geckoprojects.emf.core.EPackageConfigurator;
+import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
 
-import org.gecko.emf.osgi.annotation.EMFModel;
+import org.geckoprojects.emf.core.annotation.EMFModel;
 
-import org.gecko.emf.osgi.annotation.provide.ProvideEMFModel;
-import org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator;
+import org.geckoprojects.emf.core.annotation.provide.ProvideEMFModel;
+import org.geckoprojects.emf.core.annotation.provide.ProvideEMFResourceConfigurator;
 
-import org.gecko.emf.osgi.annotation.require.RequireEMF;
+import org.geckoprojects.emf.core.annotation.require.RequireEMF;
 
 import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
 
@@ -69,7 +69,7 @@ public class BasicConfigurationComponent implements EPackageConfigurator, Resour
 
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.ResourceFactoryConfigurator#configureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
+	 * @see org.geckoprojects.emf.core.ResourceFactoryConfigurator#configureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
 	 * @generated
 	 */
 	@Override
@@ -80,7 +80,7 @@ public class BasicConfigurationComponent implements EPackageConfigurator, Resour
 	
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.ResourceFactoryConfigurator#unconfigureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
+	 * @see org.geckoprojects.emf.core.ResourceFactoryConfigurator#unconfigureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
 	 * @generated
 	 */
 	@Override
@@ -91,7 +91,7 @@ public class BasicConfigurationComponent implements EPackageConfigurator, Resour
 	
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
+	 * @see org.geckoprojects.emf.core.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
 	 * @generated
 	 */
 	@Override
@@ -101,7 +101,7 @@ public class BasicConfigurationComponent implements EPackageConfigurator, Resour
 	
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
+	 * @see org.geckoprojects.emf.core.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
 	 * @generated
 	 */
 	@Override

@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.gecko.emf.utilities.model;singleton:=true
-Automatic-Module-Name: org.gecko.emf.utilities.model
+Bundle-SymbolicName: org.geckoprojects.emf.utilities.model;singleton:=true
+Automatic-Module-Name: org.geckoprojects.emf.utilities.model
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.gecko.emf.utilities,
- org.gecko.emf.utilities.impl,
- org.gecko.emf.utilities.util
+Export-Package: org.geckoprojects.emf.utilities,
+ org.geckoprojects.emf.utilities.impl,
+ org.geckoprojects.emf.utilities.util
 Require-Bundle: org.eclipse.core.runtime;resolution:=optional;x-installation:=greedy,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport

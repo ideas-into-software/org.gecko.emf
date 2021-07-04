@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -14,17 +14,20 @@ import org.bson.Document;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.emf.osgi.EMFNamespaces;
-import org.gecko.emf.osgi.ResourceSetConfigurator;
-import org.gecko.emf.osgi.ResourceSetFactory;
+import org.geckoprojects.emf.core.EMFNamespaces;
+import org.geckoprojects.emf.core.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.ResourceSetFactory;
 import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
 import org.geckoprojects.emf.example.model.basic.model.Geometry;
 import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
 import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfiguratorComponent;
 import org.geckoprojects.mongo.core.MongoConstants;
+import org.geckoprojects.osgitest.conditions.Conditions;
+import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
+import org.geckoprojects.osgitest.predicates.EventPredicates;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.ServiceEvent;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.test.common.annotation.InjectService;
@@ -50,43 +53,101 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(ServiceExtension.class)
 public class CustomArrayDataTypeTest {
 
+	
+	
+	
+	@Test
+	void testName() throws Exception {
+		RuntimeMonitoringAssert.executeAndObserve(() -> {
+			
+		}).untilServiceEventRegisters(MongoClient.class).assertThat(5000);
+		
+		
+		
+		
+		
+		
+		
+	}
 	static final String mongoHost = System.getProperty("mongo.host", "localhost");
 	static final String clientUri = "mongodb://" + mongoHost + ":27017";
 	static final String clientId = "clientID1";
 
 	static final String dbAlias = "testDB";
 	static final String dbInternal = "testDB";
-	
+
 	static final String filterResourceSetConfigurator = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME
-			+ "=mongo)(objectClass=org.gecko.emf.osgi.ResourceSetConfigurator)("
+			+ "=mongo)(objectClass=org.geckoprojects.emf.core.ResourceSetConfigurator)("
 			+ MongoResourceSetConfiguratorComponent.PROP_MONGO_ALIAS + "=" + dbAlias + "))";
 	static final String filterResourceSetFactory = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME
-			+ "=mongo)(objectClass=org.gecko.emf.osgi.ResourceSetFactory))";
+			+ "=mongo)(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 
 	@InjectService(cardinality = 1)
-static	ConfigurationAdmin cm;
+	static ConfigurationAdmin cm;
 	@InjectService(cardinality = 0)
-	static	ServiceAware<MongoClient> saMongoClient;
+	static ServiceAware<MongoClient> saMongoClient;
 	@InjectService(cardinality = 0)
-	static	ServiceAware<MongoDatabase> saMongoDatabase;
+	static ServiceAware<MongoDatabase> saMongoDatabase;
 	@InjectService(cardinality = 0, filter = filterResourceSetConfigurator)
-	static	ServiceAware<ResourceSetConfigurator> saResourceSetConfigurator;
+	static ServiceAware<ResourceSetConfigurator> saResourceSetConfigurator;
 	@InjectService(cardinality = 0, filter = filterResourceSetFactory)
-	static	ServiceAware<ResourceSetFactory> saResourceSetFactory;
+	static ServiceAware<ResourceSetFactory> saResourceSetFactory;
 
 	@Test
-	public void testSimpleArray() throws IOException, InvalidSyntaxException, InterruptedException {
-
-		Configuration confClient = cm.getFactoryConfiguration(MongoConstants.PID_MONGO_CLIENT, "test1","?");
-
-		confClient.update(new Hashtable<>(Map.of(MongoConstants.CLIENT_PROP_CLIENT_ID, clientId, 
-				MongoConstants.CLIENT_PROP_CONNECTION_STRING, clientUri,MongoConstants.CLIENT_PROP_DATABASENAMES,new String[]{dbInternal+":"+dbAlias})) );
+	public void testSimpleArray() throws Exception {
+		
+		
+		
+		
+		RuntimeMonitoringAssert.executeAndObserve(() -> {
+			// so something. could be Throwable
+			
+			Configuration confClient = cm.getFactoryConfiguration(MongoConstants.PID_MONGO_CLIENT, "test1", "?");
+			confClient.update(new Hashtable<>(Map.of(MongoConstants.CLIENT_PROP_CLIENT_ID, clientId,
+					MongoConstants.CLIENT_PROP_CONNECTION_STRING, clientUri)));
+			
+		})
+		//todo LDAP filter entsprechend frameworkutil
+		//anytype also nzt filter oder nut map
+		
+		.untilServiceEvent(EventPredicates.ServiceEvents.isTypeModified(MongoClient.class))
+//		.untilServiceEventRegisters(MongoClient.class)
+//		.untilServiceEventModified(MongoClient.class)
+//		.untilServiceEventUnregisters(MongoClient.class)
+//		.untilServiceEventRegisters(MongoClient.class,Map.of("key", "value"))
+//		.untilServiceEventModified(MongoClient.class,Map.of("key", "value"))
+//		.untilServiceEventModifiedEndmatch(MongoClient.class)
+//		.untilServiceEventModifiedEndmatch(MongoClient.class,Map.of("key", "value"))
+//		.untilServiceEventUnregisters(MongoClient.class,Map.of("key", "value"))		
+//		.untilFrameworkEvent(EventPredicates.FrameworkEvents.isTypeStartlevelChanged())
+//		.untilBundleEvent(EventPredicates.BundleEvents.isTypeInstalled())
+		.assertThat(1000)
+		
+		
+		
+		.isNotTimedOut()
+//		.hasThrowableThat() -> Full ThrowableAssert
+		.hasNoThrowable()
+		.hasNoFrameworkEvent()
+		.hasNoBundleEvent()
+		.hasNoServiceEvent()
+		//TODO ggd allinOne
+		// Conditions in reihenfolge
+		.hasAtLeastOneServiceEventRegisteredWith(MongoClient.class)
+		.hasAtLeastOneServiceEventModifiedWith(MongoClient.class)
+		.hasAtLeastOneServiceEventUnregisteringWith(MongoClient.class)
+		.hasAtLeastOneServiceEventWith(ServiceEvent.REGISTERED, MongoClient.class, Map.of("key", "value"))
+		.hasExactlyOneServiceEventWith(ServiceEvent.REGISTERED, MongoClient.class, Map.of("key", "value"))
+		.hasNoServiceEventWith(ServiceEvent.REGISTERED, MongoClient.class, Map.of("key", "value"))
+		.hasServiceEventsInOrder(List.of(Conditions.ServiceEventConditions.typeRegisteredAndObjectClass(MongoClient.class)))
+		.hasServiceEventsThat()// ListAssert<ServiceEvents)
+			.areAtMost(2, Conditions.ServiceEventConditions.serviceReferenceIsNotNull());
 
 		
 		MongoClient mongoClient = saMongoClient.waitForService(1000);
 
 		assertThat(mongoClient).isNotNull();
-		
+
 		MongoDatabase mongoDatabase = saMongoDatabase.waitForService(1000);
 
 		assertThat(mongoDatabase).isNotNull();
@@ -104,8 +165,7 @@ static	ConfigurationAdmin cm;
 
 		assertThat(geoCollection.countDocuments()).isEqualTo(0);
 
-		Resource resource = resourceSet
-				.createResource(URI.createURI(clientId+"/test/Geometry/"));
+		Resource resource = resourceSet.createResource(URI.createURI(clientId + "/test/Geometry/"));
 
 //		Create the Geometry object
 		Geometry geometry = BasicFactory.eINSTANCE.createGeometry();
@@ -126,7 +186,7 @@ static	ConfigurationAdmin cm;
 
 		// load the Geometry object from the db
 		Resource findResource = resourceSet
-				.createResource(URI.createURI(clientId+"/test/Geometry/" + geometry.getId()));
+				.createResource(URI.createURI(clientId + "/test/Geometry/" + geometry.getId()));
 		findResource.load(null);
 		assertNotNull(findResource);
 		assertFalse(findResource.getContents().isEmpty());
@@ -161,14 +221,14 @@ static	ConfigurationAdmin cm;
 //
 //		String dbAlias = "testDB";
 //		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME
-//				+ "=mongo)(objectClass=org.gecko.emf.osgi.ResourceSetConfigurator)("
+//				+ "=mongo)(objectClass=org.geckoprojects.emf.core.ResourceSetConfigurator)("
 //				+ MongoResourceSetConfiguratorComponent.PROP_MONGO_ALIAS + "=" + dbAlias + "))";
 //		ResourceSetConfigurator rsc = (ResourceSetConfigurator) createTrackedChecker(filter, true)
 //				.trackedServiceNotNull().getTrackedService();
 //		assertTrue(rsc instanceof MongoResourceSetConfigurator);
 //
 //		filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME
-//				+ "=mongo)(objectClass=org.gecko.emf.osgi.ResourceSetFactory))";
+//				+ "=mongo)(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 //		ResourceSetFactory rsf = (ResourceSetFactory) createTrackedChecker(filter, true).trackedServiceNotNull()
 //				.getTrackedService();
 //		ResourceSet resourceSet = rsf.createResourceSet();

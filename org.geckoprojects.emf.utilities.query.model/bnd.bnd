@@ -1,19 +1,18 @@
--include: \
-	${workspace}/cnf/include/jdt.bnd
-
 -buildpath: \
-	osgi.annotation;version=8.0,\
-	osgi.core;version=8.0,\
-	osgi.cmpn;version=7.0,\
-	org.gecko.emf.osgi.annotation
+	org.geckoprojects.emf.core,\
+	org.eclipse.emf.common,\
+	org.osgi.annotation.versioning,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.ecore.xmi,\
+	org.osgi.service.component.annotations
 
 -enable-gecko-emf: true
 -includeresource: model=model
 
 Bundle-Version: 1.0.12-SNAPSHOT
 
-Private-Package: org.gecko.utilities.query.configurator
+Private-Package: org.geckoprojects.utilities.query.configurator
 Export-Package: \
-	org.gecko.utilities.query,\
-	org.gecko.utilities.query.impl,\
-	org.gecko.utilities.query.util
+	org.geckoprojects.utilities.query,\
+	org.geckoprojects.utilities.query.impl,\
+	org.geckoprojects.utilities.query.util
