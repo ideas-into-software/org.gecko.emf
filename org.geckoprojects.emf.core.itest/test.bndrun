@@ -7,14 +7,14 @@
 	bnd.identity;id=junit-jupiter-api,\
 	bnd.identity;id=junit-jupiter-params,\
 	bnd.identity;id=junit-platform-commons,\
-	bnd.identity;id=junit-platform-engine,\
-	bnd.identity;id=junit-platform-runner
+	bnd.identity;id=junit-platform-engine
 -runfw: org.apache.felix.framework;version='[7.0.0,7.0.0]'
 -runee: JavaSE-11
 -runbundles: \
 	assertj-core;version='[3.20.2,3.20.3)',\
 	junit-jupiter-api;version='[5.7.0,5.7.1)',\
 	junit-jupiter-engine;version='[5.7.0,5.7.1)',\
+	junit-jupiter-params;version='[5.7.0,5.7.1)',\
 	junit-platform-commons;version='[1.7.0,1.7.1)',\
 	junit-platform-engine;version='[1.7.0,1.7.1)',\
 	junit-platform-launcher;version='[1.7.0,1.7.1)',\
@@ -39,9 +39,9 @@
 	org.mongodb.driver-core;version='[4.3.0,4.3.1)',\
 	org.mongodb.driver-sync;version='[4.3.0,4.3.1)',\
 	org.opentest4j;version='[1.2.0,1.2.1)',\
-	org.osgi.test.assertj.framework;version='[0.10.0,0.10.1)',\
-	org.osgi.test.common;version='[0.10.0,0.10.1)',\
-	org.osgi.test.junit5;version='[0.10.0,0.10.1)',\
+	org.osgi.test.assertj.framework;version='[1.0.0,1.0.1)',\
+	org.osgi.test.common;version='[1.0.0,1.0.1)',\
+	org.osgi.test.junit5;version='[1.0.0,1.0.1)',\
 	org.osgi.util.function;version='[1.1.0,1.1.1)',\
 	org.osgi.util.promise;version='[1.1.1,1.1.2)',\
 	org.osgi.util.pushstream;version='[1.0.1,1.0.2)'

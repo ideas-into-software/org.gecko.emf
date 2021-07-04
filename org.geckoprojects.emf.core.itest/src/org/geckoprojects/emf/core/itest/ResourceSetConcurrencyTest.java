@@ -9,9 +9,14 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package org.geckoprojects.emf.tests;
+package org.geckoprojects.emf.core.itest;
 
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -20,6 +25,7 @@ import java.net.URL;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -28,12 +34,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.geckoprojects.emf.core.Detachable;
 import org.geckoprojects.emf.core.ResourceSetCache;
 import org.geckoprojects.emf.core.resourceset.SynchronizedResourceSetImpl;
-import org.geckoprojects.emf.osgi.model.test.GenderType;
-import org.geckoprojects.emf.osgi.model.test.Person;
-import org.geckoprojects.emf.osgi.model.test.TestPackage;
-import org.geckoprojects.emf.osgi.model.test.util.TestResourceFactoryImpl;
-import org.junit.After;
-import org.junit.Before;
+import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
+import org.geckoprojects.emf.example.model.basic.model.GenderType;
+import org.geckoprojects.emf.example.model.basic.model.Person;
+import org.geckoprojects.emf.example.model.basic.model.util.BasicResourceFactoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleContext;
@@ -67,9 +71,9 @@ public class ResourceSetConcurrencyTest {
 		// default resource set implementation
 		ResourceSet rs = new ResourceSetImpl();
 
-		rs.getPackageRegistry().put(TestPackage.eNS_URI, TestPackage.eINSTANCE);
-		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("test", new TestResourceFactoryImpl());
-		URI personUri = createUri("mark.test");
+		rs.getPackageRegistry().put(BasicPackage.eNS_URI, BasicPackage.eINSTANCE);
+		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("basic", new BasicResourceFactoryImpl());
+		URI personUri = createUri("mark.basic");
 		Resource r = rs.createResource(personUri);
 		r.load(null);
 		assertFalse(r.getContents().isEmpty());
@@ -108,9 +112,9 @@ public class ResourceSetConcurrencyTest {
 		// user our resource set
 		ResourceSet rs = new SynchronizedResourceSetImpl();
 
-		rs.getPackageRegistry().put(TestPackage.eNS_URI, TestPackage.eINSTANCE);
-		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("test", new TestResourceFactoryImpl());
-		URI personUri = createUri("mark.test");
+		rs.getPackageRegistry().put(BasicPackage.eNS_URI, BasicPackage.eINSTANCE);
+		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("basic", new BasicResourceFactoryImpl());
+		URI personUri = createUri("mark.basic");
 		Resource r = rs.createResource(personUri);
 		r.load(null);
 		assertFalse(r.getContents().isEmpty());
@@ -151,7 +155,7 @@ public class ResourceSetConcurrencyTest {
 			public void run() {
 				try {
 					latch.await();
-					URI configUri = createUri("mark.test");
+					URI configUri = createUri("mark.basic");
 					for (int i = 0; i < COUNT; i++) {
 						assertNotNull(configUri);
 						Resource r  = resourceSet.createResource(configUri);
@@ -175,7 +179,7 @@ public class ResourceSetConcurrencyTest {
 					latch.await();
 					for (int i = 0; i < COUNT; i++) {
 
-						URI saveUri = URI.createURI("test-" + 1 + ".test");
+						URI saveUri = URI.createURI("test-" + 1 + ".basic");
 						assertNotNull(saveUri);
 						Resource r  = resourceSet.getResource(saveUri, false);
 						if (r == null) {
@@ -223,7 +227,7 @@ public class ResourceSetConcurrencyTest {
 			public void run() {
 				try {
 					latch.await();
-					URI configUri = createUri("mark.test");
+					URI configUri = createUri("mark.basic");
 					for (int i = 0; i < COUNT; i++) {
 						assertNotNull(configUri);
 						Resource r  = resourceSet.createResource(configUri);
@@ -247,7 +251,7 @@ public class ResourceSetConcurrencyTest {
 					latch.await();
 					for (int i = 0; i < COUNT; i++) {
 
-						URI saveUri = URI.createURI("test-" + 1 + ".test");
+						URI saveUri = URI.createURI("test-" + 1 + ".basic");
 						assertNotNull(saveUri);
 						Resource r  = resourceSet.getResource(saveUri, false);
 						if (r == null) {

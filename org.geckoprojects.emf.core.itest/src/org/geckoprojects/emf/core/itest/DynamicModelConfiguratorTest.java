@@ -14,17 +14,14 @@ package org.geckoprojects.emf.core.itest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
-import org.assertj.core.api.Assertions;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -37,15 +34,19 @@ import org.geckoprojects.emf.core.ResourceSetFactory;
 import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
 import org.geckoprojects.emf.example.model.basic.model.Person;
 import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.test.assertj.dictionary.DictionaryAssert;
 import org.osgi.test.common.annotation.InjectService;
 import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tests the EMF OSGi integration
@@ -63,46 +64,55 @@ public class DynamicModelConfiguratorTest {
 	/**
 	 * Trying to load an instance with a registered dynamic {@link EPackage}
 	 * 
-	 * @throws IOException
-	 * @throws InterruptedException
+	 * @throws Exception
 	 */
 	@Test
-	public void testCreateDynamicModel(@InjectService(cardinality = 0) ServiceAware<ResourceSetFactory> sa)
-			throws IOException, InterruptedException {
 
-		ServiceReference<ResourceSetFactory> reference = sa.getServiceReference();
-		assertNotNull(reference);
-		Object modelNames = reference.getProperty(EMFNamespaces.EMF_MODEL_NAME);
-		assertNotNull(modelNames);
-		assertTrue(modelNames instanceof String[]);
-		List<String> modelNameList = Arrays.asList((String[]) modelNames);
-		assertTrue(modelNameList.contains("ecore"));
-		assertFalse(modelNameList.contains("test"));
+	public void testCreateDynamicModel(
+			@InjectService(cardinality = 1) ServiceAware<ResourceSetFactory> resourceSetFactory) throws Exception {
+
+		assertThat(resourceSetFactory.getServices()).hasSize(1);
+		ServiceReference<ResourceSetFactory> reference = resourceSetFactory.getServiceReference();
+		assertThat(reference).isNotNull();
+
+		DictionaryAssert.assertThat(reference.getProperties()).containsKey(EMFNamespaces.EMF_MODEL_NAME)
+				.extractingByKey(EMFNamespaces.EMF_MODEL_NAME).isNotNull()
+				.isInstanceOfSatisfying(String[].class, arr -> {
+					assertThat(arr).contains("ecore");
+					assertThat(arr).doesNotContain("test");
+				});
+
+		reference = resourceSetFactory.getServiceReference();
+		assertThat(reference).isNotNull();
 
 		Dictionary<String, Object> properties = new Hashtable<>();
 		properties.put(EMFNamespaces.EMF_MODEL_NAME, "test");
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_CONTENT_TYPE, "test#1.0");
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_FILE_EXTENSION, "test");
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_ECORE_PATH,
-				"org.geckoprojects.emf.test.model/model/test.ecore");
+				"org.geckoprojects.emf.example.model.basic/model/basic.ecore");
 
+		AtomicReference<Configuration> refConfig = new AtomicReference<>();
+		
 		RuntimeMonitoringAssert.executeAndObserve(() -> {
 
 			Configuration c = ca.getConfiguration(EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME, "?");
 			c.update(properties);
-		}).untilNoMoreServiceEventWithin(100).assertThat(1000)
+			refConfig.set(c);
+
+		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class).assertThat(1000)
 				.hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
 
-		reference = sa.getServiceReference();
-		assertNotNull(reference);
-		modelNames = reference.getProperty(EMFNamespaces.EMF_MODEL_NAME);
-		assertNotNull(modelNames);
-		assertTrue(modelNames instanceof String[]);
-		modelNameList = Arrays.asList((String[]) modelNames);
-		assertTrue(modelNameList.contains("ecore"));
-		assertTrue(modelNameList.contains("test"));
+		reference = resourceSetFactory.getServiceReference();
+		assertThat(reference).isNotNull();
 
-		ResourceSetFactory factory = sa.getService();
+		DictionaryAssert.assertThat(reference.getProperties()).containsKey(EMFNamespaces.EMF_MODEL_NAME)
+				.extractingByKey(EMFNamespaces.EMF_MODEL_NAME).isNotNull()
+				.isInstanceOfSatisfying(String[].class, arr -> {
+					assertThat(arr).contains("ecore", "test");
+				});
+
+		ResourceSetFactory factory = resourceSetFactory.getService();
 		assertNotNull(factory);
 		ResourceSet rs = factory.createResourceSet();
 		assertNotNull(rs);
@@ -130,6 +140,7 @@ public class DynamicModelConfiguratorTest {
 		assertNotNull(lastName);
 		assertEquals("Emil", eo.eGet(firstName));
 		assertEquals("Tester", eo.eGet(lastName));
+		refConfig.get().delete();
 	}
 
 	/**
@@ -140,40 +151,48 @@ public class DynamicModelConfiguratorTest {
 	 * @throws InterruptedException
 	 */
 	@Test
-	public void testCreateDynamicModelUnregister(@InjectService(cardinality = 0) ServiceAware<ResourceSetFactory> sa)
+	public void testCreateDynamicModelUnregister(
+			@InjectService(cardinality = 1) ServiceAware<ResourceSetFactory> resourceSetFactory)
 			throws IOException, InterruptedException {
-		ServiceReference<ResourceSetFactory> reference = sa.getServiceReference();
-		assertNotNull(reference);
-		Object modelNames = reference.getProperty(EMFNamespaces.EMF_MODEL_NAME);
-		assertNotNull(modelNames);
-		assertTrue(modelNames instanceof String[]);
-		List<String> modelNameList = Arrays.asList((String[]) modelNames);
-		assertTrue(modelNameList.contains("ecore"));
-		assertFalse(modelNameList.contains("test"));
+
+		assertThat(resourceSetFactory.getServices()).hasSize(1);
+		ServiceReference<ResourceSetFactory> reference = resourceSetFactory.getServiceReference();
+		assertThat(reference).isNotNull();
+
+		DictionaryAssert.assertThat(reference.getProperties()).containsKey(EMFNamespaces.EMF_MODEL_NAME)
+				.extractingByKey(EMFNamespaces.EMF_MODEL_NAME).isNotNull()
+				.isInstanceOfSatisfying(String[].class, arr -> {
+					assertThat(arr).contains("ecore");
+					assertThat(arr).doesNotContain("test");
+				});
 
 		Dictionary<String, Object> properties = new Hashtable<>();
 		properties.put(EMFNamespaces.EMF_MODEL_NAME, "test");
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_CONTENT_TYPE, "test#1.0");
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_FILE_EXTENSION, "test");
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_ECORE_PATH,
-				"org.geckoprojects.emf.test.model/model/test.ecore");
+				"org.geckoprojects.emf.example.model.basic/model/basic.ecore");
 
+		AtomicReference<Configuration> refConfig = new AtomicReference<>();
 		RuntimeMonitoringAssert.executeAndObserve(() -> {
 
 			Configuration c = ca.getConfiguration(EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME, "?");
 			c.update(properties);
-		}).untilNoMoreServiceEventWithin(100).assertThat(1000)
-				.hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
-		reference = sa.getServiceReference();
-		assertNotNull(reference);
-		modelNames = reference.getProperty(EMFNamespaces.EMF_MODEL_NAME);
-		assertNotNull(modelNames);
-		assertTrue(modelNames instanceof String[]);
-		modelNameList = Arrays.asList((String[]) modelNames);
-		assertTrue(modelNameList.contains("ecore"));
-		assertTrue(modelNameList.contains("test"));
+			refConfig.set(c);
 
-		ResourceSetFactory factory = sa.getService();
+		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class).assertThat(1000).isNotTimedOut()
+				.hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
+
+		reference = resourceSetFactory.getServiceReference();
+		assertThat(reference).isNotNull();
+
+		DictionaryAssert.assertThat(reference.getProperties()).containsKey(EMFNamespaces.EMF_MODEL_NAME)
+				.extractingByKey(EMFNamespaces.EMF_MODEL_NAME).isNotNull()
+				.isInstanceOfSatisfying(String[].class, arr -> {
+					assertThat(arr).contains("ecore", "test");
+				});
+
+		ResourceSetFactory factory = resourceSetFactory.getService();
 		ResourceSet rs = factory.createResourceSet();
 		assertNotNull(rs);
 		URI uri = URI.createURI("person.test");
@@ -201,22 +220,13 @@ public class DynamicModelConfiguratorTest {
 		assertEquals("Emil", eo.eGet(firstName));
 		assertEquals("Tester", eo.eGet(lastName));
 
-		RuntimeMonitoringAssert.executeAndObserve(() -> {
+		refConfig.get().delete();
 
-			ca.getConfiguration(EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME, "?").delete();
+		Resource testLoadResource2 = rs.createResource(uri);
 
-		}).untilNoMoreServiceEventWithin(100).assertThat(1000)
-				.hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
-		reference = sa.getServiceReference();
-
-		final Resource testLoadResource2 = rs.createResource(uri);
-
-		Assertions.assertThatThrownBy(() -> {
-
+		Assertions.assertThrows(IOWrappedException.class, () -> {
 			testLoadResource2.load(bais, null);
-			
-		}).hasCauseInstanceOf(IOWrappedException.class);
+		});
 
 	}
-
 }
