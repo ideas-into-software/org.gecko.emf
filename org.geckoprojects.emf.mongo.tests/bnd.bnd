@@ -17,7 +17,13 @@
 	org.geckoprojects.emf.mongo.api,\
 	org.mongodb.driver-sync,\
 	org.geckoprojects.emf.core,\
-	org.mongodb.bson
+	org.mongodb.bson,\
+	org.osgi.service.cm,\
+	org.osgi.service.component,\
+	org.mongodb.driver-core,\
+	org.osgi.util.promise,\
+	org.osgi.util.pushstream,\
+	org.geckoprojects.emf.mongo.pushstream
 
 
 Bundle-Version: 2.0.14-SNAPSHOT

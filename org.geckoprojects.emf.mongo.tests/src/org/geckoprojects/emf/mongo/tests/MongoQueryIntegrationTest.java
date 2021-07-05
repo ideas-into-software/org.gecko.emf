@@ -11,11 +11,12 @@
  */
 package org.geckoprojects.emf.mongo.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,28 +26,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.bson.Document;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.geckoprojects.emf.mongo.Options;
-import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
-import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfiguratorComponent;
 import org.geckoprojects.emf.collection.ECollection;
+import org.geckoprojects.emf.core.EMFNamespaces;
+import org.geckoprojects.emf.core.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
+import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
 import org.geckoprojects.emf.example.model.basic.model.BusinessContact;
 import org.geckoprojects.emf.example.model.basic.model.Contact;
 import org.geckoprojects.emf.example.model.basic.model.ContactContextType;
 import org.geckoprojects.emf.example.model.basic.model.ContactType;
 import org.geckoprojects.emf.example.model.basic.model.GenderType;
 import org.geckoprojects.emf.example.model.basic.model.Person;
-import org.geckoprojects.emf.osgi.EMFNamespaces;
-import org.geckoprojects.emf.osgi.ResourceSetConfigurator;
-import org.geckoprojects.emf.osgi.ResourceSetFactory;
-import org.geckoprojects.emf.osgi.model.test.TestPackage;
+import org.geckoprojects.emf.mongo.Options;
+import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
+import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfiguratorComponent;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.InvalidSyntaxException;

@@ -12,46 +12,61 @@
 package org.gecko.emf.repository.mongo.tests;
 
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.net.URI;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.gecko.core.tests.ServiceChecker;
-import org.geckoprojects.emf.osgi.EMFNamespaces;
-import org.geckoprojects.emf.osgi.EPackageConfigurator;
-import org.geckoprojects.emf.osgi.ResourceFactoryConfigurator;
-import org.geckoprojects.emf.osgi.model.test.Person;
-import org.geckoprojects.emf.osgi.model.test.configurator.TestPackageConfigurator;
+import org.geckoprojects.emf.core.EMFNamespaces;
+import org.geckoprojects.emf.core.EPackageConfigurator;
+import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
+import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
+import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
+import org.geckoprojects.emf.example.model.basic.model.Person;
+import org.geckoprojects.emf.mongo.ConverterService;
+import org.geckoprojects.emf.mongo.InputStreamFactory;
+import org.geckoprojects.emf.mongo.MongoIdFactory;
+import org.geckoprojects.emf.mongo.OutputStreamFactory;
+import org.geckoprojects.emf.mongo.QueryEngine;
 import org.geckoprojects.emf.repository.EMFRepository;
-import org.gecko.mongo.osgi.MongoClientProvider;
-import org.gecko.mongo.osgi.MongoDatabaseProvider;
 import org.geckoprojects.emf.repository.mongo.annotations.RequireMongoEMFRepository;
 import org.geckoprojects.emf.repository.mongo.api.EMFMongoConfiguratorConstants;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceObjects;
 import org.osgi.framework.ServiceReference;
+import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.Configuration;
+import org.osgi.test.common.annotation.InjectService;
+import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
 
 import com.mongodb.MongoCredential;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 /**
  * Integration tests for the complete EMF mongo repository setup
@@ -61,8 +76,47 @@ import com.mongodb.client.MongoCollection;
 @RequireMongoEMFRepository
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
-public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
+public class MongoConfiguratorIntegrationTest  {
 
+
+		protected MongoClient client;
+		protected List<MongoCollection<?>> collections = new LinkedList<>();
+		protected String mongoHost = System.getProperty("mongo.host", "localhost");
+		private ServiceRegistration<?> testPackageRegistration = null;
+
+		@BeforeEach
+		public void doBefore() {
+
+			client = MongoClients.create(mongoHost);
+		}
+
+		@AfterEach
+		public void doAfter() {
+			collections.forEach(MongoCollection::drop);
+			if (client != null) {
+				client.close();
+			}
+
+		}
+
+		protected MongoCollection<?> getCollection(String database, String collection) {
+			MongoDatabase db = client.getDatabase(database);
+			assertNotNull(db);
+			MongoCollection<?> c = db.getCollection(collection);
+			assertNotNull(c);
+			collections.add(c);
+			return c;
+		}
+
+		@Test
+		public void defaultCheck(@InjectService ServiceAware<MongoIdFactory> saMongoIdFactory,
+				@InjectService ServiceAware<QueryEngine> saQueryEngine,
+				@InjectService ServiceAware<ConverterService> saConverterService,
+				@InjectService ServiceAware<InputStreamFactory> saInputStreamFactory,
+				@InjectService ServiceAware<OutputStreamFactory> saOutputStreamFactory)
+				throws IOException, InvalidSyntaxException {
+
+		}
 	@Test
 	public void testEMFMongoRepository() throws BundleException, InvalidSyntaxException, IOException, InterruptedException {
 		/**
@@ -78,7 +132,7 @@ public class MongoConfiguratorIntegrationTest extends EMFMongoIT {
 
 		String clientId = "test1.test";
 
-		defaultCheck();
+
 		
 		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId + ")(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
 		ServiceChecker<Object> rsfTracker = createTrackedChecker(filter, true)

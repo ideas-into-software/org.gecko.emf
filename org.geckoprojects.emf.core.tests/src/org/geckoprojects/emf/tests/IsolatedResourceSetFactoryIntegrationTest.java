@@ -23,8 +23,10 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
+import org.assertj.core.api.Assertions;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -32,14 +34,18 @@ import org.geckoprojects.emf.core.EMFNamespaces;
 import org.geckoprojects.emf.core.EPackageConfigurator;
 import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
 import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
+import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.Configuration;
+import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.test.common.annotation.InjectService;
+import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
-import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
 
 /**
  * Integration test for the {@link ResourceSetFactory}
@@ -51,6 +57,7 @@ import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
 public class IsolatedResourceSetFactoryIntegrationTest  {
 
 
+	@InjectService ConfigurationAdmin ca;
 	/**
 	 * Tests, if the service was set up correctly
 	 * @throws IOException 
@@ -58,34 +65,25 @@ public class IsolatedResourceSetFactoryIntegrationTest  {
 	 * @throws InvalidSyntaxException 
 	 */
 	@Test
-	public void testResourceSetFactoryExists() throws IOException, InterruptedException, InvalidSyntaxException {
-		ServiceChecker<?> testSC = createTrackedChecker("(rsf.name=test)", false);
-		testSC.assertCreations(0, false).assertRemovals(0, false);
+	public void testResourceSetFactoryExists(@InjectService(filter = "(rsf.name=test)",cardinality =  0) ServiceAware<?> serviceAware) throws IOException, InterruptedException, InvalidSyntaxException {
 
 		Dictionary<String,Object> properties = new Hashtable<>();
 		properties.put("rsf.name", "test");
 		properties.put("rsf.model.target.filter", "(" + EMFNamespaces.EMF_MODEL_NAME + "=*)");
-		Configuration c = createConfigForCleanup(EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME, "?", properties);
-
-		testSC.assertCreations(4, true).assertRemovals(0, false);
-
-		Set<ServiceReference<?>> references = testSC.getAllServiceReferences().stream().filter(o->o instanceof ServiceReference<?>).map(o->(ServiceReference<?>)o).collect(Collectors.toSet());
-		assertTrue(references.stream().
-				filter(sr->((String[])sr.getProperty("objectClass"))[0].equals(ResourceSetFactory.class.getName())).
-				findFirst().
-				isPresent());
-		assertTrue(references.stream().
-				filter(sr->((String[])sr.getProperty("objectClass"))[0].equals(Resource.Factory.Registry.class.getName())).
-				findFirst().
-				isPresent());
-		assertTrue(references.stream().
-				filter(sr->((String[])sr.getProperty("objectClass"))[0].equals(EPackage.Registry.class.getName())).
-				findFirst().
-				isPresent());
-
-		testSC.assertCreations(4, false).assertRemovals(0, false);
-		deleteConfigurationAndRemoveFromCleanup(c);
-		testSC.assertCreations(4, false).assertRemovals(4, true);
+		
+		
+		AtomicReference<Configuration> cr=new AtomicReference<>();
+		RuntimeMonitoringAssert.executeAndObserve(()->{
+		Configuration configuration=	ca.getConfiguration(EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME, "?");
+			configuration.update(properties);
+			
+			cr.set(configuration);
+		}).untilNoMoreServiceEventWithin(100).assertThat(1000).hasExactlyOneServiceEventRegisteredWith(ResourceSetFactory.class)
+		.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
+		.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
+		
+		Assertions.assertThat(serviceAware.getServiceReferences()).hasSize(4);
+cr.get().delete();
 	}
 
 	/**
@@ -95,34 +93,30 @@ public class IsolatedResourceSetFactoryIntegrationTest  {
 	 * @throws InvalidSyntaxException 
 	 */
 	@Test
-	public void testResourceSetExists() throws IOException, InterruptedException, InvalidSyntaxException {
-		ServiceChecker<?> testSC = createTrackedChecker("(rsf.name=test)", false);
-		testSC.assertCreations(0, false).assertRemovals(0, false);
+	public void testResourceSetExists(@InjectService(filter = "(rsf.name=test)",cardinality =  0) ServiceAware<?> serviceAware) throws IOException, InterruptedException, InvalidSyntaxException {
 
 		Dictionary<String,Object> properties = new Hashtable<>();
 		properties.put("rsf.name", "test");
 		properties.put("rsf.model.target.filter", "(" + EMFNamespaces.EMF_MODEL_NAME + "=*)");
-		Configuration c = createConfigForCleanup(EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME, "?", properties);
+		
+		
+		AtomicReference<Configuration> cr=new AtomicReference<>();
+		RuntimeMonitoringAssert.executeAndObserve(()->{
+		Configuration configuration=	ca.getConfiguration(EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME, "?");
+			configuration.update(properties);
+			
+			cr.set(configuration);
+		}).untilNoMoreServiceEventWithin(100).assertThat(1000).hasExactlyOneServiceEventRegisteredWith(ResourceSet.class)
+		.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
+		.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
+		
+		Assertions.assertThat(serviceAware.getServiceReferences()).hasSize(4);
+cr.get().delete();
 
-		testSC.assertCreations(4, true).assertRemovals(0, false);
 
-		Set<ServiceReference<?>> references = testSC.getAllServiceReferences().stream().filter(o->o instanceof ServiceReference<?>).map(o->(ServiceReference<?>)o).collect(Collectors.toSet());
-		assertTrue(references.stream().
-				filter(sr->((String[])sr.getProperty("objectClass"))[0].equals(ResourceSet.class.getName())).
-				findFirst().
-				isPresent());
-		assertTrue(references.stream().
-				filter(sr->((String[])sr.getProperty("objectClass"))[0].equals(Resource.Factory.Registry.class.getName())).
-				findFirst().
-				isPresent());
-		assertTrue(references.stream().
-				filter(sr->((String[])sr.getProperty("objectClass"))[0].equals(EPackage.Registry.class.getName())).
-				findFirst().
-				isPresent());
 
-		testSC.assertCreations(4, false).assertRemovals(0, false);
-		deleteConfigurationAndRemoveFromCleanup(c);
-		testSC.assertCreations(4, false).assertRemovals(4, true);
+
+
 	}
 
 	/**
@@ -132,36 +126,31 @@ public class IsolatedResourceSetFactoryIntegrationTest  {
 	 * @throws InvalidSyntaxException 
 	 */
 	@Test
-	public void testResourceSetFactoryRegister() throws IOException, InterruptedException, InvalidSyntaxException {
-		ServiceChecker<?> testSC = createTrackedChecker("(rsf.name=test)", false);
-		testSC.assertCreations(0, false).assertRemovals(0, false);
+	public void testResourceSetFactoryRegister(@InjectService(filter = "(rsf.name=test)",cardinality =  0) ServiceAware<ResourceSet> serviceAware,@InjectService(filter = "(rsf.name=test)",cardinality =  0) ServiceAware<ResourceSetFactory> serviceAwareF) throws IOException, InterruptedException, InvalidSyntaxException {
 
 		Dictionary<String,Object> properties = new Hashtable<>();
 		properties.put("rsf.name", "test");
 		properties.put("rsf.model.target.filter", "(" + EMFNamespaces.EMF_MODEL_NAME + "=test)");
-		Configuration c = createConfigForCleanup(EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME, "?", properties);
+		
+		
+		AtomicReference<Configuration> cr=new AtomicReference<>();
+		RuntimeMonitoringAssert.executeAndObserve(()->{
+		Configuration configuration=	ca.getConfiguration(EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME, "?");
+			configuration.update(properties);
+			
+			cr.set(configuration);
+		}).untilNoMoreServiceEventWithin(100).assertThat(1000).hasExactlyOneServiceEventRegisteredWith(ResourceSet.class)
+		.hasExactlyOneServiceEventRegisteredWith(ResourceSetFactory.class)
+		.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
+		.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
+		
+		Assertions.assertThat(serviceAware.getServiceReferences()).hasSize(4);
+cr.get().delete();
 
-		testSC.assertCreations(4, true).assertRemovals(0, false);
 
-		Set<ServiceReference<?>> references = testSC.getAllServiceReferences().stream().filter(o->o instanceof ServiceReference<?>).map(o->(ServiceReference<?>)o).collect(Collectors.toSet());
-		Optional<ServiceReference<?>> rsRefOpt = references.stream().
-				filter(sr->((String[])sr.getProperty("objectClass"))[0].equals(ResourceSet.class.getName())).
-				findFirst();
-		assertTrue(rsRefOpt.isPresent());
-		Optional<ServiceReference<?>> rsfRefOpt = references.stream().
-				filter(sr->((String[])sr.getProperty("objectClass"))[0].equals(ResourceSetFactory.class.getName())).
-				findFirst();
-		assertTrue(rsfRefOpt.isPresent());
-		assertTrue(references.stream().
-				filter(sr->((String[])sr.getProperty("objectClass"))[0].equals(Resource.Factory.Registry.class.getName())).
-				findFirst().
-				isPresent());
-		assertTrue(references.stream().
-				filter(sr->((String[])sr.getProperty("objectClass"))[0].equals(EPackage.Registry.class.getName())).
-				findFirst().
-				isPresent());
 
-		ServiceReference<?> rsfRef = rsfRefOpt.get();
+
+		ServiceReference<?> rsfRef = serviceAwareF.getServiceReference();
 		Object modelNames = rsfRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);
@@ -170,7 +159,7 @@ public class IsolatedResourceSetFactoryIntegrationTest  {
 		assertFalse(modelNameList.contains("test"));
 		assertFalse(modelNameList.contains("test2"));
 
-		ServiceReference<?> rsRef = rsRefOpt.get();
+		ServiceReference<?> rsRef = serviceAware.getServiceReference();
 		modelNames = rsRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);
@@ -179,15 +168,14 @@ public class IsolatedResourceSetFactoryIntegrationTest  {
 		assertFalse(modelNameList.contains("test"));
 		assertFalse(modelNameList.contains("test2"));
 
-		ServiceChecker<ResourceFactoryConfigurator> rfcSC = createTrackedChecker(ResourceFactoryConfigurator.class, false).run();
 		Dictionary<String, Object> epackageProperties = new Hashtable<String, Object>();
-		epackageProperties.put(EMFNamespaces.EMF_MODEL_NAME, TestPackage.eNAME);
-		TestPackageConfigurator configurator1 = new TestPackageConfigurator();
+		epackageProperties.put(EMFNamespaces.EMF_MODEL_NAME, BasicPackage.eNAME);
+		BasicPackageConfigurator configurator1 = new BasicPackageConfigurator();
 		rfcSC.assertCreations(1, false).assertRemovals(0, false);
 		registerServiceForCleanup(configurator1, epackageProperties, new String[] {EPackageConfigurator.class.getName(), ResourceFactoryConfigurator.class.getName()});
 		rfcSC.assertCreations(2, true).assertRemovals(0, false);
 
-		rsfRef = rsfRefOpt.get();
+		rsfRef = serviceAware.getServiceReference();
 		modelNames = rsfRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);
@@ -196,7 +184,7 @@ public class IsolatedResourceSetFactoryIntegrationTest  {
 		assertTrue(modelNameList.contains("test"));
 		assertFalse(modelNameList.contains("test2"));
 		
-		rsRef = rsRefOpt.get();
+		rsRef = serviceAwareF.getServiceReference();
 		modelNames = rsRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);
@@ -215,7 +203,7 @@ public class IsolatedResourceSetFactoryIntegrationTest  {
 		registerServiceForCleanup(configurator2, epackageProperties, new String[] {EPackageConfigurator.class.getName(), ResourceFactoryConfigurator.class.getName()});
 		rfcSC.assertCreations(3, true).assertRemovals(0, false);
 
-		rsfRef = rsfRefOpt.get();
+		rsfRef = serviceAwareF.getServiceReference();
 		modelNames = rsfRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);
@@ -224,7 +212,7 @@ public class IsolatedResourceSetFactoryIntegrationTest  {
 		assertTrue(modelNameList.contains("test"));
 		assertFalse(modelNameList.contains("test2"));
 
-		rsRef = rsRefOpt.get();
+		rsRef = serviceAware.getServiceReference();;
 		modelNames = rsRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);

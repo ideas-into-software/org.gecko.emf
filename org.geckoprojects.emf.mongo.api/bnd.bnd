@@ -18,7 +18,8 @@ Export-Package: \
 	org.eclipse.emf.common,\
 	org.eclipse.emf.ecore.xmi,\
 	org.mongodb.driver-sync,\
-	org.mongodb.bson
+	org.mongodb.bson,\
+	org.eclipse.emf.ecore.xcore.lib
 
 Bundle-Version: 0.0.1-SNAPSHOT
 

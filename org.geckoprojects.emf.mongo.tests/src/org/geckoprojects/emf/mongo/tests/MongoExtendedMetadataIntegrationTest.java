@@ -11,31 +11,33 @@
  */
 package org.geckoprojects.emf.mongo.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bson.Document;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.mongo.Options;
-import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
-import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfiguratorComponent;
+import org.geckoprojects.emf.core.EMFNamespaces;
+import org.geckoprojects.emf.core.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
 import org.geckoprojects.emf.example.model.basic.model.BusinessPerson;
 import org.geckoprojects.emf.example.model.basic.model.EmployeeInfo;
 import org.geckoprojects.emf.example.model.basic.model.GenderType;
-import org.geckoprojects.emf.osgi.EMFNamespaces;
-import org.geckoprojects.emf.osgi.ResourceSetConfigurator;
-import org.geckoprojects.emf.osgi.ResourceSetFactory;
+import org.geckoprojects.emf.mongo.Options;
+import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
+import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfiguratorComponent;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.InvalidSyntaxException;

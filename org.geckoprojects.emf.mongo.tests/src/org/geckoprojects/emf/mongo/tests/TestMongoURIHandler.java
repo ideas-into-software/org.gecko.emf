@@ -11,7 +11,7 @@
  */
 package org.geckoprojects.emf.mongo.tests;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.XMLResource.URIHandler;

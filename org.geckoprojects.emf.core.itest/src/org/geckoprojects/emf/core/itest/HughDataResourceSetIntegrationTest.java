@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeoutException;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -41,6 +40,7 @@ import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
 import org.osgi.util.promise.Promise;
 import org.osgi.util.promise.PromiseFactory;
+import org.osgi.util.promise.TimeoutException;
 
 /**
  * Integration test for the {@link ResourceSetFactory}
@@ -90,7 +90,7 @@ public class HughDataResourceSetIntegrationTest {
 		start = System.currentTimeMillis();
 		hdr.getResources().clear();
 		long fastRun = System.currentTimeMillis() - start;
-		
+		System.out.println("Fastrun: "+fastRun);
 		result = (Person) hdr.getEObject(firstUri, false);
 		assertNull(result);
 		result = (Person) hdr.getEObject(lastUri, false);
@@ -130,8 +130,8 @@ public class HughDataResourceSetIntegrationTest {
 			hdr.getResources().clear();
 			return null; });
 		
+		System.out.println(promise.timeout(fastRun * 10).getFailure());
 		assertTrue(promise.timeout(fastRun * 10).getFailure() instanceof TimeoutException);
-		
 		System.out.println("Clearing resource set with 500.000 entries (second try) took " + (System.currentTimeMillis() - start));
 	}
 	@Test

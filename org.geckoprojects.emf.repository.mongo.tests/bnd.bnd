@@ -7,7 +7,17 @@
 	org.osgi.framework,\
 	junit-jupiter-api,\
 	org.osgi.test.junit5,\
-	org.geckoprojects.emf.repository.mongo
+	org.geckoprojects.emf.repository.mongo,\
+	org.geckoprojects.emf.core,\
+	org.geckoprojects.emf.example.model.basic,\
+	org.geckoprojects.emf.repository.api,\
+	org.osgi.service.cm,\
+	org.geckoprojects.emf.mongo.api,\
+	org.mongodb.driver-core,\
+	org.mongodb.bson,\
+	org.osgi.test.common,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common
 
 javac.source: 1.8
 javac.target: 1.8

@@ -11,14 +11,16 @@
  */
 package org.geckoprojects.emf.mongo.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
 import org.geckoprojects.emf.mongo.Options;
-import org.geckoprojects.emf.osgi.model.test.TestPackage;
 import org.junit.jupiter.api.Test;
 
 /**

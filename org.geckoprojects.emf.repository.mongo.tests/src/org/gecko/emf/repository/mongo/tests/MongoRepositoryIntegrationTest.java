@@ -12,13 +12,14 @@
 package org.gecko.emf.repository.mongo.tests;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.net.URI;
@@ -31,31 +32,29 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import org.bson.Document;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.gecko.core.tests.ServiceChecker;
+import org.geckoprojects.emf.example.model.basic.model.Address;
+import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
+import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
+import org.geckoprojects.emf.example.model.basic.model.BusinessPerson;
+import org.geckoprojects.emf.example.model.basic.model.Family;
+import org.geckoprojects.emf.example.model.basic.model.Person;
 import org.geckoprojects.emf.mongo.Keywords;
-import org.geckoprojects.emf.osgi.model.test.Address;
-import org.geckoprojects.emf.osgi.model.test.BusinessPerson;
-import org.geckoprojects.emf.osgi.model.test.Family;
-import org.geckoprojects.emf.osgi.model.test.Person;
-import org.geckoprojects.emf.osgi.model.test.TestPackage;
+import org.geckoprojects.emf.mongo.Options;
 import org.geckoprojects.emf.repository.EMFRepository;
 import org.geckoprojects.emf.repository.exception.ConstraintValidationException;
+import org.geckoprojects.emf.repository.mongo.api.EMFMongoConfiguratorConstants;
 import org.geckoprojects.emf.repository.query.IQueryBuilder;
 import org.geckoprojects.emf.repository.query.QueryRepository;
-import org.gecko.mongo.osgi.MongoClientProvider;
-import org.gecko.mongo.osgi.MongoDatabaseProvider;
-import org.gecko.mongo.osgi.configuration.ConfigurationProperties;
-import org.geckoprojects.emf.repository.mongo.api.EMFMongoConfiguratorConstants;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.InvalidSyntaxException;
-import org.osgi.service.log.stream.LogStreamProvider.Options;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
 
@@ -68,7 +67,7 @@ import com.mongodb.client.MongoCollection;
  */
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
-public class MongoRepositoryIntegrationTest extends EMFMongoIT {
+public class MongoRepositoryIntegrationTest  {
 
 	@Test
 	public void testEMFMongoRepository() throws BundleException, InvalidSyntaxException, IOException, InterruptedException {

@@ -13,7 +13,7 @@ package org.geckoprojects.emf.mongo.tests;
 
 import java.io.IOException;
 
-import org.gecko.core.tests.AbstractOSGiTest;
+
 import org.geckoprojects.emf.core.EPackageConfigurator;
 import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
 import org.osgi.framework.FrameworkUtil;
