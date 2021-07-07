@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.geckoprojects.emf.repository.exception.ConstraintValidationException;
 import org.geckoprojects.emf.repository.helper.RepositoryHelper;
 

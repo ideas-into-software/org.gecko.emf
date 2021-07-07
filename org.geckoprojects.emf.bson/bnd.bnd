@@ -3,7 +3,7 @@
 	com.fasterxml.jackson.core.jackson-core,\
 	com.fasterxml.jackson.core.jackson-databind,\
 	de.undercouch.bson4jackson;version=latest,\
-	org.geckoprojects.emf.core,\
+	org.geckoprojects.emf.core;version=project,\
 	org.osgi.service.component.annotations,\
 	org.osgi.annotation.versioning,\
 	org.osgi.annotation.bundle,\
@@ -16,8 +16,6 @@
 Bundle-Version: 1.1.2-SNAPSHOT
 Private-Package: org.geckoprojects.emf.bson
 
-Bundle-Name: EMF-BSON OSGi Extension Bundle
-Bundle-Description: EMF-BSON for OSGi Service Extensions
 Export-Package: \
 	org.geckoprojects.emf.bson.annotation,\
 	org.geckoprojects.emf.bson.handler

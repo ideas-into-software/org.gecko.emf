@@ -1,7 +1,7 @@
 src=${^src},src-gen
 
 -buildpath: \
-	org.geckoprojects.emf.core;version=latest,\
+	org.geckoprojects.emf.core;version=project,\
 	org.geckoprojects.emf.example.model.basic;version=latest,\
 	org.eclipse.emf.ecore,\
 	org.eclipse.emf.common,\
@@ -11,7 +11,7 @@ src=${^src},src-gen
 	org.osgi.service.component.annotations,\
 	org.osgi.framework
 	
--baseline: *
+
 
 -includeresource: model=model
 

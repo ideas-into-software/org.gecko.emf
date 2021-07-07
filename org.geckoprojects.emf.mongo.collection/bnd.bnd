@@ -1,5 +1,3 @@
-Bundle-Name: EMF Mongo Collections support
-Bundle-Description: EMF Mongo implementation for using gecko EMF collections as result
 Private-Package: org.geckoprojects.emf.mongo.collection
 Require-Capability: org.geckoprojects.emf.persistence;filter:="(org.geckoprojects.emf.persistence=mongo)"	
 

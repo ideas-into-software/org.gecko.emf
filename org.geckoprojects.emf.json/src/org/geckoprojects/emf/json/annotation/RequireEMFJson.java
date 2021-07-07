@@ -19,9 +19,9 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.geckoprojects.emf.core.EMFNamespaces;
-import org.geckoprojects.emf.core.ResourceSetConfigurator;
-import org.geckoprojects.emf.core.annotation.require.RequireEMF;
+import org.geckoprojects.emf.core.api.EMFNamespaces;
+import org.geckoprojects.emf.core.api.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.api.annotation.require.RequireEMF;
 import org.osgi.annotation.bundle.Requirement;
 
 @Documented

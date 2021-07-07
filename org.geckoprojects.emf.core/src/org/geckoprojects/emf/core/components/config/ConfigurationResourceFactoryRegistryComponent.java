@@ -13,7 +13,7 @@ package org.geckoprojects.emf.core.components.config;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl;
-import org.geckoprojects.emf.core.EMFNamespaces;
+import org.geckoprojects.emf.core.api.EMFNamespaces;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 

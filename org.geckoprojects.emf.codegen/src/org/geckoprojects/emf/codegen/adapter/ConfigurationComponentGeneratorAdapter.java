@@ -63,9 +63,7 @@ public class ConfigurationComponentGeneratorAdapter extends GenPackageGeneratorA
 		return descs.toArray(new JETEmitterDescriptor[descs.size()]);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.generator.GenPackageGeneratorAdapter#generateModel(java.lang.Object, org.eclipse.emf.common.util.Monitor)
-	 */
+
 	@Override
 	protected Diagnostic generateModel(Object object, Monitor monitor)
 	{

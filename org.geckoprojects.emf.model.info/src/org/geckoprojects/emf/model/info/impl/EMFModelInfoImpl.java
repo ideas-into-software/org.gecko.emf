@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
+import org.geckoprojects.emf.core.api.EPackageConfigurator;
 import org.geckoprojects.emf.model.info.EMFModelInfo;
 import org.osgi.annotation.bundle.Capability;
 import org.osgi.service.component.annotations.Component;
@@ -32,7 +33,6 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
-import org.geckoprojects.emf.core.EPackageConfigurator;
 
 /**
  * An implementation for the {@link EMFModelInfo} service

@@ -14,7 +14,7 @@ package org.geckoprojects.emf.core.itest.configurator;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.api.ResourceSetConfigurator;
 
 /**
  * 

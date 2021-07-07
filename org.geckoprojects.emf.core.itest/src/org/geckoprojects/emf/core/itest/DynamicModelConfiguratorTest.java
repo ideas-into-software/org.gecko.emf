@@ -29,8 +29,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.IOWrappedException;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.EMFNamespaces;
-import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.core.api.EMFNamespaces;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
 import org.geckoprojects.emf.example.model.basic.model.Person;
 import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
@@ -100,7 +100,8 @@ public class DynamicModelConfiguratorTest {
 			c.update(properties);
 			refConfig.set(c);
 
-		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class).assertThat(1000)
+		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class)
+			.assertWithTimeoutThat(10000)
 				.hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
 
 		reference = resourceSetFactory.getServiceReference();
@@ -180,7 +181,7 @@ public class DynamicModelConfiguratorTest {
 			c.update(properties);
 			refConfig.set(c);
 
-		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class).assertThat(1000).isNotTimedOut()
+		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class).assertWithTimeoutThat(1000).isNotTimedOut()
 				.hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
 
 		reference = resourceSetFactory.getServiceReference();

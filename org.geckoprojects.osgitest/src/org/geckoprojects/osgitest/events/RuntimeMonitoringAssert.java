@@ -59,7 +59,7 @@ public interface RuntimeMonitoringAssert {
 	/**
 	 * @param timeout - the maximal time in that actions will be observed. Could be lower if an other `until`-Condition is set.
 	 */
-	public RuntimeMonitoringResultAssert assertThat(int timeout) ;
+	public RuntimeMonitoringResultAssert assertWithTimeoutThat(int timeout) ;
 	
 
 }

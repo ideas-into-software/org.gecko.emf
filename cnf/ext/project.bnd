@@ -21,3 +21,5 @@ Bundle-SCM: url=https://github.com/geckoprojects-org/org.geckoprojects.emf, \
 	developerConnection=scm:git:git@github.com:geckoprojects-org/org.geckoprojects.emf.git
 	
 emf-version: 5.0.0
+releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${Bundle-Version}));REPOS}
+-maven-release.local: ${if;${def;releaseNotNeeded};local;remote}

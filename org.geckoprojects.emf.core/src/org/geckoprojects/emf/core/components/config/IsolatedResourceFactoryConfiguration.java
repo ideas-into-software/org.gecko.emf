@@ -11,17 +11,17 @@
  */
 package org.geckoprojects.emf.core.components.config;
 
-import static org.geckoprojects.emf.core.EMFNamespaces.EMF_MODEL_NAME;
-import static org.geckoprojects.emf.core.EMFNamespaces.EPACKAGE_REGISTRY_CONFIG_NAME;
-import static org.geckoprojects.emf.core.EMFNamespaces.EPACKAGE_REGISTRY_TARGET;
-import static org.geckoprojects.emf.core.EMFNamespaces.EPACKAGE_TARGET;
-import static org.geckoprojects.emf.core.EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME;
-import static org.geckoprojects.emf.core.EMFNamespaces.PROP_MODEL_TARGET_FILTER;
-import static org.geckoprojects.emf.core.EMFNamespaces.PROP_RESOURCE_SET_FACTORY_NAME;
-import static org.geckoprojects.emf.core.EMFNamespaces.RESOURCE_FACTORY_CONFIG_NAME;
-import static org.geckoprojects.emf.core.EMFNamespaces.RESOURCE_FACTORY_REGISTRY_TARGET;
-import static org.geckoprojects.emf.core.EMFNamespaces.RESOURCE_FACTORY_TARGET;
-import static org.geckoprojects.emf.core.EMFNamespaces.RESOURCE_SET_FACTORY_CONFIG_NAME;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.EMF_MODEL_NAME;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.EPACKAGE_REGISTRY_CONFIG_NAME;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.EPACKAGE_REGISTRY_TARGET;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.EPACKAGE_TARGET;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.PROP_MODEL_TARGET_FILTER;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.PROP_RESOURCE_SET_FACTORY_NAME;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.RESOURCE_FACTORY_CONFIG_NAME;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.RESOURCE_FACTORY_REGISTRY_TARGET;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.RESOURCE_FACTORY_TARGET;
+import static org.geckoprojects.emf.core.api.EMFNamespaces.RESOURCE_SET_FACTORY_CONFIG_NAME;
 
 import java.io.IOException;
 import java.util.Dictionary;

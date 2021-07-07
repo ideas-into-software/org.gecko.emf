@@ -13,8 +13,8 @@ package org.geckoprojects.emf.core.itest.configurator;
 
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
-import org.geckoprojects.emf.core.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
+import org.geckoprojects.emf.core.api.ResourceSetConfigurator;
 
 /**
  * 

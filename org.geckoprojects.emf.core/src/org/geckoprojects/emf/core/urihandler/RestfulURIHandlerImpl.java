@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.URIHandlerImpl;
-import org.geckoprojects.emf.core.EMFUriHandlerConstants;
+import org.geckoprojects.emf.core.api.EMFUriHandlerConstants;
 
 /**
  * URI Handler with basic authentication

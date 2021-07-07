@@ -1,6 +1,7 @@
 package org.geckoprojects.emf.codegen.templates.model;
 
-import org.eclipse.emf.codegen.ecore.genmodel.*;
+import org.eclipse.emf.codegen.ecore.genmodel.GenBase;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 
 public class PackageInfoImpl
 {

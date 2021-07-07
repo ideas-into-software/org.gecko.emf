@@ -1,4 +1,4 @@
--enable-gecko-emf: true
+
 
 
 	
@@ -23,5 +23,5 @@ Export-Package: \
 	org.eclipse.emf.common,\
 	org.osgi.annotation.versioning,\
 	org.osgi.service.component.annotations,\
-	org.geckoprojects.emf.core,\
+	org.geckoprojects.emf.core;version=project,\
 	org.eclipse.emf.ecore.xmi

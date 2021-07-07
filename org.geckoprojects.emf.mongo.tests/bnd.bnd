@@ -1,6 +1,3 @@
--diffignore: * 
-
-# Build dependencies 
 -buildpath: \
 	org.eclipse.emf.ecore,\
 	org.eclipse.emf.common,\
@@ -31,6 +28,3 @@ Private-Package: \
 	org.gecko.emf.mongo.tests.codecs,\
 	org.gecko.emf.mongo.tests.converter,\
 	org.geckoprojects.emf.mongo.tests
-
-Bundle-Name: EMF Mongo Tests
-Bundle-Description: EMF Mongo Integration Tests

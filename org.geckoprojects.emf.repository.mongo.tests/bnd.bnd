@@ -1,4 +1,4 @@
--enable-gecko-emf: true
+
 
 -buildpath: \
 	org.geckoprojects.mongo.core;version=latest,\
@@ -26,18 +26,6 @@ javac.target: 1.8
 Bundle-Version: 2.1.16.SNAPSHOT
 Private-Package: org.geckoprojects.emf.repository.mongo.tests
 
-# Needed for Mockito's mocking to work
--runsystempackages.objenesis: sun.misc,sun.reflect
-
-# Use Felix by default
--runfw: org.apache.felix.framework;version='[7.0.0,7.0.0]'
--runvm: -ea
--runprogramargs: ds.showtrace=true\n\
-	felix.log.level=4
-
-Bundle-Name: EMF Repository Mongo Integration Tests 
-Bundle-Description: EMF Mongo Repository Implementation Integration Tests
-
 -runrequires: \
 	bnd.identity;id='org.geckoprojects.emf.repository.api',\
 	bnd.identity;id='org.geckoprojects.emf.repository.mongo',\
@@ -47,6 +35,5 @@ Bundle-Description: EMF Mongo Repository Implementation Integration Tests
 	logback.configurationFile=file:${.}/logback.xml,\
 	felix.log.level=4
 	
--runee: JavaSE-1.8
 
 -resolve.effective: active;skip:="osgi.service"

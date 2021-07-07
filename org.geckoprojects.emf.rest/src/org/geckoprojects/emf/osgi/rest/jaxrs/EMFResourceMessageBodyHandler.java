@@ -25,7 +25,7 @@ import javax.ws.rs.ext.Provider;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.geckoprojects.emf.rest.api.AnnotationConverter;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;

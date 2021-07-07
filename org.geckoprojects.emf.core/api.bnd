@@ -1,0 +1,2 @@
+Bundle-Version: ${emf-version}
+# Export over bnd.bnd file

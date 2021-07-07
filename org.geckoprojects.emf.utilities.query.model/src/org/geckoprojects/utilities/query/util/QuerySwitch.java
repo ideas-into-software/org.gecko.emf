@@ -13,9 +13,10 @@ package org.geckoprojects.utilities.query.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-import org.geckoprojects.utilities.query.*;
+import org.geckoprojects.utilities.query.Query;
+import org.geckoprojects.utilities.query.QueryCondition;
+import org.geckoprojects.utilities.query.QueryPackage;
 
 /**
  * <!-- begin-user-doc -->

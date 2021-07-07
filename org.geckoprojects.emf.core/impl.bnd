@@ -1,0 +1,12 @@
+Bundle-Version: ${emf-version}
+
+Private-Package: \
+	org.geckoprojects.emf.core.ecore,\
+	org.geckoprojects.emf.core.components.config,\
+	org.geckoprojects.emf.core.components.dynamic,\
+	org.geckoprojects.emf.core.components,\
+	org.geckoprojects.emf.core.factory,\
+	org.geckoprojects.emf.core.resourceset,\
+	org.geckoprojects.emf.core.urihandler
+Provide-Capability: osgi.service;objectClass:List<String>="org.geckoprojects.emf.core.ResourceSetFactory",osgi.service;objectClass:List<String>="org.eclipse.emf.ecore.resource.ResourceSet"
+

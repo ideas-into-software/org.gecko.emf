@@ -3,15 +3,17 @@
 package org.geckoprojects.emf.pushstream.impl;
 
 import java.util.concurrent.BlockingQueue;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.geckoprojects.emf.pushstream.*;
+import org.geckoprojects.emf.pushstream.CustomPushStreamProvider;
+import org.geckoprojects.emf.pushstream.PushStreamFactory;
+import org.geckoprojects.emf.pushstream.PushStreamPackage;
+import org.geckoprojects.emf.pushstream.SimplePushStreamProvider;
 import org.osgi.util.pushstream.PushEvent;
 import org.osgi.util.pushstream.PushEventSource;
 import org.osgi.util.pushstream.PushStream;

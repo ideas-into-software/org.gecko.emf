@@ -232,76 +232,52 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 
 		private String name;
 
-		/* 
-		 * (non-Javadoc)
-		 * @see org.eclipse.core.runtime.IProgressMonitor#beginTask(java.lang.String, int)
-		 */
+
 		@Override
 		public void beginTask(String name, int totalWork) {
 			info("beginTask " + name);
 		}
 
-		/* 
-		 * (non-Javadoc)
-		 * @see org.eclipse.core.runtime.IProgressMonitor#done()
-		 */
+
 		@Override
 		public void done() {
 			info("done");
 		}
 
-		/* 
-		 * (non-Javadoc)
-		 * @see org.eclipse.core.runtime.IProgressMonitor#internalWorked(double)
-		 */
+
 		@Override
 		public void internalWorked(double work) {
 			info("internaly worked " + work + " on " + name);
 		}
 
-		/* 
-		 * (non-Javadoc)
-		 * @see org.eclipse.core.runtime.IProgressMonitor#isCanceled()
-		 */
+
 		@Override
 		public boolean isCanceled() {
 			// TODO Auto-generated method stub
 			return false;
 		}
 
-		/* 
-		 * (non-Javadoc)
-		 * @see org.eclipse.core.runtime.IProgressMonitor#setCanceled(boolean)
-		 */
+	
 		@Override
 		public void setCanceled(boolean value) {
 			info(name + " cancled");
 		}
 
-		/* 
-		 * (non-Javadoc)
-		 * @see org.eclipse.core.runtime.IProgressMonitor#setTaskName(java.lang.String)
-		 */
+
 		@Override
 		public void setTaskName(String name) {
 			this.name = name;
 			
 		}
 
-		/* 
-		 * (non-Javadoc)
-		 * @see org.eclipse.core.runtime.IProgressMonitor#subTask(java.lang.String)
-		 */
+
 		@Override
 		public void subTask(String name) {
 			info("subtask " + name);
 			
 		}
 
-		/* 
-		 * (non-Javadoc)
-		 * @see org.eclipse.core.runtime.IProgressMonitor#worked(int)
-		 */
+
 		@Override
 		public void worked(int work) {
 			info(" worked " + work + " on " + name);

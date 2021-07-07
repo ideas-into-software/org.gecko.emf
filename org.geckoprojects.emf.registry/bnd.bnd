@@ -1,5 +1,5 @@
 -buildpath: \
-	org.geckoprojects.emf.core;version=latest,\
+	org.geckoprojects.emf.core;version=project,\
 	org.eclipse.equinox.registry;version=latest,\
 	org.eclipse.equinox.supplement;version=latest,\
 	org.osgi.service.component.annotations,\
@@ -11,6 +11,3 @@
 
 Bundle-Version: ${emf-version}
 Private-Package: org.geckoprojects.emf.registry
-
-Bundle-Name: EMF OSGi Registry
-Bundle-Description: Adaopter implementation for the Equinox extension registry

@@ -60,7 +60,7 @@ public class CustomArrayDataTypeTest {
 	void testName() throws Exception {
 		RuntimeMonitoringAssert.executeAndObserve(() -> {
 			
-		}).untilServiceEventRegisters(MongoClient.class).assertThat(5000);
+		}).untilServiceEventRegisters(MongoClient.class).assertWithTimeoutThat(5000);
 		
 		
 		
@@ -121,7 +121,7 @@ public class CustomArrayDataTypeTest {
 //		.untilServiceEventUnregisters(MongoClient.class,Map.of("key", "value"))		
 //		.untilFrameworkEvent(EventPredicates.FrameworkEvents.isTypeStartlevelChanged())
 //		.untilBundleEvent(EventPredicates.BundleEvents.isTypeInstalled())
-		.assertThat(1000)
+		.assertWithTimeoutThat(1000)
 		
 		
 		
@@ -153,10 +153,10 @@ public class CustomArrayDataTypeTest {
 		assertThat(mongoDatabase).isNotNull();
 
 		ResourceSetConfigurator rsc = saResourceSetConfigurator.getService();
-		assertThat(rsc).isNotNull().isInstanceOf(MongoResourceSetConfigurator.class);
+		assertWithTimeoutThat(rsc).isNotNull().isInstanceOf(MongoResourceSetConfigurator.class);
 
 		ResourceSetFactory rsf = saResourceSetFactory.getService();
-		assertThat(rsf).isNotNull();
+		assertWithTimeoutThat(rsf).isNotNull();
 		ResourceSet resourceSet = rsf.createResourceSet();
 
 		System.out.println("Dropping DB");

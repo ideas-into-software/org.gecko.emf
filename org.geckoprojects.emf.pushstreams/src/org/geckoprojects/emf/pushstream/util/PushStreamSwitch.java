@@ -4,9 +4,11 @@ package org.geckoprojects.emf.pushstream.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-import org.geckoprojects.emf.pushstream.*;
+import org.geckoprojects.emf.pushstream.CustomPushStreamProvider;
+import org.geckoprojects.emf.pushstream.EPushStreamProvider;
+import org.geckoprojects.emf.pushstream.PushStreamPackage;
+import org.geckoprojects.emf.pushstream.SimplePushStreamProvider;
 
 /**
  * <!-- begin-user-doc -->

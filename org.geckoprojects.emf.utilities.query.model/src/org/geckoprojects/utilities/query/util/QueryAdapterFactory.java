@@ -13,11 +13,11 @@ package org.geckoprojects.utilities.query.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-import org.geckoprojects.utilities.query.*;
+import org.geckoprojects.utilities.query.Query;
+import org.geckoprojects.utilities.query.QueryCondition;
+import org.geckoprojects.utilities.query.QueryPackage;
 
 /**
  * <!-- begin-user-doc -->

@@ -32,9 +32,9 @@ import org.geckoprojects.emf.example.model.basic.model.ContactType;
 import org.geckoprojects.emf.example.model.basic.model.GenderType;
 import org.geckoprojects.emf.example.model.basic.model.Person;
 import org.geckoprojects.emf.example.model.basic.model.util.BasicResourceFactoryImpl;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.fail;
-import org.junit.jupiter.api.Test;
 
 public class JsonConfiguratorTest {
 

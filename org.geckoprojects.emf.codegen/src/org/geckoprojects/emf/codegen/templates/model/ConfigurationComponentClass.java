@@ -1,7 +1,11 @@
 package org.geckoprojects.emf.codegen.templates.model;
 
-import java.util.*;
-import org.eclipse.emf.codegen.ecore.genmodel.*;
+import java.util.Iterator;
+
+import org.eclipse.emf.codegen.ecore.genmodel.GenBase;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind;
 
 public class ConfigurationComponentClass
 {

@@ -14,8 +14,8 @@ package org.geckoprojects.emf.core.components;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.ResourceSetCache;
-import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.core.api.ResourceSetCache;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;

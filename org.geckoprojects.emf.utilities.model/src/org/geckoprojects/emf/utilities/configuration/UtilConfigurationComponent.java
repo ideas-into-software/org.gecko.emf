@@ -22,12 +22,12 @@
 package org.geckoprojects.emf.utilities.configuration;
 
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
-import org.geckoprojects.emf.core.EPackageConfigurator;
-import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
-import org.geckoprojects.emf.core.annotation.EMFModel;
-import org.geckoprojects.emf.core.annotation.provide.ProvideEMFModel;
-import org.geckoprojects.emf.core.annotation.provide.ProvideEMFResourceConfigurator;
-import org.geckoprojects.emf.core.annotation.require.RequireEMF;
+import org.geckoprojects.emf.core.api.EPackageConfigurator;
+import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
+import org.geckoprojects.emf.core.api.annotation.EMFModel;
+import org.geckoprojects.emf.core.api.annotation.provide.ProvideEMFModel;
+import org.geckoprojects.emf.core.api.annotation.provide.ProvideEMFResourceConfigurator;
+import org.geckoprojects.emf.core.api.annotation.require.RequireEMF;
 import org.geckoprojects.emf.utilities.UtilPackage;
 import org.geckoprojects.emf.utilities.util.UtilResourceFactoryImpl;
 import org.osgi.service.component.annotations.Component;

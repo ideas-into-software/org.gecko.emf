@@ -13,7 +13,7 @@ package org.geckoprojects.emf.repository.mongo.configurator;
 
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
+import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
 import org.osgi.service.component.annotations.Component;
 
 /**

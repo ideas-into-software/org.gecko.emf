@@ -12,7 +12,7 @@
 package org.geckoprojects.emf.repository.mongo.configurator;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.api.ResourceSetConfigurator;
 import org.geckoprojects.emf.mongo.Options;
 import org.osgi.service.component.annotations.Component;
 

@@ -1,8 +1,8 @@
 
--enable-gecko-emf: true
+
 
 -buildpath: \
-	org.geckoprojects.emf.core,\
+	org.geckoprojects.emf.core;version=project,\
 	org.eclipse.emf.ecore,\
 	org.eclipse.emf.common,\
 	org.osgi.annotation.versioning,\

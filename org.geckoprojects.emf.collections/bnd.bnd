@@ -1,7 +1,5 @@
 -includeresource: model/
 
-Bundle-Name: EMF Collections bundle
-Bundle-Description: EMF Collections extensions
 Bundle-Version: 0.0.1-SNAPSHOT
 Export-Package: \
 	org.geckoprojects.emf.collection,\
@@ -18,4 +16,4 @@ Private-Package: \
 	org.osgi.annotation.versioning,\
 	org.osgi.annotation.bundle,\
 	org.osgi.service.component.annotations,\
-	org.geckoprojects.emf.core
+	org.geckoprojects.emf.core;version=project,

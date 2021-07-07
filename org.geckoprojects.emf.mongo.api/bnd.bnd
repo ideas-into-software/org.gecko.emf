@@ -1,11 +1,5 @@
-src: src, src-gen
-
-Bundle-Name: EMF Mongo API bundle
-Bundle-Description: EMF Mongo API
-
 Export-Package: \
 	org.geckoprojects.emf.mongo.model,\
-	org.geckoprojects.emf.mongo.model.util,\
 	org.geckoprojects.emf.mongo,\
 	org.geckoprojects.emf.mongo.annotations
 

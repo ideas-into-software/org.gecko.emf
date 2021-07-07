@@ -24,7 +24,5 @@ Bundle-Version: ${emf-version}
 -includeresource: \
 	data/=data/
 
-Bundle-Name: EMF Core Integration Tests
-Bundle-Description: OSGI tests for the EMF core stuff
 Export-Package: org.geckoprojects.emf.core.itest
 Private-Package: org.geckoprojects.emf.core.itest.configurator

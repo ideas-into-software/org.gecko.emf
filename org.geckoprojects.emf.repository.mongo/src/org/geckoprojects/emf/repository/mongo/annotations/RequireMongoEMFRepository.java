@@ -17,8 +17,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.osgi.annotation.bundle.Requirement;
 import org.geckoprojects.emf.repository.RepositoryConstants;
+import org.osgi.annotation.bundle.Requirement;
 
 /**
  * Annotation that requires the mongo emf repository

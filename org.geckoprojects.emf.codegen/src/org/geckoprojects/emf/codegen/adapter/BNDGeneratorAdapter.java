@@ -16,9 +16,7 @@ public class BNDGeneratorAdapter extends GenModelGeneratorAdapter {
 		super(generatorAdapterFactory);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapter#generateModel(java.lang.Object, org.eclipse.emf.common.util.Monitor)
-	 */
+
 	@Override
 	protected Diagnostic generateModel(Object object, Monitor monitor)
 	{

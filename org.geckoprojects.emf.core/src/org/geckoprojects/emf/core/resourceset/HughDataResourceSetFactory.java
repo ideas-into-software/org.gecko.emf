@@ -13,9 +13,9 @@ package org.geckoprojects.emf.core.resourceset;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.DefaultResourceSetFactory;
-import org.geckoprojects.emf.core.HughDataResourceSet;
-import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.core.api.DefaultResourceSetFactory;
+import org.geckoprojects.emf.core.api.HughDataResourceSet;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
 
 /**
  * {@link ResourceSetFactory} that creates a {@link HughDataResourceSet} and configures it to

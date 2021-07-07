@@ -11,9 +11,9 @@
  */
 package org.geckoprojects.utilities.query.configurator;
 
-import org.geckoprojects.emf.core.EPackageConfigurator;
-import org.geckoprojects.emf.core.annotation.EMFModel;
-import org.geckoprojects.emf.core.annotation.provide.ProvideEMFModel;
+import org.geckoprojects.emf.core.api.EPackageConfigurator;
+import org.geckoprojects.emf.core.api.annotation.EMFModel;
+import org.geckoprojects.emf.core.api.annotation.provide.ProvideEMFModel;
 import org.geckoprojects.utilities.query.QueryPackage;
 import org.osgi.service.component.annotations.Component;
 

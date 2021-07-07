@@ -29,21 +29,19 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.core.tests.AbstractOSGiTest;
-import org.geckoprojects.emf.core.EPackageConfigurator;
-import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
-import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.core.api.EPackageConfigurator;
+import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
 import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
 import org.geckoprojects.emf.example.model.basic.model.Person;
-import org.geckoprojects.emf.osgi.model.info.EMFModelInfo;
+import org.geckoprojects.emf.model.info.EMFModelInfo;
 import org.geckoprojects.emf.osgi.model.test.configurator.TestPackageConfigurator;
 import org.geckoprojects.emf.osgi.test.extended.model.configurator.ExtendedTestPackageConfigurator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
-import org.geckoprojects.emf.model.info.EMFModelInfo;
 
 /**
  * 

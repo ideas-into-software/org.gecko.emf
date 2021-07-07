@@ -4,11 +4,12 @@ package org.geckoprojects.emf.pushstream.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-import org.geckoprojects.emf.pushstream.*;
+import org.geckoprojects.emf.pushstream.CustomPushStreamProvider;
+import org.geckoprojects.emf.pushstream.EPushStreamProvider;
+import org.geckoprojects.emf.pushstream.PushStreamPackage;
+import org.geckoprojects.emf.pushstream.SimplePushStreamProvider;
 
 /**
  * <!-- begin-user-doc -->

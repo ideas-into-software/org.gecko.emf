@@ -59,12 +59,7 @@ public class ResourceUriHandler implements URIHandler {
 		this.base = base;
 	}
 	
-	/* 
-	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.URIHandler#canHandle(org.eclipse.emf.common.util.URI)
-	 */
 	@Override
-	
 	public boolean canHandle(URI uri) {
 		GeckoEmfGenerator.info("Asked to handle " + uri);
 		return uri.scheme().equals("resource") || uri.toString().startsWith(PLATFORM_RESOURCE) || uri.toString().startsWith(PLATFORM_PLUGIN); 
@@ -100,10 +95,7 @@ public class ResourceUriHandler implements URIHandler {
 		return null;
 	}
 	
-	/* 
-	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.URIHandler#createInputStream(org.eclipse.emf.common.util.URI, java.util.Map)
-	 */
+
 	@Override
 	public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to open InputStream for " + uri);
@@ -157,10 +149,7 @@ public class ResourceUriHandler implements URIHandler {
 			return c.getBundleSymbolicName();
 		}
 	}
-	/* 
-	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.URIHandler#createOutputStream(org.eclipse.emf.common.util.URI, java.util.Map)
-	 */
+
 	@Override
 	public OutputStream createOutputStream(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to open OutputStream for " + uri);
@@ -178,10 +167,6 @@ public class ResourceUriHandler implements URIHandler {
 		return null;
 	}
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.URIHandler#delete(org.eclipse.emf.common.util.URI, java.util.Map)
-	 */
 	@Override
 	public void delete(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to delete " + uri);
@@ -195,20 +180,12 @@ public class ResourceUriHandler implements URIHandler {
 		} 
 	}
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.URIHandler#contentDescription(org.eclipse.emf.common.util.URI, java.util.Map)
-	 */
 	@Override
 	public Map<String, ?> contentDescription(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked for content Descriptor " + uri);
 		return Collections.singletonMap(ContentHandler.CONTENT_TYPE_PROPERTY, "application/xmi");
 	}
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.URIHandler#exists(org.eclipse.emf.common.util.URI, java.util.Map)
-	 */
 	@Override
 	public boolean exists(URI uri, Map<?, ?> options) {
 		GeckoEmfGenerator.info("Asked if exists " + uri);
@@ -223,20 +200,13 @@ public class ResourceUriHandler implements URIHandler {
 		return false;
 	}
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.URIHandler#getAttributes(org.eclipse.emf.common.util.URI, java.util.Map)
-	 */
 	@Override
 	public Map<String, ?> getAttributes(URI uri, Map<?, ?> options) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.URIHandler#setAttributes(org.eclipse.emf.common.util.URI, java.util.Map, java.util.Map)
-	 */
+
 	@Override
 	public void setAttributes(URI uri, Map<String, ?> attributes, Map<?, ?> options) throws IOException {
 		// TODO Auto-generated method stub

@@ -39,7 +39,7 @@ public class MainTest {
 				Thread.sleep(100);
 			}
 
-		}).untilNoMoreServiceEventOfClassWithin(10l, Serializable.class).assertThat(3000).isNotTimedOut()
+		}).untilNoMoreServiceEventOfClassWithin(10l, Serializable.class).assertWithTimeoutThat(3000).isNotTimedOut()
 				.hasAtLeastOneServiceEventRegisteredWith(Serializable.class);
 
 	}
@@ -59,7 +59,7 @@ public class MainTest {
 			sr.setProperties(Dictionaries.dictionaryOf("k", "v2"));
 			sr.unregister();
 
-		}).untilNoMoreServiceEventWithin(100l).assertThat(3000)//
+		}).untilNoMoreServiceEventWithin(100l).assertWithTimeoutThat(3000)//
 		.hasNoThrowable()//
 				.isNotTimedOut().hasServiceEventsInOrder(//
 						List.of(

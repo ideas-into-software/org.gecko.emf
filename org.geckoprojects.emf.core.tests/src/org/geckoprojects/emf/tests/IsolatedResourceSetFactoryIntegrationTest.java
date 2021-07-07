@@ -21,19 +21,16 @@ import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
 
 import org.assertj.core.api.Assertions;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.EMFNamespaces;
-import org.geckoprojects.emf.core.EPackageConfigurator;
-import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
-import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.core.api.EMFNamespaces;
+import org.geckoprojects.emf.core.api.EPackageConfigurator;
+import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
 import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
 import org.junit.jupiter.api.Test;
@@ -78,7 +75,7 @@ public class IsolatedResourceSetFactoryIntegrationTest  {
 			configuration.update(properties);
 			
 			cr.set(configuration);
-		}).untilNoMoreServiceEventWithin(100).assertThat(1000).hasExactlyOneServiceEventRegisteredWith(ResourceSetFactory.class)
+		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000).hasExactlyOneServiceEventRegisteredWith(ResourceSetFactory.class)
 		.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
 		.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
 		
@@ -106,7 +103,7 @@ cr.get().delete();
 			configuration.update(properties);
 			
 			cr.set(configuration);
-		}).untilNoMoreServiceEventWithin(100).assertThat(1000).hasExactlyOneServiceEventRegisteredWith(ResourceSet.class)
+		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000).hasExactlyOneServiceEventRegisteredWith(ResourceSet.class)
 		.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
 		.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
 		
@@ -139,7 +136,7 @@ cr.get().delete();
 			configuration.update(properties);
 			
 			cr.set(configuration);
-		}).untilNoMoreServiceEventWithin(100).assertThat(1000).hasExactlyOneServiceEventRegisteredWith(ResourceSet.class)
+		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000).hasExactlyOneServiceEventRegisteredWith(ResourceSet.class)
 		.hasExactlyOneServiceEventRegisteredWith(ResourceSetFactory.class)
 		.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
 		.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);

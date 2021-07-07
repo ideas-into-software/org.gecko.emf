@@ -39,8 +39,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-import org.geckoprojects.emf.core.UriMapProvider;
+import org.geckoprojects.emf.core.api.UriMapProvider;
 import org.geckoprojects.emf.repository.EMFRepository;
 import org.geckoprojects.emf.repository.mongo.api.EMFMongoConfiguratorConstants.Type;
 import org.geckoprojects.emf.repository.mongo.cm.entities.MongoDatabaseConfig;
@@ -56,6 +55,9 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoDatabase;
 
 
 /**

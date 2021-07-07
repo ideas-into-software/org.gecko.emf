@@ -1,12 +1,12 @@
 -buildpath: \
-	org.geckoprojects.emf.core,\
+	org.geckoprojects.emf.core;version=project,\
 	org.eclipse.emf.common,\
 	org.osgi.annotation.versioning,\
 	org.eclipse.emf.ecore,\
 	org.eclipse.emf.ecore.xmi,\
 	org.osgi.service.component.annotations
 
--enable-gecko-emf: true
+
 -includeresource: model=model
 
 Bundle-Version: 1.0.12-SNAPSHOT

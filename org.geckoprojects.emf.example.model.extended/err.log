@@ -14,7 +14,7 @@ java.net.MalformedURLException
 	at org.eclipse.emf.codegen.ecore.generator.Generator.getJControlModel(Generator.java:431)
 	at org.eclipse.emf.codegen.ecore.generator.AbstractGeneratorAdapter.generateJava(AbstractGeneratorAdapter.java:1898)
 	at org.eclipse.emf.codegen.ecore.genmodel.generator.GenPackageGeneratorAdapter.generatePackageInterface(GenPackageGeneratorAdapter.java:601)
-	at org.geckoprojects.emf.codegen.adapter.ConfigurationComponentGeneratorAdapter.generateModel(ConfigurationComponentGeneratorAdapter.java:85)
+	at org.geckoprojects.emf.codegen.adapter.ConfigurationComponentGeneratorAdapter.generateModel(ConfigurationComponentGeneratorAdapter.java:83)
 	at org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter.doGenerate(GenBaseGeneratorAdapter.java:215)
 	at org.eclipse.emf.codegen.ecore.generator.AbstractGeneratorAdapter.generate(AbstractGeneratorAdapter.java:319)
 	at org.eclipse.emf.codegen.ecore.generator.Generator.generate(Generator.java:748)

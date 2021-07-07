@@ -11,27 +11,32 @@
  */
 package org.geckoprojects.emf.mongo.tests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.util.UUID;
 
+import org.bson.Document;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
-import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfiguratorComponent;
-import org.geckoprojects.emf.example.model.basic.model.Geometry;
 import org.geckoprojects.emf.core.EMFNamespaces;
 import org.geckoprojects.emf.core.ResourceSetConfigurator;
 import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
+import org.geckoprojects.emf.example.model.basic.model.Geometry;
+import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
+import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfiguratorComponent;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
 
 import com.mongodb.client.MongoCollection;
-import org.bson.Document;
 
 /**
  * Tests the correct implementation of the ArrayConverter and the changes made to the DBObjectBuilder and

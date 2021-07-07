@@ -15,11 +15,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.geckoprojects.utilities.query.*;
+import org.geckoprojects.utilities.query.ISNOT;
+import org.geckoprojects.utilities.query.LogicalOperator;
+import org.geckoprojects.utilities.query.Query;
+import org.geckoprojects.utilities.query.QueryCondition;
+import org.geckoprojects.utilities.query.QueryFactory;
+import org.geckoprojects.utilities.query.QueryPackage;
 
 /**
  * <!-- begin-user-doc -->

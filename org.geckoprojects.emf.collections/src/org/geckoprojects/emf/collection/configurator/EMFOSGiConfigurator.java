@@ -12,9 +12,9 @@
 package org.geckoprojects.emf.collection.configurator;
 
 import org.geckoprojects.emf.collection.CollectionPackage;
-import org.geckoprojects.emf.core.EPackageConfigurator;
-import org.geckoprojects.emf.core.annotation.EMFModel;
-import org.geckoprojects.emf.core.annotation.provide.ProvideEMFModel;
+import org.geckoprojects.emf.core.api.EPackageConfigurator;
+import org.geckoprojects.emf.core.api.annotation.EMFModel;
+import org.geckoprojects.emf.core.api.annotation.provide.ProvideEMFModel;
 import org.osgi.service.component.annotations.Component;
 
 /**

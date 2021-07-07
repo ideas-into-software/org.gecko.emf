@@ -4,11 +4,8 @@ package org.geckoprojects.emf.example.model.extended.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
-
 import org.geckoprojects.emf.example.model.extended.model.ExtendedAddress;
 import org.geckoprojects.emf.example.model.extended.model.ExtendedPerson;
 import org.geckoprojects.emf.example.model.extended.model.ExtendedPrefixFactory;

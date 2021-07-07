@@ -3,6 +3,7 @@
 package org.geckoprojects.emf.pushstream;
 
 import java.util.concurrent.BlockingQueue;
+
 import org.eclipse.emf.ecore.EObject;
 import org.osgi.util.pushstream.PushEvent;
 import org.osgi.util.pushstream.PushStream;

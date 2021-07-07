@@ -1,10 +1,7 @@
-Bundle-Name: EMF Ecore OSGi code generation extension bundle
-Bundle-Description: EMF Ecore code generation extension for Bndtools
-
 -buildpath: \
 	org.osgi.annotation.bundle,\
 	org.osgi.annotation.versioning,\
-	org.geckoprojects.emf.core;version=latest,\
+	org.geckoprojects.emf.core;version=project,\
 	org.eclipse.emf.ecore.xmi;version=latest,\
 	org.eclipse.emf.ecore;version=latest,\
 	org.eclipse.emf.common;version=latest,\

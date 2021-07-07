@@ -1,7 +1,5 @@
 Bundle-Copyright: Bryan Hunt, Data In Motion Consulting
-Bundle-Name: EMF Mongo implementation bundle
-Bundle-Description: EMF Mongo implementation
-Bundle-Vendor: Data In Motion Consulting GmbH
+
 Private-Package: \
 	org.geckoprojects.emf.mongo.codecs,\
 	org.geckoprojects.emf.mongo.codecs.builder,\
@@ -23,7 +21,7 @@ Provide-Capability: org.geckoprojects.emf.persistence;org.geckoprojects.emf.pers
 	org.eclipse.emf.ecore.xmi,\
 	org.mongodb.driver-core,\
 	org.mongodb.driver-sync,\
-	org.geckoprojects.emf.core,\
+	org.geckoprojects.emf.core;version=project,\
 	org.osgi.framework,\
 	org.osgi.service.component.annotations,\
 	org.geckoprojects.emf.collections,\

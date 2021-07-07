@@ -14,7 +14,7 @@ package org.geckoprojects.emf.repository.file;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.geckoprojects.emf.repository.DefaultEMFRepository;
 import org.geckoprojects.emf.repository.EMFRepository;
 import org.geckoprojects.emf.repository.helper.RepositoryHelper;

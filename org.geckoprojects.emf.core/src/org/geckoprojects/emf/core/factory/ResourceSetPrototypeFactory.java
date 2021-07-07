@@ -12,7 +12,7 @@
 package org.geckoprojects.emf.core.factory;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.PrototypeServiceFactory;
 import org.osgi.framework.ServiceRegistration;
@@ -32,19 +32,12 @@ public class ResourceSetPrototypeFactory implements PrototypeServiceFactory<Reso
 	public ResourceSetPrototypeFactory(ResourceSetFactory resourceSetFactory) {
 		this.resourceSetFactory = resourceSetFactory;
 	}
-	/* 
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.PrototypeServiceFactory#getService(org.osgi.framework.Bundle, org.osgi.framework.ServiceRegistration)
-	 */
+
 	@Override
 	public ResourceSet getService(Bundle bundle, ServiceRegistration<ResourceSet> registration) {
 		return resourceSetFactory.createResourceSet();
 	}
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.PrototypeServiceFactory#ungetService(org.osgi.framework.Bundle, org.osgi.framework.ServiceRegistration, java.lang.Object)
-	 */
 	@Override
 	public void ungetService(Bundle bundle, ServiceRegistration<ResourceSet> registration, ResourceSet service) {
 		synchronized (service) {

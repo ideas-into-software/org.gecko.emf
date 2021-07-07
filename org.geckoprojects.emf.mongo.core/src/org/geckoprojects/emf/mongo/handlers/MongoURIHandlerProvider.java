@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.eclipse.emf.ecore.resource.URIHandler;
-import org.geckoprojects.emf.core.UriHandlerProvider;
+import org.geckoprojects.emf.core.api.UriHandlerProvider;
 import org.geckoprojects.emf.mongo.InputStreamFactory;
 import org.geckoprojects.emf.mongo.OutputStreamFactory;
 

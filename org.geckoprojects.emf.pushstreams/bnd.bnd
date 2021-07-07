@@ -7,8 +7,7 @@
 -includeresource: model/
 
 Bundle-Version: 0.0.1-SNAPSHOT
-Bundle-Name: EMF PushStreams bundle
-Bundle-Description: EMF PushStream extensions
+
 Export-Package: \
 	org.geckoprojects.emf.pushstream,\
 	org.geckoprojects.emf.pushstream.impl,\

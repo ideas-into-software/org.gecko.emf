@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.geckoprojects.emf.core.HughDataResourceSet;
+import org.geckoprojects.emf.core.api.HughDataResourceSet;
 
 /**
  * An extended {@link ResourceSet}, that works with large data sets as well, without blocking

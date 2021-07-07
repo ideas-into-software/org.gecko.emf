@@ -28,10 +28,7 @@ public class BNDGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory 
 		}
 	};
 	  
-	  
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory#createGenModelAdapter()
-	 */
+
 	@Override
 	public Adapter createGenModelAdapter() {
 		if (genModelGeneratorAdapter == null)
@@ -41,10 +38,7 @@ public class BNDGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory 
 		return genModelGeneratorAdapter;
 	}
 
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory#createGenPackageAdapter()
-	 */
+
 	@Override
 	public Adapter createGenPackageAdapter() {
 		if (genPackageGeneratorAdapter == null)

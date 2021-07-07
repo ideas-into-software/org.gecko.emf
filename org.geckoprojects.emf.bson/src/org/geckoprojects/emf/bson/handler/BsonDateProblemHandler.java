@@ -28,10 +28,7 @@ import de.undercouch.bson4jackson.deserializers.BsonDateDeserializer;
  */
 public class BsonDateProblemHandler extends DeserializationProblemHandler {
 
-	/* 
-	 * (non-Javadoc)
-	 * @see com.fasterxml.jackson.databind.deser.DeserializationProblemHandler#handleUnexpectedToken(com.fasterxml.jackson.databind.DeserializationContext, java.lang.Class, com.fasterxml.jackson.core.JsonToken, com.fasterxml.jackson.core.JsonParser, java.lang.String)
-	 */
+
 	@Override
 	public Object handleUnexpectedToken(DeserializationContext ctxt, Class<?> targetType, JsonToken t, JsonParser p,
 			String failureMsg) throws IOException {

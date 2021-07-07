@@ -4,14 +4,13 @@ package org.geckoprojects.emf.example.model.extended.model.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.geckoprojects.emf.example.model.basic.model.Address;
 import org.geckoprojects.emf.example.model.basic.model.EmployeeInfo;
 import org.geckoprojects.emf.example.model.basic.model.Person;
-
-import org.geckoprojects.emf.example.model.extended.model.*;
+import org.geckoprojects.emf.example.model.extended.model.ExtendedAddress;
+import org.geckoprojects.emf.example.model.extended.model.ExtendedPerson;
+import org.geckoprojects.emf.example.model.extended.model.ExtendedPrefixPackage;
 
 /**
  * <!-- begin-user-doc -->

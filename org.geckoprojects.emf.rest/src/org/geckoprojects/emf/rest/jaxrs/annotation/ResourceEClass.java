@@ -16,6 +16,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.eclipse.emf.ecore.EClass;
+
 /**
  * @author Juergen Albert
  * @since 07.02.2013

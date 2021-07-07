@@ -9,7 +9,6 @@ import java.util.function.Predicate;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
 import org.geckoprojects.osgitest.events.RuntimeMonitoringAssertTimeoutStep;
-import org.geckoprojects.osgitest.events.RuntimeMonitoringResultAssert;
 import org.geckoprojects.osgitest.predicates.EventPredicates;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
@@ -44,13 +43,13 @@ public class RuntimeMonitoringAssertImpl implements RuntimeMonitoringAssertTimeo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public EventRecordingAssertImpl assertThat(int timeout) {
+	public EventRecordingAssertImpl assertWithTimeoutThat(int timeout) {
 		return call(execute, innerPredicate, timeout);
 	}
 	//todo: niht wen until verwendet
 		@Override
 		public EventRecordingAssertImpl assertThat() {
-			return assertThat(0);
+			return assertWithTimeoutThat(0);
 		}
 
 

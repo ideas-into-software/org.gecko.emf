@@ -3,9 +3,7 @@
 	org.eclipse.emf.common,\
 	org.eclipse.emf.ecore,\
 	org.eclipse.emf.ecore.xmi,\
-	org.geckoprojects.emf.core
+	org.geckoprojects.emf.core;version=project
 
 Bundle-Version: ${emf-version}
 Private-Package: org.geckoprojects.emf.ecore
-Bundle-Name: EMF Ecore OSGi extension bundle
-Bundle-Description: EMF Ecore  for OSGi service extensions

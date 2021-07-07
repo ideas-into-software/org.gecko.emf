@@ -16,9 +16,15 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-import org.geckoprojects.emf.utilities.*;
+import org.geckoprojects.emf.utilities.Converter;
+import org.geckoprojects.emf.utilities.FeaturePath;
+import org.geckoprojects.emf.utilities.Filter;
+import org.geckoprojects.emf.utilities.LatLng;
+import org.geckoprojects.emf.utilities.Request;
+import org.geckoprojects.emf.utilities.Response;
+import org.geckoprojects.emf.utilities.Sort;
+import org.geckoprojects.emf.utilities.UtilPackage;
 
 /**
  * <!-- begin-user-doc -->

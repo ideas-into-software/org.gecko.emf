@@ -21,7 +21,7 @@ import java.util.Hashtable;
 
 import org.assertj.core.api.Assertions;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.ResourceSetCache;
+import org.geckoprojects.emf.core.api.ResourceSetCache;
 import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -67,7 +67,7 @@ public class ResourceSetCacheIntegrationTest {
 
 			Configuration c1 = ca.getFactoryConfiguration("ResourceSetCache" , "one", "?");
 			c1.update(configProperties01);
-		}).untilNoMoreServiceEventWithin(100).assertThat(1000)
+		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000)
 				.hasExactlyOneServiceEventRegisteredWith(ResourceSetCache.class);
 
 		Assertions.assertThat(sa1.getServices()).hasSize(1);
@@ -91,7 +91,7 @@ public class ResourceSetCacheIntegrationTest {
 			Configuration c2 = ca.getFactoryConfiguration("ResourceSetCache" ,"two", "?");
 			c2.update(configProperties02);
 
-		}).untilNoMoreServiceEventWithin(100).assertThat(1000)
+		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000)
 				.hasExactlyOneServiceEventRegisteredWith(ResourceSetCache.class);
 
 		Assertions.assertThat(sa1.getServices()).hasSize(2);

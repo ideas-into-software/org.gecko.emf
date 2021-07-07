@@ -11,12 +11,8 @@
  */
 package org.geckoprojects.emf.mongo.tests;
 
-import java.io.IOException;
-
-
 import org.geckoprojects.emf.core.EPackageConfigurator;
 import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
-import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceRegistration;
 
 import com.mongodb.client.MongoClient;

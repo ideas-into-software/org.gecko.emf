@@ -18,9 +18,9 @@ import java.util.TimeZone;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.emfjson.jackson.module.EMFModule;
 import org.emfjson.jackson.resource.JsonResourceFactory;
-import org.geckoprojects.emf.core.ResourceFactoryConfigurator;
-import org.geckoprojects.emf.core.annotation.EMFResourceFactoryConfigurator;
-import org.geckoprojects.emf.core.annotation.provide.ProvideEMFResourceConfigurator;
+import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
+import org.geckoprojects.emf.core.api.annotation.EMFResourceFactoryConfigurator;
+import org.geckoprojects.emf.core.api.annotation.provide.ProvideEMFResourceConfigurator;
 import org.geckoprojects.emf.json.configuration.ConfigurableJsonResourceFactory;
 import org.osgi.service.component.annotations.Component;
 

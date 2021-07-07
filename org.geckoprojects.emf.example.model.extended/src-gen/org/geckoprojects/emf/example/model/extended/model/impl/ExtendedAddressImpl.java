@@ -3,9 +3,7 @@
 package org.geckoprojects.emf.example.model.extended.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.geckoprojects.emf.example.model.basic.model.impl.AddressImpl;
-
 import org.geckoprojects.emf.example.model.extended.model.ExtendedAddress;
 import org.geckoprojects.emf.example.model.extended.model.ExtendedPrefixPackage;
 

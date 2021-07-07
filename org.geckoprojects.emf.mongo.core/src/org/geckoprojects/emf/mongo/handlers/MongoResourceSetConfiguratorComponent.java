@@ -11,8 +11,8 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-import org.geckoprojects.emf.core.EMFNamespaces;
-import org.geckoprojects.emf.core.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.api.EMFNamespaces;
+import org.geckoprojects.emf.core.api.ResourceSetConfigurator;
 import org.geckoprojects.emf.mongo.InputStreamFactory;
 import org.geckoprojects.emf.mongo.OutputStreamFactory;
 import org.geckoprojects.mongo.core.MongoConstants;
