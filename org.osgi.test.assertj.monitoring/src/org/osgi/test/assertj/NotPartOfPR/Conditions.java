@@ -1,8 +1,8 @@
-package org.geckoprojects.osgitest.conditions;
+package org.osgi.test.assertj.NotPartOfPR;
 
-import static org.geckoprojects.osgitest.conditions.Conditions.DictionaryConditions.servicePropertiesContains;
-import static org.geckoprojects.osgitest.conditions.Conditions.ServiceReferenceConditions.objectClass;
-import static org.geckoprojects.osgitest.conditions.Conditions.ServiceReferenceConditions.servicePropertiesHas;
+import static org.osgi.test.assertj.NotPartOfPR.Conditions.DictionaryConditions.servicePropertiesContains;
+import static org.osgi.test.assertj.NotPartOfPR.Conditions.ServiceReferenceConditions.objectClass;
+import static org.osgi.test.assertj.NotPartOfPR.Conditions.ServiceReferenceConditions.servicePropertiesHas;
 
 import java.util.Collections;
 import java.util.Dictionary;
@@ -19,7 +19,6 @@ import org.assertj.core.api.ListAssert;
 import org.assertj.core.api.ObjectAssert;
 import org.assertj.core.condition.MappedCondition;
 import org.assertj.core.condition.VerboseCondition;
-import org.geckoprojects.osgitest.BitmapUtil;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.Constants;
@@ -81,6 +80,9 @@ import static org.assertj.core.api.Assertions.not;
  */
 public interface Conditions {
 
+	public static boolean typeMatchesMask(int type, int mask) {
+		return (type & mask) != 0;
+	}
 	/**
 	 * A Utility-Class thats Provides static methods to create {@link Conditions}
 	 * for an {@link Bundle}
@@ -316,7 +318,7 @@ public interface Conditions {
 		 */
 		static Condition<BundleEvent> type(final int expectedEventTypeMask) {
 			return VerboseCondition.verboseCondition(
-					(BundleEvent be) -> BitmapUtil.typeMatchesMask(be.getType(), expectedEventTypeMask),
+					(BundleEvent be) -> typeMatchesMask(be.getType(), expectedEventTypeMask),
 					"type matches mask '" + BundleEventType.BITMAP.maskToString(expectedEventTypeMask) + "'", //
 					be -> BundleEventType.BITMAP.toString(be.getType()));
 		}
@@ -1143,7 +1145,7 @@ public interface Conditions {
 		static Condition<FrameworkEvent> type(final int eventTypeMask) {
 
 			return VerboseCondition.verboseCondition(
-					(FrameworkEvent fe) -> BitmapUtil.typeMatchesMask(fe.getType(), eventTypeMask),
+					(FrameworkEvent fe) -> typeMatchesMask(fe.getType(), eventTypeMask),
 					"type matches mask " + FrameworkEventType.BITMAP.maskToString(eventTypeMask), //
 					fe -> FrameworkEventType.BITMAP.toString(fe.getType()));
 
@@ -1790,7 +1792,7 @@ public interface Conditions {
 		static Condition<ServiceEvent> type(final int eventTypeMask) {
 
 			return VerboseCondition.verboseCondition(
-					(ServiceEvent se) -> BitmapUtil.typeMatchesMask(se.getType(), eventTypeMask),
+					(ServiceEvent se) -> typeMatchesMask(se.getType(), eventTypeMask),
 					"type matches mask " + ServiceEventType.BITMAP.maskToString(eventTypeMask), //
 					se -> " but was " + ServiceEventType.BITMAP.toString(se.getType()));
 		}

@@ -50,7 +50,7 @@
 	org.geckoprojects.emf.repository.api;version=snapshot,\
 	org.geckoprojects.emf.repository.mongo;version=snapshot,\
 	org.geckoprojects.mongo.core;version='[0.0.1,0.0.2)',\
-	org.geckoprojects.osgitest;version=snapshot,\
+	org.osgi.test.assertj.monitoring;version=snapshot,\
 	org.mongodb.bson;version='[4.3.0,4.3.1)',\
 	org.mongodb.driver-core;version='[4.3.0,4.3.1)',\
 	org.mongodb.driver-sync;version='[4.3.0,4.3.1)',\

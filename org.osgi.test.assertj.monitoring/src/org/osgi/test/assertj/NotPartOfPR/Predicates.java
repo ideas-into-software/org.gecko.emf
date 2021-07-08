@@ -1,13 +1,10 @@
-package org.geckoprojects.osgitest.predicates;
+package org.osgi.test.assertj.NotPartOfPR;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,86 +16,13 @@ import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceReference;
 import org.osgi.test.common.dictionary.Dictionaries;
 
-public interface EventPredicates {
+public class Predicates {
 
 	static <E> Predicate<? super E> any() {
 		return element -> true;
 	}
 
-	static <E> Predicate<Optional<E>> isPresentAnd(final Predicate<? super E> predicate) {
-		return optional -> optional.isPresent() && predicate.test(optional.get());
-	}
-
-	static <E> Predicate<List<E>> element(int index, final Predicate<? super E> predicate) {
-		return elements -> elements.size() > 0 && elements.size() >= index && predicate.test(elements.get(index));
-	}
-
-	static <E> Predicate<List<E>> first(final Predicate<? super E> predicate) {
-		return elements -> elements.size() > 0 && predicate.test(elements.get(0));
-	}
-
-	static <E> Predicate<List<E>> last(final Predicate<? super E> predicate) {
-		return elements -> elements.size() > 0 && predicate.test(elements.get(elements.size() - 1));
-	}
-
-	static <E> Predicate<List<E>> all(final Predicate<? super E> predicate) {
-		return elements -> elements.stream().allMatch(predicate);
-	}
-
-	public static <E> Predicate<List<E>> any(final Predicate<? super E> predicate) {
-		return elements -> elements.stream().anyMatch(predicate);
-	}
-
-	public static <E> Predicate<List<E>> none(final Predicate<? super E> predicate) {
-		return elements -> elements.stream().noneMatch(predicate);
-	}
-
-	@SafeVarargs
-	public static <E> Predicate<List<E>> ordered(final Predicate<? super E> predicate,
-			final Predicate<? super E>... predicatesNext) {
-		return elements -> {
-
-			List<Predicate<? super E>> predicates = new ArrayList<>();
-			predicates.add(predicate);
-			Collections.addAll(predicates, predicatesNext);
-
-			long skip = 0;
-			for (int i = 0; i <= predicatesNext.length - 1; i++) {
-				Predicate<? super E> predicateBefore = predicates.get(i);
-				Predicate<? super E> predicateAfter = predicates.get(i + 1);
-
-				Optional<E> before = elements.stream().skip(skip).filter(predicateBefore).findFirst();
-				Optional<E> after = elements.stream().skip(skip).filter(predicateAfter).findFirst();
-
-				if (before.isPresent() && after.isPresent()) {
-
-					int indexBefore = elements.indexOf(before.get());
-					int indexAfter = elements.indexOf(after.get());
-					if (indexBefore >= indexAfter) {
-						return false;
-					}
-					skip = indexBefore;
-				} else {
-					return false;
-				}
-			}
-			return true;
-		};
-	}
-
-	public static <E> Predicate<List<E>> hasSize(long size, final Predicate<? super E> predicate) {
-		return elements -> elements.stream().filter(predicate).count() == size;
-	}
-
-	public static <E> Predicate<List<E>> hasMoreThan(long size, final Predicate<? super E> predicate) {
-		return elements -> elements.stream().filter(predicate).count() > size;
-	}
-
-	static <E> Predicate<List<E>> hasLessThan(long size, final Predicate<? super E> predicate) {
-		return elements -> elements.stream().filter(predicate).count() < size;
-	}
-
-	class FrameworkEvents {
+	public static class FrameworkEvents {
 
 		// FramworkEvents
 
@@ -151,7 +75,7 @@ public interface EventPredicates {
 		}
 	}
 
-	class ServiceEvents {
+	public static class ServiceEvents {
 
 		public static Predicate<Object> isServiceEvent() {
 			return e -> e instanceof ServiceEvent;

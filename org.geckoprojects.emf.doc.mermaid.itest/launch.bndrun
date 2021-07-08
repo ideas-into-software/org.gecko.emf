@@ -23,7 +23,7 @@
 	org.freemarker.freemarker;version='[2.3.31,2.3.32)',\
 	org.geckoprojects.emf.doc.mermaid;version=snapshot,\
 	org.geckoprojects.emf.doc.mermaid.itest;version=snapshot,\
-	org.geckoprojects.osgitest;version=snapshot,\
+	org.osgi.test.assertj.monitoring;version=snapshot,\
 	org.opentest4j;version='[1.2.0,1.2.1)',\
 	org.osgi.test.assertj.framework;version='[1.0.0,1.0.1)',\
 	org.osgi.test.common;version='[1.0.0,1.0.1)',\

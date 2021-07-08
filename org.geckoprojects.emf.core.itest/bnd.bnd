@@ -11,7 +11,7 @@
 	org.osgi.test.common,\
 	assertj-core,\
 	org.osgi.service.cm,\
-	org.geckoprojects.osgitest;version=latest,\
+	org.osgi.test.assertj.monitoring;version=latest,\
 	org.eclipse.emf.common,\
 	org.osgi.util.promise,\
 	org.geckoprojects.emf.model.info,\

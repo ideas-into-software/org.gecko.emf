@@ -1,4 +1,22 @@
-package org.geckoprojects.osgitest.events;
+/*******************************************************************************
+ * Copyright (c) Contributors to the Eclipse Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *******************************************************************************/
+
+package org.osgi.test.assertj.monitoring;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +37,7 @@ import org.osgi.test.assertj.serviceevent.ServiceEventAssert;
 /**
  * The Interface RuntimeMonitoringResultAssert.
  */
-public interface RuntimeMonitoringResultAssert {
+public interface MonitoringAssertionResult {
 
 	/**
 	 * Checks for at least N service event unregistering with the given parameter(s).
@@ -28,7 +46,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastNServiceEventUnregisteringWith(int n, Class<?> objectClass);
+	MonitoringAssertionResult hasAtLeastNServiceEventUnregisteringWith(int n, Class<?> objectClass);
 
 	/**
 	 * Checks for at least N service event unregistering with the given parameter(s).
@@ -38,7 +56,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastNServiceEventUnregisteringWith(int n, Class<?> objectClass,
+	MonitoringAssertionResult hasAtLeastNServiceEventUnregisteringWith(int n, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -47,7 +65,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasAtLeastOneServiceEventModifiedWith(final Class<?> objectClass);
+	public MonitoringAssertionResult hasAtLeastOneServiceEventModifiedWith(final Class<?> objectClass);
 
 	/**
 	 * Checks for at least one service event modified with the given parameter(s).
@@ -56,7 +74,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasAtLeastOneServiceEventModifiedWith(final Class<?> objectClass,
+	public MonitoringAssertionResult hasAtLeastOneServiceEventModifiedWith(final Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -65,7 +83,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasAtLeastOneServiceEventRegisteredWith(final Class<?> objectClass);
+	public MonitoringAssertionResult hasAtLeastOneServiceEventRegisteredWith(final Class<?> objectClass);
 
 	/**
 	 * Checks for at least one service event registered with the given parameter(s).
@@ -74,7 +92,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasAtLeastOneServiceEventRegisteredWith(final Class<?> objectClass,
+	public MonitoringAssertionResult hasAtLeastOneServiceEventRegisteredWith(final Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -84,7 +102,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasAtLeastOneServiceEventUnregisteringWith(final Class<?> objectClass);
+	public MonitoringAssertionResult hasAtLeastOneServiceEventUnregisteringWith(final Class<?> objectClass);
 
 	/**
 	 * Checks for at least one service event unregistering with the given
@@ -94,7 +112,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasAtLeastOneServiceEventUnregisteringWith(final Class<?> objectClass,
+	public MonitoringAssertionResult hasAtLeastOneServiceEventUnregisteringWith(final Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -104,7 +122,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass   the object class
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasAtLeastOneServiceEventWith(int eventTypeMask, final Class<?> objectClass);
+	public MonitoringAssertionResult hasAtLeastOneServiceEventWith(int eventTypeMask, final Class<?> objectClass);
 
 	/**
 	 * Checks for at least one service event with the given parameter(s).
@@ -114,7 +132,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties    the properties
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasAtLeastOneServiceEventWith(int eventTypeMask, final Class<?> objectClass,
+	public MonitoringAssertionResult hasAtLeastOneServiceEventWith(int eventTypeMask, final Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -124,7 +142,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtMostNServiceEventUnregisteringWith(int n, Class<?> objectClass);
+	MonitoringAssertionResult hasAtMostNServiceEventUnregisteringWith(int n, Class<?> objectClass);
 
 	/**
 	 * Checks for at most N service event unregistering with the given parameter(s).
@@ -134,7 +152,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtMostNServiceEventUnregisteringWith(int n, Class<?> objectClass,
+	MonitoringAssertionResult hasAtMostNServiceEventUnregisteringWith(int n, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -177,7 +195,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyNServiceEventUnregisteringWith(int n, Class<?> objectClass);
+	MonitoringAssertionResult hasExactlyNServiceEventUnregisteringWith(int n, Class<?> objectClass);
 
 	/**
 	 * Checks for exactly N service event unregistering with the given parameter(s).
@@ -187,7 +205,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyNServiceEventUnregisteringWith(int n, Class<?> objectClass,
+	MonitoringAssertionResult hasExactlyNServiceEventUnregisteringWith(int n, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -196,7 +214,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyOneServiceEventUnregisteringWith(Class<?> objectClass);
+	MonitoringAssertionResult hasExactlyOneServiceEventUnregisteringWith(Class<?> objectClass);
 
 	/**
 	 * Checks for exactly one service event unregistering with the given parameter(s).
@@ -205,7 +223,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyOneServiceEventUnregisteringWith(Class<?> objectClass,
+	MonitoringAssertionResult hasExactlyOneServiceEventUnregisteringWith(Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -215,7 +233,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass   the object class
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasExactlyOneServiceEventWith(int eventTypeMask, final Class<?> objectClass);
+	public MonitoringAssertionResult hasExactlyOneServiceEventWith(int eventTypeMask, final Class<?> objectClass);
 
 	/**
 	 * Checks for exactly one service event with the given parameter(s).
@@ -225,7 +243,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties    the properties
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasExactlyOneServiceEventWith(int eventTypeMask, final Class<?> objectClass,
+	public MonitoringAssertionResult hasExactlyOneServiceEventWith(int eventTypeMask, final Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -241,21 +259,21 @@ public interface RuntimeMonitoringResultAssert {
 	 *
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasNoBundleEvent();
+	public MonitoringAssertionResult hasNoBundleEvent();
 
 	/**
 	 * Checks for no framework event.
 	 *
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasNoFrameworkEvent();
+	public MonitoringAssertionResult hasNoFrameworkEvent();
 
 	/**
 	 * Checks for no service event.
 	 *
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasNoServiceEvent();
+	public MonitoringAssertionResult hasNoServiceEvent();
 
 	/**
 	 * Checks for no service event with the given parameter(s).
@@ -265,7 +283,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties    the properties
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasNoServiceEventWith(int eventTypeMask, final Class<?> objectClass,
+	public MonitoringAssertionResult hasNoServiceEventWith(int eventTypeMask, final Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -273,7 +291,7 @@ public interface RuntimeMonitoringResultAssert {
 	 *
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasNoThrowable();
+	public MonitoringAssertionResult hasNoThrowable();
 
 	/**
 	 * Checks for service events in exact order.
@@ -281,7 +299,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param conditions the conditions
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasServiceEventsInExactOrder(List<Condition<ServiceEvent>> conditions);
+	public MonitoringAssertionResult hasServiceEventsInExactOrder(List<Condition<ServiceEvent>> conditions);
 
 	/**
 	 * Checks for service events in order.
@@ -289,7 +307,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param conditions the conditions
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert hasServiceEventsInOrder(List<Condition<ServiceEvent>> conditions);
+	public MonitoringAssertionResult hasServiceEventsInOrder(List<Condition<ServiceEvent>> conditions);
 
 	/**
 	 * Checks for service events that.
@@ -348,14 +366,14 @@ public interface RuntimeMonitoringResultAssert {
 	 *
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert isNotTimedOut();
+	public MonitoringAssertionResult isNotTimedOut();
 
 	/**
 	 * Checks if is timed out.
 	 *
 	 * @return the runtime monitoring result assert
 	 */
-	public RuntimeMonitoringResultAssert isTimedOut();
+	public MonitoringAssertionResult isTimedOut();
 
 	/**
 	 * Checks for at least N service event with the given parameter(s).
@@ -365,7 +383,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass   the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastNServiceEventWith(int n, int eventTypeMask, Class<?> objectClass);
+	MonitoringAssertionResult hasAtLeastNServiceEventWith(int n, int eventTypeMask, Class<?> objectClass);
 
 	/**
 	 * Checks for at least N service event with the given parameter(s).
@@ -376,7 +394,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties    the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastNServiceEventWith(int n, int eventTypeMask, Class<?> objectClass,
+	MonitoringAssertionResult hasAtLeastNServiceEventWith(int n, int eventTypeMask, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -387,7 +405,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass   the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyNServiceEventWith(int n, int eventTypeMask, Class<?> objectClass);
+	MonitoringAssertionResult hasExactlyNServiceEventWith(int n, int eventTypeMask, Class<?> objectClass);
 
 	/**
 	 * Checks for exactly N service event with the given parameter(s).
@@ -398,7 +416,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties    the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyNServiceEventWith(int n, int eventTypeMask, Class<?> objectClass,
+	MonitoringAssertionResult hasExactlyNServiceEventWith(int n, int eventTypeMask, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -408,7 +426,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastNServiceEventRegisteredWith(int n, Class<?> objectClass);
+	MonitoringAssertionResult hasAtLeastNServiceEventRegisteredWith(int n, Class<?> objectClass);
 
 	/**
 	 * Checks for at least N service event registered with the given parameter(s).
@@ -418,7 +436,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastNServiceEventRegisteredWith(int n, Class<?> objectClass,
+	MonitoringAssertionResult hasAtLeastNServiceEventRegisteredWith(int n, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -428,7 +446,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtMostNServiceEventRegisteredWith(int n, Class<?> objectClass);
+	MonitoringAssertionResult hasAtMostNServiceEventRegisteredWith(int n, Class<?> objectClass);
 
 	/**
 	 * Checks for at most N service event registered with the given parameter(s).
@@ -438,7 +456,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtMostNServiceEventRegisteredWith(int n, Class<?> objectClass,
+	MonitoringAssertionResult hasAtMostNServiceEventRegisteredWith(int n, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -447,7 +465,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyOneServiceEventRegisteredWith(Class<?> objectClass);
+	MonitoringAssertionResult hasExactlyOneServiceEventRegisteredWith(Class<?> objectClass);
 
 	/**
 	 * Checks for exactly one service event registered with the given parameter(s).
@@ -456,7 +474,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyOneServiceEventRegisteredWith(Class<?> objectClass,
+	MonitoringAssertionResult hasExactlyOneServiceEventRegisteredWith(Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -466,7 +484,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyNServiceEventRegisteredWith(int n, Class<?> objectClass);
+	MonitoringAssertionResult hasExactlyNServiceEventRegisteredWith(int n, Class<?> objectClass);
 
 	/**
 	 * Checks for exactly N service event registered with the given parameter(s).
@@ -476,7 +494,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyNServiceEventRegisteredWith(int n, Class<?> objectClass,
+	MonitoringAssertionResult hasExactlyNServiceEventRegisteredWith(int n, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -486,7 +504,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastNServiceEventModifiedWith(int n, Class<?> objectClass);
+	MonitoringAssertionResult hasAtLeastNServiceEventModifiedWith(int n, Class<?> objectClass);
 
 	/**
 	 * Checks for at least N service event modified with the given parameter(s).
@@ -496,7 +514,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastNServiceEventModifiedWith(int n, Class<?> objectClass,
+	MonitoringAssertionResult hasAtLeastNServiceEventModifiedWith(int n, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -506,7 +524,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtMostNServiceEventModifiedWith(int n, Class<?> objectClass);
+	MonitoringAssertionResult hasAtMostNServiceEventModifiedWith(int n, Class<?> objectClass);
 
 	/**
 	 * Checks for at most N service event modified with the given parameter(s).
@@ -516,7 +534,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtMostNServiceEventModifiedWith(int n, Class<?> objectClass,
+	MonitoringAssertionResult hasAtMostNServiceEventModifiedWith(int n, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -525,7 +543,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyOneServiceEventModifiedWith(Class<?> objectClass);
+	MonitoringAssertionResult hasExactlyOneServiceEventModifiedWith(Class<?> objectClass);
 
 	/**
 	 * Checks for exactly one service event modified with the given parameter(s).
@@ -534,7 +552,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyOneServiceEventModifiedWith(Class<?> objectClass,
+	MonitoringAssertionResult hasExactlyOneServiceEventModifiedWith(Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -544,7 +562,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param objectClass the object class
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyNServiceEventModifiedWith(int n, Class<?> objectClass);
+	MonitoringAssertionResult hasExactlyNServiceEventModifiedWith(int n, Class<?> objectClass);
 
 	/**
 	 * Checks for exactly N service event modified with the given parameter(s).
@@ -554,7 +572,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param properties  the properties
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyNServiceEventModifiedWith(int n, Class<?> objectClass,
+	MonitoringAssertionResult hasExactlyNServiceEventModifiedWith(int n, Class<?> objectClass,
 			Map<String, Object> properties);
 
 	/**
@@ -565,7 +583,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @return the runtime monitoring result assert
 	 * @throws InvalidSyntaxException the invalid syntax exception
 	 */
-	RuntimeMonitoringResultAssert hasNoServiceEventWith(int eventTypeMask, String filter) throws InvalidSyntaxException;
+	MonitoringAssertionResult hasNoServiceEventWith(int eventTypeMask, String filter) throws InvalidSyntaxException;
 
 	/**
 	 * Checks for exactly N service event with the given parameter(s).
@@ -576,7 +594,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @return the runtime monitoring result assert
 	 * @throws InvalidSyntaxException the invalid syntax exception
 	 */
-	RuntimeMonitoringResultAssert hasExactlyNServiceEventWith(int n, int eventTypeMask, String filter)
+	MonitoringAssertionResult hasExactlyNServiceEventWith(int n, int eventTypeMask, String filter)
 			throws InvalidSyntaxException;
 
 	/**
@@ -587,7 +605,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @return the runtime monitoring result assert
 	 * @throws InvalidSyntaxException the invalid syntax exception
 	 */
-	RuntimeMonitoringResultAssert hasExactlyOneServiceEventWith(int eventTypeMask, String filter)
+	MonitoringAssertionResult hasExactlyOneServiceEventWith(int eventTypeMask, String filter)
 			throws InvalidSyntaxException;
 
 	/**
@@ -599,7 +617,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @return the runtime monitoring result assert
 	 * @throws InvalidSyntaxException the invalid syntax exception
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastNServiceEventWith(int n, int eventTypeMask, String filter)
+	MonitoringAssertionResult hasAtLeastNServiceEventWith(int n, int eventTypeMask, String filter)
 			throws InvalidSyntaxException;
 
 	/**
@@ -610,7 +628,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @return the runtime monitoring result assert
 	 * @throws InvalidSyntaxException the invalid syntax exception
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastOneServiceEventWith(int eventTypeMask, String filter)
+	MonitoringAssertionResult hasAtLeastOneServiceEventWith(int eventTypeMask, String filter)
 			throws InvalidSyntaxException;
 
 	/**
@@ -620,7 +638,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param condition the condition
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtLeastNServiceEventWithCondition(int n, Condition<ServiceEvent> condition);
+	MonitoringAssertionResult hasAtLeastNServiceEventWithCondition(int n, Condition<ServiceEvent> condition);
 
 	/**
 	 * Checks for at most N service event with condition.
@@ -629,7 +647,7 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param condition the condition
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasAtMostNServiceEventWithCondition(int n, Condition<ServiceEvent> condition);
+	MonitoringAssertionResult hasAtMostNServiceEventWithCondition(int n, Condition<ServiceEvent> condition);
 
 	/**
 	 * Checks for exactly N service event with condition.
@@ -638,6 +656,6 @@ public interface RuntimeMonitoringResultAssert {
 	 * @param condition the condition
 	 * @return the runtime monitoring result assert
 	 */
-	RuntimeMonitoringResultAssert hasExactlyNServiceEventWithCondition(int n, Condition<ServiceEvent> condition);
+	MonitoringAssertionResult hasExactlyNServiceEventWithCondition(int n, Condition<ServiceEvent> condition);
 
 }

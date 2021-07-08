@@ -1,0 +1,16 @@
+Bundle-Version: 0.0.1-SNAPSHOT
+-buildpath: \
+	org.osgi.framework,\
+	org.osgi.test.common,\
+	org.osgi.test.assertj.framework,\
+	assertj-core;version='3.20',\
+	org.osgi.annotation.bundle,\
+	org.osgi.annotation.versioning
+Export-Package: \
+	org.osgi.test.assertj.NotPartOfPR,\
+	org.osgi.test.assertj.monitoring.internal
+Private-Package: org.osgi.test.assertj.monitoring.internal
+-testpath: \
+	junit-jupiter-api,\
+	org.mockito.mockito-core,\
+	org.osgi.test.junit5

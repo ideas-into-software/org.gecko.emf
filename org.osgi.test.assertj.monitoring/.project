@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>org.geckoprojects.osgitest</name>
+	<name>org.osgi.test.assertj.monitoring</name>
 	<comment></comment>
 	<projects>
 	</projects>

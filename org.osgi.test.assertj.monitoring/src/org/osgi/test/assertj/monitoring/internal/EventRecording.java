@@ -1,4 +1,22 @@
-package org.geckoprojects.osgitest.events.impl;
+/*******************************************************************************
+ * Copyright (c) Contributors to the Eclipse Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *******************************************************************************/
+
+package org.osgi.test.assertj.monitoring.internal;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +29,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
-import org.geckoprojects.osgitest.events.TimedEvent;
 import org.osgi.framework.AllServiceListener;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
@@ -21,8 +38,9 @@ import org.osgi.framework.FrameworkListener;
 import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceListener;
 import org.osgi.framework.SynchronousBundleListener;
+import org.osgi.test.assertj.monitoring.TimedEvent;
 
- interface EventRecording {
+interface EventRecording {
 
 	Throwable throwable();
 
@@ -106,8 +124,6 @@ import org.osgi.framework.SynchronousBundleListener;
 		}
 	}
 
-	
-
 	static EventRecording record(BundleContext bc, ThrowingCallable action, Predicate<?> predicate, int timeout) {
 		List<TimedEvent<?>> events = new ArrayList<>();
 		List<TimedEvent<?>> syncList = Collections.synchronizedList(events);
@@ -121,7 +137,7 @@ import org.osgi.framework.SynchronousBundleListener;
 			public void bundleChanged(BundleEvent event) {
 
 				BundleEvent clone = CloneUtil.clone(event);
-				syncList.add(new TimedEvent<BundleEvent>(clone));
+				syncList.add(new TimedEventImpl<BundleEvent>(clone));
 
 				Executors.newSingleThreadExecutor().execute(new Runnable() {
 					@Override
@@ -139,7 +155,7 @@ import org.osgi.framework.SynchronousBundleListener;
 			@Override
 			public void frameworkEvent(FrameworkEvent event) {
 				FrameworkEvent clone = CloneUtil.clone(event);
-				syncList.add(new TimedEvent<FrameworkEvent>(clone));
+				syncList.add(new TimedEventImpl<FrameworkEvent>(clone));
 
 				Executors.newSingleThreadExecutor().execute(new Runnable() {
 					@Override
@@ -152,12 +168,12 @@ import org.osgi.framework.SynchronousBundleListener;
 			}
 		};
 
-		ServiceListener sListener = new AllServiceListener()  {
+		ServiceListener sListener = new AllServiceListener() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
 			public void serviceChanged(ServiceEvent event) {
 				ServiceEvent clone = CloneUtil.clone(event);
-				syncList.add(new TimedEvent<ServiceEvent>(clone));
+				syncList.add(new TimedEventImpl<ServiceEvent>(clone));
 				Executors.newSingleThreadExecutor().execute(new Runnable() {
 					@Override
 					public void run() {

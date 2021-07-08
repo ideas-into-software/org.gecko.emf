@@ -1,4 +1,22 @@
-package org.geckoprojects.osgitest.events.impl;
+/*******************************************************************************
+ * Copyright (c) Contributors to the Eclipse Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *******************************************************************************/
+
+package org.osgi.test.assertj.monitoring.internal;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -15,26 +33,24 @@ import org.assertj.core.api.Condition;
 import org.assertj.core.api.DurationAssert;
 import org.assertj.core.api.ListAssert;
 import org.assertj.core.api.ThrowableAssert;
-import org.geckoprojects.osgitest.conditions.Conditions;
-import org.geckoprojects.osgitest.events.RuntimeMonitoringResultAssert;
-import org.geckoprojects.osgitest.events.TimedEvent;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.FrameworkEvent;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceEvent;
+import org.osgi.test.assertj.NotPartOfPR.Conditions;
 import org.osgi.test.assertj.bundleevent.BundleEventAssert;
 import org.osgi.test.assertj.frameworkevent.FrameworkEventAssert;
+import org.osgi.test.assertj.monitoring.MonitoringAssertionResult;
+import org.osgi.test.assertj.monitoring.TimedEvent;
 import org.osgi.test.assertj.serviceevent.ServiceEventAssert;
 import org.osgi.test.common.bitmaps.ServiceEventType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+abstract class AbstractMonitoringAssertion<SELF extends AbstractMonitoringAssertion<SELF, ACTUAL>, ACTUAL extends EventRecording>
+		extends AbstractAssert<SELF, ACTUAL> implements MonitoringAssertionResult {
 
-
-public abstract class AbstractRuntimeMonitoringAssert<SELF extends AbstractRuntimeMonitoringAssert<SELF, ACTUAL>, ACTUAL extends EventRecording>
-		extends AbstractAssert<SELF, ACTUAL> implements RuntimeMonitoringResultAssert {
-
-	protected AbstractRuntimeMonitoringAssert(ACTUAL actual, Class<SELF> selfType) {
+	protected AbstractMonitoringAssertion(ACTUAL actual, Class<SELF> selfType) {
 		super(actual, selfType);
 	}
 
@@ -107,7 +123,7 @@ public abstract class AbstractRuntimeMonitoringAssert<SELF extends AbstractRunti
 	}
 
 	private DurationAssert createDurationAssert(TimedEvent<?> timedFirst, TimedEvent<?> timedSecond) {
-		Duration actual= Duration.between(timedFirst.getInstant(), timedSecond.getInstant());
+		Duration actual = Duration.between(timedFirst.getInstant(), timedSecond.getInstant());
 		return new DurationAssert(actual);
 	}
 

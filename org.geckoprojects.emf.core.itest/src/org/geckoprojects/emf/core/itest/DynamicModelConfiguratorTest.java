@@ -33,7 +33,6 @@ import org.geckoprojects.emf.core.api.EMFNamespaces;
 import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
 import org.geckoprojects.emf.example.model.basic.model.Person;
-import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,6 +40,7 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.test.assertj.dictionary.DictionaryAssert;
+import org.osgi.test.assertj.monitoring.MonitoringAssertion;
 import org.osgi.test.common.annotation.InjectService;
 import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
@@ -94,7 +94,7 @@ public class DynamicModelConfiguratorTest {
 
 		AtomicReference<Configuration> refConfig = new AtomicReference<>();
 
-		RuntimeMonitoringAssert.executeAndObserve(() -> {
+		MonitoringAssertion.executeAndObserve(() -> {
 
 			Configuration c = ca.getConfiguration(EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME, "?");
 			c.update(properties);
@@ -176,7 +176,7 @@ public class DynamicModelConfiguratorTest {
 				"org.geckoprojects.emf.example.model.basic/model/basic.ecore");
 
 		AtomicReference<Configuration> refConfig = new AtomicReference<>();
-		RuntimeMonitoringAssert.executeAndObserve(() -> {
+		MonitoringAssertion.executeAndObserve(() -> {
 
 			Configuration c = ca.getConfiguration(EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME, "?");
 			c.update(properties);

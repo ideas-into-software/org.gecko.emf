@@ -22,13 +22,13 @@ import java.util.Hashtable;
 import org.assertj.core.api.Assertions;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.geckoprojects.emf.core.api.ResourceSetCache;
-import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.test.assertj.monitoring.MonitoringAssertion;
 import org.osgi.test.common.annotation.InjectService;
 import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
@@ -63,7 +63,7 @@ public class ResourceSetCacheIntegrationTest {
 		Dictionary<String, Object> configProperties01 = new Hashtable<>();
 		configProperties01.put(ResourceSetCache.RESOURCE_SET_CACHE_NAME, "test1");
 
-		RuntimeMonitoringAssert.executeAndObserve(() -> {
+		MonitoringAssertion.executeAndObserve(() -> {
 
 			Configuration c1 = ca.getFactoryConfiguration("ResourceSetCache" , "one", "?");
 			c1.update(configProperties01);
@@ -88,7 +88,7 @@ public class ResourceSetCacheIntegrationTest {
 		Dictionary<String, Object> configProperties02 = new Hashtable<>();
 		configProperties02.put(ResourceSetCache.RESOURCE_SET_CACHE_NAME, "test2");
 
-		RuntimeMonitoringAssert.executeAndObserve(() -> {
+		MonitoringAssertion.executeAndObserve(() -> {
 
 			Configuration c2 = ca.getFactoryConfiguration("ResourceSetCache" ,"two", "?");
 			c2.update(configProperties02);

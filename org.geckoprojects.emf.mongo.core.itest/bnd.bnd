@@ -8,7 +8,7 @@ Bundle-Version: 0.0.1-SNAPSHOT
 	org.geckoprojects.emf.mongo.core,\
 	org.geckoprojects.emf.example.model.basic;version=latest,\
 	org.geckoprojects.mongo.core,\
-	org.geckoprojects.osgitest;version=latest,\
+	org.osgi.test.assertj.monitoring;version=latest,\
 	org.apiguardian:apiguardian-api,\
 	org.eclipse.emf.ecore,\
 	org.eclipse.emf.common,\
@@ -21,7 +21,8 @@ Bundle-Version: 0.0.1-SNAPSHOT
 	org.osgi.service.cm,\
 	org.osgi.test.assertj.framework,\
 	assertj-core;version='3.20',\
-	org.geckoprojects.emf.core;version=project
+	org.geckoprojects.emf.core;version=project,\
+	org.osgi.test.assertj.monitoring
 
 Fragment-Host: org.geckoprojects.emf.mongo.core
 

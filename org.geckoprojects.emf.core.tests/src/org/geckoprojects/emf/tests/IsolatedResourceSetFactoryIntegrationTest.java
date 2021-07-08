@@ -33,7 +33,7 @@ package org.geckoprojects.emf.tests;
 //import org.geckoprojects.emf.core.api.ResourceSetFactory;
 //import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
 //import org.geckoprojects.emf.example.model.manual.model.configuration.ManualPackageConfigurator;
-//import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
+//import org.osgi.test.assertj.monitoring.events.MonitoringAssert;
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.extension.ExtendWith;
 //import org.osgi.framework.InvalidSyntaxException;
@@ -71,7 +71,7 @@ package org.geckoprojects.emf.tests;
 //		
 //		
 //		AtomicReference<Configuration> cr=new AtomicReference<>();
-//		RuntimeMonitoringAssert.executeAndObserve(()->{
+//		MonitoringAssert.executeAndObserve(()->{
 //		Configuration configuration=	ca.getConfiguration(EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME, "?");
 //			configuration.update(properties);
 //			
@@ -99,7 +99,7 @@ package org.geckoprojects.emf.tests;
 //		
 //		
 //		AtomicReference<Configuration> cr=new AtomicReference<>();
-//		RuntimeMonitoringAssert.executeAndObserve(()->{
+//		MonitoringAssert.executeAndObserve(()->{
 //		Configuration configuration=	ca.getConfiguration(EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME, "?");
 //			configuration.update(properties);
 //			
@@ -132,7 +132,7 @@ package org.geckoprojects.emf.tests;
 //		
 //		
 //		AtomicReference<Configuration> cr=new AtomicReference<>();
-//		RuntimeMonitoringAssert.executeAndObserve(()->{
+//		MonitoringAssert.executeAndObserve(()->{
 //		Configuration configuration=	ca.getConfiguration(EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME, "?");
 //			configuration.update(properties);
 //			

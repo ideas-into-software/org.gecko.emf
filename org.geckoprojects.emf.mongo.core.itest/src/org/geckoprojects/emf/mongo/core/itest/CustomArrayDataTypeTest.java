@@ -22,14 +22,14 @@ import org.geckoprojects.emf.example.model.basic.model.Geometry;
 import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
 import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfiguratorComponent;
 import org.geckoprojects.mongo.core.MongoConstants;
-import org.geckoprojects.osgitest.conditions.Conditions;
-import org.geckoprojects.osgitest.events.RuntimeMonitoringAssert;
-import org.geckoprojects.osgitest.predicates.EventPredicates;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.ServiceEvent;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.test.assertj.NotPartOfPR.Conditions;
+import org.osgi.test.assertj.NotPartOfPR.Predicates;
+import org.osgi.test.assertj.monitoring.MonitoringAssertion;
 import org.osgi.test.common.annotation.InjectService;
 import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
@@ -58,7 +58,7 @@ public class CustomArrayDataTypeTest {
 	
 	@Test
 	void testName() throws Exception {
-		RuntimeMonitoringAssert.executeAndObserve(() -> {
+		MonitoringAssertion.executeAndObserve(() -> {
 			
 		}).untilServiceEventRegistered(MongoClient.class).assertWithTimeoutThat(5000);
 		
@@ -99,7 +99,7 @@ public class CustomArrayDataTypeTest {
 		
 		
 		
-		RuntimeMonitoringAssert.executeAndObserve(() -> {
+		MonitoringAssertion.executeAndObserve(() -> {
 			// so something. could be Throwable
 			
 			Configuration confClient = cm.getFactoryConfiguration(MongoConstants.PID_MONGO_CLIENT, "test1", "?");
@@ -110,7 +110,7 @@ public class CustomArrayDataTypeTest {
 		//todo LDAP filter entsprechend frameworkutil
 		//anytype also nzt filter oder nut map
 		
-		.untilServiceEvent(EventPredicates.ServiceEvents.isTypeModified(MongoClient.class))
+		.untilServiceEvent(Predicates.ServiceEvents.isTypeModified(MongoClient.class))
 //		.untilServiceEventRegisters(MongoClient.class)
 //		.untilServiceEventModified(MongoClient.class)
 //		.untilServiceEventUnregisters(MongoClient.class)
