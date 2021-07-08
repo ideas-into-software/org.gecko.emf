@@ -93,16 +93,17 @@ public class DynamicModelConfiguratorTest {
 				"org.geckoprojects.emf.example.model.basic/model/basic.ecore");
 
 		AtomicReference<Configuration> refConfig = new AtomicReference<>();
-		
+
 		RuntimeMonitoringAssert.executeAndObserve(() -> {
 
 			Configuration c = ca.getConfiguration(EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME, "?");
 			c.update(properties);
 			refConfig.set(c);
 
+			
 		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class)
-			.assertWithTimeoutThat(10000)
-				.hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
+		  .assertWithTimeoutThat(10000)
+		  .hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
 
 		reference = resourceSetFactory.getServiceReference();
 		assertThat(reference).isNotNull();
@@ -181,8 +182,8 @@ public class DynamicModelConfiguratorTest {
 			c.update(properties);
 			refConfig.set(c);
 
-		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class).assertWithTimeoutThat(1000).isNotTimedOut()
-				.hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
+		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class).assertWithTimeoutThat(1000)
+				.isNotTimedOut().hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
 
 		reference = resourceSetFactory.getServiceReference();
 		assertThat(reference).isNotNull();

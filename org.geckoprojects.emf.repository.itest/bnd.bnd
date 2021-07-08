@@ -1,0 +1,19 @@
+# Build dependencies 
+-buildpath: \
+	org.geckoprojects.emf.example.model.basic;version=latest,\
+	org.geckoprojects.emf.repository.api;version=latest,\
+	org.geckoprojects.emf.repository.file;version=latest,\
+	junit-jupiter-api,\
+	org.osgi.service.cm,\
+	org.geckoprojects.emf.core;version=project,\
+	org.osgi.framework,\
+	org.eclipse.emf.ecore,\
+	org.osgi.util.tracker,\
+	org.osgi.test.junit5,\
+	org.eclipse.emf.common,\
+	org.osgi.test.common,\
+	assertj-core
+
+
+Bundle-Version: 2.0.15.SNAPSHOT
+Private-Package: org.geckoprojects.emf.repository.tests

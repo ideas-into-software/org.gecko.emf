@@ -67,8 +67,10 @@ public class ResourceSetCacheIntegrationTest {
 
 			Configuration c1 = ca.getFactoryConfiguration("ResourceSetCache" , "one", "?");
 			c1.update(configProperties01);
-		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000)
-				.hasExactlyOneServiceEventRegisteredWith(ResourceSetCache.class);
+			
+		}).untilNoMoreServiceEventWithin(100)
+		.assertWithTimeoutThat(1000)
+		.hasExactlyOneServiceEventRegisteredWith(ResourceSetCache.class);
 
 		Assertions.assertThat(sa1.getServices()).hasSize(1);
 		ServiceReference<ResourceSetCache> cacheRef = sa1.getServiceReference();

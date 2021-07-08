@@ -4,14 +4,16 @@ package org.geckoprojects.emf.example.model.extended.model.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.geckoprojects.emf.example.model.basic.model.Address;
 import org.geckoprojects.emf.example.model.basic.model.EmployeeInfo;
 import org.geckoprojects.emf.example.model.basic.model.Person;
-import org.geckoprojects.emf.example.model.extended.model.ExtendedAddress;
-import org.geckoprojects.emf.example.model.extended.model.ExtendedPerson;
-import org.geckoprojects.emf.example.model.extended.model.ExtendedPrefixPackage;
+
+import org.geckoprojects.emf.example.model.extended.model.*;
 
 /**
  * <!-- begin-user-doc -->

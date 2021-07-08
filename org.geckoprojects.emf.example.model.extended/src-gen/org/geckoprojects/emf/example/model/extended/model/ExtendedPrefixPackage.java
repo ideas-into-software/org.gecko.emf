@@ -4,6 +4,7 @@ package org.geckoprojects.emf.example.model.extended.model;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
 
 /**

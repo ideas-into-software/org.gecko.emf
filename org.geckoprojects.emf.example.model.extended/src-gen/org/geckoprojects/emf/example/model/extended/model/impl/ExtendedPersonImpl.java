@@ -4,29 +4,37 @@ package org.geckoprojects.emf.example.model.extended.model.impl;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.geckoprojects.emf.example.model.basic.model.Address;
 import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
 import org.geckoprojects.emf.example.model.basic.model.Contact;
 import org.geckoprojects.emf.example.model.basic.model.GenderType;
 import org.geckoprojects.emf.example.model.basic.model.Person;
 import org.geckoprojects.emf.example.model.basic.model.Tag;
+
 import org.geckoprojects.emf.example.model.basic.model.impl.EmployeeInfoImpl;
 import org.geckoprojects.emf.example.model.basic.model.impl.StringStringMapImpl;
+
 import org.geckoprojects.emf.example.model.extended.model.ExtendedPerson;
 import org.geckoprojects.emf.example.model.extended.model.ExtendedPrefixPackage;
 

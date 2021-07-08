@@ -18,9 +18,9 @@ src=${^src},src-gen
 Bundle-Version: 0.0.1-SNAPSHOT
 
 Export-Package: \
-	org.geckoprojects.emf.example.model.extended.model.extendend,\
-	org.geckoprojects.emf.example.model.extended.model.extendend.impl,\
-	org.geckoprojects.emf.example.model.extended.model.extendend.util
+	org.geckoprojects.emf.example.model.extended.model.impl,\
+	org.geckoprojects.emf.example.model.extended.model.util,\
+	org.geckoprojects.emf.example.model.extended.model
 	
 	
 -dependson: org.geckoprojects.emf.codegen

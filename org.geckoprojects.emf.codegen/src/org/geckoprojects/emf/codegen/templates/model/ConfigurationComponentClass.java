@@ -92,12 +92,12 @@ public class ConfigurationComponentClass
     genModel.addImport("org.osgi.service.component.annotations.Deactivate");
     genModel.addImport("org.osgi.framework.BundleContext");
     genModel.addImport("org.eclipse.emf.ecore.resource.Resource.Factory.Registry");
-    genModel.addImport("org.geckoprojects.emf.core.EPackageConfigurator");
-    genModel.addImport("org.geckoprojects.emf.core.ResourceFactoryConfigurator");
-    genModel.addImport("org.geckoprojects.emf.core.annotation.EMFModel");
-    genModel.addImport("org.geckoprojects.emf.core.annotation.provide.ProvideEMFModel");
-    genModel.addImport("org.geckoprojects.emf.core.annotation.provide.ProvideEMFResourceConfigurator");
-    genModel.addImport("org.geckoprojects.emf.core.annotation.require.RequireEMF");
+    genModel.addImport("org.geckoprojects.emf.core.api.EPackageConfigurator");
+    genModel.addImport("org.geckoprojects.emf.core.api.ResourceFactoryConfigurator");
+    genModel.addImport("org.geckoprojects.emf.core.api.annotation.EMFModel");
+    genModel.addImport("org.geckoprojects.emf.core.api.annotation.provide.ProvideEMFModel");
+    genModel.addImport("org.geckoprojects.emf.core.api.annotation.provide.ProvideEMFResourceConfigurator");
+    genModel.addImport("org.geckoprojects.emf.core.api.annotation.require.RequireEMF");
     genModel.addImport(genPackage.getQualifiedPackageInterfaceName());
     if (!GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {
     genModel.addImport(genPackage.getQualifiedResourceFactoryClassName());

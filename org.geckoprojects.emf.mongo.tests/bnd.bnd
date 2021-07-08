@@ -1,26 +1,25 @@
 -buildpath: \
-	org.eclipse.emf.ecore,\
-	org.eclipse.emf.common,\
-	org.eclipse.emf.ecore.xmi,\
-	org.geckoprojects.emf.core,\
-	org.geckoprojects.emf.collections,\
-	org.geckoprojects.emf.pushstreams,\
-	org.geckoprojects.emf.mongo.core;version=project,\
-	org.geckoprojects.emf.example.model.basic;version=latest,\
-	org.geckoprojects.mongo.core;version=latest,\
-	junit-jupiter-api,\
 	org.osgi.framework,\
 	org.osgi.test.junit5,\
-	org.geckoprojects.emf.mongo.api,\
-	org.mongodb.driver-sync,\
-	org.geckoprojects.emf.core,\
-	org.mongodb.bson,\
 	org.osgi.service.cm,\
 	org.osgi.service.component,\
-	org.mongodb.driver-core,\
 	org.osgi.util.promise,\
 	org.osgi.util.pushstream,\
-	org.geckoprojects.emf.mongo.pushstream
+	org.eclipse.emf.common,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.ecore.xmi,\
+	org.mongodb.bson,\
+	org.mongodb.driver-core,\
+	org.mongodb.driver-sync,\
+	org.geckoprojects.emf.core;version=project,\
+	org.geckoprojects.emf.collections,\
+	org.geckoprojects.emf.pushstreams,\
+	org.geckoprojects.emf.mongo.api,\
+	org.geckoprojects.emf.mongo.core,\
+	org.geckoprojects.emf.mongo.pushstream,\
+	org.geckoprojects.emf.example.model.basic;version=latest,\
+	org.geckoprojects.mongo.core;version=latest,\
+	junit-jupiter-api
 
 
 Bundle-Version: 2.0.14-SNAPSHOT

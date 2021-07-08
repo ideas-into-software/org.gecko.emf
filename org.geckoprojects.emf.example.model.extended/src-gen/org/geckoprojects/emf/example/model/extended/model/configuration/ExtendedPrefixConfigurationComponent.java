@@ -6,18 +6,28 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
+
 import org.geckoprojects.emf.core.api.EPackageConfigurator;
 import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
+
 import org.geckoprojects.emf.core.api.annotation.EMFModel;
+
 import org.geckoprojects.emf.core.api.annotation.provide.ProvideEMFModel;
 import org.geckoprojects.emf.core.api.annotation.provide.ProvideEMFResourceConfigurator;
+
 import org.geckoprojects.emf.core.api.annotation.require.RequireEMF;
+
 import org.geckoprojects.emf.example.model.extended.model.ExtendedPrefixPackage;
+
 import org.geckoprojects.emf.example.model.extended.model.impl.ExtendedPrefixPackageImpl;
+
 import org.geckoprojects.emf.example.model.extended.model.util.ExtendedPrefixResourceFactoryImpl;
+
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
+
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;

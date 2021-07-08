@@ -21,7 +21,7 @@ Bundle-Version: 0.0.1-SNAPSHOT
 	org.osgi.service.cm,\
 	org.osgi.test.assertj.framework,\
 	assertj-core;version='3.20',\
-	org.geckoprojects.emf.core
+	org.geckoprojects.emf.core;version=project
 
 Fragment-Host: org.geckoprojects.emf.mongo.core
 

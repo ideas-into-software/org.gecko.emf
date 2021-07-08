@@ -14,9 +14,9 @@ import org.bson.Document;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.geckoprojects.emf.core.EMFNamespaces;
-import org.geckoprojects.emf.core.ResourceSetConfigurator;
-import org.geckoprojects.emf.core.ResourceSetFactory;
+import org.geckoprojects.emf.core.api.EMFNamespaces;
+import org.geckoprojects.emf.core.api.ResourceSetConfigurator;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
 import org.geckoprojects.emf.example.model.basic.model.Geometry;
 import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
@@ -153,10 +153,10 @@ public class CustomArrayDataTypeTest {
 		assertThat(mongoDatabase).isNotNull();
 
 		ResourceSetConfigurator rsc = saResourceSetConfigurator.getService();
-		assertWithTimeoutThat(rsc).isNotNull().isInstanceOf(MongoResourceSetConfigurator.class);
+		assertThat(rsc).isNotNull().isInstanceOf(MongoResourceSetConfigurator.class);
 
 		ResourceSetFactory rsf = saResourceSetFactory.getService();
-		assertWithTimeoutThat(rsf).isNotNull();
+		assertThat(rsf).isNotNull();
 		ResourceSet resourceSet = rsf.createResourceSet();
 
 		System.out.println("Dropping DB");

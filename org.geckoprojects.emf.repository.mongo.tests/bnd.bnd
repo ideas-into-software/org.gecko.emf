@@ -1,23 +1,22 @@
 
 
 -buildpath: \
-	org.geckoprojects.mongo.core;version=latest,\
-	org.mongodb.mongo-java-driver;version=latest,\
-	org.mongodb.driver-sync,\
 	org.osgi.framework,\
-	junit-jupiter-api,\
+	org.osgi.test.common,\
 	org.osgi.test.junit5,\
+	org.osgi.service.cm,\
+	org.geckoprojects.mongo.core;version=latest,\
 	org.geckoprojects.emf.repository.mongo,\
-	org.geckoprojects.emf.core,\
+	org.geckoprojects.emf.core;version=project,\
 	org.geckoprojects.emf.example.model.basic,\
 	org.geckoprojects.emf.repository.api,\
-	org.osgi.service.cm,\
-	org.geckoprojects.emf.mongo.api,\
-	org.mongodb.driver-core,\
 	org.mongodb.bson,\
-	org.osgi.test.common,\
+	org.mongodb.driver-core,\
+	org.mongodb.driver-sync,\
+	org.geckoprojects.emf.mongo.api,\
 	org.eclipse.emf.ecore,\
-	org.eclipse.emf.common
+	org.eclipse.emf.common,\
+	junit-jupiter-api
 
 javac.source: 1.8
 javac.target: 1.8
