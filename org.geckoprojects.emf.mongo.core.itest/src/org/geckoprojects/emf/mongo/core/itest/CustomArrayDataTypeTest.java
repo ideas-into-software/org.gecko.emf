@@ -60,7 +60,7 @@ public class CustomArrayDataTypeTest {
 	void testName() throws Exception {
 		RuntimeMonitoringAssert.executeAndObserve(() -> {
 			
-		}).untilServiceEventRegisters(MongoClient.class).assertWithTimeoutThat(5000);
+		}).untilServiceEventRegistered(MongoClient.class).assertWithTimeoutThat(5000);
 		
 		
 		

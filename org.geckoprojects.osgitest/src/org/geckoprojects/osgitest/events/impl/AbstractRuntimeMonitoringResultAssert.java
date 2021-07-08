@@ -29,10 +29,10 @@ import org.osgi.test.common.bitmaps.ServiceEventType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public abstract class AbstractEventRecordingAssert<SELF extends AbstractEventRecordingAssert<SELF, ACTUAL>, ACTUAL extends EventRecording>
+public abstract class AbstractRuntimeMonitoringResultAssert<SELF extends AbstractRuntimeMonitoringResultAssert<SELF, ACTUAL>, ACTUAL extends EventRecording>
 		extends AbstractAssert<SELF, ACTUAL> implements RuntimeMonitoringResultAssert {
 
-	protected AbstractEventRecordingAssert(ACTUAL actual, Class<SELF> selfType) {
+	protected AbstractRuntimeMonitoringResultAssert(ACTUAL actual, Class<SELF> selfType) {
 		super(actual, selfType);
 	}
 

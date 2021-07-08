@@ -32,28 +32,22 @@ public class RuntimeMonitoringAssertImpl implements RuntimeMonitoringAssertTimeo
 	 * @param predicate - Predicate that would be tested against the Events
 	 * @param timeout   - the time in that the matches must happened
 	 */
-	private static EventRecordingAssertImpl call(ThrowingCallable execute, Predicate<?> predicate, int timeout) {
-		BundleContext bc = FrameworkUtil.getBundle(EventRecordingAssertImpl.class).getBundleContext();
+	private static RuntimeMonitoringResultAssertImpl call(ThrowingCallable execute, Predicate<?> predicate, int timeout) {
+		BundleContext bc = FrameworkUtil.getBundle(RuntimeMonitoringResultAssertImpl.class).getBundleContext();
 
 		EventRecording eventRecording = EventRecording.record(bc, execute, predicate, timeout);
-		return new EventRecordingAssertImpl(eventRecording, EventRecordingAssertImpl.class);
+		return new RuntimeMonitoringResultAssertImpl(eventRecording, RuntimeMonitoringResultAssertImpl.class);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public EventRecordingAssertImpl assertWithTimeoutThat(int timeout) {
+	public RuntimeMonitoringResultAssertImpl assertWithTimeoutThat(int timeout) {
 		return call(execute, innerPredicate, timeout);
 	}
-	//todo: niht wen until verwendet
-		@Override
-		public EventRecordingAssertImpl assertThat() {
-			return assertWithTimeoutThat(0);
-		}
 
-
-
+	@Override
+	public RuntimeMonitoringResultAssertImpl assertThat() {
+		return assertWithTimeoutThat(0);
+	}
 
 	@SuppressWarnings("unchecked")
 	private static <T> Predicate<Object> hasTypeAnd(Class<T> clazz, Predicate<T> predicate) {
@@ -61,11 +55,12 @@ public class RuntimeMonitoringAssertImpl implements RuntimeMonitoringAssertTimeo
 	}
 
 	@Override
-	public RuntimeMonitoringAssertTimeoutStep untilServiceEvent() {
+	public RuntimeMonitoringAssertTimeoutStep untilAnyServiceEvent() {
 
-		innerPredicate = hasTypeAnd(ServiceEvent.class, (se)->true);
+		innerPredicate = hasTypeAnd(ServiceEvent.class, (se) -> true);
 		return this;
 	}
+
 	@Override
 	public RuntimeMonitoringAssertTimeoutStep untilServiceEvent(Predicate<ServiceEvent> predicate) {
 		innerPredicate = hasTypeAnd(ServiceEvent.class, predicate);
@@ -88,14 +83,14 @@ public class RuntimeMonitoringAssertImpl implements RuntimeMonitoringAssertTimeo
 	}
 
 	@Override
-	public RuntimeMonitoringAssertTimeoutStep untilServiceEventRegisters(Class<?> clazz) {
+	public RuntimeMonitoringAssertTimeoutStep untilServiceEventRegistered(Class<?> objectClazz) {
 		innerPredicate = hasTypeAnd(ServiceEvent.class,
-				EventPredicates.ServiceEvents.matches(ServiceEvent.REGISTERED, clazz));
+				EventPredicates.ServiceEvents.matches(ServiceEvent.REGISTERED, objectClazz));
 		return this;
 	}
 
 	@Override
-	public RuntimeMonitoringAssertTimeoutStep untilNoMoreServiceEventRegistersWithin(long millis, Class<?> clazz) {
+	public RuntimeMonitoringAssertTimeoutStep untilNoMoreServiceEventRegisteredWithin(long millis, Class<?> clazz) {
 		innerPredicate = hasTypeAnd(ServiceEvent.class,
 				EventPredicates.ServiceEvents.matches(ServiceEvent.REGISTERED, clazz))
 						.and(new NoEventWithinPredicate(millis));
@@ -103,7 +98,7 @@ public class RuntimeMonitoringAssertImpl implements RuntimeMonitoringAssertTimeo
 	}
 
 	@Override
-	public RuntimeMonitoringAssertTimeoutStep untilServiceEventRegisters(Class<?> clazz, Map<String, Object> map) {
+	public RuntimeMonitoringAssertTimeoutStep untilServiceEventRegistered(Class<?> clazz, Map<String, Object> map) {
 		innerPredicate = hasTypeAnd(ServiceEvent.class,
 				EventPredicates.ServiceEvents.matches(ServiceEvent.REGISTERED, clazz, map));
 		return this;
@@ -119,7 +114,7 @@ public class RuntimeMonitoringAssertImpl implements RuntimeMonitoringAssertTimeo
 	}
 
 	@Override
-	public RuntimeMonitoringAssertTimeoutStep untilServiceEventUnregisters(Class<?> clazz) {
+	public RuntimeMonitoringAssertTimeoutStep untilServiceEventUnregistered(Class<?> clazz) {
 		innerPredicate = hasTypeAnd(ServiceEvent.class,
 				EventPredicates.ServiceEvents.matches(ServiceEvent.UNREGISTERING, clazz));
 		return this;
@@ -134,7 +129,7 @@ public class RuntimeMonitoringAssertImpl implements RuntimeMonitoringAssertTimeo
 	}
 
 	@Override
-	public RuntimeMonitoringAssertTimeoutStep untilServiceEventUnregisters(Class<?> clazz, Map<String, Object> map) {
+	public RuntimeMonitoringAssertTimeoutStep untilServiceEventUnregistered(Class<?> clazz, Map<String, Object> map) {
 		innerPredicate = hasTypeAnd(ServiceEvent.class,
 				EventPredicates.ServiceEvents.matches(ServiceEvent.UNREGISTERING, clazz, map));
 		return this;
@@ -188,7 +183,8 @@ public class RuntimeMonitoringAssertImpl implements RuntimeMonitoringAssertTimeo
 	}
 
 	@Override
-	public RuntimeMonitoringAssertTimeoutStep untilNoMoreServiceEventModifiedEndmatchWithin(long millis, Class<?> clazz) {
+	public RuntimeMonitoringAssertTimeoutStep untilNoMoreServiceEventModifiedEndmatchWithin(long millis,
+			Class<?> clazz) {
 		innerPredicate = hasTypeAnd(ServiceEvent.class,
 				EventPredicates.ServiceEvents.matches(ServiceEvent.MODIFIED_ENDMATCH, clazz))
 						.and(new NoEventWithinPredicate(millis));
@@ -258,7 +254,6 @@ public class RuntimeMonitoringAssertImpl implements RuntimeMonitoringAssertTimeo
 		@Override
 		public boolean test(Object t) {
 
-		
 			try {
 				return runner.await();
 			} catch (InterruptedException e) {
@@ -288,7 +283,7 @@ public class RuntimeMonitoringAssertImpl implements RuntimeMonitoringAssertTimeo
 			atomic.set(latch, true);
 
 			boolean b = !latch.await(timeout, TimeUnit.MILLISECONDS);
-			return b&&latch.getCount()>0;
+			return b && latch.getCount() > 0;
 		}
 	}
 
