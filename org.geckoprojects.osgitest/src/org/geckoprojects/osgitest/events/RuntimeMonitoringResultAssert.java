@@ -8,7 +8,6 @@ import org.assertj.core.api.Condition;
 import org.assertj.core.api.DurationAssert;
 import org.assertj.core.api.ListAssert;
 import org.assertj.core.api.ThrowableAssert;
-import org.geckoprojects.osgitest.events.impl.EventRecording.TimedEvent;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.FrameworkEvent;
 import org.osgi.framework.InvalidSyntaxException;

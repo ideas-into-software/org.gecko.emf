@@ -2,7 +2,7 @@ package org.geckoprojects.osgitest.events.impl;
 
 import org.geckoprojects.osgitest.events.RuntimeMonitoringResultAssert;
 
-public class RuntimeMonitoringResultAssertImpl extends AbstractEventRecordingAssert<RuntimeMonitoringResultAssertImpl, EventRecording> implements RuntimeMonitoringResultAssert{
+public class RuntimeMonitoringResultAssertImpl extends AbstractRuntimeMonitoringAssert<RuntimeMonitoringResultAssertImpl, EventRecording> implements RuntimeMonitoringResultAssert{
 
 
 

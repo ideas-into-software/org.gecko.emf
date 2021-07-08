@@ -17,7 +17,7 @@ import org.assertj.core.api.ListAssert;
 import org.assertj.core.api.ThrowableAssert;
 import org.geckoprojects.osgitest.conditions.Conditions;
 import org.geckoprojects.osgitest.events.RuntimeMonitoringResultAssert;
-import org.geckoprojects.osgitest.events.impl.EventRecording.TimedEvent;
+import org.geckoprojects.osgitest.events.TimedEvent;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.FrameworkEvent;
 import org.osgi.framework.InvalidSyntaxException;
@@ -29,10 +29,12 @@ import org.osgi.test.common.bitmaps.ServiceEventType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public abstract class AbstractEventRecordingAssert<SELF extends AbstractEventRecordingAssert<SELF, ACTUAL>, ACTUAL extends EventRecording>
+
+
+public abstract class AbstractRuntimeMonitoringAssert<SELF extends AbstractRuntimeMonitoringAssert<SELF, ACTUAL>, ACTUAL extends EventRecording>
 		extends AbstractAssert<SELF, ACTUAL> implements RuntimeMonitoringResultAssert {
 
-	protected AbstractEventRecordingAssert(ACTUAL actual, Class<SELF> selfType) {
+	protected AbstractRuntimeMonitoringAssert(ACTUAL actual, Class<SELF> selfType) {
 		super(actual, selfType);
 	}
 

@@ -1,6 +1,5 @@
 package org.geckoprojects.osgitest.events.impl;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
+import org.geckoprojects.osgitest.events.TimedEvent;
 import org.osgi.framework.AllServiceListener;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
@@ -22,7 +22,7 @@ import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceListener;
 import org.osgi.framework.SynchronousBundleListener;
 
-public interface EventRecording {
+ interface EventRecording {
 
 	Throwable throwable();
 
@@ -106,29 +106,7 @@ public interface EventRecording {
 		}
 	}
 
-	static class TimedEvent<T> {
-		private T event;
-
-		public T getEvent() {
-			return event;
-		}
-
-		public Instant getInstant() {
-			return instant;
-		}
-
-		private Instant instant = Instant.now();
-
-		public TimedEvent(T event) {
-			this.event = event;
-		}
-
-		@Override
-		public String toString() {
-			return "TimedEvent [event=" + event + ", instant=" + instant + "]";
-		}
-
-	}
+	
 
 	static EventRecording record(BundleContext bc, ThrowingCallable action, Predicate<?> predicate, int timeout) {
 		List<TimedEvent<?>> events = new ArrayList<>();
