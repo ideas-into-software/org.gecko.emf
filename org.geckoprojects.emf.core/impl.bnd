@@ -8,5 +8,6 @@ Private-Package: \
 	org.geckoprojects.emf.core.factory,\
 	org.geckoprojects.emf.core.resourceset,\
 	org.geckoprojects.emf.core.urihandler
-Provide-Capability: osgi.service;objectClass:List<String>="org.geckoprojects.emf.core.ResourceSetFactory",osgi.service;objectClass:List<String>="org.eclipse.emf.ecore.resource.ResourceSet"
+	
+Provide-Capability: osgi.service;objectClass:List<String>="org.geckoprojects.emf.core.api.ResourceSetFactory",osgi.service;objectClass:List<String>="org.eclipse.emf.ecore.resource.ResourceSet"
 

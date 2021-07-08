@@ -3,10 +3,13 @@
 	junit-platform-commons,\
 	org.eclipse.emf.common,\
 	org.eclipse.emf.ecore,\
-	org.geckoprojects.emf.example.model.basic,\
-	org.geckoprojects.emf.bson;version=latest,\
+	org.geckoprojects.emf.example.model.basic;version=project,\
+	org.geckoprojects.emf.bson;version=project,\
+	org.geckoprojects.emf.core;version=project,\
 	com.fasterxml.jackson.core.jackson-databind,\
 	de.undercouch.bson4jackson,\
-	com.fasterxml.jackson.core.jackson-core
-	
+	com.fasterxml.jackson.core.jackson-core,\
+	org.osgi.test.junit5,\
+	org.osgi.test.common,\
+	org.osgi.framework
 Bundle-Version: 1.1.2-SNAPSHOT

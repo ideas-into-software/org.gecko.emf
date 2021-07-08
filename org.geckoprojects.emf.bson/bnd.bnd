@@ -14,6 +14,7 @@
 
 
 Bundle-Version: 1.1.2-SNAPSHOT
+
 Private-Package: org.geckoprojects.emf.bson
 
 Export-Package: \

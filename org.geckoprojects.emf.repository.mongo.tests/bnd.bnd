@@ -8,7 +8,7 @@
 	org.geckoprojects.mongo.core;version=latest,\
 	org.geckoprojects.emf.repository.mongo,\
 	org.geckoprojects.emf.core;version=project,\
-	org.geckoprojects.emf.example.model.basic,\
+	org.geckoprojects.emf.example.model.basic;version=project,\
 	org.geckoprojects.emf.repository.api,\
 	org.mongodb.bson,\
 	org.mongodb.driver-core,\

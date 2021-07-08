@@ -36,20 +36,30 @@ import org.geckoprojects.emf.example.model.basic.model.GenderType;
 import org.geckoprojects.emf.example.model.basic.model.Person;
 import org.geckoprojects.emf.example.model.basic.model.util.BasicResourceFactoryImpl;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.osgi.test.common.annotation.InjectService;
+import org.osgi.test.common.service.ServiceAware;
+import org.osgi.test.junit5.context.BundleContextExtension;
+import org.osgi.test.junit5.service.ServiceExtension;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.undercouch.bson4jackson.BsonFactory;
+import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
 
+@ExtendWith(BundleContextExtension.class)
+@ExtendWith(ServiceExtension.class)
 public class BsonConfiguratorTest {
 
 	@Test
-	public void testBson() {
-		ResourceSet resourceSet = createResourceSet();
-		EMFBsonResourceFactoryConfigurator configurator  = new EMFBsonResourceFactoryConfigurator();
-		configurator.configureResourceFactory(resourceSet.getResourceFactoryRegistry());
+	public void testBson(@InjectService(filter = "(component.name=EMFBsonConfigurator)") ServiceAware<ResourceFactoryConfigurator>  sa) {
 		
+		System.out.println(sa.getServiceReference().getProperties());
+		ResourceSet resourceSet = createResourceSet();
+		ResourceFactoryConfigurator configurator  = sa.getService();
+		configurator.configureResourceFactory(resourceSet.getResourceFactoryRegistry());
+	
 		Person p = createSamplePerson();
 		Resource xmiResource = resourceSet.createResource(URI.createURI("person.test"));
 		assertNotNull(xmiResource);
@@ -57,6 +67,7 @@ public class BsonConfiguratorTest {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
 			xmiResource.save(baos, null);
+			System.out.println(baos.toString());
 		} catch (IOException e) {
 			fail("Not expected save exception for XMI");
 		}

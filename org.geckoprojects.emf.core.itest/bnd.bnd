@@ -12,7 +12,7 @@
 	assertj-core,\
 	org.osgi.service.cm,\
 	org.geckoprojects.osgitest;version=latest,\
-	org.geckoprojects.emf.example.model.basic,\
+	org.geckoprojects.emf.example.model.basic;version=project,\
 	org.eclipse.emf.common,\
 	org.osgi.util.promise,\
 	org.geckoprojects.emf.model.info,\

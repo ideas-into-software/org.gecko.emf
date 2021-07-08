@@ -14,9 +14,9 @@
 	org.osgi.annotation.bundle
 
 -testpath: \
-	org.geckoprojects.emf.example.model.basic,\
+	org.geckoprojects.emf.example.model.basic;version=project,\
 	org.eclipse.emf.ecore,\
-	org.geckoprojects.emf.example.model.basic,\
+	org.geckoprojects.emf.example.model.basic;version=project,\
 	junit-jupiter-api,\
 	org.eclipse.emf.common
 

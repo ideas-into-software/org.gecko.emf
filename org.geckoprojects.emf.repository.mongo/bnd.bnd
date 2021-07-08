@@ -21,7 +21,7 @@
 	org.mongodb.driver-core,\
 	
 -testpath: \
-	org.geckoprojects.emf.example.model.basic,\
+	org.geckoprojects.emf.example.model.basic;version=project,\
 	assertj-core,\
 	junit-jupiter-api
 	
