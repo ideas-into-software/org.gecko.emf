@@ -1,5 +1,6 @@
 package org.geckoprojects.emf.mongo.core.itest;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -11,6 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bson.Document;
+import org.bson.codecs.BsonCodecProvider;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -20,17 +22,16 @@ import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
 import org.geckoprojects.emf.example.model.basic.model.Geometry;
 import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
-import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfiguratorComponent;
 import org.geckoprojects.mongo.core.MongoConstants;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.osgi.framework.ServiceEvent;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.test.assertj.NotPartOfPR.Conditions;
 import org.osgi.test.assertj.NotPartOfPR.Predicates;
 import org.osgi.test.assertj.monitoring.MonitoringAssertion;
 import org.osgi.test.common.annotation.InjectService;
+import org.osgi.test.common.dictionary.Dictionaries;
 import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
@@ -38,8 +39,6 @@ import org.osgi.test.junit5.service.ServiceExtension;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tests the correct implementation of the ArrayConverter and the changes made
@@ -53,106 +52,67 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(ServiceExtension.class)
 public class CustomArrayDataTypeTest {
 
-	
-	
-	
-	@Test
-	void testName() throws Exception {
-		MonitoringAssertion.executeAndObserve(() -> {
-			
-		}).untilServiceEventRegistered(MongoClient.class).assertWithTimeoutThat(5000);
-		
-		
-		
-		
-		
-		
-		
-	}
-	static final String mongoHost = System.getProperty("mongo.host", "localhost");
+	static final String mongoHost = System.getProperty("mongo.host", "127.0.0.1");
 	static final String clientUri = "mongodb://" + mongoHost + ":27017";
-	static final String clientId = "clientID1";
+	static final String mongoIdent = "MyMongoIdent1";
 
-	static final String dbAlias = "testDB";
-	static final String dbInternal = "testDB";
+	static final String dbAlias = "MyMongoDatabaseAlias";
+	static final String dbInternal = "MyMongoDatabaseInternamName";
 
-	static final String filterResourceSetConfigurator = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME
-			+ "=mongo)(objectClass=org.geckoprojects.emf.core.ResourceSetConfigurator)("
-			+ MongoResourceSetConfiguratorComponent.PROP_MONGO_ALIAS + "=" + dbAlias + "))";
-	static final String filterResourceSetFactory = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME
-			+ "=mongo)(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
-
-	@InjectService(cardinality = 1)
-	static ConfigurationAdmin cm;
-	@InjectService(cardinality = 0)
-	static ServiceAware<MongoClient> saMongoClient;
-	@InjectService(cardinality = 0)
-	static ServiceAware<MongoDatabase> saMongoDatabase;
-	@InjectService(cardinality = 0, filter = filterResourceSetConfigurator)
-	static ServiceAware<ResourceSetConfigurator> saResourceSetConfigurator;
-	@InjectService(cardinality = 0, filter = filterResourceSetFactory)
-	static ServiceAware<ResourceSetFactory> saResourceSetFactory;
+	static final String filterResourceSetConfigurator = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)("
+			+ MongoConstants.DB_PROP_DATABASE_DATABASE_ALIAS + "=" + dbAlias + "))";
+	static final String filterResourceSetFactory = "(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)";
 
 	@Test
-	public void testSimpleArray() throws Exception {
-		
-		
-		
-		
+	public void testSimpleArray(@InjectService(cardinality = 1) ConfigurationAdmin cm,
+			@InjectService(cardinality = 0) ServiceAware<MongoClient> saMongoClient,
+			@InjectService(cardinality = 0) ServiceAware<MongoDatabase> saMongoDatabase,
+			@InjectService(cardinality = 0, filter = filterResourceSetConfigurator) ServiceAware<ResourceSetConfigurator> saResourceSetConfigurator,
+			@InjectService(cardinality = 0, filter = filterResourceSetFactory) ServiceAware<ResourceSetFactory> saResourceSetFactory)
+			throws Exception {
+
+		//
+
 		MonitoringAssertion.executeAndObserve(() -> {
 			// so something. could be Throwable
-			
-			Configuration confClient = cm.getFactoryConfiguration(MongoConstants.PID_MONGO_CLIENT, "test1", "?");
-			confClient.update(new Hashtable<>(Map.of(MongoConstants.CLIENT_PROP_CLIENT_ID, clientId,
-					MongoConstants.CLIENT_PROP_CONNECTION_STRING, clientUri)));
-			
-		})
-		//todo LDAP filter entsprechend frameworkutil
-		//anytype also nzt filter oder nut map
-		
-		.untilServiceEvent(Predicates.ServiceEvents.isTypeModified(MongoClient.class))
-//		.untilServiceEventRegisters(MongoClient.class)
-//		.untilServiceEventModified(MongoClient.class)
-//		.untilServiceEventUnregisters(MongoClient.class)
-//		.untilServiceEventRegisters(MongoClient.class,Map.of("key", "value"))
-//		.untilServiceEventModified(MongoClient.class,Map.of("key", "value"))
-//		.untilServiceEventModifiedEndmatch(MongoClient.class)
-//		.untilServiceEventModifiedEndmatch(MongoClient.class,Map.of("key", "value"))
-//		.untilServiceEventUnregisters(MongoClient.class,Map.of("key", "value"))		
-//		.untilFrameworkEvent(EventPredicates.FrameworkEvents.isTypeStartlevelChanged())
-//		.untilBundleEvent(EventPredicates.BundleEvents.isTypeInstalled())
-		.assertWithTimeoutThat(1000)
-		
-		
-		
-		.isNotTimedOut()
-//		.hasThrowableThat() -> Full ThrowableAssert
-		.hasNoThrowable()
-		.hasNoFrameworkEvent()
-		.hasNoBundleEvent()
-		.hasNoServiceEvent()
-		//TODO ggd allinOne
-		// Conditions in reihenfolge
-		.hasAtLeastOneServiceEventRegisteredWith(MongoClient.class)
-		.hasAtLeastOneServiceEventModifiedWith(MongoClient.class)
-		.hasAtLeastOneServiceEventUnregisteringWith(MongoClient.class)
-		.hasAtLeastOneServiceEventWith(ServiceEvent.REGISTERED, MongoClient.class, Map.of("key", "value"))
-		.hasExactlyOneServiceEventWith(ServiceEvent.REGISTERED, MongoClient.class, Map.of("key", "value"))
-		.hasNoServiceEventWith(ServiceEvent.REGISTERED, MongoClient.class, Map.of("key", "value"))
-		.hasServiceEventsInOrder(List.of(Conditions.ServiceEventConditions.typeRegisteredAndObjectClass(MongoClient.class)))
-		.hasServiceEventsThat()// ListAssert<ServiceEvents)
-			.areAtMost(2, Conditions.ServiceEventConditions.serviceReferenceIsNotNull());
 
-		
+			Configuration confClient = cm.getFactoryConfiguration(MongoConstants.PID_MONGO_CLIENT, "test1", "?");
+			confClient.update(new Hashtable<>(Map.of(MongoConstants.CLIENT_PROP_CLIENT_MONGO_IDENT, mongoIdent,
+					MongoConstants.CLIENT_PROP_CONNECTION_STRING, clientUri)));
+
+		})
+				// todo LDAP filter entsprechend frameworkutil
+				// anytype also nzt filter oder nut map
+
+				.untilServiceEvent(Predicates.ServiceEvents.isTypeRegistered(MongoClient.class))
+				.assertWithTimeoutThat(100000).isNotTimedOut()
+				.hasServiceEventsInOrder(
+						List.of(Conditions.ServiceEventConditions.typeRegisteredAndObjectClass(MongoClient.class)))
+				.hasServiceEventsThat()// ListAssert<ServiceEvents)
+				.areAtMost(2, Conditions.ServiceEventConditions.serviceReferenceIsNotNull());
+
 		MongoClient mongoClient = saMongoClient.waitForService(1000);
 
 		assertThat(mongoClient).isNotNull();
 
-		MongoDatabase mongoDatabase = saMongoDatabase.waitForService(1000);
+		Configuration c = cm.getFactoryConfiguration(MongoConstants.PID_MONGO_DATABASE, "base", "?");
+		MonitoringAssertion.executeAndObserve(() -> {
+			try {
+
+				c.update(Dictionaries.dictionaryOf(MongoConstants.DB_PROP_DATABASE_INTERNAL_NAME, dbInternal,
+						MongoConstants.DB_PROP_DATABASE_DATABASE_ALIAS, dbAlias, MongoConstants.DB_PROP_DATABASE_MUST_EXIST, false));
+
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(100000);
+		//.hasExactlyNServiceEventRegisteredWith(1,				MongoDatabase.class);
+		
+		MongoDatabase mongoDatabase = saMongoDatabase.waitForService(100000);
 
 		assertThat(mongoDatabase).isNotNull();
 
-		ResourceSetConfigurator rsc = saResourceSetConfigurator.getService();
+		ResourceSetConfigurator rsc = saResourceSetConfigurator.waitForService(500);
 		assertThat(rsc).isNotNull().isInstanceOf(MongoResourceSetConfigurator.class);
 
 		ResourceSetFactory rsf = saResourceSetFactory.getService();
@@ -160,13 +120,15 @@ public class CustomArrayDataTypeTest {
 		ResourceSet resourceSet = rsf.createResourceSet();
 
 		System.out.println("Dropping DB");
-		MongoCollection<Document> geoCollection = mongoClient.getDatabase("test").getCollection("Geometry");
-		geoCollection.drop();
-
+		MongoCollection<Document> geoCollection = mongoClient.getDatabase(dbInternal).getCollection("Geometry");
+		if(geoCollection.countDocuments()>0) {
+			geoCollection.drop();
+		}
+		
 		assertThat(geoCollection.countDocuments()).isEqualTo(0);
 
-		Resource resource = resourceSet.createResource(URI.createURI(clientId + "/test/Geometry/"));
-
+		Resource resource = resourceSet
+				.createResource(URI.createURI("mongodb://" + mongoHost+":27017/"+dbInternal+"/Geometry/"));
 //		Create the Geometry object
 		Geometry geometry = BasicFactory.eINSTANCE.createGeometry();
 		Double[] coord1 = new Double[] { 11.23, 58.98 };
@@ -185,8 +147,9 @@ public class CustomArrayDataTypeTest {
 		resource.unload();
 
 		// load the Geometry object from the db
-		Resource findResource = resourceSet
-				.createResource(URI.createURI(clientId + "/test/Geometry/" + geometry.getId()));
+
+		URI uri = URI.createURI("mongodb://" +mongoHost+":27017/"+dbInternal+"/Geometry/" + geometry.getId());
+		Resource findResource = resourceSet.createResource(uri);
 		findResource.load(null);
 		assertNotNull(findResource);
 		assertFalse(findResource.getContents().isEmpty());

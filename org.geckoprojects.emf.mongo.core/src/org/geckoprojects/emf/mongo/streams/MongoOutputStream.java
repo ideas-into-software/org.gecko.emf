@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bson.Document;
+import org.bson.codecs.BsonCodecProvider;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.conversions.Bson;
@@ -100,8 +101,8 @@ public class MongoOutputStream extends ByteArrayOutputStream implements URIConve
 		EObjectCodecProvider codecProvider = new EObjectCodecProvider(resource, mergedOptions, null);
 		codecProvider.setConverterService(converterService);
 		CodecRegistry eobjectRegistry = CodecRegistries.fromProviders(codecProvider);
-//		CodecRegistry defaultRegistry = MongoClientSettings.getDefaultCodecRegistry();
-		CodecRegistry codecRegistry = CodecRegistries.fromRegistries(eobjectRegistry);//, defaultRegistry);
+		CodecRegistry defaultRegistry = collection.getCodecRegistry();
+		CodecRegistry codecRegistry = CodecRegistries.fromRegistries(eobjectRegistry, defaultRegistry);
 		// get collections and clear it
 		MongoCollection<EObject> curCollection = collection.withCodecRegistry(codecRegistry).withDocumentClass(EObject.class);
 

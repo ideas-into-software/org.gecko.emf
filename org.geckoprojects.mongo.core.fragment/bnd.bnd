@@ -1,0 +1,7 @@
+Fragment-Host: org.mongodb.driver-core
+Bundle-Version: 0.0.1-SNAPSHOT
+
+Import-Package: \
+	javax.security.auth.login,\
+	javax.security.auth
+	

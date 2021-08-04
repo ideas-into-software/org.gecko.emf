@@ -1,0 +1,13 @@
+Bundle-Version: 0.0.1-SNAPSHOT
+-buildpath: \
+	org.geckoprojects.mongo.core;version=project,\
+	junit-jupiter-api,\
+	org.osgi.test.junit5,\
+	org.osgi.framework,\
+	assertj-core,\
+	org.osgi.test.assertj.framework,\
+	org.osgi.test.common,\
+	org.osgi.service.cm,\
+	org.mongodb.driver-sync,\
+	org.mongodb.driver-core,\
+	org.osgi.test.assertj.monitoring;version=latest

@@ -105,9 +105,9 @@ public class MongoInputStream extends InputStream implements URIConverter.Loadab
 		EObjectCodecProvider codecProvider = new EObjectCodecProvider(resource, mergedOptions, resourcesCache);
 		codecProvider.setConverterService(converterService);
 		CodecRegistry eobjectRegistry = CodecRegistries.fromProviders(codecProvider);
-//		CodecRegistry defaultRegistry = MongoClientSettings.getDefaultCodecRegistry();
+		CodecRegistry defaultRegistry = collection.getCodecRegistry();
 
-		CodecRegistry codecRegistry = CodecRegistries.fromRegistries(eobjectRegistry);//, defaultRegistry);
+		CodecRegistry codecRegistry = CodecRegistries.fromRegistries(eobjectRegistry, defaultRegistry);
 		// get collections and clear it
 		MongoCollection<EObject> curCollection = collection.withCodecRegistry(codecRegistry).withDocumentClass(EObject.class);
 

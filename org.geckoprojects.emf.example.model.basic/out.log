@@ -1,6 +1,6 @@
 [INFO] Output configured: src-gen
-[INFO] Output result: /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen
-[INFO] Running for genmodel model/basic.genmodel in /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic
+[INFO] Output result: /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen
+[INFO] Running for genmodel model/basic.genmodel in /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic
 [INFO] Asked to handle resource://org.geckoprojects.emf.example.model.basic/model/basic.genmodel
 [INFO] Asked for content Descriptor resource://org.geckoprojects.emf.example.model.basic/model/basic.genmodel
 [INFO] Asked to handle resource://org.geckoprojects.emf.example.model.basic/model/basic.genmodel
@@ -30,16 +30,13 @@
 [INFO] Asked to open InputStream for resource://org.geckoprojects.emf.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] bsn according to URIorg.eclipse.emf.ecore
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore.xmi
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
-[INFO] Could not parse BSN from /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.core/bin. Error was Is a directory. Returning org.geckoprojects.emf.core
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
+[INFO] Could not parse BSN from /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.core/bin. Error was Is a directory. Returning org.geckoprojects.emf.core
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
-[INFO] Match in /var/home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
+[INFO] Match in /home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.genmodel with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
@@ -49,16 +46,13 @@
 [INFO] Asked to open InputStream for resource://org.geckoprojects.emf.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] bsn according to URIorg.eclipse.emf.ecore
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore.xmi
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
-[INFO] Could not parse BSN from /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.core/bin. Error was Is a directory. Returning org.geckoprojects.emf.core
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
+[INFO] Could not parse BSN from /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.core/bin. Error was Is a directory. Returning org.geckoprojects.emf.core
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
-[INFO] Match in /var/home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
+[INFO] Match in /home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
@@ -74,7 +68,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicPackage.java
 [INFO] internaly worked 0.782608695652174 on null
 [INFO] subtask 
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.BasicPackageImpl
@@ -93,7 +87,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicPackageImpl.java
 [INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.basic.model.BasicFactory
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
 [INFO] internaly worked 1.0 on null
@@ -110,7 +104,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BasicFactory.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.BasicFactoryImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
 [INFO] internaly worked 1.0 on null
@@ -127,7 +121,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BasicFactoryImpl.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.util.BasicSwitch
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
 [INFO] internaly worked 1.0 on null
@@ -144,7 +138,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicSwitch.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.util.BasicAdapterFactory
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
 [INFO] internaly worked 1.0 on null
@@ -161,7 +155,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicAdapterFactory.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.util.BasicResourceFactoryImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
 [INFO] internaly worked 1.0 on null
@@ -178,7 +172,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceFactoryImpl.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.util.BasicResourceImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
 [INFO] internaly worked 1.0 on null
@@ -195,7 +189,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/BasicResourceImpl.java
 [INFO] subtask Generating OSGi configuration component for package 'model'
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
 [INFO] internaly worked 1.0 on null
@@ -212,7 +206,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/configuration/BasicConfigurationComponent.java
 [INFO] subtask Generating package info for package 'model'
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
 [INFO] internaly worked 1.0 on null
@@ -229,7 +223,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/package-info.java
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -245,7 +239,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/util/package-info.java
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -261,7 +255,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/package-info.java
 [INFO] subtask Generating Person
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -281,7 +275,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Person.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.PersonImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
 [INFO] internaly worked 1.0 on null
@@ -298,7 +292,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonImpl.java
 [INFO] subtask Generating Address
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -318,7 +312,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Address.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.AddressImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
 [INFO] internaly worked 1.0 on null
@@ -335,7 +329,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/AddressImpl.java
 [INFO] subtask Generating Contact
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -355,7 +349,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Contact.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.ContactImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
 [INFO] internaly worked 1.0 on null
@@ -372,7 +366,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContactImpl.java
 [INFO] subtask Generating Family
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -392,7 +386,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Family.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.FamilyImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
 [INFO] internaly worked 1.0 on null
@@ -409,7 +403,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/FamilyImpl.java
 [INFO] subtask Generating Business Contact
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -429,7 +423,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessContact.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.BusinessContactImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
 [INFO] internaly worked 1.0 on null
@@ -446,7 +440,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessContactImpl.java
 [INFO] subtask Generating Tag
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -466,7 +460,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Tag.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.TagImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
 [INFO] internaly worked 1.0 on null
@@ -483,7 +477,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TagImpl.java
 [INFO] subtask Generating Business Person
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -503,7 +497,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/BusinessPerson.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.BusinessPersonImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
 [INFO] internaly worked 1.0 on null
@@ -520,7 +514,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/BusinessPersonImpl.java
 [INFO] subtask Generating String String Map
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -540,7 +534,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/StringStringMapImpl.java
 [INFO] subtask Generating Employee Info
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -560,7 +554,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/EmployeeInfo.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.EmployeeInfoImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
 [INFO] internaly worked 1.0 on null
@@ -577,7 +571,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/EmployeeInfoImpl.java
 [INFO] subtask Generating Widget
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -597,7 +591,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Widget.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.WidgetImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
 [INFO] internaly worked 1.0 on null
@@ -614,7 +608,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/WidgetImpl.java
 [INFO] subtask Generating Textwidget
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -634,7 +628,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Textwidget.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.TextwidgetImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
 [INFO] internaly worked 1.0 on null
@@ -651,7 +645,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/TextwidgetImpl.java
 [INFO] subtask Generating Content
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -671,7 +665,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Content.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.ContentImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
 [INFO] internaly worked 1.0 on null
@@ -688,7 +682,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/ContentImpl.java
 [INFO] subtask Generating HL Widget
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -708,7 +702,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/HLWidget.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.HLWidgetImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
 [INFO] internaly worked 1.0 on null
@@ -725,7 +719,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/HLWidgetImpl.java
 [INFO] subtask Generating Person Contact
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -745,7 +739,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonContact.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.PersonContactImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
 [INFO] internaly worked 1.0 on null
@@ -762,7 +756,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonContactImpl.java
 [INFO] subtask Generating Person Object
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -782,7 +776,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/PersonObject.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.PersonObjectImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
 [INFO] internaly worked 1.0 on null
@@ -799,7 +793,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/PersonObjectImpl.java
 [INFO] subtask Generating Geometry
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -819,7 +813,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/Geometry.java
 [INFO] subtask Generating Java class org.geckoprojects.emf.example.model.basic.model.impl.GeometryImpl
 [INFO] subtask Generating /org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
 [INFO] internaly worked 1.0 on null
@@ -836,7 +830,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/impl/GeometryImpl.java
 [INFO] subtask Generating Contact Type
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -856,7 +850,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactType.java
 [INFO] subtask Generating Contact Context Type
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -876,7 +870,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/ContactContextType.java
 [INFO] subtask Generating Gender Type
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -896,7 +890,7 @@
 [INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
 [INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
 [INFO] Sanatized resource://org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.basic/src-gen/org/geckoprojects/emf/example/model/basic/model/GenderType.java
 [INFO] Generating code - org.eclipse.emf.codegen.ecore
 [INFO]   OK - org.eclipse.emf.common
 [INFO]   OK - org.eclipse.emf.common

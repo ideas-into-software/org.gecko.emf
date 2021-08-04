@@ -346,7 +346,7 @@ public class EMFMongoRepositoryConfigurator {
 		Map<String, Object> mongoClientProperties  = mongoConfig.getClientProperties();
 		Dictionary<String, Object> clientProps = new Hashtable<>();
 		clientProps.put(MongoConstants.CLIENT_PROP_CONNECTION_STRING, baseUris);
-		clientProps.put(MongoConstants.CLIENT_PROP_CLIENT_ID, instance);
+		clientProps.put(MongoConstants.CLIENT_PROP_CLIENT_MONGO_IDENT, instance);
 		mongoClientProperties.forEach((k,v)->clientProps.put(k, v));
 		clientProps.put(Constants.SERVICE_PID, instancePID);
 		if(credential.length() > 0){

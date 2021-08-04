@@ -56,7 +56,7 @@ public class MongoURIHandlerImpl extends URIHandlerImpl {
 	 * @param inputStreamFactory an instance of the input stream factory service
 	 * @param outputStreamFactory an instance of the output stream factory service
 	 */
-	public MongoURIHandlerImpl(Map<MongoDatabase,Map<String, Object>> mongoDatabases, InputStreamFactory inputStreamFactory, OutputStreamFactory outputStreamFactory) {
+	public MongoURIHandlerImpl(Map<String, MongoDatabase> mongoDatabases, InputStreamFactory inputStreamFactory, OutputStreamFactory outputStreamFactory) {
 
 		this.mongoDatabases = mongoDatabases;
 		this.inputStreamFactory = inputStreamFactory;
@@ -150,11 +150,12 @@ public class MongoURIHandlerImpl extends URIHandlerImpl {
 	 * mongodb://host:[port]/database/collection/{id} where id is optional.
 	 * 
 	 * @param uri the MongoDB collection identifier
+	 * @param options 
 	 * @param options the load or save options as appropriate
 	 * @return the MongoDB collection corresponding to the URI
 	 * @throws IOException if the URI is malformed or the collection could not otherwise be resolved
 	 */
-	private MongoDatabase getDatabase(URI uri) throws IOException
+	private MongoDatabase getDatabase(URI uri, Map<?, ?> options) throws IOException
 	{
 		// We assume that the URI path has the form /database/collection/{id} making the
 		// collection segment # 1.
@@ -162,22 +163,22 @@ public class MongoURIHandlerImpl extends URIHandlerImpl {
 		if (uri.segmentCount() != 3) {
 			throw new IOException("The URI is not of the form 'mongodb:/database/collection/{id}");
 		}
-		String collectionName=uri.trimQuery().trimFragment().trimSegments(2).toString();
+		String fullyQualifiedDatabaseName=uri.trimQuery().trimFragment().trimSegments(2).toString().replace(":27017/", "/");
 
 		MongoDatabase mongoDatabase;
 		/*
 		 * we need to synchronize, because new database providers can be added and removed all the time
 		 */
 		synchronized (mongoDatabases) {
-//			mongoDatabase = mongoDatabases.get(collectionName);
+			mongoDatabase = mongoDatabases.get(fullyQualifiedDatabaseName);
 		}
 		
 		
-//		if (mongoDatabase == null)
-//			throw new IOException("Database is not available");
-//		
-//		return mongoDatabase;
-		return null;
+		if (mongoDatabase == null)
+			throw new IOException("Database is not available");
+		
+		return mongoDatabase;
+
 	}
 	
 	/**
@@ -192,14 +193,14 @@ public class MongoURIHandlerImpl extends URIHandlerImpl {
 	 */
 	private MongoCollection<Document> doGetCollection(URI uri, Map<?, ?> options) throws IOException
 	{
-//		MongoDatabase database = getDatabase(uri, options);
-//		MongoCollection<Document> dbCollection = getMongoCollection(database, uri, options);
-//
-//		return dbCollection;
-		return null;
+		MongoDatabase database = getDatabase(uri, options);
+		MongoCollection<Document> dbCollection = getMongoCollection(database, uri, options);
+
+		return dbCollection;
+
 	}
 
-	private Map<MongoDatabase,Map<String,Object>> mongoDatabases;
+	private Map<String, MongoDatabase> mongoDatabases;
 	private InputStreamFactory inputStreamFactory;
 	private OutputStreamFactory outputStreamFactory;
 }

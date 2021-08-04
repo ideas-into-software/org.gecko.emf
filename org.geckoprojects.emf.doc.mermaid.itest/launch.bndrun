@@ -1,4 +1,4 @@
--runfw: org.apache.felix.framework;version='[7.0.0,7.0.0]'
+-runfw: org.apache.felix.framework
 -runee: JavaSE-11
 -runrequires: \
 	bnd.identity;id='org.geckoprojects.emf.doc.mermaid',\

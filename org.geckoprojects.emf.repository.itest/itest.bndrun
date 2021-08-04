@@ -6,7 +6,7 @@ Bundle-Version: 2.0.15.SNAPSHOT
 -runsystempackages.objenesis: sun.misc,sun.reflect
 
 # Use Felix by default
--runfw: org.apache.felix.framework;version='[7.0.0,7.0.0]'
+-runfw: org.apache.felix.framework
 -runrequires: \
 	bnd.identity;id='org.geckoprojects.emf.repository.tests',\
 	bnd.identity;id=junit-platform-launcher,\

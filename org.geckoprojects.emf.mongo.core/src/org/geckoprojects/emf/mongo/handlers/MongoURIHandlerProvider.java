@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.URIHandler;
 import org.geckoprojects.emf.core.api.UriHandlerProvider;
 import org.geckoprojects.emf.mongo.InputStreamFactory;
 import org.geckoprojects.emf.mongo.OutputStreamFactory;
+import org.geckoprojects.mongo.core.GeckoMongoDatabase;
 
 import com.mongodb.client.MongoDatabase;
 
@@ -26,13 +27,12 @@ import com.mongodb.client.MongoDatabase;
  * @author bhunt
  * @author Mark Hoffmann
  */
-//@Component(name="MongoURIHandlerProvider", immediate=true, service=UriHandlerProvider.class)
 public class MongoURIHandlerProvider implements UriHandlerProvider {
 	
 	private volatile MongoURIHandlerImpl uriHandler;
 	private volatile InputStreamFactory inputStreamFactory;
 	private volatile OutputStreamFactory outputStreamFactory;
-	private final Map<MongoDatabase,Map<String,Object>> mongoDatabases = new ConcurrentHashMap<MongoDatabase, Map<String,Object>>();
+	private final Map<String,MongoDatabase> mongoDatabases = new ConcurrentHashMap<String,MongoDatabase>();
 
 
 	@Override
@@ -44,27 +44,25 @@ public class MongoURIHandlerProvider implements UriHandlerProvider {
 	}
 
 	/**
-	 * Adds a {@link MongoDatabaseProvider} to the provider map.  
-	 * @param mongoDatabaseProvider the provider to be added
+	 * Adds a {@link MongoDatabase} to the mongoDatabase map.  
+	 * @param mongoDatabase the MongoDatabase to be added
 	 */
-//	@Reference(name="MongoDatabaseProvider", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.AT_LEAST_ONE, unbind="removeMongoDatabaseProvider")
-	public void addMongoDatabaseProvider(MongoDatabase mongoDatabase) {
-//		mongoDatabaseProviders.put(mongoDatabaseProvider.getURI(), mongoDatabaseProvider);
+	public void addMongoDatabaseProvider(GeckoMongoDatabase mongoDatabase) {
+		mongoDatabases.put(mongoDatabase.getURI(), mongoDatabase);
 	}
 
 	/**
-	 * Removes a {@link MongoDatabaseProvider} from the map 
-	 * @param mongoDatabaseProvider the provider to be removed
+	 * Removes a {@link MongoDatabase} from the map 
+	 * @param mongoDatabase the MongoDatabase to be removed
 	 */
-	public void removeMongoDatabaseProvider(MongoDatabase mongoDatabaseProvider) {
-//		mongoDatabaseProviders.remove(mongoDatabaseProvider.getURI());
+	public void removeMongoDatabaseProvider(GeckoMongoDatabase mongoDatabase) {
+		mongoDatabases.remove(mongoDatabase.getURI());
 	}
 
 	/**
 	 * Sets an {@link InputStreamFactory} to handle input streams
 	 * @param inputStreamFactory the factory to set
 	 */
-//	@Reference(name="InputStreamFactory", cardinality=ReferenceCardinality.MANDATORY, policy=ReferencePolicy.STATIC)
 	public void setInputStreamFactory(InputStreamFactory inputStreamFactory) {
 		this.inputStreamFactory = inputStreamFactory;
 	}
@@ -73,7 +71,6 @@ public class MongoURIHandlerProvider implements UriHandlerProvider {
 	 * Sets an {@link OutputStreamFactory} to handle output streams
 	 * @param outputStreamFactory the factory to set
 	 */
-//	@Reference(name="OutputStreamFactory", cardinality=ReferenceCardinality.MANDATORY, policy=ReferencePolicy.STATIC)
 	public void setOutputStreamFactory(OutputStreamFactory outputStreamFactory) {
 		this.outputStreamFactory = outputStreamFactory;
 	}
