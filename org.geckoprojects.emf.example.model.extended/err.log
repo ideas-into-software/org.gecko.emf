@@ -1,4 +1,4 @@
-java.net.MalformedURLException
+java.net.MalformedURLException: Cannot invoke "String.length()" because "spec" is null
 	at java.base/java.net.URL.<init>(URL.java:706)
 	at java.base/java.net.URL.<init>(URL.java:568)
 	at java.base/java.net.URL.<init>(URL.java:515)
@@ -22,14 +22,14 @@ java.net.MalformedURLException
 	at org.geckoprojects.emf.codegen.GeckoEmfGenerator.doGenerate(GeckoEmfGenerator.java:191)
 	at org.geckoprojects.emf.codegen.GeckoEmfGenerator.generate(GeckoEmfGenerator.java:110)
 	at org.geckoprojects.emf.codegen.GeckoEmfGenerator.generate(GeckoEmfGenerator.java:1)
-	at aQute.bnd.build.ProjectGenerate.lambda$null$0(ProjectGenerate.java:237)
+	at aQute.bnd.build.ProjectGenerate.lambda$null$0(ProjectGenerate.java:253)
 	at aQute.lib.redirect.Redirect.apply(Redirect.java:117)
-	at aQute.bnd.build.ProjectGenerate.lambda$doGeneratePlugin$1(ProjectGenerate.java:237)
+	at aQute.bnd.build.ProjectGenerate.lambda$doGeneratePlugin$1(ProjectGenerate.java:253)
 	at aQute.bnd.build.WorkspaceExternalPluginHandler.call(WorkspaceExternalPluginHandler.java:77)
-	at aQute.bnd.build.ProjectGenerate.doGeneratePlugin(ProjectGenerate.java:222)
-	at aQute.bnd.build.ProjectGenerate.doGenerate(ProjectGenerate.java:194)
-	at aQute.bnd.build.ProjectGenerate.step(ProjectGenerate.java:114)
-	at aQute.bnd.build.ProjectGenerate.generate(ProjectGenerate.java:55)
+	at aQute.bnd.build.ProjectGenerate.doGeneratePlugin(ProjectGenerate.java:238)
+	at aQute.bnd.build.ProjectGenerate.doGenerate(ProjectGenerate.java:210)
+	at aQute.bnd.build.ProjectGenerate.step(ProjectGenerate.java:130)
+	at aQute.bnd.build.ProjectGenerate.generate(ProjectGenerate.java:65)
 	at org.bndtools.builder.BndSourceGenerateCompilationParticipant.lambda$aboutToBuild$2(BndSourceGenerateCompilationParticipant.java:63)
 	at bndtools.central.Central.lambda$bndCall$13(Central.java:813)
 	at aQute.bnd.service.progress.TaskManager.with(TaskManager.java:37)
@@ -50,4 +50,6 @@ java.net.MalformedURLException
 	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:154)
 	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:244)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
-Caused by: java.lang.NullPointerException
+Caused by: java.lang.NullPointerException: Cannot invoke "String.length()" because "spec" is null
+	at java.base/java.net.URL.<init>(URL.java:612)
+	... 50 more

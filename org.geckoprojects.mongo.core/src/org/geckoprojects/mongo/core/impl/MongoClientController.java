@@ -54,7 +54,9 @@ import com.mongodb.selector.ServerSelector;
 //Just a component prevent from registering as a ServerMonitorListener
 @Component(service = {}, scope = ServiceScope.SINGLETON, configurationPid = MongoConstants.PID_MONGO_CLIENT)
 @Capability(namespace = "osgi.service", attribute = {
-		"objectClass:List<String>=\'com.mongodb.client.MongoClient\'" }, uses = MongoClient.class)
+"objectClass:List<String>=\'com.mongodb.client.MongoClient\'" }, uses = MongoClient.class)
+@Capability(namespace = "osgi.service", attribute = {
+"objectClass:List<String>=\'org.geckoprojects.mongo.core.GeckoMongoClient\'" }, uses = MongoClient.class)
 public class MongoClientController implements ServerMonitorListener {
 
 	private ClusterListenerDelegate clusterListenerDelegate = new ClusterListenerDelegate();
