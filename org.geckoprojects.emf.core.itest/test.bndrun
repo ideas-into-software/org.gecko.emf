@@ -54,6 +54,8 @@
 	org.geckoprojects.emf.mongo.api;version=snapshot,\
 	org.geckoprojects.emf.mongo.core;version=snapshot,\
 	org.geckoprojects.emf.repository.api;version=snapshot,\
+	org.geckoprojects.emf.repository.mongo;version=snapshot,\
+	org.geckoprojects.emf.utilities.model;version=snapshot,\
 	org.geckoprojects.mongo.core;version=snapshot,\
 	org.mockito.mockito-core;version='[3.6.0,3.6.1)',\
 	org.mongodb.bson;version='[4.3.0,4.3.1)',\

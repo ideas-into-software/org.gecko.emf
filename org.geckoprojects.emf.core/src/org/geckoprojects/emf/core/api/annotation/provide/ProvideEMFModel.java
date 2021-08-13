@@ -11,7 +11,6 @@
  */
 package org.geckoprojects.emf.core.api.annotation.provide;
 
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -24,24 +23,25 @@ import org.osgi.annotation.bundle.Attribute;
 import org.osgi.annotation.bundle.Capability;
 
 /**
- * Marker annotation that the bundle has the capability to provide a certain model 
+ * Marker annotation that the bundle has the capability to provide a certain
+ * model
+ * 
  * @author Juergen Albert
  * @since 9 Feb 2018
  */
 @Documented
 @Retention(RetentionPolicy.CLASS)
-@Target({
-		ElementType.TYPE, ElementType.PACKAGE
-})
+@Target({ ElementType.TYPE, ElementType.PACKAGE })
 @Capability(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
 		name = EPackageConfigurator.EMF_CONFIGURATOR_NAME)
 public @interface ProvideEMFModel {
 
-	@Attribute(EMFNamespaces.EMF_MODEL_NAME)
-	String name(); 
-	
-	@Attribute(EMFNamespaces.EMF_MODEL_NSURI)
+	@Attribute()
+	String name();
+
+	@Attribute()
 	String[] nsURI();
+
 	
-	String version();
+	String version() default "1.0.0";
 }

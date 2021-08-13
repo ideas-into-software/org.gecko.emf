@@ -30,4 +30,5 @@ Export-Package: \
 		generate="geckoEMF 1>out.log 2>err.log";\
 		genmodel=model/extendend.genmodel;\
 		output=src-gen
+
 -privatepackage: org.geckoprojects.emf.example.model.extended.configuration

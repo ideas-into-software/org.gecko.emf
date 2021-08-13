@@ -21,9 +21,9 @@ Export-Package: \
 	org.geckoprojects.emf.example.model.manual.impl,\
 	org.geckoprojects.emf.example.model.manual.util
 	
-#-dependson: org.geckoprojects.emf.codegen
-#
-#-generate:\
+-dependson: org.geckoprojects.emf.codegen
+
+-generate:\
 #	model/manual.genmodel;\
 #		generate="geckoEMF 1>out.log 2>err.log";\
 #		genmodel=model/manual.genmodel;\

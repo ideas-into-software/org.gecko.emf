@@ -48,16 +48,16 @@ import org.osgi.service.component.annotations.Component;
  * @since 25.07.2017
  */
 @Component(name="EcoreConfigurator", service= {EPackageConfigurator.class, ResourceFactoryConfigurator.class})
-@EMFModel(emf_model_name="ecore", emf_model_nsURI={XMLTypePackage.eNS_URI,
+@EMFModel(name="ecore", nsURI={XMLTypePackage.eNS_URI,
 		XMLNamespacePackage.eNS_URI,
-		EcorePackage.eNS_URI}, emf_model_version="1.0")
+		EcorePackage.eNS_URI}, version="1.0.0")
 @RequireEMF
 @ProvideEMFModel(name = "ecore", nsURI = {
 			XMLTypePackage.eNS_URI,
 			XMLNamespacePackage.eNS_URI,
 			EcorePackage.eNS_URI
 		},
-		version = "1.0"
+		version = "1.0.0"
 		)
 @ProvideEMFResourceConfigurator( name = "ecore", 
 	contentType = { 

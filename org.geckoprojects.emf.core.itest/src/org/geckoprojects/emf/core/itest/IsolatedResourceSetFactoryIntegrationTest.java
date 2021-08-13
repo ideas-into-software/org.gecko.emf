@@ -31,7 +31,7 @@ import org.geckoprojects.emf.core.api.EPackageConfigurator;
 import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
 import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.geckoprojects.emf.example.model.basic.BasicPackage;
-import org.geckoprojects.emf.example.model.manual.model.configuration.ManualPackageConfigurator;
+import org.geckoprojects.emf.example.model.manual.configuration.ManualPackageConfigurator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleContext;
@@ -138,14 +138,14 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 	 */
 	@Test
 	public void testResourceSetFactoryRegister(
-			@InjectService(filter = "(rsf.name=test)", cardinality = 0) ServiceAware<AnyService> serviceAwareAny,
-			@InjectService(filter = "(rsf.name=test)", cardinality = 0) ServiceAware<ResourceSet> serviceAwareRS,
-			@InjectService(filter = "(rsf.name=test)", cardinality = 0) ServiceAware<ResourceSetFactory> serviceAwareF)
+			@InjectService(filter = "(rsf.name=basic)", cardinality = 0) ServiceAware<AnyService> serviceAwareAny,
+			@InjectService(filter = "(rsf.name=basic)", cardinality = 0) ServiceAware<ResourceSet> serviceAwareRS,
+			@InjectService(filter = "(rsf.name=basic)", cardinality = 0) ServiceAware<ResourceSetFactory> serviceAwareF)
 			throws IOException, InterruptedException, InvalidSyntaxException {
 
 		Dictionary<String, Object> properties = new Hashtable<>();
-		properties.put(EMFNamespaces.PROP_RESOURCE_SET_FACTORY_NAME, "test");
-		properties.put(EMFNamespaces.PROP_MODEL_TARGET_FILTER, "(" + EMFNamespaces.EMF_MODEL_NAME + "=test)");
+		properties.put(EMFNamespaces.PROP_RESOURCE_SET_FACTORY_NAME, "basic");
+		properties.put(EMFNamespaces.PROP_MODEL_TARGET_FILTER, "(" + EMFNamespaces.EMF_MODEL_NAME + "=basic)");
 
 		AtomicReference<Configuration> cr = new AtomicReference<>();
 		MonitoringAssertion.executeAndObserve(() -> {
@@ -169,8 +169,8 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		assertTrue(modelNames instanceof String[]);
 		List<String> modelNameList = Arrays.asList((String[]) modelNames);
 		assertTrue(modelNameList.contains("ecore"));
-		assertFalse(modelNameList.contains("test"));
-		assertFalse(modelNameList.contains("test2"));
+		assertFalse(modelNameList.contains("basic"));
+		assertFalse(modelNameList.contains("basic2"));
 
 		ServiceReference<?> rsRef = serviceAwareRS.getServiceReference();
 		modelNames = rsRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
@@ -178,8 +178,8 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		assertTrue(modelNames instanceof String[]);
 		modelNameList = Arrays.asList((String[]) modelNames);
 		assertTrue(modelNameList.contains("ecore"));
-		assertFalse(modelNameList.contains("test"));
-		assertFalse(modelNameList.contains("test2"));
+		assertFalse(modelNameList.contains("basic"));
+		assertFalse(modelNameList.contains("basic2"));
 
 		Dictionary<String, Object> epackageProperties = new Hashtable<String, Object>();
 		epackageProperties.put(EMFNamespaces.EMF_MODEL_NAME, BasicPackage.eNAME);
@@ -224,8 +224,8 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		assertTrue(modelNames instanceof String[]);
 		modelNameList = Arrays.asList((String[]) modelNames);
 		assertTrue(modelNameList.contains("ecore"));
-		assertTrue(modelNameList.contains("test"));
-		assertFalse(modelNameList.contains("test2"));
+		assertTrue(modelNameList.contains("basic"));
+		assertFalse(modelNameList.contains("basic2"));
 
 		rsRef = serviceAwareRS.getServiceReference();
 		;
@@ -234,8 +234,8 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		assertTrue(modelNames instanceof String[]);
 		modelNameList = Arrays.asList((String[]) modelNames);
 		assertTrue(modelNameList.contains("ecore"));
-		assertTrue(modelNameList.contains("test"));
-		assertFalse(modelNameList.contains("test2"));
+		assertTrue(modelNameList.contains("basic"));
+		assertFalse(modelNameList.contains("basic2"));
 
 		reg1.unregister();
 		reg2.unregister();

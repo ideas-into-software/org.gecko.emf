@@ -62,14 +62,14 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 	version = "1.0.1"
 )
 @EMFResourceFactoryConfigurator(
-		emf_resource_configurator_name ="EMFJson",
-		emf_resource_configurator_fileExtension = {
+		name ="EMFJson",
+		fileExtension = {
 				"json",
 				"yml",
 				"yaml",
 				"properties"
 		},
-		emf_resource_configurator_contentType = {
+		contentType = {
 				"application/yml",
 				"application/yaml",
 				"application/json",

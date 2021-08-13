@@ -40,12 +40,13 @@ public @interface RequireModelByName {
 	/**
 	 * The name of the {@link EPackageConfigurator} reqired
 	 */
-	@Attribute("name")
+	@Attribute()
 	String name(); 
 	
 	/**
 	 * The Version of the {@link EPackageConfigurator}
 	 */
-	String version() default "";
+	@Attribute()
+	String version() default "1.0.0";
 
 }

@@ -24,11 +24,11 @@ public class ConfigurationComponentClass
   protected final String TEXT_7 = NL + " * <!-- begin-model-doc -->" + NL + " * ";
   protected final String TEXT_8 = NL + " * <!-- end-model-doc -->";
   protected final String TEXT_9 = NL + " * @see EPackageConfigurator" + NL + " * @see ResourceFactoryConfigurator" + NL + " * @generated" + NL + " */" + NL + "@Component(name=\"";
-  protected final String TEXT_10 = "Configurator\", service= {EPackageConfigurator.class, ResourceFactoryConfigurator.class})" + NL + "@EMFModel(emf_model_name=";
-  protected final String TEXT_11 = ".eNAME, emf_model_nsURI={";
-  protected final String TEXT_12 = ".eNS_URI}, emf_model_version=\"1.0\")" + NL + "@RequireEMF" + NL + "@ProvideEMFModel(name = ";
+  protected final String TEXT_10 = "Configurator\", service= {EPackageConfigurator.class, ResourceFactoryConfigurator.class})" + NL + "@EMFModel(name=";
+  protected final String TEXT_11 = ".eNAME, nsURI={";
+  protected final String TEXT_12 = ".eNS_URI}, version=\"1.0.0\")" + NL + "@RequireEMF" + NL + "@ProvideEMFModel(name = ";
   protected final String TEXT_13 = ".eNAME, nsURI = { ";
-  protected final String TEXT_14 = ".eNS_URI }, version = \"1.0\" )" + NL + "@ProvideEMFResourceConfigurator( name = ";
+  protected final String TEXT_14 = ".eNS_URI }, version = \"1.0.0\")" + NL + "@ProvideEMFResourceConfigurator( name = ";
   protected final String TEXT_15 = ".eNAME,";
   protected final String TEXT_16 = NL + "\tcontentType = { \"";
   protected final String TEXT_17 = "\" },";
@@ -38,7 +38,7 @@ public class ConfigurationComponentClass
   protected final String TEXT_21 = "\"";
   protected final String TEXT_22 = "," + NL + " \t\"";
   protected final String TEXT_23 = NL + " \t},";
-  protected final String TEXT_24 = " " + NL + "\tversion = \"1.0\"" + NL + ")" + NL + "public class ";
+  protected final String TEXT_24 = " " + NL + "\tversion = \"1.0.0\"" + NL + ")" + NL + "public class ";
   protected final String TEXT_25 = "ConfigurationComponent implements EPackageConfigurator, ResourceFactoryConfigurator" + NL + "{" + NL + "\tprivate ";
   protected final String TEXT_26 = "<?> packageRegistration = null;" + NL + "\t" + NL + "\t@";
   protected final String TEXT_27 = NL + "\tpublic void activate(BundleContext ctx) {" + NL + "\t\t";

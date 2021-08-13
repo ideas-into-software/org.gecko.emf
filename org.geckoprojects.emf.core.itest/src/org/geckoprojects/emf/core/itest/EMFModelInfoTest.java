@@ -37,7 +37,7 @@ import org.geckoprojects.emf.example.model.extended.ExtendedPackage.Literals;
 import org.geckoprojects.emf.example.model.extended.ExtendedPerson;
 import org.geckoprojects.emf.example.model.manual.Foo;
 import org.geckoprojects.emf.example.model.manual.ManualFactory;
-import org.geckoprojects.emf.example.model.manual.model.configuration.ManualPackageConfigurator;
+import org.geckoprojects.emf.example.model.manual.configuration.ManualPackageConfigurator;
 import org.geckoprojects.emf.model.info.EMFModelInfo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -106,6 +106,7 @@ public class EMFModelInfoTest {
 		assertNotNull(eClassifierByName);
 		reg.unregister();
 
+		Thread.sleep(1000);
 		eClassifierForClass = emfModelInfo.getEClassifierForClass(Foo.class);
 		eClassifierForClassByName = emfModelInfo.getEClassifierForClass(Foo.class.getName());
 

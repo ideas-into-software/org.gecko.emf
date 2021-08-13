@@ -40,13 +40,14 @@ public @interface RequireResourceConfigByName {
 	/**
 	 * the Name of the {@link ResourceSetConfigurator}
 	 */
-	@Attribute("name")
+	@Attribute()
 	String name(); 
 	
 	
 	/**
 	 * The Version of the {@link ResourceSetConfigurator}
 	 */
-	String version() default "";
+	@Attribute()
+	String version() default "1.0.0";
 
 }

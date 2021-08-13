@@ -33,13 +33,13 @@
 	org.geckoprojects.emf.collections;version=snapshot,\
 	org.geckoprojects.emf.core.api;version=snapshot,\
 	org.geckoprojects.emf.core.impl;version=snapshot,\
+	org.geckoprojects.emf.ecore;version=snapshot,\
 	org.geckoprojects.emf.example.model.basic;version=snapshot,\
 	org.geckoprojects.emf.json;version=snapshot,\
 	org.geckoprojects.emf.mongo.api;version=snapshot,\
 	org.geckoprojects.emf.mongo.core;version=snapshot,\
 	org.geckoprojects.emf.repository.api;version=snapshot,\
 	org.geckoprojects.emf.repository.mongo;version=snapshot,\
-	org.geckoprojects.emf.utilities.query.model;version=snapshot,\
 	org.geckoprojects.mongo.core;version=snapshot,\
 	org.mongodb.bson;version='[4.3.0,4.3.1)',\
 	org.mongodb.driver-core;version='[4.3.0,4.3.1)',\

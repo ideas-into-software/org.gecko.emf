@@ -42,15 +42,15 @@ import org.osgi.service.component.annotations.Deactivate;
  * @generated
  */
 @Component(name="ExtendedConfigurator", service= {EPackageConfigurator.class, ResourceFactoryConfigurator.class})
-@EMFModel(emf_model_name=ExtendedPackage.eNAME, emf_model_nsURI={ExtendedPackage.eNS_URI}, emf_model_version="1.0")
+@EMFModel(name=ExtendedPackage.eNAME, nsURI={ExtendedPackage.eNS_URI}, version="1.0.0")
 @RequireEMF
-@ProvideEMFModel(name = ExtendedPackage.eNAME, nsURI = { ExtendedPackage.eNS_URI }, version = "1.0" )
+@ProvideEMFModel(name = ExtendedPackage.eNAME, nsURI = { ExtendedPackage.eNS_URI }, version = "1.0.0")
 @ProvideEMFResourceConfigurator( name = ExtendedPackage.eNAME,
 	contentType = { "" }, 
 	fileExtension = {
 	"extended"
  	},  
-	version = "1.0"
+	version = "1.0.0"
 )
 public class ExtendedConfigurationComponent implements EPackageConfigurator, ResourceFactoryConfigurator {
 	private ServiceRegistration<?> packageRegistration = null;

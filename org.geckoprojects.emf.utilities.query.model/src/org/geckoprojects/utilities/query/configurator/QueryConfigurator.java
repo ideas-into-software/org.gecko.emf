@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.Component;
  * @since 26.07.2017
  */
 @Component(name="QueryConfigurator", immediate=true, service=EPackageConfigurator.class)
-@EMFModel(emf_model_fileExtension = "query", emf_model_name = QueryPackage.eNAME, emf_model_nsURI = QueryPackage.eNS_URI, emf_model_version = "1.0.0")
+@EMFModel(fileExtension = "query", name = QueryPackage.eNAME, nsURI = QueryPackage.eNS_URI, version = "1.0.0")
 @ProvideEMFModel(name = QueryPackage.eNAME, nsURI = QueryPackage.eNS_URI, version = "1.0.0")
 public class QueryConfigurator implements EPackageConfigurator {
 

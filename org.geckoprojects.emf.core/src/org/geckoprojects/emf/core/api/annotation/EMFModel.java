@@ -31,11 +31,11 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
 @Target(ElementType.TYPE)
 @RequireEMF
 public @interface EMFModel {
-
-	String emf_model_name();
-	String[] emf_model_nsURI();
-	String[] emf_model_contentType() default "";
-	String[] emf_model_fileExtension() default "";
-	String emf_model_version() default"";
+	static String PREFIX_ =EMFNamespaces.EMF_MODEL_PREFIX;
+	String name();
+	String[] nsURI();
+	String[] contentType() default "";
+	String[] fileExtension() default "";
+	String version() default "" ;
 	
 }

@@ -38,14 +38,15 @@ import org.osgi.annotation.bundle.Capability;
 		name = ResourceSetConfigurator.EMF_CONFIGURATOR_NAME)
 public @interface ProvideEMFResourceConfigurator {
 
-	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_NAME)
+	@Attribute()
 	String name(); 
 	
-	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_CONTENT_TYPE)
+	@Attribute()
 	String[] contentType();
 
-	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_FILE_EXT)
+	@Attribute()
 	String[] fileExtension();
 	
-	String version();
+//	@Attribute
+	String version() default "1.0.0";
 }

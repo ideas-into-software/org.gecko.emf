@@ -30,10 +30,11 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
 @Target(ElementType.TYPE)
 @RequireEMF
 public @interface EMFResourceFactoryConfigurator {
+	String PREFIX_ = EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_PREFIX;
 
-	String emf_resource_configurator_name();
-	String[] emf_resource_configurator_feature() default "";
-	String[] emf_resource_configurator_contentType() default "";
-	String[] emf_resource_configurator_fileExtension() default "";
+	String name();
+	String[] feature() default "";
+	String[] contentType() default "";
+	String[] fileExtension() default "";
 	
 }

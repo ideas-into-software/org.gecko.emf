@@ -19,14 +19,14 @@ import org.osgi.service.component.annotations.Component;
 
 /**
  * Configurator for the EMFCollection model
+ * 
  * @author Mark Hoffmann
  * @since 26.07.2017
  */
-@Component(name="EMFCollectionConfigurator", immediate=true, service=EPackageConfigurator.class)
-@EMFModel(emf_model_name= CollectionPackage.eNAME, emf_model_nsURI = CollectionPackage.eNS_URI, emf_model_version = "2.0")
-@ProvideEMFModel(name = CollectionPackage.eNAME, nsURI = CollectionPackage.eNS_URI, version = "2.0")
+@Component(name = "EMFCollectionConfigurator", immediate = true, service = EPackageConfigurator.class)
+@EMFModel(name = CollectionPackage.eNAME, nsURI = CollectionPackage.eNS_URI, version = "2.0.0")
+@ProvideEMFModel(name = CollectionPackage.eNAME, nsURI = CollectionPackage.eNS_URI, version = "2.0.0")
 public class EMFOSGiConfigurator implements EPackageConfigurator {
-
 
 	@Override
 	public void configureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {

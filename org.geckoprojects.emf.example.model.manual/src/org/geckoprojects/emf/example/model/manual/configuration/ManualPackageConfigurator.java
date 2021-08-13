@@ -1,4 +1,4 @@
-package org.geckoprojects.emf.example.model.manual.model.configuration;
+package org.geckoprojects.emf.example.model.manual.configuration;
 
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.geckoprojects.emf.core.api.EPackageConfigurator;

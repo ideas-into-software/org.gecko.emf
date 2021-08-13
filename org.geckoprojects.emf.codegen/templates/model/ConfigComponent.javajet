@@ -34,9 +34,9 @@ package <%=genPackage.getInterfacePackageName()%>.configuration;
  * @generated
  */
 @Component(name="<%=genPackage.getPrefix()%>Configurator", service= {EPackageConfigurator.class, ResourceFactoryConfigurator.class})
-@EMFModel(emf_model_name=<%=genPackage.getPackageInterfaceName()%>.eNAME, emf_model_nsURI={<%=genPackage.getPackageInterfaceName()%>.eNS_URI}, emf_model_version="1.0")
+@EMFModel(name=<%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI={<%=genPackage.getPackageInterfaceName()%>.eNS_URI}, version="1.0.0")
 @RequireEMF
-@ProvideEMFModel(name = <%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI = { <%=genPackage.getPackageInterfaceName()%>.eNS_URI }, version = "1.0" )
+@ProvideEMFModel(name = <%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI = { <%=genPackage.getPackageInterfaceName()%>.eNS_URI }, version = "1.0.0")
 @ProvideEMFResourceConfigurator( name = <%=genPackage.getPackageInterfaceName()%>.eNAME,
 <%if (genPackage.getContentTypeIdentifier() != null) {%>
 	contentType = { "<%=genPackage.getContentTypeIdentifier()%>" },
@@ -51,7 +51,7 @@ package <%=genPackage.getInterfacePackageName()%>.configuration;
  	},
 <%}%> 
 <%}%> 
-	version = "1.0"
+	version = "1.0.0"
 )
 public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPackageConfigurator, ResourceFactoryConfigurator
 {

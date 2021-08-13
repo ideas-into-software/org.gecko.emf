@@ -55,11 +55,11 @@ import de.undercouch.bson4jackson.BsonFactory;
 	version = "1.0.1"
 )
 @EMFResourceFactoryConfigurator(
-		emf_resource_configurator_name ="EMFBson",
-		emf_resource_configurator_fileExtension = {
+		name ="EMFBson",
+		fileExtension = {
 				"bson"
 		},
-		emf_resource_configurator_contentType = {
+		contentType = {
 				"application/bson"
 			}
 		)

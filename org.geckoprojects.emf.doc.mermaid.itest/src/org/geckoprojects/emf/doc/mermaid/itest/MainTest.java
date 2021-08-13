@@ -2,9 +2,11 @@ package org.geckoprojects.emf.doc.mermaid.itest;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
 
 import org.geckoprojects.emf.doc.mermaid.MermaidService;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleContext;
 import org.osgi.test.common.annotation.InjectBundleContext;
@@ -19,11 +21,11 @@ public class MainTest {
 	@InjectBundleContext
 	BundleContext bc;
 
-//	@Test
+	@Test
 	public void main(@InjectService MermaidService mermaidService) throws Exception {
 
 		String ecorePath = "./model/bsm.ecore";
-//		Writer consoleWriter = new OutputStreamWriter(System.out);
+		Writer consoleWriter = new OutputStreamWriter(System.out);
 		Writer fileWriter = new FileWriter(new File("output.md"));
 
 		mermaidService.generate(ecorePath, fileWriter);

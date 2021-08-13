@@ -58,7 +58,7 @@
 	org.geckoprojects.emf.mongo.core.itest;version=snapshot,\
 	org.geckoprojects.emf.repository.api;version=snapshot,\
 	org.geckoprojects.emf.repository.mongo;version=snapshot,\
-	org.geckoprojects.emf.utilities.query.model;version=snapshot,\
+	org.geckoprojects.emf.utilities.model;version=snapshot,\
 	org.geckoprojects.mongo.core;version=snapshot,\
 	org.geckoprojects.mongo.core.fragment;version=snapshot,\
 	org.mockito.mockito-core;version='[3.6.0,3.6.1)',\
