@@ -11,7 +11,7 @@
 [INFO] Configuring Jet
 [INFO] subtask Generating code
 [INFO] internaly worked 0.16666666666666666 on null
-[INFO] subtask Generating Code for ExtendedPrefixPackage
+[INFO] subtask Generating Code for ExtendedPackage
 [INFO] internaly worked 0.16666666666666666 on null
 [INFO] internaly worked 0.16666666666666666 on null
 [INFO] internaly worked 0.16666666666666666 on null
@@ -22,8 +22,8 @@
 [INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/model/extendend.ecore
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.extended.model.ExtendedPrefixPackage
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.extended.ExtendedPackage
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
 [INFO] Asked to handle resource://org.geckoprojects.emf.example.model.extended/../org.geckoprojects.emf.example.model.basic/model/basic.genmodel
 [INFO] Asked for content Descriptor resource://org.geckoprojects.emf.example.model.extended/../org.geckoprojects.emf.example.model.basic/model/basic.genmodel
 [INFO] Asked to handle resource://org.geckoprojects.emf.example.model.extended/../org.geckoprojects.emf.example.model.basic/model/basic.genmodel
@@ -82,281 +82,281 @@
 [INFO] Match in /home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
 [INFO] internaly worked 0.16666666666666666 on null
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixPackage.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPackage.java
 [INFO] internaly worked 0.16666666666666674 on null
 [INFO] subtask 
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.model.impl.ExtendedPrefixPackageImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.impl.ExtendedPackageImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixPackageImpl.java
-[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.extended.model.ExtendedPrefixFactory
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPackageImpl.java
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.extended.ExtendedFactory
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPrefixFactory.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.model.impl.ExtendedPrefixFactoryImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedFactory.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.impl.ExtendedFactoryImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPrefixFactoryImpl.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.model.util.ExtendedPrefixSwitch
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedFactoryImpl.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.util.ExtendedSwitch
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixSwitch.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.model.util.ExtendedPrefixAdapterFactory
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedSwitch.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.util.ExtendedAdapterFactory
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixAdapterFactory.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.model.util.ExtendedPrefixResourceFactoryImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedAdapterFactory.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.util.ExtendedResourceFactoryImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceFactoryImpl.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.model.util.ExtendedPrefixResourceImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceFactoryImpl.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.util.ExtendedResourceImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/ExtendedPrefixResourceImpl.java
-[INFO] subtask Generating OSGi configuration component for package 'model'
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/ExtendedResourceImpl.java
+[INFO] subtask Generating OSGi configuration component for package 'extended'
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/configuration/ExtendedPrefixConfigurationComponent.java
-[INFO] subtask Generating package info for package 'model'
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/configuration/ExtendedConfigurationComponent.java
+[INFO] subtask Generating package info for package 'extended'
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/package-info.java
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/package-info.java
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/util/package-info.java
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/util/package-info.java
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/package-info.java
-[INFO] subtask Generating Extended Address
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/package-info.java
+[INFO] subtask Generating Address
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.extended.model.ExtendedAddress
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.extended.ExtendedAddress
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedAddress.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.model.impl.ExtendedAddressImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedAddress.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.impl.ExtendedAddressImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedAddressImpl.java
-[INFO] subtask Generating Extended Person
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedAddressImpl.java
+[INFO] subtask Generating Person
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.extended.model.ExtendedPerson
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.extended.ExtendedPerson
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/ExtendedPerson.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.model.impl.ExtendedPersonImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/ExtendedPerson.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.extended.impl.ExtendedPersonImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.extended
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.extended
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
-[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/model/impl/ExtendedPersonImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.extended/src-gen/org/geckoprojects/emf/example/model/extended/impl/ExtendedPersonImpl.java
 [INFO] Generating code - org.eclipse.emf.codegen.ecore
 [INFO]   OK - org.eclipse.emf.common
 [INFO]   OK - org.eclipse.emf.common

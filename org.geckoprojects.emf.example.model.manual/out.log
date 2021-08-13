@@ -1,6 +1,6 @@
 [INFO] Output configured: src-gen
-[INFO] Output result: /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen
-[INFO] Running for genmodel model/manual.genmodel in /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual
+[INFO] Output result: /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen
+[INFO] Running for genmodel model/manual.genmodel in /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual
 [INFO] Asked to handle resource://org.geckoprojects.emf.example.model.manual/model/manual.genmodel
 [INFO] Asked for content Descriptor resource://org.geckoprojects.emf.example.model.manual/model/manual.genmodel
 [INFO] Asked to handle resource://org.geckoprojects.emf.example.model.manual/model/manual.genmodel
@@ -22,24 +22,21 @@
 [INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/model/manual.ecore
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.manual.model.ManualPackage
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.manual.ManualPackage
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
 [INFO] Asked to handle resource://org.geckoprojects.emf.example.model.manual/../org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] Asked for content Descriptor resource://org.geckoprojects.emf.example.model.manual/../org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] Asked to handle resource://org.geckoprojects.emf.example.model.manual/../org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] Asked to open InputStream for resource://org.geckoprojects.emf.example.model.manual/../org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] bsn according to URIorg.eclipse.emf.ecore
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore.xmi
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
-[INFO] Could not parse BSN from /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.core/bin. Error was Is a directory. Returning org.geckoprojects.emf.core
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
+[INFO] Could not parse BSN from /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.core/bin. Error was Is a directory. Returning org.geckoprojects.emf.core
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
-[INFO] Match in /var/home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
+[INFO] Match in /home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.genmodel with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
@@ -49,255 +46,252 @@
 [INFO] Asked to open InputStream for resource://org.geckoprojects.emf.example.model.manual/../org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] bsn according to URIorg.eclipse.emf.ecore
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore.xmi
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
-[INFO] Could not parse BSN from /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.core/bin. Error was Is a directory. Returning org.geckoprojects.emf.core
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
+[INFO] Could not parse BSN from /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.core/bin. Error was Is a directory. Returning org.geckoprojects.emf.core
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.geckoprojects.emf.core
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
-[INFO] Match in /var/home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
+[INFO] Match in /home/stbischof/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.23.0/org.eclipse.emf.ecore-2.23.0.jar
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
 [INFO] internaly worked 0.2 on null
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualPackage.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualPackage.java
 [INFO] subtask 
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.model.impl.ManualPackageImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.impl.ManualPackageImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualPackageImpl.java
-[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.manual.model.ManualFactory
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualPackageImpl.java
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.manual.ManualFactory
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/ManualFactory.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.model.impl.ManualFactoryImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/ManualFactory.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.impl.ManualFactoryImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/ManualFactoryImpl.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.model.util.ManualSwitch
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/ManualFactoryImpl.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.util.ManualSwitch
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualSwitch.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.model.util.ManualAdapterFactory
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualSwitch.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.util.ManualAdapterFactory
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualAdapterFactory.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.model.util.ManualResourceFactoryImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualAdapterFactory.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.util.ManualResourceFactoryImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceFactoryImpl.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.model.util.ManualResourceImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceFactoryImpl.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.util.ManualResourceImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/ManualResourceImpl.java
-[INFO] subtask Generating OSGi configuration component for package 'model'
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/ManualResourceImpl.java
+[INFO] subtask Generating OSGi configuration component for package 'manual'
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/configuration/ManualConfigurationComponent.java
-[INFO] subtask Generating package info for package 'model'
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/configuration/ManualConfigurationComponent.java
+[INFO] subtask Generating package info for package 'manual'
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/package-info.java
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/package-info.java
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/util/package-info.java
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/util/package-info.java
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/package-info.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/package-info.java
 [INFO] subtask Generating Foo
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.manual.model.Foo
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
+[INFO] subtask Generating Java interface org.geckoprojects.emf.example.model.manual.Foo
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/Foo.java
-[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.model.impl.FooImpl
-[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/Foo.java
+[INFO] subtask Generating Java class org.geckoprojects.emf.example.model.manual.impl.FooImpl
+[INFO] subtask Generating /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
-[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
-[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
-[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
-[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
+[INFO] Asked if exists platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
+[INFO] Sanatized platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
+[INFO] Asked to open InputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
+[INFO] sanatized uri resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
 [INFO] bsn according to URIorg.geckoprojects.emf.example.model.manual
 [INFO] The bsn segment part fits to: org.geckoprojects.emf.example.model.manual
-[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
-[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
-[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
-[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
-[INFO] Opening file /var/home/stbischof/dev/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/model/impl/FooImpl.java
+[INFO] subtask Preparing new /org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
+[INFO] Asked to handle platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
+[INFO] Asked to open OutputStream for platform:/resource/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
+[INFO] Sanatized resource://org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
+[INFO] Opening file /home/stbischof/git/org.geckoprojects.emf/org.geckoprojects.emf.example.model.manual/src-gen/org/geckoprojects/emf/example/model/manual/impl/FooImpl.java
 [INFO] Generating code - org.eclipse.emf.codegen.ecore
 [INFO]   OK - org.eclipse.emf.common
 [INFO]   OK - org.eclipse.emf.common

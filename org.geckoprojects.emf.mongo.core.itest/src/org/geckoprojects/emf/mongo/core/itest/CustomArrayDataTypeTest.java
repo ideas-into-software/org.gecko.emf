@@ -12,15 +12,14 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bson.Document;
-import org.bson.codecs.BsonCodecProvider;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.geckoprojects.emf.core.api.EMFNamespaces;
 import org.geckoprojects.emf.core.api.ResourceSetConfigurator;
 import org.geckoprojects.emf.core.api.ResourceSetFactory;
-import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
-import org.geckoprojects.emf.example.model.basic.model.Geometry;
+import org.geckoprojects.emf.example.model.basic.BasicFactory;
+import org.geckoprojects.emf.example.model.basic.Geometry;
 import org.geckoprojects.emf.mongo.handlers.MongoResourceSetConfigurator;
 import org.geckoprojects.mongo.core.MongoConstants;
 import org.junit.jupiter.api.Test;

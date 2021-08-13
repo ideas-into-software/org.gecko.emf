@@ -3,8 +3,8 @@ package org.geckoprojects.emf.example.model.manual.model.configuration;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.geckoprojects.emf.core.api.EPackageConfigurator;
 import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
-import org.geckoprojects.emf.example.model.manual.model.ManualPackage;
-import org.geckoprojects.emf.example.model.manual.model.util.ManualResourceFactoryImpl;
+import org.geckoprojects.emf.example.model.manual.ManualPackage;
+import org.geckoprojects.emf.example.model.manual.util.ManualResourceFactoryImpl;
 
 public class ManualPackageConfigurator implements EPackageConfigurator, ResourceFactoryConfigurator {
 

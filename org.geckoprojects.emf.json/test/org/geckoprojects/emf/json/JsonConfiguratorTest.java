@@ -13,6 +13,8 @@ package org.geckoprojects.emf.json;
 
 
 
+import static org.assertj.core.api.Assertions.fail;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -24,17 +26,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
-import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
-import org.geckoprojects.emf.example.model.basic.model.Contact;
-import org.geckoprojects.emf.example.model.basic.model.ContactContextType;
-import org.geckoprojects.emf.example.model.basic.model.ContactType;
-import org.geckoprojects.emf.example.model.basic.model.GenderType;
-import org.geckoprojects.emf.example.model.basic.model.Person;
-import org.geckoprojects.emf.example.model.basic.model.util.BasicResourceFactoryImpl;
+import org.geckoprojects.emf.example.model.basic.BasicFactory;
+import org.geckoprojects.emf.example.model.basic.BasicPackage;
+import org.geckoprojects.emf.example.model.basic.Contact;
+import org.geckoprojects.emf.example.model.basic.ContactContextType;
+import org.geckoprojects.emf.example.model.basic.ContactType;
+import org.geckoprojects.emf.example.model.basic.GenderType;
+import org.geckoprojects.emf.example.model.basic.Person;
+import org.geckoprojects.emf.example.model.basic.util.BasicResourceFactoryImpl;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.fail;
 
 public class JsonConfiguratorTest {
 

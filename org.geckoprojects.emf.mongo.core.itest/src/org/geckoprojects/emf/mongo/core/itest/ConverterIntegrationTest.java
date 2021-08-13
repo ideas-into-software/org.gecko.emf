@@ -11,10 +11,13 @@
  */
 package org.geckoprojects.emf.mongo.core.itest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
 import java.io.IOException;
 import java.util.Hashtable;
 
-import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
+import org.geckoprojects.emf.example.model.basic.BasicPackage;
 import org.geckoprojects.emf.mongo.ConverterService;
 import org.geckoprojects.emf.mongo.ValueConverter;
 import org.geckoprojects.emf.mongo.converter.DefaultConverterService;
@@ -30,9 +33,6 @@ import org.osgi.test.common.annotation.InjectService;
 import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
  * Integration tests for the complete EMF mongo setup

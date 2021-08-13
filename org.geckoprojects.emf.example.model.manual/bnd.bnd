@@ -16,10 +16,10 @@ Bundle-Version: 0.0.1-SNAPSHOT
 
 
 Export-Package: \
-	org.geckoprojects.emf.example.model.manual.model,\
-	org.geckoprojects.emf.example.model.manual.model.configuration
-	org.geckoprojects.emf.example.model.manual.model.impl,\
-	org.geckoprojects.emf.example.model.manual.model.util
+	org.geckoprojects.emf.example.model.manual,\
+	org.geckoprojects.emf.example.model.manual.configuration
+	org.geckoprojects.emf.example.model.manual.impl,\
+	org.geckoprojects.emf.example.model.manual.util
 	
 #-dependson: org.geckoprojects.emf.codegen
 #
@@ -28,6 +28,7 @@ Export-Package: \
 #		generate="geckoEMF 1>out.log 2>err.log";\
 #		genmodel=model/manual.genmodel;\
 #		output=src-gen
+
 -privatepackage: \
-	org.geckoprojects.emf.example.model.manual.model.impl,\
-	org.geckoprojects.emf.example.model.manual.model.util
+	org.geckoprojects.emf.example.model.manual.impl,\
+	org.geckoprojects.emf.example.model.manual.util

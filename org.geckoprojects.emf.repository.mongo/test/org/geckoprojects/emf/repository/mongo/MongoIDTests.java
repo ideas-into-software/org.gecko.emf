@@ -13,8 +13,8 @@ package org.geckoprojects.emf.repository.mongo;
 
 import org.bson.types.ObjectId;
 import org.eclipse.emf.ecore.EObject;
-import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
-import org.geckoprojects.emf.example.model.basic.model.Person;
+import org.geckoprojects.emf.example.model.basic.BasicFactory;
+import org.geckoprojects.emf.example.model.basic.Person;
 import org.geckoprojects.emf.repository.helper.RepositoryHelper;
 import org.junit.jupiter.api.Test;
 

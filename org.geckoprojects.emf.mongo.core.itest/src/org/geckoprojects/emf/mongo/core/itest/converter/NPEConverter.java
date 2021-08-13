@@ -4,7 +4,7 @@
 package org.geckoprojects.emf.mongo.core.itest.converter;
 
 import org.eclipse.emf.ecore.EDataType;
-import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
+import org.geckoprojects.emf.example.model.basic.BasicPackage;
 import org.geckoprojects.emf.mongo.ValueConverter;
 
 /**

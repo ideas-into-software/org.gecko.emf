@@ -37,12 +37,10 @@ import org.osgi.annotation.bundle.Capability;
 		name = EPackageConfigurator.EMF_CONFIGURATOR_NAME)
 public @interface ProvideEMFModel {
 
-//	@Attribute(EMFNamespaces.EMF_MODEL_NAME)
-	@Attribute("name")
+	@Attribute(EMFNamespaces.EMF_MODEL_NAME)
 	String name(); 
 	
-//	@Attribute(EMFNamespaces.EMF_MODEL_NSURI)
-	@Attribute("nsURI")
+	@Attribute(EMFNamespaces.EMF_MODEL_NSURI)
 	String[] nsURI();
 	
 	String version();

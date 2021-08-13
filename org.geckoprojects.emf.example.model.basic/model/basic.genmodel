@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.geckoprojects.emf.example.model.basic/src" modelPluginID="org.geckoprojects.emf.example.model.basic"
-    modelName="Test" modelPluginClass="" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore" operationReflection="true"
-    importOrganizing="true" oSGiCompatible="true">
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.geckoprojects.emf.example.model.basic/src"
+    modelPluginID="org.geckoprojects.emf.example.model.basic" modelName="Basic" modelPluginClass=""
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true" oSGiCompatible="true">
   <foreignModel>basic.ecore</foreignModel>
-  <genPackages prefix="Basic" basePackage="org.geckoprojects.emf.example.model.basic"
-      resource="XMI" disposableProviderFactory="true" contentTypeIdentifier="basic#1.0"
-      fileExtensions="basic" ecorePackage="basic.ecore#/">
+  <genPackages prefix="Basic" basePackage="org.geckoprojects.emf.example.model" resource="XMI"
+      disposableProviderFactory="true" contentTypeIdentifier="basic#1.0" fileExtensions="basic"
+      ecorePackage="basic.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="basic.ecore#//ContactType">
       <genEnumLiterals ecoreEnumLiteral="basic.ecore#//ContactType/PHONE"/>
       <genEnumLiterals ecoreEnumLiteral="basic.ecore#//ContactType/MOBILE"/>

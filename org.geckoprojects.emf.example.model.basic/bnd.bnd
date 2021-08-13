@@ -15,12 +15,12 @@ Bundle-Version: 0.0.1-SNAPSHOT
 -includeresource: model=model
 
 Private-Package: \
-	org.geckoprojects.emf.example.model.basic.model.configuration
+	org.geckoprojects.emf.example.model.basic.configuration
 	
 Export-Package: \
-	org.geckoprojects.emf.example.model.basic.model,\
-	org.geckoprojects.emf.example.model.basic.model.impl,\
-	org.geckoprojects.emf.example.model.basic.model.util
+	org.geckoprojects.emf.example.model.basic,\
+	org.geckoprojects.emf.example.model.basic.impl,\
+	org.geckoprojects.emf.example.model.basic.util
 	
 -dependson: org.geckoprojects.emf.codegen
 

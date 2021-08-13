@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
+import org.geckoprojects.emf.example.model.basic.BasicPackage;
 import org.geckoprojects.emf.mongo.Options;
 import org.junit.jupiter.api.Test;
 

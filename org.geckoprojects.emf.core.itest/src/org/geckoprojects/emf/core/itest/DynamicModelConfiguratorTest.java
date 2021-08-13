@@ -11,6 +11,7 @@
  */
 package org.geckoprojects.emf.core.itest;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -31,8 +32,8 @@ import org.eclipse.emf.ecore.resource.Resource.IOWrappedException;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.geckoprojects.emf.core.api.EMFNamespaces;
 import org.geckoprojects.emf.core.api.ResourceSetFactory;
-import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
-import org.geckoprojects.emf.example.model.basic.model.Person;
+import org.geckoprojects.emf.example.model.basic.BasicFactory;
+import org.geckoprojects.emf.example.model.basic.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,8 +46,6 @@ import org.osgi.test.common.annotation.InjectService;
 import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tests the EMF OSGi integration

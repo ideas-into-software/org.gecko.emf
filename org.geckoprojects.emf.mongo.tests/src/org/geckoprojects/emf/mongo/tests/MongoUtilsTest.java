@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
+import org.geckoprojects.emf.example.model.basic.BasicPackage;
 import org.geckoprojects.emf.mongo.MongoUtils;
 import org.junit.jupiter.api.Test;
 
