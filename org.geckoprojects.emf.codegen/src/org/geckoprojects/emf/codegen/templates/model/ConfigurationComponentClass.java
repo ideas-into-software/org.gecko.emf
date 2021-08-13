@@ -43,31 +43,33 @@ public class ConfigurationComponentClass
   protected final String TEXT_26 = "<?> packageRegistration = null;" + NL + "\t" + NL + "\t@";
   protected final String TEXT_27 = NL + "\tpublic void activate(BundleContext ctx) {" + NL + "\t\t";
   protected final String TEXT_28 = " p = ";
-  protected final String TEXT_29 = ".init();" + NL + "\t\t";
-  protected final String TEXT_30 = "<String, Object> properties = new ";
-  protected final String TEXT_31 = "<String, Object>();" + NL + "\t\tproperties.put(\"emf.model.name\", ";
-  protected final String TEXT_32 = ".eNAME);" + NL + "\t\tproperties.put(\"emf.model.nsURI\", ";
-  protected final String TEXT_33 = ".eNS_URI);" + NL + "\t\tproperties.put(\"fileExtension\", \"";
-  protected final String TEXT_34 = "\");";
-  protected final String TEXT_35 = NL + "\t\tproperties.put(\"contentType\", \"";
-  protected final String TEXT_36 = NL + "\t\tString[] serviceClasses = new String[] {";
-  protected final String TEXT_37 = ".class.getName(), ";
-  protected final String TEXT_38 = ".class.getName()};" + NL + "\t\tpackageRegistration = ctx.registerService(serviceClasses, p, properties);" + NL + "\t}" + NL + "" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.geckoprojects.emf.core.ResourceFactoryConfigurator#configureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void configureResourceFactory(Registry registry) {" + NL + "\t\t";
-  protected final String TEXT_39 = "registry.getExtensionToFactoryMap().put(\"";
-  protected final String TEXT_40 = "\", new ";
-  protected final String TEXT_41 = "());";
-  protected final String TEXT_42 = " " + NL + "\t\t";
-  protected final String TEXT_43 = "registry.getContentTypeToFactoryMap().put(\"";
-  protected final String TEXT_44 = " " + NL + "\t}" + NL + "\t" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.geckoprojects.emf.core.ResourceFactoryConfigurator#unconfigureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void unconfigureResourceFactory(Registry registry) {" + NL + "\t\t";
-  protected final String TEXT_45 = "registry.getExtensionToFactoryMap().remove(\"";
-  protected final String TEXT_46 = "registry.getContentTypeToFactoryMap().remove(\"";
-  protected final String TEXT_47 = " " + NL + "\t}" + NL + "\t" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.geckoprojects.emf.core.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void configureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {" + NL + "\t\tregistry.put(";
-  protected final String TEXT_48 = ".eNS_URI, ";
-  protected final String TEXT_49 = ".init());" + NL + "\t}" + NL + "\t" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.geckoprojects.emf.core.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {" + NL + "\t\tif (packageRegistration != null) {" + NL + "\t\t\tpackageRegistration.unregister();" + NL + "\t\t}" + NL + "\t\tregistry.remove(";
-  protected final String TEXT_50 = ".eNS_URI);" + NL + "\t}" + NL + "\t" + NL + "\t@";
-  protected final String TEXT_51 = NL + "\tpublic void deactivate() {" + NL + "\t\tEPackage.Registry.INSTANCE.remove(";
-  protected final String TEXT_52 = ".eNAME);" + NL + "\t\tif(packageRegistration != null){" + NL + "\t\t\tpackageRegistration.unregister();" + NL + "\t\t}" + NL + "\t}" + NL + "}";
-  protected final String TEXT_53 = NL;
+  protected final String TEXT_29 = ".init();" + NL + "\t\tif(p == null){" + NL + "\t\t\tp= ";
+  protected final String TEXT_30 = ".eINSTANCE;" + NL + "\t\t\tEPackage.Registry.INSTANCE.put(";
+  protected final String TEXT_31 = ".eNS_URI,p);" + NL + "\t\t}" + NL + "\t\t";
+  protected final String TEXT_32 = "<String, Object> properties = new ";
+  protected final String TEXT_33 = "<String, Object>();" + NL + "\t\tproperties.put(\"emf.model.name\", ";
+  protected final String TEXT_34 = ".eNAME);" + NL + "\t\tproperties.put(\"emf.model.nsURI\", ";
+  protected final String TEXT_35 = ".eNS_URI);" + NL + "\t\tproperties.put(\"fileExtension\", \"";
+  protected final String TEXT_36 = "\");";
+  protected final String TEXT_37 = NL + "\t\tproperties.put(\"contentType\", \"";
+  protected final String TEXT_38 = NL + "\t\tString[] serviceClasses = new String[] {";
+  protected final String TEXT_39 = ".class.getName(), ";
+  protected final String TEXT_40 = ".class.getName()};" + NL + "\t\tpackageRegistration = ctx.registerService(serviceClasses, p, properties);" + NL + "\t}" + NL + "" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.geckoprojects.emf.core.ResourceFactoryConfigurator#configureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void configureResourceFactory(Registry registry) {" + NL + "\t\t";
+  protected final String TEXT_41 = "registry.getExtensionToFactoryMap().put(\"";
+  protected final String TEXT_42 = "\", new ";
+  protected final String TEXT_43 = "());";
+  protected final String TEXT_44 = " " + NL + "\t\t";
+  protected final String TEXT_45 = "registry.getContentTypeToFactoryMap().put(\"";
+  protected final String TEXT_46 = " " + NL + "\t}" + NL + "\t" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.geckoprojects.emf.core.ResourceFactoryConfigurator#unconfigureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void unconfigureResourceFactory(Registry registry) {" + NL + "\t\t";
+  protected final String TEXT_47 = "registry.getExtensionToFactoryMap().remove(\"";
+  protected final String TEXT_48 = "registry.getContentTypeToFactoryMap().remove(\"";
+  protected final String TEXT_49 = " " + NL + "\t}" + NL + "\t" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.geckoprojects.emf.core.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void configureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {" + NL + "\t\tregistry.put(";
+  protected final String TEXT_50 = ".eNS_URI, ";
+  protected final String TEXT_51 = ".init());" + NL + "\t}" + NL + "\t" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.geckoprojects.emf.core.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {" + NL + "\t\tregistry.remove(";
+  protected final String TEXT_52 = ".eNS_URI);" + NL + "\t}" + NL + "\t" + NL + "\t@";
+  protected final String TEXT_53 = NL + "\tpublic void deactivate() {" + NL + "\t\tEPackage.Registry.INSTANCE.remove(";
+  protected final String TEXT_54 = ".eNS_URI);" + NL + "\t\tif(packageRegistration != null){" + NL + "\t\t\tpackageRegistration.unregister();" + NL + "\t\t}" + NL + "\t}" + NL + "}";
+  protected final String TEXT_55 = NL;
 
   public String generate(Object argument)
   {
@@ -150,70 +152,74 @@ public class ConfigurationComponentClass
     stringBuffer.append(TEXT_28);
     stringBuffer.append(genModel.getImportedName(genPackage.getQualifiedPackageClassName()));
     stringBuffer.append(TEXT_29);
-    stringBuffer.append(genModel.getImportedName("java.util.Dictionary"));
+    stringBuffer.append(genModel.getImportedName(genPackage.getQualifiedPackageClassName()));
     stringBuffer.append(TEXT_30);
-    stringBuffer.append(genModel.getImportedName("java.util.Hashtable"));
+    stringBuffer.append(genPackage.getPackageInterfaceName());
     stringBuffer.append(TEXT_31);
-    stringBuffer.append(genPackage.getPackageInterfaceName());
+    stringBuffer.append(genModel.getImportedName("java.util.Dictionary"));
     stringBuffer.append(TEXT_32);
-    stringBuffer.append(genPackage.getPackageInterfaceName());
+    stringBuffer.append(genModel.getImportedName("java.util.Hashtable"));
     stringBuffer.append(TEXT_33);
-    stringBuffer.append(genPackage.getFileExtension());
-    stringBuffer.append(TEXT_34);
-     if (genPackage.getContentTypeIdentifier() != null) {
-    stringBuffer.append(TEXT_35);
-    stringBuffer.append(genPackage.getContentTypeIdentifier());
-    stringBuffer.append(TEXT_34);
-    }
-    stringBuffer.append(TEXT_36);
     stringBuffer.append(genPackage.getPackageInterfaceName());
+    stringBuffer.append(TEXT_34);
+    stringBuffer.append(genPackage.getPackageInterfaceName());
+    stringBuffer.append(TEXT_35);
+    stringBuffer.append(genPackage.getFileExtension());
+    stringBuffer.append(TEXT_36);
+     if (genPackage.getContentTypeIdentifier() != null) {
     stringBuffer.append(TEXT_37);
-    stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EPackage"));
+    stringBuffer.append(genPackage.getContentTypeIdentifier());
+    stringBuffer.append(TEXT_36);
+    }
     stringBuffer.append(TEXT_38);
+    stringBuffer.append(genPackage.getPackageInterfaceName());
+    stringBuffer.append(TEXT_39);
+    stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EPackage"));
+    stringBuffer.append(TEXT_40);
     if (!genPackage.getFileExtensionList().isEmpty() && !GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {
     for (String fileExtension : genPackage.getFileExtensionList()) {
-    stringBuffer.append(TEXT_39);
+    stringBuffer.append(TEXT_41);
     stringBuffer.append(fileExtension);
-    stringBuffer.append(TEXT_40);
-    stringBuffer.append(genPackage.getResourceFactoryClassName());
-    stringBuffer.append(TEXT_41);
-    }
-    }
     stringBuffer.append(TEXT_42);
-    if (genPackage.getContentTypeIdentifier() != null && !GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {
-    stringBuffer.append(TEXT_43);
-    stringBuffer.append(genPackage.getContentTypeIdentifier());
-    stringBuffer.append(TEXT_40);
     stringBuffer.append(genPackage.getResourceFactoryClassName());
-    stringBuffer.append(TEXT_41);
+    stringBuffer.append(TEXT_43);
+    }
     }
     stringBuffer.append(TEXT_44);
+    if (genPackage.getContentTypeIdentifier() != null && !GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {
+    stringBuffer.append(TEXT_45);
+    stringBuffer.append(genPackage.getContentTypeIdentifier());
+    stringBuffer.append(TEXT_42);
+    stringBuffer.append(genPackage.getResourceFactoryClassName());
+    stringBuffer.append(TEXT_43);
+    }
+    stringBuffer.append(TEXT_46);
     if (!genPackage.getFileExtensionList().isEmpty() && !GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {
     for (String fileExtension : genPackage.getFileExtensionList()) {
-    stringBuffer.append(TEXT_45);
-    stringBuffer.append(fileExtension);
-    stringBuffer.append(TEXT_34);
-    }
-    }
-    stringBuffer.append(TEXT_42);
-    if (genPackage.getContentTypeIdentifier() != null && !GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {
-    stringBuffer.append(TEXT_46);
-    stringBuffer.append(genPackage.getContentTypeIdentifier());
-    stringBuffer.append(TEXT_34);
-    }
     stringBuffer.append(TEXT_47);
-    stringBuffer.append(genPackage.getPackageInterfaceName());
+    stringBuffer.append(fileExtension);
+    stringBuffer.append(TEXT_36);
+    }
+    }
+    stringBuffer.append(TEXT_44);
+    if (genPackage.getContentTypeIdentifier() != null && !GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {
     stringBuffer.append(TEXT_48);
-    stringBuffer.append(genModel.getImportedName(genPackage.getQualifiedPackageClassName()));
+    stringBuffer.append(genPackage.getContentTypeIdentifier());
+    stringBuffer.append(TEXT_36);
+    }
     stringBuffer.append(TEXT_49);
     stringBuffer.append(genPackage.getPackageInterfaceName());
     stringBuffer.append(TEXT_50);
-    stringBuffer.append(genModel.getImportedName("org.osgi.service.component.annotations.Deactivate"));
+    stringBuffer.append(genModel.getImportedName(genPackage.getQualifiedPackageClassName()));
     stringBuffer.append(TEXT_51);
     stringBuffer.append(genPackage.getPackageInterfaceName());
     stringBuffer.append(TEXT_52);
-    genModel.emitSortedImports();
+    stringBuffer.append(genModel.getImportedName("org.osgi.service.component.annotations.Deactivate"));
     stringBuffer.append(TEXT_53);
+    stringBuffer.append(genPackage.getPackageInterfaceName());
+    stringBuffer.append(TEXT_54);
+    genModel.emitSortedImports();
+    stringBuffer.append(TEXT_55);
     return stringBuffer.toString();
   }
 }

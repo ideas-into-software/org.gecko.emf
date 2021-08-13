@@ -58,6 +58,10 @@ public class ExtendedPrefixConfigurationComponent implements EPackageConfigurato
 	@Activate
 	public void activate(BundleContext ctx) {
 		ExtendedPrefixPackage p = ExtendedPrefixPackageImpl.init();
+		if(p == null){
+			p= ExtendedPrefixPackageImpl.eINSTANCE;
+			EPackage.Registry.INSTANCE.put(ExtendedPrefixPackage.eNS_URI,p);
+		}
 		Dictionary<String, Object> properties = new Hashtable<String, Object>();
 		properties.put("emf.model.name", ExtendedPrefixPackage.eNAME);
 		properties.put("emf.model.nsURI", ExtendedPrefixPackage.eNS_URI);
@@ -105,15 +109,12 @@ public class ExtendedPrefixConfigurationComponent implements EPackageConfigurato
 	 */
 	@Override
 	public void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {
-		if (packageRegistration != null) {
-			packageRegistration.unregister();
-		}
 		registry.remove(ExtendedPrefixPackage.eNS_URI);
 	}
 	
 	@Deactivate
 	public void deactivate() {
-		EPackage.Registry.INSTANCE.remove(ExtendedPrefixPackage.eNAME);
+		EPackage.Registry.INSTANCE.remove(ExtendedPrefixPackage.eNS_URI);
 		if(packageRegistration != null){
 			packageRegistration.unregister();
 		}

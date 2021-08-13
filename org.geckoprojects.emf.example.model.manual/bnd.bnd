@@ -28,3 +28,6 @@ Export-Package: \
 #		generate="geckoEMF 1>out.log 2>err.log";\
 #		genmodel=model/manual.genmodel;\
 #		output=src-gen
+-privatepackage: \
+	org.geckoprojects.emf.example.model.manual.model.impl,\
+	org.geckoprojects.emf.example.model.manual.model.util

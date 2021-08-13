@@ -16,7 +16,8 @@
 	org.osgi.util.promise,\
 	org.geckoprojects.emf.model.info,\
 	org.osgi.annotation.versioning,\
-	org.osgi.test.assertj.framework
+	org.osgi.test.assertj.framework,\
+	org.geckoprojects.emf.example.model.manual
 
 Bundle-Version: ${emf-version}
 

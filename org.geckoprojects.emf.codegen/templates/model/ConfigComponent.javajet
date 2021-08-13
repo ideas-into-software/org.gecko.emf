@@ -60,6 +60,10 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Activate")%>
 	public void activate(BundleContext ctx) {
 		<%=genPackage.getPackageInterfaceName()%> p = <%=genModel.getImportedName(genPackage.getQualifiedPackageClassName())%>.init();
+		if(p == null){
+			p= <%=genModel.getImportedName(genPackage.getQualifiedPackageClassName())%>.eINSTANCE;
+			EPackage.Registry.INSTANCE.put(<%=genPackage.getPackageInterfaceName()%>.eNS_URI,p);
+		}
 		<%=genModel.getImportedName("java.util.Dictionary")%><String, Object> properties = new <%=genModel.getImportedName("java.util.Hashtable")%><String, Object>();
 		properties.put("emf.model.name", <%=genPackage.getPackageInterfaceName()%>.eNAME);
 		properties.put("emf.model.nsURI", <%=genPackage.getPackageInterfaceName()%>.eNS_URI);
@@ -108,15 +112,12 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 	 */
 	@Override
 	public void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {
-		if (packageRegistration != null) {
-			packageRegistration.unregister();
-		}
 		registry.remove(<%=genPackage.getPackageInterfaceName()%>.eNS_URI);
 	}
 	
 	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Deactivate")%>
 	public void deactivate() {
-		EPackage.Registry.INSTANCE.remove(<%=genPackage.getPackageInterfaceName()%>.eNAME);
+		EPackage.Registry.INSTANCE.remove(<%=genPackage.getPackageInterfaceName()%>.eNS_URI);
 		if(packageRegistration != null){
 			packageRegistration.unregister();
 		}

@@ -58,6 +58,10 @@ public class BasicConfigurationComponent implements EPackageConfigurator, Resour
 	@Activate
 	public void activate(BundleContext ctx) {
 		BasicPackage p = BasicPackageImpl.init();
+		if(p == null){
+			p= BasicPackageImpl.eINSTANCE;
+			EPackage.Registry.INSTANCE.put(BasicPackage.eNS_URI,p);
+		}
 		Dictionary<String, Object> properties = new Hashtable<String, Object>();
 		properties.put("emf.model.name", BasicPackage.eNAME);
 		properties.put("emf.model.nsURI", BasicPackage.eNS_URI);
@@ -106,15 +110,12 @@ public class BasicConfigurationComponent implements EPackageConfigurator, Resour
 	 */
 	@Override
 	public void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {
-		if (packageRegistration != null) {
-			packageRegistration.unregister();
-		}
 		registry.remove(BasicPackage.eNS_URI);
 	}
 	
 	@Deactivate
 	public void deactivate() {
-		EPackage.Registry.INSTANCE.remove(BasicPackage.eNAME);
+		EPackage.Registry.INSTANCE.remove(BasicPackage.eNS_URI);
 		if(packageRegistration != null){
 			packageRegistration.unregister();
 		}
