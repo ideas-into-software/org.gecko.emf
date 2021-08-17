@@ -1,6 +1,6 @@
 /*
  */
-package org.geckoprojects.emf.example.model.extended.configuration;
+package org.geckoprojects.emf.example.model.manual.configuration;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 
-import org.geckoprojects.emf.core.api.EMFNamespaces;
 import org.geckoprojects.emf.core.api.EPackageConfigurator;
 import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
 
@@ -20,11 +19,11 @@ import org.geckoprojects.emf.core.api.annotation.provide.ProvideEMFResourceConfi
 
 import org.geckoprojects.emf.core.api.annotation.require.RequireEMF;
 
-import org.geckoprojects.emf.example.model.extended.ExtendedPackage;
+import org.geckoprojects.emf.example.model.manual.ManualPackage;
 
-import org.geckoprojects.emf.example.model.extended.impl.ExtendedPackageImpl;
+import org.geckoprojects.emf.example.model.manual.impl.ManualPackageImpl;
 
-import org.geckoprojects.emf.example.model.extended.util.ExtendedResourceFactoryImpl;
+import org.geckoprojects.emf.example.model.manual.util.ManualResourceFactoryImpl;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
@@ -42,32 +41,33 @@ import org.osgi.service.component.annotations.Deactivate;
  * @see ResourceFactoryConfigurator
  * @generated
  */
-@Component(name="ExtendedConfigurator", service= {EPackageConfigurator.class, ResourceFactoryConfigurator.class})
-@EMFModel(name=ExtendedPackage.eNAME, nsURI={ExtendedPackage.eNS_URI}, version="1.0.0")
+@Component(name="ManualConfigurator", service= {EPackageConfigurator.class, ResourceFactoryConfigurator.class})
+@EMFModel(name=ManualPackage.eNAME, nsURI={ManualPackage.eNS_URI}, version="1.0.0")
 @RequireEMF
-@ProvideEMFModel(name = ExtendedPackage.eNAME, nsURI = { ExtendedPackage.eNS_URI }, version = "1.0.0")
-@ProvideEMFResourceConfigurator( name = ExtendedPackage.eNAME,
-	contentType = { "" }, 
+@ProvideEMFModel(name = ManualPackage.eNAME, nsURI = { ManualPackage.eNS_URI }, version = "1.0.0")
+@ProvideEMFResourceConfigurator( name = ManualPackage.eNAME,
+	contentType = { "manual#1.0" }, 
 	fileExtension = {
-	"extended"
+	"manual"
  	},  
 	version = "1.0.0"
 )
-public class ExtendedConfigurationComponent implements EPackageConfigurator, ResourceFactoryConfigurator {
+public class ManualConfigurationComponent implements EPackageConfigurator, ResourceFactoryConfigurator {
 	private ServiceRegistration<?> packageRegistration = null;
 	
 	@Activate
 	public void activate(BundleContext ctx) {
-		ExtendedPackage p = ExtendedPackageImpl.init();
+		ManualPackage p = ManualPackageImpl.init();
 		if(p == null){
-			p= ExtendedPackageImpl.eINSTANCE;
-			EPackage.Registry.INSTANCE.put(ExtendedPackage.eNS_URI,p);
+			p= ManualPackageImpl.eINSTANCE;
+			EPackage.Registry.INSTANCE.put(ManualPackage.eNS_URI,p);
 		}
 		Dictionary<String, Object> properties = new Hashtable<String, Object>();
-		properties.put(EMFNamespaces.EMF_MODEL_NAME, ExtendedPackage.eNAME);
-		properties.put(EMFNamespaces.EMF_MODEL_NSURI, ExtendedPackage.eNS_URI);
-		properties.put(EMFNamespaces.EMF_MODEL_FILE_EXT, "extended");
-		String[] serviceClasses = new String[] {ExtendedPackage.class.getName(), EPackage.class.getName()};
+		properties.put("emf.model.name", ManualPackage.eNAME);
+		properties.put("emf.model.nsURI", ManualPackage.eNS_URI);
+		properties.put("fileExtension", "manual");
+		properties.put("contentType", "manual#1.0");
+		String[] serviceClasses = new String[] {ManualPackage.class.getName(), EPackage.class.getName()};
 		packageRegistration = ctx.registerService(serviceClasses, p, properties);
 	}
 
@@ -78,8 +78,8 @@ public class ExtendedConfigurationComponent implements EPackageConfigurator, Res
 	 */
 	@Override
 	public void configureResourceFactory(Registry registry) {
-		registry.getExtensionToFactoryMap().put("extended", new ExtendedResourceFactoryImpl()); 
-		 
+		registry.getExtensionToFactoryMap().put("manual", new ManualResourceFactoryImpl()); 
+		registry.getContentTypeToFactoryMap().put("manual#1.0", new ManualResourceFactoryImpl()); 
 	}
 	
 	/* 
@@ -89,8 +89,8 @@ public class ExtendedConfigurationComponent implements EPackageConfigurator, Res
 	 */
 	@Override
 	public void unconfigureResourceFactory(Registry registry) {
-		registry.getExtensionToFactoryMap().remove("extended"); 
-		 
+		registry.getExtensionToFactoryMap().remove("manual"); 
+		registry.getContentTypeToFactoryMap().remove("manual#1.0"); 
 	}
 	
 	/* 
@@ -100,7 +100,7 @@ public class ExtendedConfigurationComponent implements EPackageConfigurator, Res
 	 */
 	@Override
 	public void configureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {
-		registry.put(ExtendedPackage.eNS_URI, ExtendedPackageImpl.init());
+		registry.put(ManualPackage.eNS_URI, ManualPackageImpl.init());
 	}
 	
 	/* 
@@ -110,12 +110,12 @@ public class ExtendedConfigurationComponent implements EPackageConfigurator, Res
 	 */
 	@Override
 	public void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {
-		registry.remove(ExtendedPackage.eNS_URI);
+		registry.remove(ManualPackage.eNS_URI);
 	}
 	
 	@Deactivate
 	public void deactivate() {
-		EPackage.Registry.INSTANCE.remove(ExtendedPackage.eNS_URI);
+		EPackage.Registry.INSTANCE.remove(ManualPackage.eNS_URI);
 		if(packageRegistration != null){
 			packageRegistration.unregister();
 		}

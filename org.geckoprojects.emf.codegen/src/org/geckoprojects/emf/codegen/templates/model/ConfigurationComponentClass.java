@@ -47,11 +47,11 @@ public class ConfigurationComponentClass
   protected final String TEXT_30 = ".eINSTANCE;" + NL + "\t\t\tEPackage.Registry.INSTANCE.put(";
   protected final String TEXT_31 = ".eNS_URI,p);" + NL + "\t\t}" + NL + "\t\t";
   protected final String TEXT_32 = "<String, Object> properties = new ";
-  protected final String TEXT_33 = "<String, Object>();" + NL + "\t\tproperties.put(\"emf.model.name\", ";
-  protected final String TEXT_34 = ".eNAME);" + NL + "\t\tproperties.put(\"emf.model.nsURI\", ";
-  protected final String TEXT_35 = ".eNS_URI);" + NL + "\t\tproperties.put(\"fileExtension\", \"";
+  protected final String TEXT_33 = "<String, Object>();" + NL + "\t\tproperties.put(EMFNamespaces.EMF_MODEL_NAME, ";
+  protected final String TEXT_34 = ".eNAME);" + NL + "\t\tproperties.put(EMFNamespaces.EMF_MODEL_NSURI, ";
+  protected final String TEXT_35 = ".eNS_URI);" + NL + "\t\tproperties.put(EMFNamespaces.EMF_MODEL_FILE_EXT, \"";
   protected final String TEXT_36 = "\");";
-  protected final String TEXT_37 = NL + "\t\tproperties.put(\"contentType\", \"";
+  protected final String TEXT_37 = NL + "\t\tproperties.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, \"";
   protected final String TEXT_38 = NL + "\t\tString[] serviceClasses = new String[] {";
   protected final String TEXT_39 = ".class.getName(), ";
   protected final String TEXT_40 = ".class.getName()};" + NL + "\t\tpackageRegistration = ctx.registerService(serviceClasses, p, properties);" + NL + "\t}" + NL + "" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.geckoprojects.emf.core.ResourceFactoryConfigurator#configureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void configureResourceFactory(Registry registry) {" + NL + "\t\t";
@@ -90,6 +90,7 @@ public class ConfigurationComponentClass
     genModel.addImport("org.osgi.service.component.annotations.Deactivate");
     genModel.addImport("org.osgi.framework.BundleContext");
     genModel.addImport("org.eclipse.emf.ecore.resource.Resource.Factory.Registry");
+    genModel.addImport("org.geckoprojects.emf.core.api.EMFNamespaces");
     genModel.addImport("org.geckoprojects.emf.core.api.EPackageConfigurator");
     genModel.addImport("org.geckoprojects.emf.core.api.ResourceFactoryConfigurator");
     genModel.addImport("org.geckoprojects.emf.core.api.annotation.EMFModel");

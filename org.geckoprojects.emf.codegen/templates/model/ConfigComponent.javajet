@@ -8,6 +8,7 @@ package <%=genPackage.getInterfacePackageName()%>.configuration;
 <%genModel.addImport("org.osgi.service.component.annotations.Deactivate");%>
 <%genModel.addImport("org.osgi.framework.BundleContext");%>
 <%genModel.addImport("org.eclipse.emf.ecore.resource.Resource.Factory.Registry");%>
+<%genModel.addImport("org.geckoprojects.emf.core.api.EMFNamespaces");%>
 <%genModel.addImport("org.geckoprojects.emf.core.api.EPackageConfigurator");%>
 <%genModel.addImport("org.geckoprojects.emf.core.api.ResourceFactoryConfigurator");%>
 <%genModel.addImport("org.geckoprojects.emf.core.api.annotation.EMFModel");%>
@@ -65,10 +66,10 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 			EPackage.Registry.INSTANCE.put(<%=genPackage.getPackageInterfaceName()%>.eNS_URI,p);
 		}
 		<%=genModel.getImportedName("java.util.Dictionary")%><String, Object> properties = new <%=genModel.getImportedName("java.util.Hashtable")%><String, Object>();
-		properties.put("emf.model.name", <%=genPackage.getPackageInterfaceName()%>.eNAME);
-		properties.put("emf.model.nsURI", <%=genPackage.getPackageInterfaceName()%>.eNS_URI);
-		properties.put("fileExtension", "<%=genPackage.getFileExtension()%>");<% if (genPackage.getContentTypeIdentifier() != null) {%>
-		properties.put("contentType", "<%=genPackage.getContentTypeIdentifier()%>");<%}%>
+		properties.put(EMFNamespaces.EMF_MODEL_NAME, <%=genPackage.getPackageInterfaceName()%>.eNAME);
+		properties.put(EMFNamespaces.EMF_MODEL_NSURI, <%=genPackage.getPackageInterfaceName()%>.eNS_URI);
+		properties.put(EMFNamespaces.EMF_MODEL_FILE_EXT, "<%=genPackage.getFileExtension()%>");<% if (genPackage.getContentTypeIdentifier() != null) {%>
+		properties.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, "<%=genPackage.getContentTypeIdentifier()%>");<%}%>
 		String[] serviceClasses = new String[] {<%=genPackage.getPackageInterfaceName()%>.class.getName(), <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.class.getName()};
 		packageRegistration = ctx.registerService(serviceClasses, p, properties);
 	}

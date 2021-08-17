@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 
+import org.geckoprojects.emf.core.api.EMFNamespaces;
 import org.geckoprojects.emf.core.api.EPackageConfigurator;
 import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
 
@@ -63,10 +64,10 @@ public class BasicConfigurationComponent implements EPackageConfigurator, Resour
 			EPackage.Registry.INSTANCE.put(BasicPackage.eNS_URI,p);
 		}
 		Dictionary<String, Object> properties = new Hashtable<String, Object>();
-		properties.put("emf.model.name", BasicPackage.eNAME);
-		properties.put("emf.model.nsURI", BasicPackage.eNS_URI);
-		properties.put("fileExtension", "basic");
-		properties.put("contentType", "basic#1.0");
+		properties.put(EMFNamespaces.EMF_MODEL_NAME, BasicPackage.eNAME);
+		properties.put(EMFNamespaces.EMF_MODEL_NSURI, BasicPackage.eNS_URI);
+		properties.put(EMFNamespaces.EMF_MODEL_FILE_EXT, "basic");
+		properties.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, "basic#1.0");
 		String[] serviceClasses = new String[] {BasicPackage.class.getName(), EPackage.class.getName()};
 		packageRegistration = ctx.registerService(serviceClasses, p, properties);
 	}

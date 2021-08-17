@@ -23,7 +23,7 @@ Export-Package: \
 	
 -dependson: org.geckoprojects.emf.codegen
 
--generate:\
+#-generate:\
 #	model/manual.genmodel;\
 #		generate="geckoEMF 1>out.log 2>err.log";\
 #		genmodel=model/manual.genmodel;\
