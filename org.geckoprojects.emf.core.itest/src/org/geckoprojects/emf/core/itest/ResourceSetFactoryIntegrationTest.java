@@ -11,7 +11,6 @@
  */
 package org.geckoprojects.emf.core.itest;
 
-
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.geckoprojects.emf.core.api.ResourceSetFactory;
 import org.junit.jupiter.api.Assertions;
@@ -23,13 +22,13 @@ import org.osgi.test.junit5.service.ServiceExtension;
 
 /**
  * Integration test for the {@link ResourceSetFactory}
+ * 
  * @author Mark Hoffmann
  * @since 25.07.2017
  */
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
 public class ResourceSetFactoryIntegrationTest {
-
 
 	/**
 	 * Tests, if the service was set up correctly
@@ -41,7 +40,7 @@ public class ResourceSetFactoryIntegrationTest {
 		Assertions.assertNotNull(rs1);
 		ResourceSet rs2 = factory.createResourceSet();
 		Assertions.assertNotNull(rs2);
-		Assertions.assertNotEquals(rs1,  rs2);
+		Assertions.assertNotEquals(rs1, rs2);
 	}
-	
+
 }

@@ -11,8 +11,6 @@
  */
 package org.geckoprojects.emf.core.itest;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -48,6 +46,7 @@ import org.osgi.test.junit5.service.ServiceExtension;
 
 /**
  * Integration test for the {@link ResourceSetCache}
+ * 
  * @author Mark Hoffmann
  * @since 25.07.2017
  */
@@ -57,14 +56,13 @@ public class ResourceSetConcurrencyTest {
 
 	private final BundleContext context = FrameworkUtil.getBundle(ResourceSetConcurrencyTest.class).getBundleContext();
 
-
-
 	/**
 	 * Tests how concurrency fails with the default implementation
-	 * @throws IOException 
-	 * @throws URISyntaxException 
-	 * @throws InvalidSyntaxException 
-	 * @throws InterruptedException 
+	 * 
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 * @throws InvalidSyntaxException
+	 * @throws InterruptedException
 	 */
 	@Test
 	public void testResourceSetConcurrencyOld() throws IOException, URISyntaxException, InterruptedException {
@@ -81,7 +79,8 @@ public class ResourceSetConcurrencyTest {
 		assertEquals("Mark", p.getFirstName());
 		assertEquals("Hoffmann", p.getLastName());
 		assertEquals(GenderType.MALE, p.getGender());
-		// make the given transactions per thread, in one thread reading in the other writing nearly simultaneously 
+		// make the given transactions per thread, in one thread reading in the other
+		// writing nearly simultaneously
 		int COUNT = 500;
 		// wait the given milliseconds between the transactions
 		long TIMEOUT = 3l;
@@ -94,7 +93,8 @@ public class ResourceSetConcurrencyTest {
 			if (error) {
 				errorCount++;
 			}
-			System.out.println("Test number: " + i + " with " + COUNT + " transactions and timeout of " + TIMEOUT + "ms results in an error: " + error);
+			System.out.println("Test number: " + i + " with " + COUNT + " transactions and timeout of " + TIMEOUT
+					+ "ms results in an error: " + error);
 		}
 		System.out.println("Error count was " + errorCount + " / " + TEST_SET_COUNT);
 		assertTrue(errorCount > 0);
@@ -102,10 +102,11 @@ public class ResourceSetConcurrencyTest {
 
 	/**
 	 * Tests, how concurrency works with the new implementation
-	 * @throws IOException 
-	 * @throws URISyntaxException 
-	 * @throws InvalidSyntaxException 
-	 * @throws InterruptedException 
+	 * 
+	 * @throws IOException
+	 * @throws URISyntaxException
+	 * @throws InvalidSyntaxException
+	 * @throws InterruptedException
 	 */
 	@Test
 	public void testResourceSetConcurrencyNew() throws IOException, URISyntaxException, InterruptedException {
@@ -122,7 +123,8 @@ public class ResourceSetConcurrencyTest {
 		assertEquals("Mark", p.getFirstName());
 		assertEquals("Hoffmann", p.getLastName());
 		assertEquals(GenderType.MALE, p.getGender());
-		// make the given transactions per thread, in one thread reading in the other writing nearly simultaneously 
+		// make the given transactions per thread, in one thread reading in the other
+		// writing nearly simultaneously
 		int COUNT = 500;
 		// wait the given milliseconds between the transactions
 		long TIMEOUT = 3l;
@@ -135,7 +137,8 @@ public class ResourceSetConcurrencyTest {
 			if (error) {
 				errorCount++;
 			}
-			System.out.println("Test number: " + i + " with " + COUNT + " transactions and timeout of " + TIMEOUT + "ms results in an error: " + error);
+			System.out.println("Test number: " + i + " with " + COUNT + " transactions and timeout of " + TIMEOUT
+					+ "ms results in an error: " + error);
 		}
 		System.out.println("Error count was " + errorCount + " / " + TEST_SET_COUNT);
 		assertEquals(0, errorCount);
@@ -148,7 +151,8 @@ public class ResourceSetConcurrencyTest {
 	 * @param resourceSet
 	 * @throws InterruptedException
 	 */
-	private boolean doConcurrencyTestOld(Person person, int COUNT, long TIMEOUT, ResourceSet resourceSet) throws InterruptedException {
+	private boolean doConcurrencyTestOld(Person person, int COUNT, long TIMEOUT, ResourceSet resourceSet)
+			throws InterruptedException {
 		AtomicBoolean error = new AtomicBoolean(false);
 		CountDownLatch latch = new CountDownLatch(1);
 		Thread t1 = new Thread(new Runnable() {
@@ -158,7 +162,7 @@ public class ResourceSetConcurrencyTest {
 					URI configUri = createUri("mark.basic");
 					for (int i = 0; i < COUNT; i++) {
 						assertNotNull(configUri);
-						Resource r  = resourceSet.createResource(configUri);
+						Resource r = resourceSet.createResource(configUri);
 						r.load(null);
 						assertFalse(r.getContents().isEmpty());
 						EObject eo = r.getContents().get(0);
@@ -181,7 +185,7 @@ public class ResourceSetConcurrencyTest {
 
 						URI saveUri = URI.createURI("test-" + 1 + ".basic");
 						assertNotNull(saveUri);
-						Resource r  = resourceSet.getResource(saveUri, false);
+						Resource r = resourceSet.getResource(saveUri, false);
 						if (r == null) {
 							r = resourceSet.createResource(saveUri);
 						}
@@ -208,8 +212,11 @@ public class ResourceSetConcurrencyTest {
 		t1.join();
 		t2.join();
 		long duration = System.nanoTime() - start;
-		System.out.println("Executing pure the thread-unsafe EMF way " + COUNT + " transactions in each of two thread with a wait timeout of " + TIMEOUT + "ms took " + (duration/1000000) + "ms");
-		System.out.println("That means an average processing time of " + (((duration / COUNT) - TIMEOUT * 1000000)/1000) + " microsecond / transaction");
+		System.out.println("Executing pure the thread-unsafe EMF way " + COUNT
+				+ " transactions in each of two thread with a wait timeout of " + TIMEOUT + "ms took "
+				+ (duration / 1000000) + "ms");
+		System.out.println("That means an average processing time of "
+				+ (((duration / COUNT) - TIMEOUT * 1000000) / 1000) + " microsecond / transaction");
 		return error.get();
 	}
 
@@ -220,7 +227,8 @@ public class ResourceSetConcurrencyTest {
 	 * @param resourceSet
 	 * @throws InterruptedException
 	 */
-	private boolean doConcurrencyTestNew(Person person, int COUNT, long TIMEOUT, ResourceSet resourceSet) throws InterruptedException {
+	private boolean doConcurrencyTestNew(Person person, int COUNT, long TIMEOUT, ResourceSet resourceSet)
+			throws InterruptedException {
 		AtomicBoolean error = new AtomicBoolean(false);
 		CountDownLatch latch = new CountDownLatch(1);
 		Thread t1 = new Thread(new Runnable() {
@@ -230,13 +238,13 @@ public class ResourceSetConcurrencyTest {
 					URI configUri = createUri("mark.basic");
 					for (int i = 0; i < COUNT; i++) {
 						assertNotNull(configUri);
-						Resource r  = resourceSet.createResource(configUri);
+						Resource r = resourceSet.createResource(configUri);
 						r.load(null);
 						assertFalse(r.getContents().isEmpty());
 						EObject eo = r.getContents().get(0);
 						assertNotNull(eo);
 						// use the thread safe way of detaching EObjects
-						((Detachable)resourceSet).detachFromAll(eo);
+						((Detachable) resourceSet).detachFromAll(eo);
 						Thread.sleep(TIMEOUT);
 					}
 				} catch (Exception ex) {
@@ -253,7 +261,7 @@ public class ResourceSetConcurrencyTest {
 
 						URI saveUri = URI.createURI("test-" + 1 + ".basic");
 						assertNotNull(saveUri);
-						Resource r  = resourceSet.getResource(saveUri, false);
+						Resource r = resourceSet.getResource(saveUri, false);
 						if (r == null) {
 							r = resourceSet.createResource(saveUri);
 						}
@@ -263,7 +271,7 @@ public class ResourceSetConcurrencyTest {
 						r.save(baos, null);
 						baos.close();
 						baos.reset();
-						((Detachable)resourceSet).detachFromAll(eo);
+						((Detachable) resourceSet).detachFromAll(eo);
 						Thread.sleep(TIMEOUT);
 					}
 				} catch (Exception e) {
@@ -279,16 +287,20 @@ public class ResourceSetConcurrencyTest {
 		t1.join();
 		t2.join();
 		long duration = System.nanoTime() - start;
-		System.out.println("Executing pure EMF thread-safe way " + COUNT + " transactions in each of two thread with a wait timeout of " + TIMEOUT + "ms took " + (duration/1000000) + "ms");
-		System.out.println("That means an average processing time of " + (((duration / COUNT) - TIMEOUT * 1000000)/1000) + " microsecond / transaction");
+		System.out.println("Executing pure EMF thread-safe way " + COUNT
+				+ " transactions in each of two thread with a wait timeout of " + TIMEOUT + "ms took "
+				+ (duration / 1000000) + "ms");
+		System.out.println("That means an average processing time of "
+				+ (((duration / COUNT) - TIMEOUT * 1000000) / 1000) + " microsecond / transaction");
 		return error.get();
 	}
 
 	/**
 	 * Creates a uri for the given file name, as long the file is in the class path
+	 * 
 	 * @param fileName the name of the file
 	 * @return the uri
-	 * @throws URISyntaxException 
+	 * @throws URISyntaxException
 	 */
 	private URI createUri(String fileName) throws URISyntaxException {
 		URL url = context.getBundle().getResource("data/");

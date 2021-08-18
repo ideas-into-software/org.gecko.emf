@@ -22,15 +22,14 @@ import org.geckoprojects.emf.core.api.ResourceSetConfigurator;
  * @since 07.03.2020
  */
 public class TestResourceSetConfiguration implements ResourceSetConfigurator {
-	
-	private AtomicInteger cnt = new AtomicInteger();
 
+	private AtomicInteger cnt = new AtomicInteger();
 
 	@Override
 	public void configureResourceSet(ResourceSet resourceSet) {
 		cnt.incrementAndGet();
 	}
-	
+
 	public int getCount() {
 		return cnt.get();
 	}

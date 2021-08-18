@@ -1,8 +1,0 @@
-# Build dependencies 
--buildpath: \
-	org.osgi.annotation.versioning
-
-Bundle-Version: ${emf-version}
-
-
-# TODO

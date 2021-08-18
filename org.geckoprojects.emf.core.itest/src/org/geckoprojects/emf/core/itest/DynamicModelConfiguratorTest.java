@@ -99,10 +99,8 @@ public class DynamicModelConfiguratorTest {
 			c.update(properties);
 			refConfig.set(c);
 
-			
-		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class)
-		  .assertWithTimeoutThat(10000)
-		  .hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
+		}).untilNoMoreServiceEventModifiedWithin(100, ResourceSetFactory.class).assertWithTimeoutThat(10000)
+				.hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
 
 		reference = resourceSetFactory.getServiceReference();
 		assertThat(reference).isNotNull();

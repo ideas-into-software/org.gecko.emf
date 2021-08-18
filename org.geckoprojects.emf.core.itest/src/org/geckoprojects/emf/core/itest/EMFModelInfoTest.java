@@ -151,7 +151,6 @@ public class EMFModelInfoTest {
 		assertNotNull(personHirachy);
 		assertEquals(2, personHirachy.size());
 
-
 //		
 
 		extBundle.stop();
@@ -159,7 +158,7 @@ public class EMFModelInfoTest {
 
 		List<EClass> personHirachy2 = emfModelInfo.getUpperTypeHierarchyForEClass(BasicPackage.Literals.PERSON);
 		System.out.println("");
-		
+
 		System.out.println("______");
 		System.out.println(personHirachy2);
 		System.out.println("______");
@@ -178,8 +177,7 @@ public class EMFModelInfoTest {
 		System.out.println("______");
 		System.out.println(personHirachy4);
 		System.out.println("______");
-		
-		
+
 		extBundle.start();
 
 		Thread.sleep(1000);
@@ -189,8 +187,6 @@ public class EMFModelInfoTest {
 		System.out.println(personHirachy5);
 		System.out.println("______");
 
-
-		
 		assertNotNull(personHirachy2);
 
 		assertEquals(1, personHirachy2.size());

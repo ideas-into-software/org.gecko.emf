@@ -162,7 +162,6 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 				.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
 
 		Assertions.assertThat(serviceAwareAny.getServiceReferences()).hasSize(4);
-		cr.get().delete();
 
 		ServiceReference<?> rsfRef = serviceAwareF.getServiceReference();
 		Object modelNames = rsfRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
@@ -190,8 +189,8 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 				new String[] { EPackageConfigurator.class.getName(), ResourceFactoryConfigurator.class.getName() },
 				manualPackageConfigurator, epackageProperties);
 
-		
-		Thread.sleep(4000);;
+		Thread.sleep(4000);
+		;
 		rsfRef = serviceAwareRS.getServiceReference();
 		modelNames = rsfRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
@@ -242,6 +241,14 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 
 		reg1.unregister();
 		reg2.unregister();
+
+		MonitoringAssertion.executeAndObserve(() -> {
+			cr.get().delete();
+		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000)
+				.hasExactlyOneServiceEventUnregisteringWith(ResourceSet.class)
+				.hasExactlyOneServiceEventUnregisteringWith(ResourceSetFactory.class)
+				.hasExactlyOneServiceEventUnregisteringWith(Resource.Factory.Registry.class)
+				.hasExactlyOneServiceEventUnregisteringWith(EPackage.Registry.class);
 
 	}
 

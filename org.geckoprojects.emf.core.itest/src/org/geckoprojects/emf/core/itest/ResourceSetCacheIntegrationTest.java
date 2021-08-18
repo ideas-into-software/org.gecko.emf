@@ -65,12 +65,11 @@ public class ResourceSetCacheIntegrationTest {
 
 		MonitoringAssertion.executeAndObserve(() -> {
 
-			Configuration c1 = ca.getFactoryConfiguration("ResourceSetCache" , "one", "?");
+			Configuration c1 = ca.getFactoryConfiguration("ResourceSetCache", "one", "?");
 			c1.update(configProperties01);
-			
-		}).untilNoMoreServiceEventWithin(100)
-		.assertWithTimeoutThat(1000)
-		.hasExactlyOneServiceEventRegisteredWith(ResourceSetCache.class);
+
+		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000)
+				.hasExactlyOneServiceEventRegisteredWith(ResourceSetCache.class);
 
 		Assertions.assertThat(sa1.getServices()).hasSize(1);
 		ServiceReference<ResourceSetCache> cacheRef = sa1.getServiceReference();
@@ -90,7 +89,7 @@ public class ResourceSetCacheIntegrationTest {
 
 		MonitoringAssertion.executeAndObserve(() -> {
 
-			Configuration c2 = ca.getFactoryConfiguration("ResourceSetCache" ,"two", "?");
+			Configuration c2 = ca.getFactoryConfiguration("ResourceSetCache", "two", "?");
 			c2.update(configProperties02);
 
 		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000)
