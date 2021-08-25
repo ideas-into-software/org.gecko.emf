@@ -14,5 +14,7 @@ public interface GeckoMongoDatabase extends MongoDatabase{
 	 * @return uri
 	 */
 	String getURI();
+	
+	String databaseIdent();
  }
 

@@ -9,195 +9,189 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package org.gecko.emf.repository.mongo.tests;
+package org.gecko.emf.repository.mongo.itest;
 
-//
-//
-//
-//
-//import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertNotEquals;
-//import static org.junit.jupiter.api.Assertions.assertNotNull;
-//import static org.junit.jupiter.api.Assertions.assertNull;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//
-//import java.io.IOException;
-//import java.util.Dictionary;
-//import java.util.Hashtable;
-//import java.util.LinkedList;
-//import java.util.List;
-//import java.util.concurrent.CountDownLatch;
-//import java.util.concurrent.TimeUnit;
-//
-//import org.eclipse.emf.common.util.URI;
-//import org.eclipse.emf.ecore.resource.Resource;
-//import org.eclipse.emf.ecore.resource.ResourceSet;
-//import org.eclipse.emf.ecore.util.EcoreUtil;
-//import org.geckoprojects.emf.core.api.EMFNamespaces;
-//import org.geckoprojects.emf.core.api.EPackageConfigurator;
-//import org.geckoprojects.emf.core.api.ResourceFactoryConfigurator;
-//import org.geckoprojects.emf.example.model.basic.model.BasicFactory;
-//import org.geckoprojects.emf.example.model.basic.model.BasicPackage;
-//import org.geckoprojects.emf.example.model.basic.model.Person;
-//import org.geckoprojects.emf.mongo.ConverterService;
-//import org.geckoprojects.emf.mongo.InputStreamFactory;
-//import org.geckoprojects.emf.mongo.MongoIdFactory;
-//import org.geckoprojects.emf.mongo.OutputStreamFactory;
-//import org.geckoprojects.emf.mongo.QueryEngine;
-//import org.geckoprojects.emf.repository.EMFRepository;
-//import org.geckoprojects.emf.repository.mongo.annotations.RequireMongoEMFRepository;
-//import org.geckoprojects.emf.repository.mongo.api.EMFMongoConfiguratorConstants;
-//import org.junit.jupiter.api.AfterEach;
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.osgi.framework.BundleException;
-//import org.osgi.framework.InvalidSyntaxException;
-//import org.osgi.framework.ServiceObjects;
-//import org.osgi.framework.ServiceReference;
-//import org.osgi.framework.ServiceRegistration;
-//import org.osgi.service.cm.Configuration;
-//import org.osgi.test.common.annotation.InjectService;
-//import org.osgi.test.common.service.ServiceAware;
-//import org.osgi.test.junit5.context.BundleContextExtension;
-//import org.osgi.test.junit5.service.ServiceExtension;
-//
-//import com.mongodb.MongoCredential;
-//import com.mongodb.client.MongoClient;
-//import com.mongodb.client.MongoClients;
-//import com.mongodb.client.MongoCollection;
-//import com.mongodb.client.MongoDatabase;
-//
-///**
-// * Integration tests for the complete EMF mongo repository setup
-// * @author Mark Hoffmann
-// * @since 26.07.2017
-// */
-//@RequireMongoEMFRepository
-//@ExtendWith(BundleContextExtension.class)
-//@ExtendWith(ServiceExtension.class)
-//public class MongoConfiguratorIntegrationTest  {
-//
-//
-//		protected MongoClient client;
-//		protected List<MongoCollection<?>> collections = new LinkedList<>();
-//		protected String mongoHost = System.getProperty("mongo.host", "localhost");
-//		private ServiceRegistration<?> testPackageRegistration = null;
-//
-//		@BeforeEach
-//		public void doBefore() {
-//
-//			client = MongoClients.create(mongoHost);
-//		}
-//
-//		@AfterEach
-//		public void doAfter() {
-//			collections.forEach(MongoCollection::drop);
-//			if (client != null) {
-//				client.close();
-//			}
-//
-//		}
-//
-//		protected MongoCollection<?> getCollection(String database, String collection) {
-//			MongoDatabase db = client.getDatabase(database);
-//			assertNotNull(db);
-//			MongoCollection<?> c = db.getCollection(collection);
-//			assertNotNull(c);
-//			collections.add(c);
-//			return c;
-//		}
-//
-//		@Test
-//		public void defaultCheck(@InjectService ServiceAware<MongoIdFactory> saMongoIdFactory,
-//				@InjectService ServiceAware<QueryEngine> saQueryEngine,
-//				@InjectService ServiceAware<ConverterService> saConverterService,
-//				@InjectService ServiceAware<InputStreamFactory> saInputStreamFactory,
-//				@InjectService ServiceAware<OutputStreamFactory> saOutputStreamFactory)
-//				throws IOException, InvalidSyntaxException {
-//
-//		}
-//	@Test
-//	public void testEMFMongoRepository() throws BundleException, InvalidSyntaxException, IOException, InterruptedException {
-//		/**
-//		 * mongo.instances=test1
-//		 * test1.baseUris=mongodb://localhost
-//		 * test1.databases=test
-//		 */
-//
-//		Dictionary<String, Object> configProperties = new Hashtable<>();
-//		configProperties.put("mongo.instances", "test1");
-//		configProperties.put("test1.baseUris", "mongodb://" + mongoHost);
-//		configProperties.put("test1.databases", "test");
-//
-//		String clientId = "test1.test";
-//
-//
-//		
-//		String filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId + ")(objectClass=org.geckoprojects.emf.core.ResourceSetFactory))";
-//		ServiceChecker<Object> rsfTracker = createTrackedChecker(filter, true)
-//				.assertCreations(0, false);
-//		
-//		ServiceChecker<EMFRepository> repoTracker = createTrackedChecker("(" + EMFRepository.PROP_ID + "=" + clientId + ")", false);
-//		ServiceChecker<MongoClientProvider> clientTracker = createTrackedChecker(MongoClientProvider.class);
-//		ServiceChecker<MongoDatabaseProvider> dbTracker = createTrackedChecker(MongoDatabaseProvider.class);
-//		
-//		repoTracker.assertCreations(0, false);
-//		clientTracker.assertCreations(0, false);
-//		dbTracker.assertCreations(0, false);
-//		
-//		Configuration repositoryConfig = createConfigForCleanup(EMFMongoConfiguratorConstants.EMF_MONGO_REPOSITORY_CONFIGURATOR_CONFIGURATION_NAME, "?", configProperties);
-//		
-//		rsfTracker.assertCreations(1, true).trackedServiceNotNull();
-//		clientTracker.assertCreations(1, true);
-//		dbTracker.assertCreations(1, true);
-//		repoTracker.assertCreations(1, true);
-//
-//		EMFRepository repository = repoTracker.getTrackedService();
-//
-//		Person person = BasicFactory.eINSTANCE.createPerson();
-//		person.setId("test");
-//		person.setFirstName("Emil");
-//		person.setLastName("Tester");
-//		URI uri = repository.createUri(person);
-//		assertEquals("mongodb://test1/test/Person/test#test", uri.toString());
-//
-//		MongoCollection<?> collection = getCollection("test", "Person"); 
-//		collection.drop();
-//
-//		assertEquals(0, collection.countDocuments());
-//
-//		CountDownLatch latch = new CountDownLatch(1);
-//		latch.await(1, TimeUnit.SECONDS);
-//		
-//		repository.save(person);
-//
-//		assertEquals(1, collection.countDocuments());
-//
-//		Resource r = person.eResource();
-//		assertNotNull(r);
-//		ResourceSet rs = r.getResourceSet();
-//		assertNotNull(rs);
-//		assertEquals(1, rs.getResources().size());
-//
-//		repository.detach(person);
-//		assertNull(person.eResource());
-//		assertEquals(0, rs.getResources().size());
-//
-//		Person personResult = repository.getEObject(BasicPackage.Literals.PERSON, "test");
-//		assertNotNull(personResult);
-//		assertNotEquals(person, personResult);
-//		assertNotEquals(r, personResult.eResource());
-//
-//		assertTrue(EcoreUtil.equals(person, personResult));
-//
-//		deleteConfigurationAndRemoveFromCleanup(repositoryConfig);
-//
-//		repoTracker.assertRemovals(1, true);
-//		dbTracker.assertRemovals(1, true);
-//		clientTracker.assertRemovals(1, true);
-//	}
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.geckoprojects.emf.core.api.EMFNamespaces;
+import org.geckoprojects.emf.core.api.ResourceSetFactory;
+import org.geckoprojects.emf.example.model.basic.BasicFactory;
+import org.geckoprojects.emf.example.model.basic.BasicPackage;
+import org.geckoprojects.emf.example.model.basic.Person;
+import org.geckoprojects.emf.repository.EMFRepository;
+import org.geckoprojects.emf.repository.mongo.annotations.RequireMongoEMFRepository;
+import org.geckoprojects.emf.repository.mongo.api.EMFMongoConfiguratorConstants;
+import org.geckoprojects.mongo.core.GeckoMongoClient;
+import org.geckoprojects.mongo.core.GeckoMongoDatabase;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
+import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.ServiceRegistration;
+import org.osgi.service.cm.Configuration;
+import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.cm.annotations.RequireConfigurationAdmin;
+import org.osgi.test.common.annotation.InjectBundleContext;
+import org.osgi.test.common.annotation.InjectService;
+import org.osgi.test.common.service.ServiceAware;
+import org.osgi.test.junit5.context.BundleContextExtension;
+import org.osgi.test.junit5.service.ServiceExtension;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+/**
+ * Integration tests for the complete EMF mongo repository setup
+ * 
+ * @author Mark Hoffmann
+ * @since 26.07.2017
+ */
+@RequireMongoEMFRepository
+@ExtendWith(BundleContextExtension.class)
+@ExtendWith(ServiceExtension.class)
+@RequireConfigurationAdmin
+public class MongoConfiguratorIntegrationTest {
+
+	@InjectService
+	ConfigurationAdmin ca;
+
+	
+	@InjectBundleContext BundleContext bc;
+	
+	protected MongoClient client;
+	protected List<MongoCollection<?>> collections = new LinkedList<>();
+	protected String mongoHost = System.getProperty("mongo.host", "localhost");
+	private ServiceRegistration<?> testPackageRegistration = null;
+
+	@BeforeEach
+	public void doBefore() {
+
+		client = MongoClients.create("mongodb://"+mongoHost);
+	}
+
+	@AfterEach
+	public void doAfter() {
+		collections.forEach(MongoCollection::drop);
+		if (client != null) {
+			client.close();
+		}
+
+	}
+
+	protected MongoCollection<?> getCollection(String database, String collection) {
+		MongoDatabase db = client.getDatabase(database);
+		assertNotNull(db);
+		MongoCollection<?> c = db.getCollection(collection);
+		assertNotNull(c);
+		collections.add(c);
+		return c;
+	}
+
+	static final String clientId = "test1.test";
+
+	@Test
+	public void testEMFMongoRepository(
+			@InjectService(cardinality = 0, filter = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)("
+					+ EMFNamespaces.EMF_CONFIGURATOR_NAME + "=" + clientId
+					+ "))") ServiceAware<ResourceSetFactory> serviceAwareRSF,
+			@InjectService(filter = "(" + EMFRepository.PROP_ID + "=" + clientId
+					+ ")", cardinality = 0) ServiceAware<EMFRepository> serviceAwareEMFR,
+			@InjectService(cardinality = 0) ServiceAware<GeckoMongoClient> serviceAwareGMC,
+			@InjectService(cardinality = 0) ServiceAware<GeckoMongoDatabase> serviceAwareGMD)
+			throws BundleException, InvalidSyntaxException, IOException, InterruptedException {
+		/**
+		 * mongo.instances=test1 test1.baseUris=mongodb://localhost test1.databases=test
+		 */
+
+		org.assertj.core.api.Assertions.assertThat(serviceAwareRSF.getServiceReference()).isNull();
+		org.assertj.core.api.Assertions.assertThat(serviceAwareEMFR.getServiceReference()).isNull();
+		org.assertj.core.api.Assertions.assertThat(serviceAwareGMC.getServiceReference()).isNull();
+		org.assertj.core.api.Assertions.assertThat(serviceAwareGMD.getServiceReference()).isNull();
+		
+		
+		Dictionary<String, Object> configProperties = new Hashtable<>();
+		configProperties.put("mongo.instances", "test1");
+		configProperties.put("test1.baseUris", "mongodb://" + mongoHost);
+		configProperties.put("test1.databases", "test");
+
+		Configuration repositoryConfig = ca.getFactoryConfiguration(
+				EMFMongoConfiguratorConstants.EMF_MONGO_REPOSITORY_CONFIGURATOR_CONFIGURATION_NAME, "c1", "?");
+		repositoryConfig.update(configProperties);
+
+
+		
+		org.assertj.core.api.Assertions.assertThat(serviceAwareGMC.waitForService(1000)).isNotNull();
+		org.assertj.core.api.Assertions.assertThat(serviceAwareGMD.waitForService(1000)).isNotNull();
+		org.assertj.core.api.Assertions.assertThat(serviceAwareRSF.waitForService(1000)).isNotNull();
+		org.assertj.core.api.Assertions.assertThat(serviceAwareEMFR.waitForService(1000)).isNotNull();
+
+		EMFRepository repository = serviceAwareEMFR.getService();
+
+		Person person = BasicFactory.eINSTANCE.createPerson();
+		person.setId("test");
+		person.setFirstName("Emil");
+		person.setLastName("Tester");
+		URI uri = repository.createUri(person);
+		assertEquals("mongodb://test1/test/Person/test#test", uri.toString());
+
+		MongoCollection<?> collection = getCollection("test", "Person");
+		collection.drop();
+
+		assertEquals(0, collection.countDocuments());
+
+		CountDownLatch latch = new CountDownLatch(1);
+		latch.await(1, TimeUnit.SECONDS);
+
+		repository.save(person);
+
+		assertEquals(1, collection.countDocuments());
+
+		Resource r = person.eResource();
+		assertNotNull(r);
+		ResourceSet rs = r.getResourceSet();
+		assertNotNull(rs);
+		assertEquals(1, rs.getResources().size());
+
+		repository.detach(person);
+		assertNull(person.eResource());
+		assertEquals(0, rs.getResources().size());
+
+		Person personResult = repository.getEObject(BasicPackage.Literals.PERSON, "test");
+		assertNotNull(personResult);
+		assertNotEquals(person, personResult);
+		assertNotEquals(r, personResult.eResource());
+
+		assertTrue(EcoreUtil.equals(person, personResult));
+
+		repositoryConfig.delete();
+
+		Thread.sleep(3000);
+		org.assertj.core.api.Assertions.assertThat(serviceAwareGMC.getServiceReference()).isNull();
+		org.assertj.core.api.Assertions.assertThat(serviceAwareGMD.getServiceReference()).isNull();
+		org.assertj.core.api.Assertions.assertThat(serviceAwareEMFR.getServiceReference()).isNull();
+
+	}
 //
 //	@Test
 //	public void testEMFMongoRepositoryPrototypeInstance() throws BundleException, InvalidSyntaxException, IOException, InterruptedException {
@@ -585,4 +579,4 @@ package org.gecko.emf.repository.mongo.tests;
 //		dbTracker.assertRemovals(1, true);
 //		rsfTracker.assertRemovals(1, true);
 //	}
-//}
+}

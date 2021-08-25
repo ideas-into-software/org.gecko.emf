@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.bson.codecs.configuration.CodecRegistry;
@@ -65,8 +66,12 @@ public class MongoClientController implements ServerMonitorListener {
 	ConnectionPoolListenerDelegate connectionPoolListenerDelegate = new ConnectionPoolListenerDelegate();
 
 	org.osgi.util.converter.Converter converter = Converters.standardConverter();
-	@Reference(service = LoggerFactory.class)
-	private Logger logger;
+	
+	@Reference(service = LoggerFactory.class, cardinality = ReferenceCardinality.OPTIONAL)
+	void  bindLogservice(Logger logger){
+		this.oLogger=Optional.ofNullable(logger);
+	}
+	private Optional<Logger> oLogger;
 
 	private List<ServiceRegistration<MongoDatabase>> regDatabases = new ArrayList<>();
 	private ServiceRegistration<?> regMongoClient = null;
@@ -115,7 +120,7 @@ public class MongoClientController implements ServerMonitorListener {
 
 	private Map<String, Object> clientServiceProps() {
 		Map<String, Object> map = new HashMap<>();
-		map.put(MongoConstants.CLIENT_PROP_CLIENT_MONGO_IDENT, mongoConfig.mongoIdent());
+		map.put(MongoConstants.CLIENT_PROP_CLIENT_IDENT, mongoConfig.client_ident());
 
 		map.put(MongoConstants.CLIENT_PROP_CLIENT_STATUS, clientStatus.get());
 
@@ -228,7 +233,8 @@ public class MongoClientController implements ServerMonitorListener {
 	public void serverHeartbeatSucceeded(ServerHeartbeatSucceededEvent event) {
 
 		if (!clientStatus.getAndSet(true)) {
-			logger.warn("Mongo Client first time gets an Hartbeat from Server ", event);
+	
+			oLogger.ifPresent(l->l.warn("Mongo Client first time gets an Hartbeat from Server ", event));
 			Map<String, Object> props = clientServiceProps();
 			regMongoClient.setProperties(new Hashtable<>(props));
 		}
@@ -238,7 +244,7 @@ public class MongoClientController implements ServerMonitorListener {
 	public void serverHeartbeatFailed(ServerHeartbeatFailedEvent event) {
 
 		if (clientStatus.getAndSet(false)) {
-			logger.warn("Mongo Client does not get an Hartbeat from Server ", event);
+			oLogger.ifPresent(l->l.warn("Mongo Client does not get an Hartbeat from Server ", event));
 			Map<String, Object> props = clientServiceProps();
 			regMongoClient.setProperties(new Hashtable<>(props));
 		}
@@ -262,6 +268,7 @@ public class MongoClientController implements ServerMonitorListener {
 
 	public void unbindClusterListener(CommandListener commandListener) {
 		commandListenerDelegate.unbindListener(commandListener);
+		
 	};
 
 }

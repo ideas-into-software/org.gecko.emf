@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 public interface ResourceSetFactory
 {
 	public static final String EMF_CAPABILITY_NAME = "osgi";
-	public static final String GECKO_EMF_VERSION = "2.0";
+	public static final String GECKOPROKECTS_EMF_VERSION = "2.0";
 	
 	/**
 	 * Returns a new instance of a resource set
@@ -32,7 +32,7 @@ public interface ResourceSetFactory
 	ResourceSet createResourceSet();
 
 	/**
-	 * Returns a lsit of all resource set configurators or an emmpty list
+	 * Returns a lsit of all resource set configurators or an empty list
 	 * @return the collection of resource set configurators currently bound to the factory
 	 */
 	Collection<ResourceSetConfigurator> getResourceSetConfigurators();

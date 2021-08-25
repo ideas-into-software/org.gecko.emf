@@ -38,12 +38,12 @@ import com.mongodb.client.MongoDatabase;
 @Component(name = "MongoResourceSetConfiguratorComponent", immediate = true)
 public class MongoResourceSetConfiguratorComponent {
 
-	private final Map<MongoDatabase, Map<String,Object>> mongoDatabases = new ConcurrentHashMap<MongoDatabase, Map<String,Object>>();
+	private final Map<MongoDatabase, Map<String, Object>> mongoDatabases = new ConcurrentHashMap<MongoDatabase, Map<String, Object>>();
 	private ServiceRegistration<ResourceSetConfigurator> configuratorRegistration;
 	private MongoURIHandlerProvider uriHandlerProvider = new MongoURIHandlerProvider();
 	private BundleContext ctx;
-	private List<String> uids = new LinkedList<String>();
-	private Map<String, String> uidIdentifierMap = new HashMap<String, String>();
+	private List<String> aliases = new LinkedList<String>();
+	private Map<String, String> aliasIdentifierMap = new HashMap<String, String>();
 
 	/**
 	 * Called on component activation
@@ -74,33 +74,31 @@ public class MongoResourceSetConfiguratorComponent {
 	 * @param mongoDatabase the provider to be added
 	 */
 	@Reference(name = "MongoDatabase", policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.AT_LEAST_ONE)
-	public void addMongoDatabase(GeckoMongoDatabase mongoDatabase, Map<String,Object> map) {
+	public void addMongoDatabase(GeckoMongoDatabase mongoDatabase, Map<String, Object> map) {
 
 		mongoDatabases.put(mongoDatabase, map);
-		
-		String alias=mongoDatabase.databaseAlias();
-		if(alias==null) {
+
+		String alias = mongoDatabase.databaseAlias();
+		if (alias == null) {
 			throw new IllegalArgumentException("Database alias must not be null");
 		}
-		String internalName=mongoDatabase.internalName();
-			
+		String databaseIdent = mongoDatabase.databaseIdent();
+
 		uriHandlerProvider.addMongoDatabaseProvider(mongoDatabase);
-		updateProperties(alias,internalName, true);
+		updateProperties(databaseIdent, alias, true);
 	}
-
-
 
 	/**
 	 * Removes a {@link GeckoMongoDatabase} from the map
 	 * 
 	 * @param mongoDatabase the provider to be removed
 	 */
-	public void removeMongoDatabase(GeckoMongoDatabase mongoDatabase, Map<String,Object>map) {
+	public void removeMongoDatabase(GeckoMongoDatabase mongoDatabase, Map<String, Object> map) {
 
-		String alias=mongoDatabase.databaseAlias();
-		String internalName=mongoDatabase.internalName();
+		String alias = mongoDatabase.databaseAlias();
+		String databaseIdent = mongoDatabase.databaseIdent();
 		uriHandlerProvider.removeMongoDatabaseProvider(mongoDatabase);
-		updateProperties(alias,internalName, false);
+		updateProperties(databaseIdent, alias, false);
 	}
 
 	/**
@@ -131,17 +129,16 @@ public class MongoResourceSetConfiguratorComponent {
 	 * @param add    <code>true</code>, if the service was add, <code>false</code>
 	 *               in case of an remove
 	 */
-	private void updateProperties(String uid,String internal_name, boolean add) {
-
+	private void updateProperties(String uid, String alias, boolean add) {
 
 		if (add) {
-			uids.add(uid);
-			if (internal_name != null) {
-				uidIdentifierMap.put(uid, internal_name);
+			aliases.add(alias);
+			if (uid != null) {
+				aliasIdentifierMap.put(alias, uid);
 			}
 		} else {
-			uids.remove(uid);
-			uidIdentifierMap.remove(uid);
+			aliases.remove(alias);
+			aliasIdentifierMap.remove(alias);
 		}
 
 		updateRegistrationProperties();
@@ -164,8 +161,8 @@ public class MongoResourceSetConfiguratorComponent {
 	 */
 	private Dictionary<String, Object> getDictionary() {
 		Dictionary<String, Object> properties = new Hashtable<>();
-		List<String> uidsList = new LinkedList<String>(uids);
-		String[] uidsArr = uidsList.toArray(new String[uids.size()]);
+		List<String> uidsList = new LinkedList<String>(aliases);
+		String[] uidsArr = uidsList.toArray(new String[aliases.size()]);
 		if (uidsArr.length > 0) {
 			properties.put(MongoConstants.DB_PROP_DATABASE_DATABASE_ALIAS, uidsArr);
 		}
@@ -184,12 +181,12 @@ public class MongoResourceSetConfiguratorComponent {
 	 * @param alias the alias
 	 * @return the identifier, if it exists, otherwise the alias
 	 */
-	private String replaceWithIdentifier(String uid) {
-		String ident = uidIdentifierMap.get(uid);
+	private String replaceWithIdentifier(String alias) {
+		String ident = aliasIdentifierMap.get(alias);
 		if (ident != null && !ident.isEmpty()) {
 			return ident;
 		} else {
-			return uid;
+			return alias;
 		}
 	}
 

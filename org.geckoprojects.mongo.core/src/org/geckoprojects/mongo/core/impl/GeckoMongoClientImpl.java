@@ -26,9 +26,10 @@ public class GeckoMongoClientImpl extends AbstractMongoClient implements MongoCl
 		return delegate;
 	}
 
+	
 	@Override
-	public String mongoIdent() {
-		return mongoConfig.mongoIdent();
+	public String clientIdent() {
+		return mongoConfig.client_ident();
 	}
 
 	@Override

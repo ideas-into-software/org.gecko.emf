@@ -4,7 +4,8 @@ import com.mongodb.client.MongoClient;
 
 public interface GeckoMongoClient extends MongoClient {
 
-	String mongoIdent();
 
 	String mongoHost() ;
+
+	String clientIdent();
 }

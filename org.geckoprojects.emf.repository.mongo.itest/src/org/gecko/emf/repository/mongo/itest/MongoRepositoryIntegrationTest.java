@@ -9,7 +9,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package org.gecko.emf.repository.mongo.tests;
+package org.gecko.emf.repository.mongo.itest;
 
 //
 //

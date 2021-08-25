@@ -9,7 +9,6 @@ import org.geckoprojects.mongo.core.MongoDatabaseConfig;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
-import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
 import org.osgi.service.metatype.annotations.Designate;
@@ -27,13 +26,13 @@ public class GeckoMongoDatabaseImpl extends AbstractMongoDatabase implements Mon
 
 	private MongoDatabaseConfig config;
 
-	@Reference(name = "mongoclient")
+	@Reference(name = "mongoclient",target = "(&(must.not.bind.by.default=*)(!(must.not.bind.by.default=*)))")
 	public void bindClient(GeckoMongoClient client) {
 		this.client = client;
 	}
 
 	@Activate
-	@Modified
+	//no @Modified because an activated service would still exist if an exception happens in while modify
 	public void activate(MongoDatabaseConfig config) {
 		if (config.must_exist()) {
 			boolean exist = false;
@@ -80,5 +79,10 @@ public class GeckoMongoDatabaseImpl extends AbstractMongoDatabase implements Mon
 	@Override
 	public String getURI() {
 		return new StringBuilder("mongodb://").append(client.mongoHost()).append("/").append(internalName()).toString().replace(":27017/", "/");
+	}
+
+	@Override
+	public String databaseIdent() {
+		return config.database_ident()!=null?config.database_ident():client.clientIdent()+"."+internalName();
 	}
 }

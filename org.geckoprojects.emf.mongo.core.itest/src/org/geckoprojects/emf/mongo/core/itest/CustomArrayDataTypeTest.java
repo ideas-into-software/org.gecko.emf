@@ -76,7 +76,7 @@ public class CustomArrayDataTypeTest {
 			// so something. could be Throwable
 
 			Configuration confClient = cm.getFactoryConfiguration(MongoConstants.PID_MONGO_CLIENT, "test1", "?");
-			confClient.update(new Hashtable<>(Map.of(MongoConstants.CLIENT_PROP_CLIENT_MONGO_IDENT, mongoIdent,
+			confClient.update(new Hashtable<>(Map.of(MongoConstants.CLIENT_PROP_CLIENT_IDENT, mongoIdent,
 					MongoConstants.CLIENT_PROP_CONNECTION_STRING, clientUri)));
 
 		})

@@ -45,10 +45,10 @@ import org.geckoprojects.emf.repository.mongo.api.EMFMongoConfiguratorConstants.
 import org.geckoprojects.emf.repository.mongo.cm.entities.MongoDatabaseConfig;
 import org.geckoprojects.emf.repository.mongo.cm.entities.MongoInstanceConfig;
 import org.geckoprojects.mongo.core.MongoConstants;
-import org.osgi.framework.Constants;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.cm.annotations.RequireConfigurationAdmin;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -59,14 +59,15 @@ import org.osgi.service.component.annotations.Reference;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 
-
 /**
- * Configuration component that brings up a mongo EMF repository, with complete set up of 
- * {@link MongoClient} and {@link MongoDatabase}
+ * Configuration component that brings up a mongo EMF repository, with complete
+ * set up of {@link MongoClient} and {@link MongoDatabase}
+ * 
  * @author Mark Hoffmann
  * @since 27.07.2017
  */
-@Component(name=EMF_MONGO_REPOSITORY_CONFIGURATOR_CONFIGURATION_NAME, immediate=true, configurationPolicy=ConfigurationPolicy.REQUIRE)
+@Component(name = EMF_MONGO_REPOSITORY_CONFIGURATOR_CONFIGURATION_NAME, immediate = true, configurationPolicy = ConfigurationPolicy.REQUIRE)
+@RequireConfigurationAdmin
 public class EMFMongoRepositoryConfigurator {
 
 	private static final Logger logger = Logger.getLogger(EMFMongoRepositoryConfigurator.class.getName());
@@ -81,6 +82,7 @@ public class EMFMongoRepositoryConfigurator {
 
 	/**
 	 * Called on component activation
+	 * 
 	 * @param properties the configuration properties
 	 * @throws ConfigurationException
 	 */
@@ -88,18 +90,20 @@ public class EMFMongoRepositoryConfigurator {
 	public void activate(Map<String, Object> properties) throws ConfigurationException {
 		String instances = (String) properties.get(MONGO_INSTANCE_PROP);
 		Set<MongoInstanceConfig> mongoConfigs = null;
-		if(instances != null && !instances.isEmpty()){
+		if (instances != null && !instances.isEmpty()) {
 			mongoConfigs = createMongoInstanceConfig(instances.split(","), properties);
 		} else {
-			throw new ConfigurationException(MONGO_INSTANCE_PROP, "No 'mongo.instance' property found in configuration properties for activation");
+			throw new ConfigurationException(MONGO_INSTANCE_PROP,
+					"No 'mongo.instance' property found in configuration properties for activation");
 		}
-		mongoConfigs.forEach(c->setupRepositoryConfiguration(c));
+		mongoConfigs.forEach(c -> setupRepositoryConfiguration(c));
 	}
 
 	/**
 	 * Called on configuration change
+	 * 
 	 * @param properties the configuration properties
-	 * @throws ConfigurationException 
+	 * @throws ConfigurationException
 	 */
 	@Modified
 	public void modified(Map<String, Object> properties) throws ConfigurationException {
@@ -109,6 +113,7 @@ public class EMFMongoRepositoryConfigurator {
 
 	/**
 	 * Called on component de-activation
+	 * 
 	 * @param properties the configuration properties
 	 * @throws ConfigurationException
 	 */
@@ -116,30 +121,35 @@ public class EMFMongoRepositoryConfigurator {
 	public void deactivate(Map<String, Object> properties) throws ConfigurationException {
 		String instances = (String) properties.get(MONGO_INSTANCE_PROP);
 		Set<MongoInstanceConfig> mongoConfigs = null;
-		if(instances != null && !instances.isEmpty()){
+		if (instances != null && !instances.isEmpty()) {
 			mongoConfigs = createMongoInstanceConfig(instances.split(","), properties);
 		} else {
-			throw new ConfigurationException(MONGO_INSTANCE_PROP, "No 'mongo.instance' property found in configuration properties for deactivation");
+			throw new ConfigurationException(MONGO_INSTANCE_PROP,
+					"No 'mongo.instance' property found in configuration properties for deactivation");
 		}
-		mongoConfigs.forEach(c->tearDownConfigurations(c));
+		mongoConfigs.forEach(c -> tearDownConfigurations(c));
 	}
 
 	/**
-	 * Normalizes the given baseUris String. The baseUris can consist of more than one URI, separated by a ','. The method takes care, that every URI does not end with an '/'
+	 * Normalizes the given baseUris String. The baseUris can consist of more than
+	 * one URI, separated by a ','. The method takes care, that every URI does not
+	 * end with an '/'
+	 * 
 	 * @param baseUris the baseUris to normalize
 	 * @return the normalized baseUris
 	 */
 	private String normalizeBaseUris(String baseUris) {
 		StringBuilder response = new StringBuilder();
-		for(String uri : baseUris.split("\\s*,\\s*")){
+		for (String uri : baseUris.split("\\s*,\\s*")) {
 			response.append(",");
-			response.append(uri.endsWith("/") ? uri.substring(0, uri.length() - 1) : uri );
+			response.append(uri.endsWith("/") ? uri.substring(0, uri.length() - 1) : uri);
 		}
 		return response.substring(1);
 	}
 
 	/**
-	 * Registers all the given instances, by gathering the necessary informations from the configuration properties.
+	 * Registers all the given instances, by gathering the necessary informations
+	 * from the configuration properties.
 	 *
 	 * This is a sample configuration: <br>
 	 * <code>
@@ -153,8 +163,8 @@ public class EMFMongoRepositoryConfigurator {
 	 * test2.databases=somethingelse
 	 * </code>
 	 *
-	 * @param instances
-	 * 			The MonogDB instance names used in the configuration properties
+	 * @param instances  The MonogDB instance names used in the configuration
+	 *                   properties
 	 * @param properties the map with all properties
 	 * @return {@link Set} of configurations or an empty {@link Set}
 	 */
@@ -169,8 +179,9 @@ public class EMFMongoRepositoryConfigurator {
 			try {
 				MongoInstanceConfig config = new MongoInstanceConfig();
 				config.setInstanceName(instance);
-				if(properties.containsKey(instance + "." + MONGO_REPOSITORY_TYPE)) {
-					config.setType(Type.valueOf(((String) properties.get(instance + "." + MONGO_REPOSITORY_TYPE)).toUpperCase()));
+				if (properties.containsKey(instance + "." + MONGO_REPOSITORY_TYPE)) {
+					config.setType(Type
+							.valueOf(((String) properties.get(instance + "." + MONGO_REPOSITORY_TYPE)).toUpperCase()));
 				}
 				String authDB = (String) properties.get(instance + "." + MONGO_AUTH_SOURCE_PROP);
 				String authDBEnv = (String) properties.get(instance + "." + MONGO_AUTH_SOURCE_ENV_PROP);
@@ -180,36 +191,38 @@ public class EMFMongoRepositoryConfigurator {
 				String pwdEnv = (String) properties.get(instance + "." + MONGO_PASSWORD_ENV_PROP);
 				String baseUris = (String) properties.get(instance + "." + MONGO_BASEURIS);
 				String baseUrisEnv = (String) properties.get(instance + "." + MONGO_BASEURIS_ENV);
-				String databases =(String) properties.get(instance + "." + MONGO_DATABASES);
+				String databases = (String) properties.get(instance + "." + MONGO_DATABASES);
 				config.setMongoBaseUri(baseUris);
 				config.setMongoBaseUriEnvironmentVariable(baseUrisEnv);
 				if (authDB != null) {
 					config.setAuthDatabase(authDB);
 				}
-				if(user != null){
+				if (user != null) {
 					config.setUsername(user);
 				}
-				if(pwd != null){
+				if (pwd != null) {
 					config.setPassword(pwd);
 				}
 				if (authDBEnv != null) {
 					config.setAuthDatabaseEnvironmentVariable(authDBEnv);
 				}
-				if(userEnv != null){
+				if (userEnv != null) {
 					config.setUsernameEnvironmentVariable(userEnv);
 				}
-				if(pwdEnv != null){
+				if (pwdEnv != null) {
 					config.setPasswordEnvironmentVariable(pwdEnv);
 				}
-				for(String database : databases.split(",")){
+				for (String database : databases.split(",")) {
 					MongoDatabaseConfig dbConfig = new MongoDatabaseConfig();
 					dbConfig.setName(database.trim());
 					user = (String) properties.get(instance + "." + database + "." + MONGO_USER_PROP);
 					userEnv = (String) properties.get(instance + "." + database + "." + MONGO_USER_ENV_PROP);
 					pwd = (String) properties.get(instance + "." + database + "." + MONGO_PASSWORD_PROP);
 					pwdEnv = (String) properties.get(instance + "." + database + "." + MONGO_PASSWORD_ENV_PROP);
-					if(properties.containsKey(instance + "." + database + "." + MONGO_REPOSITORY_TYPE)) {
-						dbConfig.setType(Type.valueOf(((String) properties.get(instance + "." + database + "." + MONGO_REPOSITORY_TYPE)).toUpperCase()));
+					if (properties.containsKey(instance + "." + database + "." + MONGO_REPOSITORY_TYPE)) {
+						dbConfig.setType(Type.valueOf(
+								((String) properties.get(instance + "." + database + "." + MONGO_REPOSITORY_TYPE))
+										.toUpperCase()));
 					} else {
 						dbConfig.setType(config.getType());
 					}
@@ -217,7 +230,7 @@ public class EMFMongoRepositoryConfigurator {
 				}
 				instanceConfigs.add(config);
 			} catch (Exception e) {
-				logger.log(Level.SEVERE, "Error creating mongo instance configuration for instance: "+ instance, e);
+				logger.log(Level.SEVERE, "Error creating mongo instance configuration for instance: " + instance, e);
 			}
 		}
 		return instanceConfigs;
@@ -225,11 +238,13 @@ public class EMFMongoRepositoryConfigurator {
 
 	/**
 	 * Sets up a repository configuration
+	 * 
 	 * @param mongoConfig the mongo instance configuration to set up
 	 */
 	private void setupRepositoryConfiguration(MongoInstanceConfig mongoConfig) {
 		String instance = mongoConfig.getInstanceName();
-		String baseUris = getEnvironmentVariable(mongoConfig.getMongoBaseUriEnvironmentVariable(), mongoConfig.getMongoBaseUri());
+		String baseUris = getEnvironmentVariable(mongoConfig.getMongoBaseUriEnvironmentVariable(),
+				mongoConfig.getMongoBaseUri());
 		baseUris = normalizeBaseUris(baseUris);
 		try {
 			registerUriMapping(instance, baseUris);
@@ -243,22 +258,25 @@ public class EMFMongoRepositoryConfigurator {
 
 	/**
 	 * Looks in System.env and System.getProperty for the given variable
+	 * 
 	 * @param envVariable the environmentVariable to look for
-	 * @param default the default value to use if no value is found or the envVariable is null
+	 * @param default     the default value to use if no value is found or the
+	 *                    envVariable is null
 	 * @return the desired value or the given default
 	 */
 	private String getEnvironmentVariable(String envVariable, String defaultValue) {
-		if(envVariable == null || envVariable.isEmpty()) {
+		if (envVariable == null || envVariable.isEmpty()) {
 			return defaultValue;
 		}
 
 		String env = System.getenv(envVariable);
-		if(env == null) {
+		if (env == null) {
 			env = System.getProperty(envVariable);
 		}
 
-		if(env == null) {
-			logger.warning("The variable " + envVariable + " was set, but no value was found in System.env and System.properties");
+		if (env == null) {
+			logger.warning("The variable " + envVariable
+					+ " was set, but no value was found in System.env and System.properties");
 			return defaultValue;
 		} else {
 			logger.warning("Overwritting value with " + envVariable);
@@ -268,38 +286,44 @@ public class EMFMongoRepositoryConfigurator {
 
 	/**
 	 * Registers the EMF repositories for the goven configuration
+	 * 
 	 * @param mongoConfig
 	 */
 	private void registerEMFMongoRepositories(MongoInstanceConfig mongoConfig) {
 		String instance = mongoConfig.getInstanceName();
 		String rootUri = "mongodb://" + instance + "/";
-		mongoConfig.getDatabaseConfigs().forEach((c)->{
+		mongoConfig.getDatabaseConfigs().forEach((c) -> {
 			String baseUri = rootUri + c.getName();
 			String id = instance + "." + c.getName();
 			Dictionary<String, Object> properties = new Hashtable<>();
 			properties.put(EMFRepository.PROP_ID, id);
 			properties.put(EMFRepository.PROP_BASE_URI, baseUri);
 			Configuration repoConfiguration = repositoryConfigurationMap.get(id);
+
 			try {
 				if (repoConfiguration == null) {
-					String rsfTargetFilter = String.format(REPO_RESOURCE_SET_FILTER, id) ;
+					String rsfTargetFilter = String.format(REPO_RESOURCE_SET_FILTER, id);
 					properties.put(REPO_RESOURCE_SET_FIELD_TARGET, rsfTargetFilter);
-					if(c.getType() == Type.SINGLETON) {
-						repoConfiguration = configAdmin.createFactoryConfiguration(SINGLETON_REPOSITORY_CONFIGURATION_NAME, "?");
+					if (c.getType() == Type.SINGLETON) {
+						repoConfiguration = configAdmin
+								.createFactoryConfiguration(SINGLETON_REPOSITORY_CONFIGURATION_NAME, "?");
 					} else {
-						repoConfiguration = configAdmin.createFactoryConfiguration(PROTOTYPE_REPOSITORY_CONFIGURATION_NAME, "?");
+						repoConfiguration = configAdmin
+								.createFactoryConfiguration(PROTOTYPE_REPOSITORY_CONFIGURATION_NAME, "?");
 					}
 					repositoryConfigurationMap.put(id, repoConfiguration);
 				}
 				repoConfiguration.update(properties);
 			} catch (Exception e) {
-				throw new IllegalStateException("Error registering MongoRepository for mongo database instance: " + id, e);
+				throw new IllegalStateException("Error registering MongoRepository for mongo database instance: " + id,
+						e);
 			}
 		});
 	}
 
 	/**
 	 * Registers a new UriMapProvider for the given URI mapping
+	 * 
 	 * @param instance the mongo instance name
 	 * @param baseUris the baseUri's
 	 * @throws IOException
@@ -317,21 +341,23 @@ public class EMFMongoRepositoryConfigurator {
 			uriMapConfiguration.update(uriMapProperties);
 		} catch (Exception e) {
 			throw new IllegalStateException("Error registering URI mapping for mongo instance: " + instance, e);
-		} 
+		}
 	}
 
 	/**
 	 * Registers a new {@link MongoClientProvider} for the given configuration
+	 * 
 	 * @param mongoConfig the mongo instance configuration
-	 * @param baseUris the baseUri's
+	 * @param baseUris    the baseUri's
 	 */
 	private void registerClientProvider(MongoInstanceConfig mongoConfig, String baseUris) {
 		String instance = mongoConfig.getInstanceName();
 		String instancePID = MongoConstants.PID_MONGO_CLIENT + "." + instance;
-		StringBuilder credential = new StringBuilder(); 
+		StringBuilder credential = new StringBuilder();
 		String user = getEnvironmentVariable(mongoConfig.getUsernameEnvironmentVariable(), mongoConfig.getUsername());
 		String pwd = getEnvironmentVariable(mongoConfig.getPasswordEnvironmentVariable(), mongoConfig.getPassword());
-		String authSource = getEnvironmentVariable(mongoConfig.getAuthDatabaseEnvironmentVariable(), mongoConfig.getAuthDatabase());
+		String authSource = getEnvironmentVariable(mongoConfig.getAuthDatabaseEnvironmentVariable(),
+				mongoConfig.getAuthDatabase());
 		if (user != null) {
 			credential.append(user);
 		}
@@ -343,20 +369,20 @@ public class EMFMongoRepositoryConfigurator {
 			credential.append("@");
 			credential.append(authSource);
 		}
-		Map<String, Object> mongoClientProperties  = mongoConfig.getClientProperties();
+		Map<String, Object> mongoClientProperties = mongoConfig.getClientProperties();
 		Dictionary<String, Object> clientProps = new Hashtable<>();
 		clientProps.put(MongoConstants.CLIENT_PROP_CONNECTION_STRING, baseUris);
-		clientProps.put(MongoConstants.CLIENT_PROP_CLIENT_MONGO_IDENT, instance);
-		mongoClientProperties.forEach((k,v)->clientProps.put(k, v));
-		clientProps.put(Constants.SERVICE_PID, instancePID);
-		if(credential.length() > 0){
-			//TODO: fix back
-//			clientProps.put(MongoConstants.PROP_CREDENTIALS, credential.toString());
+		clientProps.put(MongoConstants.CLIENT_PROP_CLIENT_IDENT, instance);
+		mongoClientProperties.forEach((k, v) -> clientProps.put(k, v));
+//		clientProps.put(Constants.SERVICE_PID, instancePID);
+		if (credential.length() > 0) {
+			// TODO: fix back
+			clientProps.put("credential.password", credential.toString());
 		}
 		Configuration clientConfiguration = clientConfigurationMap.get(instance);
 		try {
 			if (clientConfiguration == null) {
-				clientConfiguration = configAdmin.createFactoryConfiguration("MongoClientProvider", "?");
+				clientConfiguration = configAdmin.createFactoryConfiguration(MongoConstants.PID_MONGO_CLIENT, "?");
 				clientConfigurationMap.put(instance, clientConfiguration);
 			}
 			clientConfiguration.update(clientProps);
@@ -367,39 +393,44 @@ public class EMFMongoRepositoryConfigurator {
 
 	/**
 	 * Registers new {@link MongoDatabaseProvider}'s for the given configuration
+	 * 
 	 * @param mongoConfig the mongo instance configuration
-	 * @param baseUris the baseUri's
+	 * @param baseUris    the baseUri's
 	 */
 	private void registerDatabaseProviders(MongoInstanceConfig mongoConfig, String baseUris) {
 		String instance = mongoConfig.getInstanceName();
 		List<MongoDatabaseConfig> mdc = mongoConfig.getDatabaseConfigs();
-		mdc.forEach((c)->{
+		mdc.forEach((c) -> {
 			String database = c.getName();
 			String dbName = instance + "." + database;
 
 			String databaseProviderPID = MongoConstants.PID_MONGO_DATABASE + "." + instance + "." + database;
 			Dictionary<String, Object> databaseProps = new Hashtable<>();
-			//TODO: 
-//			databaseProps.put(MongoDatabaseProvider.PROP_ALIAS, database);
-//			databaseProps.put(MongoDatabaseProvider.PROP_DATABASE, database);
-//			databaseProps.put(MongoDatabaseProvider.PROP_DATABASE_IDENTIFIER , dbName);
-			databaseProps.put(Constants.SERVICE_PID, databaseProviderPID);
+
+			databaseProps.put(MongoConstants.DB_PROP_DATABASE_DATABASE_ALIAS, database);
+			databaseProps.put(MongoConstants.DB_PROP_DATABASE_INTERNAL_NAME, database);
+			databaseProps.put(MongoConstants.TARGET_MONGOCLIENT,
+					String.format(MongoConstants.TARGET_FILTER_CLIENT_BY_IDENT, instance));
+			databaseProps.put(MongoConstants.DB_PROP_DATABASE_IDENT, dbName);
+//			databaseProps.put(Constants.SERVICE_PID, databaseProviderPID);
 			Configuration dbConfiguration = databaseConfigurationMap.get(dbName);
 			try {
 				if (dbConfiguration == null) {
-					dbConfiguration = configAdmin.createFactoryConfiguration("MongoDatabaseProvider", "?");
+					dbConfiguration = configAdmin.createFactoryConfiguration(MongoConstants.PID_MONGO_DATABASE, "?");
 					databaseConfigurationMap.put(dbName, dbConfiguration);
 				}
 				dbConfiguration.update(databaseProps);
 				mongoDbConfigMap.put(dbName, c);
 			} catch (Exception e) {
-				throw new IllegalStateException("Error registering MongoDatabaseProvider for mongo database instance: " + dbName, e);
+				throw new IllegalStateException(
+						"Error registering MongoDatabaseProvider for mongo database instance: " + dbName, e);
 			}
 		});
 	}
 
 	/**
 	 * Reverts a configuration setup for the given configuration
+	 * 
 	 * @param configuration the configuration to revert
 	 */
 	private void tearDownConfigurations(MongoInstanceConfig configuration) {
@@ -409,7 +440,7 @@ public class EMFMongoRepositoryConfigurator {
 				return;
 			}
 			String instance = configuration.getInstanceName();
-			configuration.getDatabaseConfigs().forEach((c)->{
+			configuration.getDatabaseConfigs().forEach((c) -> {
 				String dbName = instance + "." + c.getName();
 				mongoDbConfigMap.remove(dbName);
 				Configuration repoc = repositoryConfigurationMap.remove(dbName);
