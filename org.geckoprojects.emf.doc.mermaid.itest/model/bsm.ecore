@@ -139,7 +139,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="beschreibung" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Text, der hilft, der öffentlichkeit die Masnahme näher zu erklären. Länge des textes sollte 500 zeichen nicht überschreiten."/>
+        <details key="documentation" value="Text, der hilft, intern die Masnahme näher zu erklären. Länge des textes sollte 500 zeichen nicht überschreiten."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="externe_id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -153,11 +153,21 @@
         <details key="documentation" value="Gibt an, ob die Baumassnahme zu Einschänkungen an Parkplätzen führt."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beschreibungExtern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Text, der hilft, der öffentlichkeit die Masnahme näher zu erklären. Länge des textes sollte 500 zeichen nicht überschreiten."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Traeger">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Eine kurze übersichtliuche Bezeichnung des Trägers."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//IntObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="ID des Trägers, wird durch Stadt vergeben"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

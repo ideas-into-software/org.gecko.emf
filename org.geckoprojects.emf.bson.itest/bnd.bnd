@@ -11,5 +11,6 @@
 	com.fasterxml.jackson.core.jackson-core,\
 	org.osgi.test.junit5,\
 	org.osgi.test.common,\
-	org.osgi.framework
+	org.osgi.framework,\
+	org.osgi.service.cm
 Bundle-Version: 1.1.2-SNAPSHOT

@@ -65,6 +65,7 @@
     </genClasses>
     <genClasses ecoreClass="bsm.ecore#//Traeger">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bsm.ecore#//Traeger/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bsm.ecore#//Traeger/id"/>
     </genClasses>
     <genClasses ecoreClass="bsm.ecore#//Zeitraum">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bsm.ecore#//Zeitraum/erstellt"/>

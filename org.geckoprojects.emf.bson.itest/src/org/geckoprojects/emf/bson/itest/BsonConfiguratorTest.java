@@ -37,6 +37,8 @@ import org.geckoprojects.emf.example.model.basic.Person;
 import org.geckoprojects.emf.example.model.basic.util.BasicResourceFactoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.osgi.service.cm.Configuration;
+import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.test.common.annotation.InjectService;
 import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
@@ -50,6 +52,21 @@ import de.undercouch.bson4jackson.BsonFactory;
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
 public class BsonConfiguratorTest {
+
+	@Test
+	public void testBson(@InjectService ConfigurationAdmin ca) throws IOException {
+		Configuration c = ca.getConfiguration("foo");
+		System.out.println(c.getPid());
+		System.out.println(c.getFactoryPid());
+
+		c = ca.getFactoryConfiguration("foo", "bar");
+		System.out.println(c.getPid());
+		System.out.println(c.getFactoryPid());
+		
+		 c = ca.getConfiguration("foo~bar");
+		System.out.println(c.getPid());//foo~bar
+		System.out.println(c.getFactoryPid());//foo
+	}
 
 	@Test
 	public void testBson(@InjectService(filter = "(component.name=EMFBsonConfigurator)") ServiceAware<ResourceFactoryConfigurator>  sa) {
