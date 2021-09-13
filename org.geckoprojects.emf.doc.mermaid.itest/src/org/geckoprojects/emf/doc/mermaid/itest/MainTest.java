@@ -26,7 +26,13 @@ public class MainTest {
 
 		String ecorePath = "./model/bsm.ecore";
 		Writer consoleWriter = new OutputStreamWriter(System.out);
-		Writer fileWriter = new FileWriter(new File("output.md"));
+		Writer fileWriter = new FileWriter(new File("bsm.md"));
+
+		mermaidService.generate(ecorePath, fileWriter);
+		
+		 ecorePath = "./asset/asset.ecore";
+		 consoleWriter = new OutputStreamWriter(System.out);
+		 fileWriter = new FileWriter(new File("asset.md"));
 
 		mermaidService.generate(ecorePath, fileWriter);
 

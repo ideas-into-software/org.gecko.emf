@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="asset" nsURI="http://www.jena.de/asset" nsPrefix="asset">
+  <eClassifiers xsi:type="ecore:EClass" name="Asset" eSuperTypes="#//UniqueObject #//Sensorable #//Projectable #//Areaable #//Locateable #//Costable #//Ownable #//Observable #//Treeable #//Rateable #//Flawable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UniqueObject" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="#//UUID"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="UUID" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Sensorable" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sensors" upperBound="-1"
+        eType="#//Sensor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Projectable" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Areaable" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Locateable" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Costable" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Ownable" abstract="true" interface="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Gibe Auskunft über alle Informationen im Zusammenhang mit Eigentümerschaft und dem Verantwortungsbereich eines Assets."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningperiodes" upperBound="2"
+        eType="#//OwningPeriode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Observable" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="observationperiods" upperBound="-1"
+        eType="#//ObservationPeriod"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Treeable" abstract="true" interface="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="parent for each treetype&#xA;"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OwningPeriode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Start der Eigentümerschaft&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Start der Eigentümerschaft&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Zeitpunkt der Datensatzerstellung&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Grund der Datensatzerstellung"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="owningType" eType="#//OwningType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ou" eType="#//OrganisationUnit"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OwningType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Eigentum Juristisch"/>
+    </eAnnotations>
+    <eLiterals name="OWNERSHIP_LAW"/>
+    <eLiterals name="OWNERSHIP_ORG" value="1"/>
+    <eLiterals name="CARESHIP" value="2">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Bestand&#xA;"/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrganisationUnit">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="SHOULD BE EXTRATED IN AN SEPARATE MODEL&#xA;Erganisationseinheit&#xA;"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="short" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//OuType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//OrganisationUnit"
+        eOpposite="#//OrganisationUnit/childs"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="childs" upperBound="-1"
+        eType="#//OrganisationUnit" eOpposite="#//OrganisationUnit/parent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OuType">
+    <eLiterals name="GROUP"/>
+    <eLiterals name="COMPANY" value="1"/>
+    <eLiterals name="DEPARTMENT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sensor">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Objekt das in der lage ist einen Wert zu einem Zeitpunkt zu messen oder anzuzeigen.&#xA;Ist ein Gerät in der lage mehrere Werte zu einem Zeitpunkt zu haben müssen mehrere Sensoren angelegt werden.&#xA;&#xA;&#xA;TODO: Typisieren andhand des ValueTypes&#xA;&#xA;ggf Überlappung mit Zustand"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//SensorValue"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Die Einheit in der der Messwert gemessen wird."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calibrations" eType="#//SensorCalibration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueGeo" eType="#//Geom"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="estimated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Wert ist geschätzt"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interpolated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Wert ist ergebnis einer interpolation."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Geom" instanceTypeName="EObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorCalibration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Kurze benamung der Kallibirierung die vorgenommen wurde.&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Ausführliche Beschreibung der Art ung umstände einer Kalibrierung."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObservationPeriod">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ObservationType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="intervalValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="intervalRythm" eType="#//ObservationIntervalRythm"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="intervalBase" eType="#//ObservationIntervalBase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RatingResult">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Resultat einer Überprüfung eines  Assets."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Datum der überprü"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="period" eType="#//ObservationPeriod"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ratings" upperBound="-1"
+        eType="#//RatingElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ObservationType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Typen einer ObservationPeriode"/>
+    </eAnnotations>
+    <eLiterals name="AUDIT">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Entspricht einer Technischen Abnahmeprüfung durch einer &quot;zuständige Überwachungsstelle&quot; (ZÜS)&#xA;Zum beispiel TÜV"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="SERVICE" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Gesetzlich oder durch technische Vorgaben notwendige Wartung durch intere oder Externe Mitarbeiter."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="CHECK" value="2">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Freiwillige Überprüfung  durch intere oder Externe Mitarbeiter."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="UNTYPED" value="3">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Untypisierte bewertung ggf.&#xA; durch Bürger"/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ObservationIntervalRythm">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Rhytmen ür die Berechnung einer neuen ObservationPeriode"/>
+    </eAnnotations>
+    <eLiterals name="DAY"/>
+    <eLiterals name="WEEK" value="1"/>
+    <eLiterals name="MONTH" value="2"/>
+    <eLiterals name="QUARTER" value="3"/>
+    <eLiterals name="HALF_YEAR" value="4"/>
+    <eLiterals name="YEAR" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ObservationIntervalBase">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="BasisTypen für die Berechnung einer neuen ObservationPeriode"/>
+    </eAnnotations>
+    <eLiterals name="YEAR"/>
+    <eLiterals name="LAST" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RatingElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Bewertung die bei einer Kontrolle des"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kriteria" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rating" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flaws" eType="#//Flaw"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rateable" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ratingresult" eType="#//RatingResult"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Flaw">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Flawable" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flaw" eType="#//Flaw"/>
+  </eClassifiers>
+</ecore:EPackage>

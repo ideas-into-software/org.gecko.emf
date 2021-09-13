@@ -16,8 +16,8 @@
 	junit-platform-engine;version='[1.7.0,1.7.1)',\
 	junit-platform-launcher;version='[1.7.0,1.7.1)',\
 	org.apache.felix.scr;version='[2.1.28,2.1.29)',\
-	org.eclipse.emf.common;version='[2.20.0,2.20.1)',\
-	org.eclipse.emf.ecore;version='[2.23.0,2.23.1)',\
+	org.eclipse.emf.common;version='[2.22.0,2.22.1)',\
+	org.eclipse.emf.ecore;version='[2.24.0,2.24.1)',\
 	org.eclipse.emf.ecore.xmi;version='[2.16.0,2.16.1)',\
 	org.freemarker.freemarker;version='[2.3.31,2.3.32)',\
 	org.geckoprojects.emf.doc.mermaid;version=snapshot,\
