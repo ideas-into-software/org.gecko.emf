@@ -10,14 +10,14 @@ public interface MongoConstants {
 	public static final String CLIENT_PROP_CLIENT_STATUS = "client_status";
 
 	
-	public static final String DB_PROP_DATABASE_IDENT = "database.ident";
-	public static final String DB_PROP_DATABASE_INTERNAL_NAME = "internal.name";
-	public static final String DB_PROP_DATABASE_DATABASE_ALIAS = "databaseAlias";
+	public static final String DB_PROP_DATABASE_NAME = "name";
+	public static final String DB_PROP_DATABASE_ALIAS = "alias";
 	public static final String DB_PROP_DATABASE_MUST_EXIST = "must.exist";
 	
 	public static final String TARGET_MONGOCLIENT = "mongoclient.target";
 
 	public static String TARGET_FILTER_CLIENT_BY_IDENT= "(" + MongoConstants.CLIENT_PROP_CLIENT_IDENT + "=%s)";
+	public static String TARGET_DO_NOT_RESOLVE = "(&(must.not.bind.by.default=*)(!(must.not.bind.by.default=*)))";
 	
 	
 

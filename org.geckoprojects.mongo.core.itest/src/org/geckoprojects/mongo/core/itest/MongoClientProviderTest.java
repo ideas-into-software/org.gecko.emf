@@ -121,7 +121,7 @@ public class MongoClientProviderTest {
 		MonitoringAssertion.executeAndObserve(() -> {
 			try {
 
-				c.update(Dictionaries.dictionaryOf(MongoConstants.DB_PROP_DATABASE_INTERNAL_NAME, internalName,
+				c.update(Dictionaries.dictionaryOf(MongoConstants.DB_PROP_DATABASE_NAME, internalName,
 						MongoConstants.DB_PROP_DATABASE_MUST_EXIST, false));
 
 			} catch (Exception e) {
@@ -133,7 +133,7 @@ public class MongoClientProviderTest {
 		MonitoringAssertion.executeAndObserve(() -> {
 			try {
 
-				c.update(Dictionaries.dictionaryOf(MongoConstants.DB_PROP_DATABASE_INTERNAL_NAME, internalName,
+				c.update(Dictionaries.dictionaryOf(MongoConstants.DB_PROP_DATABASE_NAME, internalName,
 						MongoConstants.DB_PROP_DATABASE_MUST_EXIST, false, MongoConstants.TARGET_MONGOCLIENT,String.format(
 						MongoConstants.TARGET_FILTER_CLIENT_BY_IDENT,clientIdent)));
 
@@ -151,7 +151,7 @@ public class MongoClientProviderTest {
 		MonitoringAssertion.executeAndObserve(() -> {
 			try {
 
-				c.update(Dictionaries.dictionaryOf(MongoConstants.DB_PROP_DATABASE_INTERNAL_NAME,
+				c.update(Dictionaries.dictionaryOf(MongoConstants.DB_PROP_DATABASE_NAME,
 						UUID.randomUUID().toString(), MongoConstants.DB_PROP_DATABASE_MUST_EXIST, true,
 						MongoConstants.TARGET_MONGOCLIENT, String.format(MongoConstants.TARGET_FILTER_CLIENT_BY_IDENT,clientIdent)));
 				System.out.println(111);

@@ -3,7 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="asset" nsURI="http://www.jena.de/asset" nsPrefix="asset">
   <eClassifiers xsi:type="ecore:EClass" name="Asset" eSuperTypes="#//UniqueObject #//Sensorable #//Projectable #//Areaable #//Locateable #//Costable #//Ownable #//Observable #//Treeable #//Rateable #//Flawable"/>
   <eClassifiers xsi:type="ecore:EClass" name="UniqueObject" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="#//UUID"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" lowerBound="1" eType="#//UUID"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="UUID" instanceClassName="java.lang.String"/>
   <eClassifiers xsi:type="ecore:EClass" name="Sensorable" abstract="true" interface="true">
@@ -12,8 +12,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Projectable" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Areaable" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Locateable" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Costable" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Locateable" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//SensorValue">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="TypesSensorvalue for Location"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Costable" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="av" eType="#//AV"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instandhaltung" eType="#//Instandhaltung"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Ownable" abstract="true" interface="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Gibe Auskunft über alle Informationen im Zusammenhang mit Eigentümerschaft und dem Verantwortungsbereich eines Assets."/>
@@ -29,6 +38,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="parent for each treetype&#xA;"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trees" upperBound="-1"
+        eType="#//Tree"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OwningPeriode">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
@@ -199,7 +210,8 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kriteria" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rating" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="flaws" eType="#//Flaw"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flaws" upperBound="-1"
+        eType="#//Flaw"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rateable" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ratingresult" eType="#//RatingResult"/>
@@ -208,8 +220,145 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="solved" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Flawable" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="flaw" eType="#//Flaw"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FlawRating"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="PlanType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Typisiert die Art des Plans"/>
+    </eAnnotations>
+    <eLiterals name="WIRTSCHAFTSPLAN">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Wirtschaftsplan Fokus Folgejahr"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="INVESTPLAN" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Fokus mittelfristige Investitionen"/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectPart">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Der Anteil mit dem eine Massnahme in einer Planposition enthalten ist."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" lowerBound="1"
+        eType="#//Project">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Die Massnehme dem der Anteil zugeordnet ist."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="anteil" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Der Anteil in Prozent."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beschreibung" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Textliche beschreibung des Anteils."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Project">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Baumassnahme eines Trägers."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Project"
+        eOpposite="#//Project/childs"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="childs" eType="#//Project"
+        eOpposite="#//Project/parent"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Plan">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Ein Plan einer Trägers, in dem für einen vorgegebenen Zeitraum Wirtschaftliche tätigkeitsfelder aufgelistet werden.&#xA;Beispiel, Wirtschaftplan, Mittelfrist-Finanzplan."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Beginn des Zeitraums für den der Plan gilt."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ende" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Ende des Zeitraums für den der Plan gilt."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ou" lowerBound="1" eType="#//OrganisationUnit">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Der Träger, der den Plan erstellt."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PlanType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Typisierung des Wirtschaftsplanes."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Zeitpunkt zu dem der Plan gültig ist."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlanPosition">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Eine Zeile in einem Plan."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plan" lowerBound="1" eType="#//Plan">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Verweis auf den Plan der die Planpositionen Gruppiert."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nummer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Die Nummer zur ermögliches eines schnellen Erfasses einer Position in einer Liste mehrerer Positionen."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="massnahmeanteil" upperBound="-1"
+        eType="#//ProjectPart"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Sortiert die Positionen im Plan."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="titel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Die Kurzbezeichnung der Position.&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beschreibung" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Eine erklärende Beschreibung der der Position."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Start der Position, wenn leer wird ist das Startdatum des Plans gemeint.&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ende" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Start der Position, wenn leer wird ist das Enddatum des Plans gemeint.&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tree">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootElement" eType="#//TreeElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TreeElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//TreeElement"
+        eOpposite="#//TreeElement/childs"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="childs" upperBound="-1"
+        eType="#//TreeElement" eOpposite="#//TreeElement/parent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Instandhaltung"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AV">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="BEWEGUNGSART"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Datum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Betrag"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BEWEGUNGSART"/>
 </ecore:EPackage>

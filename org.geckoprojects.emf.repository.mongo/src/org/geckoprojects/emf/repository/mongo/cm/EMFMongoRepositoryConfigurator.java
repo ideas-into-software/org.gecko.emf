@@ -407,8 +407,8 @@ public class EMFMongoRepositoryConfigurator {
 			String databaseProviderPID = MongoConstants.PID_MONGO_DATABASE + "." + instance + "." + database;
 			Dictionary<String, Object> databaseProps = new Hashtable<>();
 
-			databaseProps.put(MongoConstants.DB_PROP_DATABASE_DATABASE_ALIAS, database);
-			databaseProps.put(MongoConstants.DB_PROP_DATABASE_INTERNAL_NAME, database);
+			databaseProps.put(MongoConstants.DB_PROP_DATABASE_ALIAS, database);
+			databaseProps.put(MongoConstants.DB_PROP_DATABASE_NAME, database);
 			databaseProps.put(MongoConstants.TARGET_MONGOCLIENT,
 					String.format(MongoConstants.TARGET_FILTER_CLIENT_BY_IDENT, instance));
 			databaseProps.put(MongoConstants.DB_PROP_DATABASE_IDENT, dbName);

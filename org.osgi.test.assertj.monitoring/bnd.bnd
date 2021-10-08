@@ -8,7 +8,8 @@ Bundle-Version: 0.0.1-SNAPSHOT
 	org.osgi.annotation.versioning
 Export-Package: \
 	org.osgi.test.assertj.NotPartOfPR,\
-	org.osgi.test.assertj.monitoring
+	org.osgi.test.assertj.monitoring,\
+	javax.annotation.meta
 Private-Package: org.osgi.test.assertj.monitoring.internal
 -testpath: \
 	junit-jupiter-api,\

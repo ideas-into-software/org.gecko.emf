@@ -1,0 +1,14 @@
+
+-buildpath: \
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.eclipse.emf.ecore.xmi,\
+	org.freemarker.freemarker,\
+	org.osgi.service.component.annotations,\
+	org.osgi.framework,\
+	org.osgi.annotation.bundle
+Bundle-Version: 0.0.1-SNAPSHOT
+Export-Package: org.geckoprojects.emf.doc.gmf
+
+-includeresource: ftl/=resources/ftl/
+Private-Package: org.geckoprojects.emf.doc.gmf.impl

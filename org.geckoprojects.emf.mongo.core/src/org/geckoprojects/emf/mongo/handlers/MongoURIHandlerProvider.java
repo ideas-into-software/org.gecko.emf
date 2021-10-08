@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.resource.URIHandler;
 import org.geckoprojects.emf.core.api.UriHandlerProvider;
 import org.geckoprojects.emf.mongo.InputStreamFactory;
 import org.geckoprojects.emf.mongo.OutputStreamFactory;
-import org.geckoprojects.mongo.core.GeckoMongoDatabase;
+import org.geckoprojects.mongo.core.InfoMongoDatabase;
 
 import com.mongodb.client.MongoDatabase;
 
@@ -47,16 +47,16 @@ public class MongoURIHandlerProvider implements UriHandlerProvider {
 	 * Adds a {@link MongoDatabase} to the mongoDatabase map.  
 	 * @param mongoDatabase the MongoDatabase to be added
 	 */
-	public void addMongoDatabaseProvider(GeckoMongoDatabase mongoDatabase) {
-		mongoDatabases.put(mongoDatabase.getURI(), mongoDatabase);
+	public void addMongoDatabaseProvider(InfoMongoDatabase mongoDatabase) {
+		mongoDatabases.put(mongoDatabase.getDatabaseUniqueIdentifyer(), mongoDatabase);
 	}
 
 	/**
 	 * Removes a {@link MongoDatabase} from the map 
 	 * @param mongoDatabase the MongoDatabase to be removed
 	 */
-	public void removeMongoDatabaseProvider(GeckoMongoDatabase mongoDatabase) {
-		mongoDatabases.remove(mongoDatabase.getURI());
+	public void removeMongoDatabaseProvider(InfoMongoDatabase mongoDatabase) {
+		mongoDatabases.remove(mongoDatabase.getDatabaseUniqueIdentifyer());
 	}
 
 	/**

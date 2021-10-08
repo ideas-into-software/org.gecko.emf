@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.bson.codecs.configuration.CodecRegistry;
-import org.geckoprojects.mongo.core.GeckoMongoClient;
+import org.geckoprojects.mongo.core.InfoMongoClient;
 import org.geckoprojects.mongo.core.MongoClientConfig;
 import org.geckoprojects.mongo.core.MongoConstants;
 import org.geckoprojects.mongo.core.impl.delegated.ClusterListenerDelegate;
@@ -55,10 +55,15 @@ import com.mongodb.selector.ServerSelector;
 //Just a component prevent from registering as a ServerMonitorListener
 @Component(service = {}, scope = ServiceScope.SINGLETON, configurationPid = MongoConstants.PID_MONGO_CLIENT)
 @Capability(namespace = "osgi.service", attribute = {
-"objectClass:List<String>=\'com.mongodb.client.MongoClient\'" }, uses = MongoClient.class)
+MongoClientController.OBJECT_CLASS_MONGO_CLIENT }, uses = MongoClient.class)
 @Capability(namespace = "osgi.service", attribute = {
-"objectClass:List<String>=\'org.geckoprojects.mongo.core.GeckoMongoClient\'" }, uses = MongoClient.class)
+MongoClientController.OBJECT_CLASS_INFO_MONGO_CLIENT }, uses = MongoClient.class)
 public class MongoClientController implements ServerMonitorListener {
+
+	static final String OBJECT_CLASS_MONGO_CLIENT = "objectClass:List<String>=\'com.mongodb.client.MongoClient\'";
+
+	static final String OBJECT_CLASS_INFO_MONGO_CLIENT = "objectClass:List<String>=\'org.geckoprojects.mongo.core.InfoMongoClient\'"
+			;
 
 	private ClusterListenerDelegate clusterListenerDelegate = new ClusterListenerDelegate();
 
@@ -114,7 +119,7 @@ public class MongoClientController implements ServerMonitorListener {
 
 		Map<String, Object> props = clientServiceProps();
 		regMongoClient = bundleContext.registerService(
-				new String[] { MongoClient.class.getName(), GeckoMongoClient.class.getName() }, mongoClient,
+				new String[] { MongoClient.class.getName(), InfoMongoClient.class.getName() }, mongoClient,
 				new Hashtable<>(props));
 	}
 
@@ -232,7 +237,7 @@ public class MongoClientController implements ServerMonitorListener {
 	@Override
 	public void serverHeartbeatSucceeded(ServerHeartbeatSucceededEvent event) {
 
-		if (!clientStatus.getAndSet(true)) {
+		if (!clientStatus.compareAndSet(false,true)) {
 	
 			oLogger.ifPresent(l->l.warn("Mongo Client first time gets an Hartbeat from Server ", event));
 			Map<String, Object> props = clientServiceProps();
@@ -243,7 +248,7 @@ public class MongoClientController implements ServerMonitorListener {
 	@Override
 	public void serverHeartbeatFailed(ServerHeartbeatFailedEvent event) {
 
-		if (clientStatus.getAndSet(false)) {
+		if (clientStatus.compareAndSet(true,false)) {
 			oLogger.ifPresent(l->l.warn("Mongo Client does not get an Hartbeat from Server ", event));
 			Map<String, Object> props = clientServiceProps();
 			regMongoClient.setProperties(new Hashtable<>(props));

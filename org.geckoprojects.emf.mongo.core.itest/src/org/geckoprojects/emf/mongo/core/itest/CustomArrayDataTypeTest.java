@@ -59,7 +59,7 @@ public class CustomArrayDataTypeTest {
 	static final String dbInternal = "MyMongoDatabaseInternamName";
 
 	static final String filterResourceSetConfigurator = "(&(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)("
-			+ MongoConstants.DB_PROP_DATABASE_DATABASE_ALIAS + "=" + dbAlias + "))";
+			+ MongoConstants.DB_PROP_DATABASE_ALIAS + "=" + dbAlias + "))";
 	static final String filterResourceSetFactory = "(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=mongo)";
 
 	@Test
@@ -98,8 +98,8 @@ public class CustomArrayDataTypeTest {
 		MonitoringAssertion.executeAndObserve(() -> {
 			try {
 
-				c.update(Dictionaries.dictionaryOf(MongoConstants.DB_PROP_DATABASE_INTERNAL_NAME, dbInternal,
-						MongoConstants.DB_PROP_DATABASE_DATABASE_ALIAS, dbAlias, MongoConstants.DB_PROP_DATABASE_MUST_EXIST, false));
+				c.update(Dictionaries.dictionaryOf(MongoConstants.DB_PROP_DATABASE_NAME, dbInternal,
+						MongoConstants.DB_PROP_DATABASE_ALIAS, dbAlias, MongoConstants.DB_PROP_DATABASE_MUST_EXIST, false));
 
 			} catch (Exception e) {
 				throw new RuntimeException(e);

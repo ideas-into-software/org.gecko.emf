@@ -37,8 +37,8 @@ import org.geckoprojects.emf.example.model.basic.Person;
 import org.geckoprojects.emf.repository.EMFRepository;
 import org.geckoprojects.emf.repository.mongo.annotations.RequireMongoEMFRepository;
 import org.geckoprojects.emf.repository.mongo.api.EMFMongoConfiguratorConstants;
-import org.geckoprojects.mongo.core.GeckoMongoClient;
-import org.geckoprojects.mongo.core.GeckoMongoDatabase;
+import org.geckoprojects.mongo.core.InfoMongoClient;
+import org.geckoprojects.mongo.core.InfoMongoDatabase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -117,8 +117,8 @@ public class MongoConfiguratorIntegrationTest {
 					+ "))") ServiceAware<ResourceSetFactory> serviceAwareRSF,
 			@InjectService(filter = "(" + EMFRepository.PROP_ID + "=" + clientId
 					+ ")", cardinality = 0) ServiceAware<EMFRepository> serviceAwareEMFR,
-			@InjectService(cardinality = 0) ServiceAware<GeckoMongoClient> serviceAwareGMC,
-			@InjectService(cardinality = 0) ServiceAware<GeckoMongoDatabase> serviceAwareGMD)
+			@InjectService(cardinality = 0) ServiceAware<InfoMongoClient> serviceAwareGMC,
+			@InjectService(cardinality = 0) ServiceAware<InfoMongoDatabase> serviceAwareGMD)
 			throws BundleException, InvalidSyntaxException, IOException, InterruptedException {
 		/**
 		 * mongo.instances=test1 test1.baseUris=mongodb://localhost test1.databases=test

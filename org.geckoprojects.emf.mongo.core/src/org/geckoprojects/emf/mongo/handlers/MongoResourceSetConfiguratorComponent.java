@@ -14,7 +14,7 @@ import org.geckoprojects.emf.core.api.EMFNamespaces;
 import org.geckoprojects.emf.core.api.ResourceSetConfigurator;
 import org.geckoprojects.emf.mongo.InputStreamFactory;
 import org.geckoprojects.emf.mongo.OutputStreamFactory;
-import org.geckoprojects.mongo.core.GeckoMongoDatabase;
+import org.geckoprojects.mongo.core.InfoMongoDatabase;
 import org.geckoprojects.mongo.core.MongoConstants;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
@@ -69,34 +69,34 @@ public class MongoResourceSetConfiguratorComponent {
 	}
 
 	/**
-	 * Adds a {@link GeckoMongoDatabase} to the provider map.
+	 * Adds a {@link InfoMongoDatabase} to the provider map.
 	 * 
 	 * @param mongoDatabase the provider to be added
 	 */
 	@Reference(name = "MongoDatabase", policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.AT_LEAST_ONE)
-	public void addMongoDatabase(GeckoMongoDatabase mongoDatabase, Map<String, Object> map) {
+	public void addMongoDatabase(InfoMongoDatabase mongoDatabase, Map<String, Object> map) {
 
 		mongoDatabases.put(mongoDatabase, map);
 
-		String alias = mongoDatabase.databaseAlias();
+		String alias = mongoDatabase.getAlias();
 		if (alias == null) {
 			throw new IllegalArgumentException("Database alias must not be null");
 		}
-		String databaseIdent = mongoDatabase.databaseIdent();
+		String databaseIdent = mongoDatabase.getDatabaseUniqueIdentifyer();
 
 		uriHandlerProvider.addMongoDatabaseProvider(mongoDatabase);
 		updateProperties(databaseIdent, alias, true);
 	}
 
 	/**
-	 * Removes a {@link GeckoMongoDatabase} from the map
+	 * Removes a {@link InfoMongoDatabase} from the map
 	 * 
 	 * @param mongoDatabase the provider to be removed
 	 */
-	public void removeMongoDatabase(GeckoMongoDatabase mongoDatabase, Map<String, Object> map) {
+	public void removeMongoDatabase(InfoMongoDatabase mongoDatabase, Map<String, Object> map) {
 
-		String alias = mongoDatabase.databaseAlias();
-		String databaseIdent = mongoDatabase.databaseIdent();
+		String alias = mongoDatabase.getAlias();
+		String databaseIdent = mongoDatabase.getDatabaseUniqueIdentifyer();
 		uriHandlerProvider.removeMongoDatabaseProvider(mongoDatabase);
 		updateProperties(databaseIdent, alias, false);
 	}
@@ -164,7 +164,7 @@ public class MongoResourceSetConfiguratorComponent {
 		List<String> uidsList = new LinkedList<String>(aliases);
 		String[] uidsArr = uidsList.toArray(new String[aliases.size()]);
 		if (uidsArr.length > 0) {
-			properties.put(MongoConstants.DB_PROP_DATABASE_DATABASE_ALIAS, uidsArr);
+			properties.put(MongoConstants.DB_PROP_DATABASE_ALIAS, uidsArr);
 		}
 		String[] ids = uidsList.stream().map(this::replaceWithIdentifier).collect(Collectors.toList())
 				.toArray(new String[0]);

@@ -30,7 +30,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 /**
- * This EMF URI handler interfaces to MongoDB. This URI handler can handle URIs with the "mongodb"
+ * This EMF URI handler interfaces to MongoDB. This URI handler can handle URIs with the "mongoemf"
  * scheme. The URI path must have exactly 3 segments and be of the form /database/collection/{id}
  * where id is optional the first time the EMF object is saved. When building queries, do not
  * specify an id, but make sure path has 3 segments by placing a "/" after the collection.
@@ -39,8 +39,8 @@ import com.mongodb.client.MongoDatabase;
  * and the URI of the EMF Resource will be modified to include the id in the URI. Examples of valid
  * URIs:
  * 
- * mongodb://localhost/data/people/
- * mongodb://localhost/data/people/4d0a3e259095b5b334a59df0
+ * mongoemf://clientUID/databaseAlias/people/
+ * mongoemf://clientUID/databaseAlias/people/4d0a3e259095b5b334a59df0
  * 
  * This class is intended to be used with the IResourceSetFactory service. If you are not using the
  * factory service, you will have to supply instances of IMongoLocator, IIntputStreamFActory, and
@@ -50,6 +50,8 @@ import com.mongodb.client.MongoDatabase;
  * 
  */
 public class MongoURIHandlerImpl extends URIHandlerImpl {
+	
+	private static final String SCHEMA_MONGO_EMF = "mongoemf";
 	/**
 	 * 
 	 * @param databaseLocator an instance of the mongo locator service
@@ -69,9 +71,9 @@ public class MongoURIHandlerImpl extends URIHandlerImpl {
 	 */
 	@Override
 	public boolean canHandle(URI uri) {
-		// This handler should only accept URIs with the scheme "mongodb"
+		// This handler should only accept URIs with the scheme "mongo"
 
-		return "mongodb".equalsIgnoreCase(uri.scheme());
+		return SCHEMA_MONGO_EMF.equalsIgnoreCase(uri.scheme());
 	}
 
 	/* 
@@ -163,14 +165,14 @@ public class MongoURIHandlerImpl extends URIHandlerImpl {
 		if (uri.segmentCount() != 3) {
 			throw new IOException("The URI is not of the form 'mongodb:/database/collection/{id}");
 		}
-		String fullyQualifiedDatabaseName=uri.trimQuery().trimFragment().trimSegments(2).toString().replace(":27017/", "/");
+		String databaseUniqueIdentifyer=uri.trimQuery().trimFragment().trimSegments(2).toString().replace(":27017/", "/");
 
 		MongoDatabase mongoDatabase;
 		/*
 		 * we need to synchronize, because new database providers can be added and removed all the time
 		 */
 		synchronized (mongoDatabases) {
-			mongoDatabase = mongoDatabases.get(fullyQualifiedDatabaseName);
+			mongoDatabase = mongoDatabases.get(databaseUniqueIdentifyer);
 		}
 		
 		
