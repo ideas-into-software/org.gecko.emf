@@ -44,6 +44,7 @@ public class ECollectionsHelperTest {
 		ecollPackage = (EPackage) c;
 	}
 
+
 	@AfterEach
 	public void after() {
 		resource.getContents().clear();
