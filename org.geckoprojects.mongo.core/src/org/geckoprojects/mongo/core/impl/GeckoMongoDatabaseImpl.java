@@ -26,7 +26,7 @@ public class GeckoMongoDatabaseImpl extends AbstractMongoDatabase implements Mon
 
 	private MongoDatabaseConfig config;
 
-	@Reference(name = "mongoclient", target = MongoConstants.TARGET_DO_NOT_RESOLVE)
+	@Reference(name = "mongoclient", target = MongoConstants.TARGET_MONGO_DATABASE_CONNECTED_UNBINDABLE)
 	public void bindClient(InfoMongoClient client) {
 		this.client = client;
 	}

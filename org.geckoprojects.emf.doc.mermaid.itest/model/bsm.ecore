@@ -285,10 +285,10 @@
       <details key="documentation" value="Typisiete Begründung für die Änderung des  eines Zeitraums&#xA;."/>
     </eAnnotations>
     <eLiterals name="Witterung"/>
-    <eLiterals name="Finanzielle Engpässe" value="1"/>
+    <eLiterals name="Finanzielle" value="1"/>
     <eLiterals name="Fehlplanung" value="2"/>
     <eLiterals name="Auschreibung" value="3"/>
-    <eLiterals name="Personal Engpässe" value="4"/>
+    <eLiterals name="Personal" value="4"/>
     <eLiterals name="NONE" value="5"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Asset">

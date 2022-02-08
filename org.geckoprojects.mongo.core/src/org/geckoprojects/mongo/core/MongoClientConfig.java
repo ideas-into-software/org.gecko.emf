@@ -13,8 +13,8 @@ import com.mongodb.connection.ClusterType;
 @ObjectClassDefinition()
 public interface MongoClientConfig {
 
-	@AttributeDefinition(required = true, name = "clientIdent", description = "A Identifyer for the mongo client")
-	 String client_ident();
+	@AttributeDefinition(required = true, name = "ident", description = "A Identifyer for the mongo client")
+	 String ident();
 
 	@AttributeDefinition(required = true, description = " e.g. `mongodb+srv://user:<password>@<host>:<port>/<database>?retryWrites=true&w=majority`. Takes the settings from the given Connectiondefault String")
 	 String connectionString();

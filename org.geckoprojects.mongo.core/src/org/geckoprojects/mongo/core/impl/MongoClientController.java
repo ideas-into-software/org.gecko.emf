@@ -125,7 +125,7 @@ public class MongoClientController implements ServerMonitorListener {
 
 	private Map<String, Object> clientServiceProps() {
 		Map<String, Object> map = new HashMap<>();
-		map.put(MongoConstants.CLIENT_PROP_CLIENT_IDENT, mongoConfig.client_ident());
+		map.put(MongoConstants.CLIENT_PROP_CLIENT_IDENT, mongoConfig.ident());
 
 		map.put(MongoConstants.CLIENT_PROP_CLIENT_STATUS, clientStatus.get());
 

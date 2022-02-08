@@ -84,7 +84,7 @@ public class CustomArrayDataTypeTest {
 				// anytype also nzt filter oder nut map
 
 				.untilServiceEvent(Predicates.ServiceEvents.isTypeRegistered(MongoClient.class))
-				.assertWithTimeoutThat(100000).isNotTimedOut()
+				.assertWithTimeoutThat(1000).isNotTimedOut()
 				.hasServiceEventsInOrder(
 						List.of(Conditions.ServiceEventConditions.typeRegisteredAndObjectClass(MongoClient.class)))
 				.hasServiceEventsThat()// ListAssert<ServiceEvents)
@@ -99,19 +99,20 @@ public class CustomArrayDataTypeTest {
 			try {
 
 				c.update(Dictionaries.dictionaryOf(MongoConstants.DB_PROP_DATABASE_NAME, dbInternal,
-						MongoConstants.DB_PROP_DATABASE_ALIAS, dbAlias, MongoConstants.DB_PROP_DATABASE_MUST_EXIST, false));
+						MongoConstants.DB_PROP_DATABASE_ALIAS, dbAlias, MongoConstants.DB_PROP_DATABASE_MUST_EXIST, false,
+						MongoConstants.TARGET_MONGOCLIENT,String.format("(%s=%s)",MongoConstants.CLIENT_PROP_CLIENT_IDENT, mongoIdent)));
 
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
-		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(100000);
+		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(3000000);
 		//.hasExactlyNServiceEventRegisteredWith(1,				MongoDatabase.class);
 		
-		MongoDatabase mongoDatabase = saMongoDatabase.waitForService(100000);
+		MongoDatabase mongoDatabase = saMongoDatabase.waitForService(3000000);
 
 		assertThat(mongoDatabase).isNotNull();
 
-		ResourceSetConfigurator rsc = saResourceSetConfigurator.waitForService(500);
+		ResourceSetConfigurator rsc = saResourceSetConfigurator.waitForService(5000);
 		assertThat(rsc).isNotNull().isInstanceOf(MongoResourceSetConfigurator.class);
 
 		ResourceSetFactory rsf = saResourceSetFactory.getService();

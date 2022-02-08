@@ -28,7 +28,7 @@ public class GeckoMongoClientImpl extends AbstractMongoClient implements MongoCl
 
 	@Override
 	public String getClientUniqueIdentifyer() {
-		return mongoConfig.client_ident();
+		return mongoConfig.ident();
 	}
 
 }
