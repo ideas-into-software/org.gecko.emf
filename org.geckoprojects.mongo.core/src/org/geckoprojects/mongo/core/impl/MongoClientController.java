@@ -1,6 +1,7 @@
 package org.geckoprojects.mongo.core.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -141,12 +142,12 @@ public class MongoClientController implements ServerMonitorListener {
 
 		settingsBuilder.applyToClusterSettings(cs -> {
 
-			ControllerUtils.applyClusterSettings(mongoConfig, List.of(clusterListenerDelegate), serverSelector, cs);
+			ControllerUtils.applyClusterSettings(mongoConfig, Collections.singletonList(clusterListenerDelegate), serverSelector, cs);
 
 		});
 
 		settingsBuilder.applyToConnectionPoolSettings(cps -> {
-			ControllerUtils.applyConnectionPoolSettings(mongoConfig, List.of(connectionPoolListenerDelegate), cps);
+			ControllerUtils.applyConnectionPoolSettings(mongoConfig, Collections.singletonList(connectionPoolListenerDelegate), cps);
 
 		});
 

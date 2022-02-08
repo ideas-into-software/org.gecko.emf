@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -71,13 +73,12 @@ public class CustomArrayDataTypeTest {
 			throws Exception {
 
 		//
-
 		MonitoringAssertion.executeAndObserve(() -> {
 			// so something. could be Throwable
 
 			Configuration confClient = cm.getFactoryConfiguration(MongoConstants.PID_MONGO_CLIENT, "test1", "?");
-			confClient.update(new Hashtable<>(Map.of(MongoConstants.CLIENT_PROP_CLIENT_IDENT, mongoIdent,
-					MongoConstants.CLIENT_PROP_CONNECTION_STRING, clientUri)));
+			confClient.update(Dictionaries.dictionaryOf(MongoConstants.CLIENT_PROP_CLIENT_IDENT, mongoIdent,
+					MongoConstants.CLIENT_PROP_CONNECTION_STRING, clientUri));
 
 		})
 				// todo LDAP filter entsprechend frameworkutil
@@ -86,7 +87,7 @@ public class CustomArrayDataTypeTest {
 				.untilServiceEvent(Predicates.ServiceEvents.isTypeRegistered(MongoClient.class))
 				.assertWithTimeoutThat(1000).isNotTimedOut()
 				.hasServiceEventsInOrder(
-						List.of(Conditions.ServiceEventConditions.typeRegisteredAndObjectClass(MongoClient.class)))
+						Collections.singletonList(Conditions.ServiceEventConditions.typeRegisteredAndObjectClass(MongoClient.class)))
 				.hasServiceEventsThat()// ListAssert<ServiceEvents)
 				.areAtMost(2, Conditions.ServiceEventConditions.serviceReferenceIsNotNull());
 

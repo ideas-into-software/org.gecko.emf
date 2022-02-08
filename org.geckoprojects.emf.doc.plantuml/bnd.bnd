@@ -6,7 +6,8 @@
 	org.freemarker.freemarker,\
 	org.osgi.service.component.annotations,\
 	org.osgi.framework,\
-	org.osgi.annotation.bundle
+	org.osgi.annotation.bundle,\
+	aQute.libg
 Bundle-Version: 0.0.1-SNAPSHOT
 Export-Package: org.geckoprojects.emf.doc.gmf
 

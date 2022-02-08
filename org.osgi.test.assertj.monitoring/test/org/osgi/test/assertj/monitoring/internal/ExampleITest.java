@@ -1,11 +1,14 @@
 package org.osgi.test.assertj.monitoring.internal;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.assertj.core.api.Condition;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceEvent;
@@ -41,9 +44,9 @@ public class ExampleITest {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void example2() throws InvalidSyntaxException {
-
 		MonitoringAssertion.executeAndObserve(() -> {
 
 			ServiceRegistration<Serializable> sr = bc.registerService(Serializable.class, new Serializable() {
@@ -58,15 +61,17 @@ public class ExampleITest {
 				.hasNoThrowable()// not exception thrown while executed
 				.isNotTimedOut()// check that NOT timed-out
 				.hasServiceEventsInOrder(//
-						List.of(ServiceEventConditions.matches(ServiceEvent.REGISTERED, "(k=v0)"), //
+						Arrays.asList(new Condition[]{ServiceEventConditions.matches(ServiceEvent.REGISTERED, "(k=v0)"), //
 								ServiceEventConditions.typeModifiedAndObjectClass(Serializable.class), //
-								ServiceEventConditions.typeUnregisteringAndObjectClass(Serializable.class)))//
+								ServiceEventConditions.typeUnregisteringAndObjectClass(Serializable.class)}
+						))//
 				.hasServiceEventsInExactOrder(//
-						List.of(ServiceEventConditions.typeRegisteredWith(Serializable.class, Map.of("k", "v0")), //
+						Arrays.asList(new Condition[]{ServiceEventConditions.typeRegisteredWith(Serializable.class, Collections.singletonMap("k", "v0")), //
 								ServiceEventConditions.typeModifiedAndObjectClass(Serializable.class), //
 								ServiceEventConditions.typeModifiedAndObjectClass(Serializable.class), //
 								ServiceEventConditions.matches(ServiceEvent.UNREGISTERING, Serializable.class,
-										Map.of("k", "v2"))))//
+										Collections.singletonMap("k", "v2"))}
+						))//
 				.hasAtLeastNServiceEventModifiedWith(2, Serializable.class)//
 				.hasAtMostNServiceEventModifiedWith(2, Serializable.class)//
 				.hasExactlyNServiceEventModifiedWith(2, Serializable.class)//
@@ -74,9 +79,9 @@ public class ExampleITest {
 				.hasAtLeastOneServiceEventModifiedWith(Serializable.class)//
 				.hasAtLeastOneServiceEventUnregisteringWith(Serializable.class)//
 				.hasAtLeastOneServiceEventWith(ServiceEvent.REGISTERED, "(k=v0)")//
-				.hasAtLeastOneServiceEventRegisteredWith(Serializable.class, Map.of("k", "v0"))//
-				.hasAtLeastOneServiceEventModifiedWith(Serializable.class, Map.of("k", "v1"))//
-				.hasAtLeastOneServiceEventUnregisteringWith(Serializable.class, Map.of("k", "v2"))//
+				.hasAtLeastOneServiceEventRegisteredWith(Serializable.class, Collections.singletonMap("k", "v0"))//
+				.hasAtLeastOneServiceEventModifiedWith(Serializable.class, Collections.singletonMap("k", "v1"))//
+				.hasAtLeastOneServiceEventUnregisteringWith(Serializable.class, Collections.singletonMap("k", "v2"))//
 				.hasAtLeastOneServiceEventWith(ServiceEvent.REGISTERED, Serializable.class)
 
 				.hasNoServiceEventWith(ServiceEvent.REGISTERED, "(k=v4)");

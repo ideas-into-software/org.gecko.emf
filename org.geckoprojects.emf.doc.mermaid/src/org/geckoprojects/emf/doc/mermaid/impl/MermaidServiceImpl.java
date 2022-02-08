@@ -15,6 +15,8 @@ import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
 
+import aQute.lib.io.IO;
+
 @Component(service = MermaidService.class)
 public class MermaidServiceImpl implements MermaidService {
 
@@ -30,12 +32,12 @@ public class MermaidServiceImpl implements MermaidService {
 		try {
 
 			loader.putTemplate("mermaid_classdiagram.ftl",
-					bc.getBundle().getEntry("ftl/mermaid_classdiagram.ftl").openStream().readAllBytes());
+					IO.read(bc.getBundle().getEntry("ftl/mermaid_classdiagram.ftl").openStream()));
 
-			loader.putTemplate("markdown.ftl", bc.getBundle().getEntry("ftl/markdown.ftl").openStream().readAllBytes());
+			loader.putTemplate("markdown.ftl", IO.read(bc.getBundle().getEntry("ftl/markdown.ftl").openStream()));
 
 			loader.putTemplate("ecore_readme.ftl",
-					bc.getBundle().getEntry("ftl/ecore_readme.ftl").openStream().readAllBytes());
+					IO.read(bc.getBundle().getEntry("ftl/ecore_readme.ftl").openStream()));
 
 			cfg.setTemplateLoader(loader);
 			// Some other recommended settings:

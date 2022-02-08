@@ -10,6 +10,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
+import aQute.lib.io.IO;
 import freemarker.cache.ByteArrayTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
@@ -30,12 +31,13 @@ public class PlantUmlServiceImpl implements PlantumlService {
 		try {
 
 			loader.putTemplate("plantuml_classdiagram.ftl",
-					bc.getBundle().getEntry("ftl/plantuml_classdiagram.ftl").openStream().readAllBytes());
+					IO.read(bc.getBundle().getEntry("ftl/plantuml_classdiagram.ftl").openStream()));
 
-			loader.putTemplate("markdown.ftl", bc.getBundle().getEntry("ftl/markdown.ftl").openStream().readAllBytes());
+			loader.putTemplate("markdown.ftl", 
+					IO.read(bc.getBundle().getEntry("ftl/markdown.ftl").openStream()));
 
 			loader.putTemplate("ecore_readme.ftl",
-					bc.getBundle().getEntry("ftl/ecore_readme.ftl").openStream().readAllBytes());
+					IO.read(bc.getBundle().getEntry("ftl/ecore_readme.ftl").openStream()));
 
 			cfg.setTemplateLoader(loader);
 			// Some other recommended settings:
