@@ -1,4 +1,0 @@
-Bundle-Version: 4.0.9.SNAPSHOT
-Private-Package: org.geckoprojects.emf.repository.file
-Provide-Capability: emf.repository;emf.repository=file
-Export-Package: org.geckoprojects.emf.repository.file.annotations

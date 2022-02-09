@@ -1,9 +1,0 @@
--buildpath: \
-	org.eclipse.emf.ecore,\
-	org.eclipse.emf.common,\
-	org.eclipse.emf.ecore.xmi,\
-	biz.aQute.bndlib,\
-	com.beanit.asn1bean,\
-	com.beanit.asn1bean-compiler,\
-	antlr:antlr
-Bundle-Version: 1.0.0

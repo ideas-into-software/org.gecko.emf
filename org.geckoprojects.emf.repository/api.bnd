@@ -1,6 +1,0 @@
-Bundle-Version: 9.2.2.SNAPSHOT
-Export-Package: \
-	org.geckoprojects.emf.repository.query,\
-	org.geckoprojects.emf.repository,\
-	org.geckoprojects.emf.repository.helper,\
-	org.geckoprojects.emf.repository.exception
