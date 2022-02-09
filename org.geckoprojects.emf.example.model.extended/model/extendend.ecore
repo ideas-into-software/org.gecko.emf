@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="extended" nsURI="http://geckoprojects.org/example/model/extendendend/1.0"
-    nsPrefix="extended">
-  <eClassifiers xsi:type="ecore:EClass" name="ExtendedAddress" eSuperTypes="../../org.geckoprojects.emf.example.model.basic/model/basic.ecore#//Address"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ExtendedPerson" eSuperTypes="../../org.geckoprojects.emf.example.model.basic/model/basic.ecore#//EmployeeInfo ../../org.geckoprojects.emf.example.model.basic/model/basic.ecore#//Person"/>
-</ecore:EPackage>

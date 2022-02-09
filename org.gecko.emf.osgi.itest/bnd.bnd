@@ -1,0 +1,26 @@
+# Build dependencies 
+-buildpath: \
+	org.gecko.emf.osgi;version=project,\
+	org.gecko.emf.osgi.model.info;version=project,\
+	org.gecko.emf.osgi.example.model.extended;version=project,\
+	org.gecko.emf.osgi.example.model.basic;version=project,\
+	junit-jupiter-api,\
+	org.osgi.test.junit5,\
+	org.osgi.framework,\
+	org.eclipse.emf.ecore,\
+	org.osgi.test.common,\
+	assertj-core,\
+	org.osgi.service.cm,\
+	org.osgi.test.assertj.monitoring;version=latest,\
+	org.eclipse.emf.common,\
+	org.osgi.util.promise,\
+	org.gecko.emf.osgi.model.info,\
+	org.osgi.annotation.versioning,\
+	org.osgi.test.assertj.framework,\
+	org.gecko.emf.osgi.example.model.manual
+
+-includeresource: \
+	data/=data/
+
+Export-Package: org.gecko.emf.osgi.itest
+Private-Package: org.gecko.emf.osgi.itest.configurator

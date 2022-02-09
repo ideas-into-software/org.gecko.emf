@@ -14,7 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
--plugin.org.geckoprojects.emf: \
+-plugin.org.gecko.emf.osgi: \
 	aQute.bnd.repository.maven.pom.provider.BndPomRepository;\
 		releaseUrl			= "https://repo.maven.apache.org/maven2/";\
 		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/";\
@@ -85,5 +85,5 @@ dependencies.project:\
 	org.apache.servicemix.bundles:org.apache.servicemix.bundles.jsr305:3.0.1_1
 	
 	
-#	org.geckoprojects:org.geckoprojects.mongo.core:0.0.1-SNAPSHOT,\
+#	org.gecko:org.gecko.mongo.core:0.0.1-SNAPSHOT,\
 	

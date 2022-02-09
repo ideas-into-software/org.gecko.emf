@@ -1,0 +1,14 @@
+
+-buildpath: \
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.eclipse.emf.ecore.xmi,\
+	org.freemarker.freemarker,\
+	org.osgi.service.component.annotations,\
+	org.osgi.framework,\
+	org.osgi.annotation.bundle,\
+	aQute.libg
+Export-Package: org.gecko.emf.osgi.doc.mermaid
+-privatepackage: org.gecko.emf.osgi.doc.mermaid.impl
+
+-includeresource: ftl/=resources/ftl/
