@@ -66,7 +66,12 @@ public class GeckoMongoDatabaseImpl extends AbstractMongoDatabase implements Mon
 
 	@Override
 	public String getAlias() {
-		return config.alias() != null && config.alias().trim().isEmpty() ? config.alias() : config.name();
+		return config.alias() != null && !config.alias().trim().isEmpty() ? config.alias() : config.name();
+	}
+
+	@Override
+	public String getName() {
+		return config.name();
 	}
 
 	@Override

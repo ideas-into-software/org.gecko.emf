@@ -1,5 +1,5 @@
 -runfw: org.apache.felix.framework
--runee: JavaSE-11
+-runee: JavaSE-1.8
 -runrequires: \
 	bnd.identity;id='org.geckoprojects.emf.doc.mermaid',\
 	bnd.identity;id='org.geckoprojects.emf.doc.mermaid.itest',\

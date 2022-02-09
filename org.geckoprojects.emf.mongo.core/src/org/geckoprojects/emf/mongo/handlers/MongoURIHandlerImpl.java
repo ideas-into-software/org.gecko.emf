@@ -30,7 +30,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 /**
- * This EMF URI handler interfaces to MongoDB. This URI handler can handle URIs with the "mongoemf"
+ * This EMF URI handler interfaces to MongoDB. This URI handler can handle URIs with the "mongodb"
  * scheme. The URI path must have exactly 3 segments and be of the form /database/collection/{id}
  * where id is optional the first time the EMF object is saved. When building queries, do not
  * specify an id, but make sure path has 3 segments by placing a "/" after the collection.
@@ -39,8 +39,8 @@ import com.mongodb.client.MongoDatabase;
  * and the URI of the EMF Resource will be modified to include the id in the URI. Examples of valid
  * URIs:
  * 
- * mongoemf://clientUID/databaseAlias/people/
- * mongoemf://clientUID/databaseAlias/people/4d0a3e259095b5b334a59df0
+ * mongodb://clientUID/databaseAlias/people/
+ * mongodb://clientUID/databaseAlias/people/4d0a3e259095b5b334a59df0
  * 
  * This class is intended to be used with the IResourceSetFactory service. If you are not using the
  * factory service, you will have to supply instances of IMongoLocator, IIntputStreamFActory, and
@@ -51,7 +51,7 @@ import com.mongodb.client.MongoDatabase;
  */
 public class MongoURIHandlerImpl extends URIHandlerImpl {
 	
-	private static final String SCHEMA_MONGO_EMF = "mongoemf";
+	private static final String SCHEMA_MONGO_DB = "mongodb";
 	/**
 	 * 
 	 * @param databaseLocator an instance of the mongo locator service
@@ -71,9 +71,9 @@ public class MongoURIHandlerImpl extends URIHandlerImpl {
 	 */
 	@Override
 	public boolean canHandle(URI uri) {
-		// This handler should only accept URIs with the scheme "mongo"
+		// This handler should only accept URIs with the scheme "mongodb"
 
-		return SCHEMA_MONGO_EMF.equalsIgnoreCase(uri.scheme());
+		return SCHEMA_MONGO_DB.equalsIgnoreCase(uri.scheme());
 	}
 
 	/* 

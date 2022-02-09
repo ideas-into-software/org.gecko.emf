@@ -106,7 +106,7 @@ public class CustomArrayDataTypeTest {
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
-		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(3000000);
+		}).untilNoMoreServiceEventWithin(1000).assertWithTimeoutThat(3000000);
 		//.hasExactlyNServiceEventRegisteredWith(1,				MongoDatabase.class);
 		
 		MongoDatabase mongoDatabase = saMongoDatabase.waitForService(3000000);

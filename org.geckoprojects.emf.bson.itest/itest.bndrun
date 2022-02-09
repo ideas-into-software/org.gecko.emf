@@ -7,7 +7,7 @@
 	bnd.identity;id=junit-platform-launcher,\
 	bnd.identity;id='org.geckoprojects.emf.bson'
 -runfw: org.apache.felix.framework
--runee: JavaSE-11
+-runee: JavaSE-1.8
 -runbundles: \
 	com.fasterxml.jackson.core.jackson-annotations;version='[2.11.2,2.11.3)',\
 	com.fasterxml.jackson.core.jackson-core;version='[2.12.3,2.12.4)',\

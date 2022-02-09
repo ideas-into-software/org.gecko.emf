@@ -41,6 +41,7 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.cm.annotations.RequireConfigurationAdmin;
 import org.osgi.test.assertj.monitoring.MonitoringAssertion;
 import org.osgi.test.common.annotation.InjectBundleContext;
 import org.osgi.test.common.annotation.InjectService;
@@ -57,6 +58,7 @@ import org.osgi.test.junit5.service.ServiceExtension;
  */
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
+@RequireConfigurationAdmin
 public class IsolatedResourceSetFactoryIntegrationTest {
 
 	@InjectBundleContext

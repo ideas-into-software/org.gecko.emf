@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.geckoprojects.emf.core.api.ResourceSetCache;
 import org.geckoprojects.emf.core.api.ResourceSetFactory;
+import org.osgi.service.cm.annotations.RequireConfigurationAdmin;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
@@ -29,6 +30,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
  * @author Mark Hoffmann
  */
 @Component(name="ResourceSetCache", service=ResourceSetCache.class, configurationPolicy=ConfigurationPolicy.REQUIRE)
+@RequireConfigurationAdmin
 public class ResourceSetCacheComponent implements ResourceSetCache {
 	
 	private AtomicReference<ResourceSetFactory> resourceSetFactoryReference = new AtomicReference<ResourceSetFactory>();
