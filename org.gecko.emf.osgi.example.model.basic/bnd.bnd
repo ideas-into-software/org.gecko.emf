@@ -1,0 +1,32 @@
+src=${^src},src-gen
+
+-buildpath: \
+	org.gecko.emf.osgi;version=project,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.common,\
+	org.osgi.annotation.bundle,\
+	org.osgi.annotation.versioning,\
+	org.eclipse.emf.ecore.xmi,\
+	org.osgi.service.component.annotations,\
+	org.osgi.framework,\
+	org.gecko.emf.osgi.api,\
+	osgi.cmpn
+
+-includeresource: model=model
+
+Private-Package: \
+	org.gecko.emf.osgi.example.model.basic.configuration
+	
+Export-Package: \
+	org.gecko.emf.osgi.example.model.basic,\
+	org.gecko.emf.osgi.example.model.basic.impl,\
+	org.gecko.emf.osgi.example.model.basic.util
+	
+-dependson: org.gecko.emf.osgi.codegen
+
+
+-generate:\
+	model/basic.genmodel;\
+		generate="geckoEMF 1>out.log 2>err.log";\
+		genmodel=model/basic.genmodel;\
+		output=src-gen

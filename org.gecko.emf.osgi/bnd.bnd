@@ -1,0 +1,15 @@
+-buildpath: \
+	org.osgi.framework,\
+	org.osgi.annotation.bundle,\
+	org.osgi.annotation.versioning,\
+	org.osgi.service.component.annotations,\
+	org.osgi.service.cm,\
+	org.osgi.service.component,\
+	org.eclipse.emf.common,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.ecore.xmi
+	
+Export-Package: \
+	org.gecko.emf.osgi.api.*
+	
+-sub: *.bnd

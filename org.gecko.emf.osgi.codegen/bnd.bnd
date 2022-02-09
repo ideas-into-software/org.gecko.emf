@@ -1,0 +1,44 @@
+-buildpath: \
+	org.osgi.annotation.bundle,\
+	org.osgi.annotation.versioning,\
+	org.gecko.emf.osgi;version=project,\
+	org.eclipse.emf.ecore.xmi;version=latest,\
+	org.eclipse.emf.ecore;version=latest,\
+	org.eclipse.emf.common;version=latest,\
+	org.eclipse.emf.codegen.ecore;version=latest,\
+	org.eclipse.emf.codegen;version=latest,\
+	org.eclipse.core.expressions,\
+	org.eclipse.core.filesystem,\
+	org.eclipse.core.resources,\
+	org.eclipse.core.runtime,\
+	org.eclipse.core.jobs,\
+	org.eclipse.osgi,\
+	org.eclipse.jdt.core;version=latest,\
+	org.eclipse.equinox.common;version=latest,\
+	org.eclipse.equinox.preferences,\
+	org.eclipse.equinox.registry,\
+	org.eclipse.text,\
+	biz.aQute.bndlib,\
+	aQute.libg,\
+	org.eclipse.core.contenttype
+	
+-testpath: \
+	junit-jupiter-api
+
+-includeresource: \
+	/=resources,\
+	templates
+	
+Export-Package: org.gecko.emf.osgi.codegen.templates.model
+
+Private-Package: \
+	org.gecko.emf.osgi.codegen,\
+	org.gecko.emf.osgi.codegen.adapter,\
+	org.eclipse.core.runtime;-split-package:=merge-first,\
+	org.eclipse.core.internal.*;-split-package:=merge-first,\
+	org.eclipse.emf.codegen.ecore.*
+	
+-conditionalpackage: \
+	aQute.libg.*,\
+	aQute.bnd.*,\
+	*

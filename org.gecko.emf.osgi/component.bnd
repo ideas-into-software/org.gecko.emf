@@ -1,0 +1,13 @@
+-privatepackage: : \
+	org.gecko.emf.osgi.components.config,\
+	org.gecko.emf.osgi.components.dynamic,\
+	org.gecko.emf.osgi.components,\
+	org.gecko.emf.osgi.urihandler,\
+	org.gecko.emf.osgi.ecore
+
+Provide-Capability: osgi.service;objectClass:List<String>="org.gecko.emf.osgi.core.api.ResourceSetFactory",osgi.service;objectClass:List<String>="org.eclipse.emf.ecore.resource.ResourceSet"
+
+Export-Package: \
+	org.gecko.emf.osgi.factory,\
+	org.gecko.emf.osgi.resourceset,\
+	org.gecko.emf.osgi.components.config
