@@ -11,6 +11,7 @@
 	org.osgi.namespace.service
 	
 Export-Package: \
-	org.gecko.emf.osgi.api.*
+	org.gecko.emf.osgi,\
+	org.gecko.emf.osgi.annotation.*
 	
 -sub: *.bnd

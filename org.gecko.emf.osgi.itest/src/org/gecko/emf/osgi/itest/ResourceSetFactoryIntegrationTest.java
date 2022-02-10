@@ -12,7 +12,7 @@
 package org.gecko.emf.osgi.itest;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.emf.osgi.api.ResourceSetFactory;
+import org.gecko.emf.osgi.ResourceSetFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

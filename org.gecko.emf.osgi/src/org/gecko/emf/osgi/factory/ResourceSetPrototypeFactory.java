@@ -12,7 +12,7 @@
 package org.gecko.emf.osgi.factory;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.emf.osgi.api.ResourceSetFactory;
+import org.gecko.emf.osgi.ResourceSetFactory;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.PrototypeServiceFactory;
 import org.osgi.framework.ServiceRegistration;

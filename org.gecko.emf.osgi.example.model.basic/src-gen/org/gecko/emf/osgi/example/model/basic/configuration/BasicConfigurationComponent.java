@@ -11,18 +11,13 @@ import java.util.Hashtable;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
-
-import org.gecko.emf.osgi.api.EMFNamespaces;
-import org.gecko.emf.osgi.api.EPackageConfigurator;
-import org.gecko.emf.osgi.api.ResourceFactoryConfigurator;
-
-import org.gecko.emf.osgi.api.annotation.EMFModel;
-
-import org.gecko.emf.osgi.api.annotation.provide.ProvideEMFModel;
-import org.gecko.emf.osgi.api.annotation.provide.ProvideEMFResourceConfigurator;
-
-import org.gecko.emf.osgi.api.annotation.require.RequireEMF;
-
+import org.gecko.emf.osgi.EMFNamespaces;
+import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.ResourceFactoryConfigurator;
+import org.gecko.emf.osgi.annotation.EMFModel;
+import org.gecko.emf.osgi.annotation.provide.ProvideEMFModel;
+import org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator;
+import org.gecko.emf.osgi.annotation.require.RequireEMF;
 import org.gecko.emf.osgi.example.model.basic.BasicPackage;
 
 import org.gecko.emf.osgi.example.model.basic.impl.BasicPackageImpl;

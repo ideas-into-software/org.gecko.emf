@@ -21,7 +21,7 @@ import java.util.WeakHashMap;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.gecko.emf.osgi.api.EMFNamespaces;
+import org.gecko.emf.osgi.EMFNamespaces;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 

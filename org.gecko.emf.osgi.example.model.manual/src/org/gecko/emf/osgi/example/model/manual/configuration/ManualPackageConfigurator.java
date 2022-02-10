@@ -1,8 +1,8 @@
 package org.gecko.emf.osgi.example.model.manual.configuration;
 
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
-import org.gecko.emf.osgi.api.EPackageConfigurator;
-import org.gecko.emf.osgi.api.ResourceFactoryConfigurator;
+import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.example.model.manual.ManualPackage;
 import org.gecko.emf.osgi.example.model.manual.util.ManualResourceFactoryImpl;
 

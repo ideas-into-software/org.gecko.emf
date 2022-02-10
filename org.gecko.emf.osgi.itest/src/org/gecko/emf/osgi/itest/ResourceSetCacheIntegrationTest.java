@@ -21,7 +21,7 @@ import java.util.Hashtable;
 
 import org.assertj.core.api.Assertions;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.emf.osgi.api.ResourceSetCache;
+import org.gecko.emf.osgi.ResourceSetCache;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.InvalidSyntaxException;

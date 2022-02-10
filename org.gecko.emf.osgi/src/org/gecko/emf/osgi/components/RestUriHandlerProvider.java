@@ -12,7 +12,7 @@
 package org.gecko.emf.osgi.components;
 
 import org.eclipse.emf.ecore.resource.URIHandler;
-import org.gecko.emf.osgi.api.UriHandlerProvider;
+import org.gecko.emf.osgi.UriHandlerProvider;
 import org.gecko.emf.osgi.urihandler.RestfulURIHandlerImpl;
 import org.osgi.service.component.annotations.Component;
 

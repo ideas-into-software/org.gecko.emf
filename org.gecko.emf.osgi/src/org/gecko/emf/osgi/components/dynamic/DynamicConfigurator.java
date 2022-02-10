@@ -11,11 +11,11 @@
  */
 package org.gecko.emf.osgi.components.dynamic;
 
-import static org.gecko.emf.osgi.api.EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME;
-import static org.gecko.emf.osgi.api.EMFNamespaces.EMF_MODEL_NAME;
-import static org.gecko.emf.osgi.api.EMFNamespaces.PROP_DYNAMIC_CONFIG_CONTENT_TYPE;
-import static org.gecko.emf.osgi.api.EMFNamespaces.PROP_DYNAMIC_CONFIG_ECORE_PATH;
-import static org.gecko.emf.osgi.api.EMFNamespaces.PROP_DYNAMIC_CONFIG_FILE_EXTENSION;
+import static org.gecko.emf.osgi.EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME;
+import static org.gecko.emf.osgi.EMFNamespaces.EMF_MODEL_NAME;
+import static org.gecko.emf.osgi.EMFNamespaces.PROP_DYNAMIC_CONFIG_CONTENT_TYPE;
+import static org.gecko.emf.osgi.EMFNamespaces.PROP_DYNAMIC_CONFIG_ECORE_PATH;
+import static org.gecko.emf.osgi.EMFNamespaces.PROP_DYNAMIC_CONFIG_FILE_EXTENSION;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,8 +38,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
-import org.gecko.emf.osgi.api.EPackageConfigurator;
-import org.gecko.emf.osgi.api.ResourceFactoryConfigurator;
+import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 import org.osgi.service.cm.ConfigurationException;

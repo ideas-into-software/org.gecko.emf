@@ -8,13 +8,13 @@ package <%=genPackage.getInterfacePackageName()%>.configuration;
 <%genModel.addImport("org.osgi.service.component.annotations.Deactivate");%>
 <%genModel.addImport("org.osgi.framework.BundleContext");%>
 <%genModel.addImport("org.eclipse.emf.ecore.resource.Resource.Factory.Registry");%>
-<%genModel.addImport("org.gecko.emf.osgi.api.EMFNamespaces");%>
-<%genModel.addImport("org.gecko.emf.osgi.api.EPackageConfigurator");%>
-<%genModel.addImport("org.gecko.emf.osgi.api.ResourceFactoryConfigurator");%>
-<%genModel.addImport("org.gecko.emf.osgi.api.annotation.EMFModel");%>
-<%genModel.addImport("org.gecko.emf.osgi.api.annotation.provide.ProvideEMFModel");%>
-<%genModel.addImport("org.gecko.emf.osgi.api.annotation.provide.ProvideEMFResourceConfigurator");%>
-<%genModel.addImport("org.gecko.emf.osgi.api.annotation.require.RequireEMF");%>
+<%genModel.addImport("org.gecko.emf.osgi.EMFNamespaces");%>
+<%genModel.addImport("org.gecko.emf.osgi.EPackageConfigurator");%>
+<%genModel.addImport("org.gecko.emf.osgi.ResourceFactoryConfigurator");%>
+<%genModel.addImport("org.gecko.emf.osgi.annotation.EMFModel");%>
+<%genModel.addImport("org.gecko.emf.osgi.annotation.provide.ProvideEMFModel");%>
+<%genModel.addImport("org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator");%>
+<%genModel.addImport("org.gecko.emf.osgi.annotation.require.RequireEMF");%>
 <%genModel.addImport(genPackage.getQualifiedPackageInterfaceName());%>
 <%if (!GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {%>
 <%genModel.addImport(genPackage.getQualifiedResourceFactoryClassName());%>
@@ -76,7 +76,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.api.ResourceFactoryConfigurator#configureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
+	 * @see org.gecko.emf.osgi.ResourceFactoryConfigurator#configureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
 	 * @generated
 	 */
 	@Override
@@ -87,7 +87,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 	
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.api.ResourceFactoryConfigurator#unconfigureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
+	 * @see org.gecko.emf.osgi.ResourceFactoryConfigurator#unconfigureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
 	 * @generated
 	 */
 	@Override
@@ -98,7 +98,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 	
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.api.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
+	 * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
 	 * @generated
 	 */
 	@Override
@@ -108,7 +108,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 	
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.api.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
+	 * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
 	 * @generated
 	 */
 	@Override

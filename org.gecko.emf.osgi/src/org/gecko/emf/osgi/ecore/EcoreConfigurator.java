@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
-import org.gecko.emf.osgi.api.EPackageConfigurator;
-import org.gecko.emf.osgi.api.ResourceFactoryConfigurator;
-import org.gecko.emf.osgi.api.annotation.EMFModel;
-import org.gecko.emf.osgi.api.annotation.provide.ProvideEMFModel;
-import org.gecko.emf.osgi.api.annotation.provide.ProvideEMFResourceConfigurator;
-import org.gecko.emf.osgi.api.annotation.require.RequireEMF;
+import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.ResourceFactoryConfigurator;
+import org.gecko.emf.osgi.annotation.EMFModel;
+import org.gecko.emf.osgi.annotation.provide.ProvideEMFModel;
+import org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator;
+import org.gecko.emf.osgi.annotation.require.RequireEMF;
 import org.osgi.service.component.annotations.Component;
 
 /**
