@@ -1,0 +1,18 @@
+-resourceonly: true
+-include: ${.}/required.bndrun
+
+-buildpath: ${-runbundles}
+
+mavendeps: ${sjoin;\n; ${template;-maven-dependencies;${@}}}
+
+
+-includeresource: resources,\
+	{template/geckoEMF.maven=resources/template/geckoEMF.maven}	
+	
+Provide-Capability: \
+	${gecko-base}
+
+gecko-base:\
+    bnd.library;\
+        bnd.library     = geckoEMF; \
+        path            = template

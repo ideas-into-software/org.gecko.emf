@@ -42,3 +42,6 @@ Private-Package: \
 	aQute.libg.*,\
 	aQute.bnd.*,\
 	*
+	
+Import-Package: \
+	!*

@@ -1,0 +1,9 @@
+-resourceonly: true
+-includeresource: resources
+Provide-Capability: \
+	${gecko-base}
+
+gecko-base:\
+    bnd.library;\
+        bnd.library     = enable-emf; \
+        path            = template
