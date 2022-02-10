@@ -7,7 +7,8 @@
 	org.osgi.service.component,\
 	org.eclipse.emf.common,\
 	org.eclipse.emf.ecore,\
-	org.eclipse.emf.ecore.xmi
+	org.eclipse.emf.ecore.xmi,\
+	org.osgi.namespace.service
 	
 Export-Package: \
 	org.gecko.emf.osgi.api.*

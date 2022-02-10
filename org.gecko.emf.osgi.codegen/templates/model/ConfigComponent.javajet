@@ -76,7 +76,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.core.ResourceFactoryConfigurator#configureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
+	 * @see org.gecko.emf.osgi.api.ResourceFactoryConfigurator#configureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
 	 * @generated
 	 */
 	@Override
@@ -87,7 +87,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 	
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.core.ResourceFactoryConfigurator#unconfigureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
+	 * @see org.gecko.emf.osgi.api.ResourceFactoryConfigurator#unconfigureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
 	 * @generated
 	 */
 	@Override
@@ -98,7 +98,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 	
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.core.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
+	 * @see org.gecko.emf.osgi.api.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
 	 * @generated
 	 */
 	@Override
@@ -108,7 +108,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 	
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.core.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
+	 * @see org.gecko.emf.osgi.api.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
 	 * @generated
 	 */
 	@Override

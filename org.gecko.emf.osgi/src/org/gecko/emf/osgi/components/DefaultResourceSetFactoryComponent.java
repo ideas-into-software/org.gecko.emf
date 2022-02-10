@@ -17,16 +17,17 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.gecko.emf.osgi.api.DefaultResourceSetFactory;
 import org.gecko.emf.osgi.api.EMFNamespaces;
 import org.gecko.emf.osgi.api.EPackageConfigurator;
 import org.gecko.emf.osgi.api.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.api.ResourceSetConfigurator;
 import org.gecko.emf.osgi.api.ResourceSetFactory;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.osgi.annotation.bundle.Capability;
 import org.osgi.annotation.bundle.Requirement;
 import org.osgi.framework.ServiceReference;
+import org.osgi.namespace.service.ServiceNamespace;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -50,6 +51,10 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 		namespace = EMFNamespaces.EMF_NAMESPACE,
 		name = ResourceSetFactory.EMF_CAPABILITY_NAME,
 		version = ResourceSetFactory.GECKOPROKECTS_EMF_VERSION
+		)
+@Capability(
+		namespace = org.osgi.namespace.service.ServiceNamespace.SERVICE_NAMESPACE,
+		attribute = ServiceNamespace.CAPABILITY_OBJECTCLASS_ATTRIBUTE + ":List<String>=\"org.gecko.emf.osgi.api.ResourceSetFactory, org.eclipse.emf.ecore.resource.ResourceSet\""
 		)
 
 @Requirement(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
