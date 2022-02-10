@@ -60,4 +60,3 @@ releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version
 #		cache=${build}/cache/GeckoEMF
 #-baselinerepo: Baseline
 #-baseline: *
-
