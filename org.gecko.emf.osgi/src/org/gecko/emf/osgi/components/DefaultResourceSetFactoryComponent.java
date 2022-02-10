@@ -54,7 +54,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 		)
 @Capability(
 		namespace = org.osgi.namespace.service.ServiceNamespace.SERVICE_NAMESPACE,
-		attribute = ServiceNamespace.CAPABILITY_OBJECTCLASS_ATTRIBUTE + ":List<String>=\"org.gecko.emf.osgi.api.ResourceSetFactory, org.eclipse.emf.ecore.resource.ResourceSet\""
+		attribute = ServiceNamespace.CAPABILITY_OBJECTCLASS_ATTRIBUTE + ":List<String>=\"org.gecko.emf.osgi.ResourceSetFactory, org.eclipse.emf.ecore.resource.ResourceSet\""
 		)
 
 @Requirement(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
