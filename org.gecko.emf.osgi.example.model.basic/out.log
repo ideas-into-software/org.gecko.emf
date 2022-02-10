@@ -31,10 +31,16 @@
 [INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] bsn according to URIorg.eclipse.emf.ecore
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() osgi.cmpn
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi.api
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
+[INFO] Could not parse BSN from N:/git/geckoprojects/geckoprojectsorg.geckoprojects.emf/org.gecko.emf.osgi/bin. Error was N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi\bin. Returning org.gecko.emf.osgi
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
-[INFO] Match in C:/Users/ungei/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.24.0/org.eclipse.emf.ecore-2.24.0.jar
+[INFO] Match in C:/Users/ungei/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.25.0/org.eclipse.emf.ecore-2.25.0.jar
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.genmodel with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
@@ -45,10 +51,16 @@
 [INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] bsn according to URIorg.eclipse.emf.ecore
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() osgi.cmpn
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi.api
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
+[INFO] Could not parse BSN from N:/git/geckoprojects/geckoprojectsorg.geckoprojects.emf/org.gecko.emf.osgi/bin. Error was N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi\bin. Returning org.gecko.emf.osgi
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
-[INFO] Match in C:/Users/ungei/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.24.0/org.eclipse.emf.ecore-2.24.0.jar
+[INFO] Match in C:/Users/ungei/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.25.0/org.eclipse.emf.ecore-2.25.0.jar
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.basic/src-gen/org/gecko/emf/osgi/example/model/basic/BasicPackage.java
