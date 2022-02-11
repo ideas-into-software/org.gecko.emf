@@ -1,6 +1,6 @@
 [INFO] Output configured: src-gen
-[INFO] Output result: N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen
-[INFO] Running for genmodel model/extendend.genmodel in N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended
+[INFO] Output result: /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen
+[INFO] Running for genmodel model/extendend.genmodel in /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended
 [INFO] Asked to handle resource://org.gecko.emf.osgi.example.model.extended/model/extendend.genmodel
 [INFO] Asked for content Descriptor resource://org.gecko.emf.osgi.example.model.extended/model/extendend.genmodel
 [INFO] Asked to handle resource://org.gecko.emf.osgi.example.model.extended/model/extendend.genmodel
@@ -30,9 +30,11 @@
 [INFO] Asked to open InputStream for resource://org.gecko.emf.osgi.example.model.extended/../org.gecko.emf.osgi.example.model.basic/model/basic.genmodel
 [INFO] sanatized uri resource://org.gecko.emf.osgi.example.model.basic/model/basic.genmodel
 [INFO] bsn according to URIorg.gecko.emf.osgi.example.model.basic
-[INFO] Comparing org.gecko.emf.osgi.example.model.basicwith container using getBSN() org.osgi.annotation.bundle
+[INFO] Comparing org.gecko.emf.osgi.example.model.basicwith container using getBSN() org.osgi.service.component.annotations
+[INFO] Could not parse BSN from /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi/bin. Error was Ist ein Verzeichnis. Returning org.gecko.emf.osgi
+[INFO] Comparing org.gecko.emf.osgi.example.model.basicwith container using getBSN() org.gecko.emf.osgi
 [INFO] Comparing org.gecko.emf.osgi.example.model.basicwith container using getBSN() org.gecko.emf.osgi.example.model.basic
-[INFO] Match in N:/git/geckoprojects/geckoprojectsorg.geckoprojects.emf/org.gecko.emf.osgi.example.model.basic/generated/org.gecko.emf.osgi.example.model.basic.jar
+[INFO] Match in /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.basic/generated/org.gecko.emf.osgi.example.model.basic.jar
 [INFO] comaparing URIs resource://org.gecko.emf.osgi.example.model.basic/model/basic.ecore with the requested resource://org.gecko.emf.osgi.example.model.basic/model/basic.genmodel
 [INFO] comaparing URIs resource://org.gecko.emf.osgi.example.model.basic/model/basic.genmodel with the requested resource://org.gecko.emf.osgi.example.model.basic/model/basic.genmodel
 [INFO] Asked to handle resource://org.gecko.emf.osgi.example.model.extended/../org.gecko.emf.osgi.example.model.basic/model/basic.ecore
@@ -41,9 +43,11 @@
 [INFO] Asked to open InputStream for resource://org.gecko.emf.osgi.example.model.extended/../org.gecko.emf.osgi.example.model.basic/model/basic.ecore
 [INFO] sanatized uri resource://org.gecko.emf.osgi.example.model.basic/model/basic.ecore
 [INFO] bsn according to URIorg.gecko.emf.osgi.example.model.basic
-[INFO] Comparing org.gecko.emf.osgi.example.model.basicwith container using getBSN() org.osgi.annotation.bundle
+[INFO] Comparing org.gecko.emf.osgi.example.model.basicwith container using getBSN() org.osgi.service.component.annotations
+[INFO] Could not parse BSN from /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi/bin. Error was Ist ein Verzeichnis. Returning org.gecko.emf.osgi
+[INFO] Comparing org.gecko.emf.osgi.example.model.basicwith container using getBSN() org.gecko.emf.osgi
 [INFO] Comparing org.gecko.emf.osgi.example.model.basicwith container using getBSN() org.gecko.emf.osgi.example.model.basic
-[INFO] Match in N:/git/geckoprojects/geckoprojectsorg.geckoprojects.emf/org.gecko.emf.osgi.example.model.basic/generated/org.gecko.emf.osgi.example.model.basic.jar
+[INFO] Match in /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.basic/generated/org.gecko.emf.osgi.example.model.basic.jar
 [INFO] comaparing URIs resource://org.gecko.emf.osgi.example.model.basic/model/basic.ecore with the requested resource://org.gecko.emf.osgi.example.model.basic/model/basic.ecore
 [INFO] Asked to handle resource://org.gecko.emf.osgi.example.model.extended/../org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] Asked for content Descriptor resource://org.gecko.emf.osgi.example.model.extended/../org.eclipse.emf.ecore/model/Ecore.genmodel
@@ -51,16 +55,15 @@
 [INFO] Asked to open InputStream for resource://org.gecko.emf.osgi.example.model.extended/../org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] bsn according to URIorg.eclipse.emf.ecore
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi.example.model.basic
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
-[INFO] Could not parse BSN from N:/git/geckoprojects/geckoprojectsorg.geckoprojects.emf/org.gecko.emf.osgi/bin. Error was N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi\bin. Returning org.gecko.emf.osgi
+[INFO] Could not parse BSN from /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi/bin. Error was Ist ein Verzeichnis. Returning org.gecko.emf.osgi
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi.example.model.basic
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore.xmi
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
-[INFO] Match in C:/Users/ungei/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.25.0/org.eclipse.emf.ecore-2.25.0.jar
+[INFO] Match in /home/mark/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.25.0/org.eclipse.emf.ecore-2.25.0.jar
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.genmodel with the requested resource://org.eclipse.emf.ecore/model/Ecore.genmodel
@@ -70,16 +73,15 @@
 [INFO] Asked to open InputStream for resource://org.gecko.emf.osgi.example.model.extended/../org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] bsn according to URIorg.eclipse.emf.ecore
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi.example.model.basic
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
-[INFO] Could not parse BSN from N:/git/geckoprojects/geckoprojectsorg.geckoprojects.emf/org.gecko.emf.osgi/bin. Error was N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi\bin. Returning org.gecko.emf.osgi
+[INFO] Could not parse BSN from /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi/bin. Error was Ist ein Verzeichnis. Returning org.gecko.emf.osgi
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi.example.model.basic
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore.xmi
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.ecore
-[INFO] Match in C:/Users/ungei/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.25.0/org.eclipse.emf.ecore-2.25.0.jar
+[INFO] Match in /home/mark/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.25.0/org.eclipse.emf.ecore-2.25.0.jar
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/DateConversionDelegateAnnotation.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] comaparing URIs resource://org.eclipse.emf.ecore/model/Ecore.ecore with the requested resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedPackage.java
@@ -95,7 +97,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedPackage.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedPackage.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedPackage.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\ExtendedPackage.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedPackage.java
 [INFO] internaly worked 0.16666666666666674 on null
 [INFO] subtask 
 [INFO] subtask Generating Java class org.gecko.emf.osgi.example.model.extended.impl.ExtendedPackageImpl
@@ -114,7 +116,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedPackageImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedPackageImpl.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedPackageImpl.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\impl\ExtendedPackageImpl.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedPackageImpl.java
 [INFO] subtask Generating Java interface org.gecko.emf.osgi.example.model.extended.ExtendedFactory
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedFactory.java
 [INFO] internaly worked 1.0 on null
@@ -131,7 +133,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedFactory.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedFactory.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedFactory.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\ExtendedFactory.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedFactory.java
 [INFO] subtask Generating Java class org.gecko.emf.osgi.example.model.extended.impl.ExtendedFactoryImpl
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedFactoryImpl.java
 [INFO] internaly worked 1.0 on null
@@ -148,7 +150,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedFactoryImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedFactoryImpl.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedFactoryImpl.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\impl\ExtendedFactoryImpl.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedFactoryImpl.java
 [INFO] subtask Generating Java class org.gecko.emf.osgi.example.model.extended.util.ExtendedSwitch
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedSwitch.java
 [INFO] internaly worked 1.0 on null
@@ -165,7 +167,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedSwitch.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedSwitch.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedSwitch.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\util\ExtendedSwitch.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedSwitch.java
 [INFO] subtask Generating Java class org.gecko.emf.osgi.example.model.extended.util.ExtendedAdapterFactory
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedAdapterFactory.java
 [INFO] internaly worked 1.0 on null
@@ -182,7 +184,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedAdapterFactory.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedAdapterFactory.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedAdapterFactory.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\util\ExtendedAdapterFactory.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedAdapterFactory.java
 [INFO] subtask Generating Java class org.gecko.emf.osgi.example.model.extended.util.ExtendedResourceFactoryImpl
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedResourceFactoryImpl.java
 [INFO] internaly worked 1.0 on null
@@ -199,7 +201,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedResourceFactoryImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedResourceFactoryImpl.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedResourceFactoryImpl.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\util\ExtendedResourceFactoryImpl.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedResourceFactoryImpl.java
 [INFO] subtask Generating Java class org.gecko.emf.osgi.example.model.extended.util.ExtendedResourceImpl
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedResourceImpl.java
 [INFO] internaly worked 1.0 on null
@@ -216,7 +218,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedResourceImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedResourceImpl.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedResourceImpl.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\util\ExtendedResourceImpl.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/ExtendedResourceImpl.java
 [INFO] subtask Generating OSGi configuration component for package 'extended'
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/configuration/ExtendedConfigurationComponent.java
 [INFO] internaly worked 1.0 on null
@@ -233,7 +235,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/configuration/ExtendedConfigurationComponent.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/configuration/ExtendedConfigurationComponent.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/configuration/ExtendedConfigurationComponent.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\configuration\ExtendedConfigurationComponent.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/configuration/ExtendedConfigurationComponent.java
 [INFO] subtask Generating package info for package 'extended'
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/package-info.java
 [INFO] internaly worked 1.0 on null
@@ -250,7 +252,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/package-info.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/package-info.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/package-info.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\package-info.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/package-info.java
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/package-info.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -266,7 +268,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/package-info.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/package-info.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/package-info.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\util\package-info.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/util/package-info.java
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/package-info.java
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -282,7 +284,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/package-info.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/package-info.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/package-info.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\impl\package-info.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/package-info.java
 [INFO] subtask Generating Address
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -302,7 +304,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedAddress.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedAddress.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedAddress.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\ExtendedAddress.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedAddress.java
 [INFO] subtask Generating Java class org.gecko.emf.osgi.example.model.extended.impl.ExtendedAddressImpl
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedAddressImpl.java
 [INFO] internaly worked 1.0 on null
@@ -319,7 +321,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedAddressImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedAddressImpl.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedAddressImpl.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\impl\ExtendedAddressImpl.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedAddressImpl.java
 [INFO] subtask Generating Person
 [INFO] internaly worked 1.0 on null
 [INFO] subtask 
@@ -339,7 +341,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedPerson.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedPerson.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedPerson.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\ExtendedPerson.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/ExtendedPerson.java
 [INFO] subtask Generating Java class org.gecko.emf.osgi.example.model.extended.impl.ExtendedPersonImpl
 [INFO] subtask Generating /org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedPersonImpl.java
 [INFO] internaly worked 1.0 on null
@@ -356,7 +358,7 @@
 [INFO] Asked to handle platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedPersonImpl.java
 [INFO] Asked to open OutputStream for platform:/resource/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedPersonImpl.java
 [INFO] Sanatized resource://org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedPersonImpl.java
-[INFO] Opening file N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi.example.model.extended\src-gen\org\gecko\emf\osgi\example\model\extended\impl\ExtendedPersonImpl.java
+[INFO] Opening file /opt/git/org.geckoprojects.emf/org.gecko.emf.osgi.example.model.extended/src-gen/org/gecko/emf/osgi/example/model/extended/impl/ExtendedPersonImpl.java
 [INFO] Generating code - org.eclipse.emf.codegen.ecore
 [INFO]   OK - org.eclipse.emf.common
 [INFO]   OK - org.eclipse.emf.common

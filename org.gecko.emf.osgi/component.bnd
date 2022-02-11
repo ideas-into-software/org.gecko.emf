@@ -1,4 +1,4 @@
--privatepackage: : \
+-privatepackage: \
 	org.gecko.emf.osgi.components.config,\
 	org.gecko.emf.osgi.components.dynamic,\
 	org.gecko.emf.osgi.components,\
