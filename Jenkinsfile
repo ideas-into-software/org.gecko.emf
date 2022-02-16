@@ -2,11 +2,15 @@ pipeline  {
     agent any
 
     tools {
-        jdk 'OpenJDK11'
+        jdk 'OpenJDK8'
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
+    always { 
+        cleanWs()
+    }
+    
 
     stages {
         stage('Main branch release') {
