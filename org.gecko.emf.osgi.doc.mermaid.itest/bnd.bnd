@@ -6,7 +6,6 @@
 	org.osgi.test.common,\
 	org.osgi.test.junit5,\
 	org.apiguardian:apiguardian-api,\
-	org.osgi.test.assertj.monitoring;version=latest,\
 	assertj-core,\
 	org.osgi.framework
 

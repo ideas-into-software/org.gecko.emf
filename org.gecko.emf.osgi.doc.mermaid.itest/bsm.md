@@ -122,10 +122,10 @@ classDiagram
  class ZeitraumAenderungsTyp{
  <<enumeration>>
  Witterung
- Finanzielle Engpässe
+ Finanzielle
  Fehlplanung
  Auschreibung
- Personal Engpässe
+ Personal
  NONE
  }
 
@@ -749,10 +749,10 @@ Typisiete Begründung für die Änderung des  eines Zeitraums
 | Literal| Description|
 | -------| ----------|
 | **Witterung**| |
-| **Finanzielle Engpässe**| |
+| **Finanzielle**| |
 | **Fehlplanung**| |
 | **Auschreibung**| |
-| **Personal Engpässe**| |
+| **Personal**| |
 | **NONE**| |
 
 

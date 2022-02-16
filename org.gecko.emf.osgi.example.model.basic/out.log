@@ -31,10 +31,10 @@
 [INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.genmodel
 [INFO] bsn according to URIorg.eclipse.emf.ecore
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() osgi.cmpn
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi.api
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi.api
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
 [INFO] Could not parse BSN from N:/git/geckoprojects/geckoprojectsorg.geckoprojects.emf/org.gecko.emf.osgi/bin. Error was N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi\bin. Returning org.gecko.emf.osgi
@@ -51,10 +51,10 @@
 [INFO] sanatized uri resource://org.eclipse.emf.ecore/model/Ecore.ecore
 [INFO] bsn according to URIorg.eclipse.emf.ecore
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() osgi.cmpn
-[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi.api
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.bundle
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.eclipse.emf.common
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.framework
+[INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.gecko.emf.osgi.api
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.service.component.annotations
 [INFO] Comparing org.eclipse.emf.ecorewith container using getBSN() org.osgi.annotation.versioning
 [INFO] Could not parse BSN from N:/git/geckoprojects/geckoprojectsorg.geckoprojects.emf/org.gecko.emf.osgi/bin. Error was N:\git\geckoprojects\geckoprojectsorg.geckoprojects.emf\org.gecko.emf.osgi\bin. Returning org.gecko.emf.osgi

@@ -1,14 +1,23 @@
+/**
+ * Copyright (c) 2012 - 2022 Data In Motion and others.
+ * All rights reserved. 
+ * 
+ * This program and the accompanying materials are made available under the terms of the 
+ * Eclipse Public License v2.0 which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v20.html
+ * 
+ * Contributors:
+ *      Data In Motion - initial API and implementation
+ */
 package org.osgi.test.assertj.monitoring.internal;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 
+import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.assertj.core.api.Condition;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceEvent;
@@ -44,7 +53,7 @@ public class ExampleITest {
 
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "serial" })
 	@Test
 	public void example2() throws InvalidSyntaxException {
 		MonitoringAssertion.executeAndObserve(() -> {
