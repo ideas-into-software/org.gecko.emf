@@ -7,10 +7,11 @@ pipeline  {
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
-    always { 
-        cleanWs()
+    post {
+		always { 
+    	    cleanWs()
+    	}    
     }
-    
 
     stages {
         stage('Main branch release') {
