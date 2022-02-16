@@ -52,6 +52,12 @@ Bundle-Developers: \
 emf-version: 4.1.1.${tstamp}-SNAPSHOT
 releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${Bundle-Version}));REPOS}
 -maven-release.local: ${if;${def;releaseNotNeeded};local;remote}
+
+-fixupmessages: \
+	"No metadata for revision";\
+	restrict:=error;\
+    is:=warning
+
 #-pom: version=${if;${def;-snapshot};${versionmask;===;${@version}}-${def;-snapshot};${versionmask;===s;${@version}}}
 
 #-plugin.baseline:\
