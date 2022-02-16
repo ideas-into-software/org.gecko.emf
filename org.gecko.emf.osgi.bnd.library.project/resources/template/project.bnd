@@ -4,6 +4,7 @@ emf.lib: \
 	org.eclipse.emf.common;version=latest,\
 	org.eclipse.emf.ecore;version=latest,\
 	org.eclipse.emf.ecore.xmi;version=latest,\
-	osgi.annotation;version=latest,\
-	osgi.core;version=latest,\
-	osgi.cmpn;version=latest	
+	org.osgi.service.component.annotations;version=1.4,\
+	org.osgi.framework;version=1.9,\
+	org.osgi.annotation.versioning,\
+	org.osgi.annotation.bundle

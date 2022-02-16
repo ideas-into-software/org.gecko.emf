@@ -2,7 +2,12 @@
 -include: ${.}/required.bndrun
 
 -buildpath: ${-runbundles}
-
+-buildpath.extra: \
+	org.osgi.service.component.annotations;version=1.4,\
+	org.osgi.framework;version=1.9,\
+	org.osgi.annotation.versioning,\
+	org.osgi.annotation.bundle
+	
 mavendeps: ${sjoin;\n; ${template;-maven-dependencies;${@}}}
 
 

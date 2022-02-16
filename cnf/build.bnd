@@ -46,9 +46,10 @@ Bundle-Developers: \
         organizationUrl="https://www.datainmotion.de"; \
         roles="developer,architect"
 
+
 -groupid: org.geckoprojects.emf
 	
-emf-version: 4.1.0.${tstamp}-SNAPSHOT
+emf-version: 4.1.1.${tstamp}-SNAPSHOT
 releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${Bundle-Version}));REPOS}
 -maven-release.local: ${if;${def;releaseNotNeeded};local;remote}
 
@@ -60,3 +61,10 @@ releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version
 #		cache=${build}/cache/GeckoEMF
 #-baselinerepo: Baseline
 #-baseline: *
+
+#-plugin.localmaven:\
+#    aQute.bnd.repository.maven.provider.MavenBndRepository;\
+#        name="Local Maven Release";\
+#        noupdateOnRelease=false
+
+#-buildrepo: "Local Maven Release"

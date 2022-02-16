@@ -13,5 +13,15 @@
 Export-Package: \
 	org.gecko.emf.osgi,\
 	org.gecko.emf.osgi.annotation.*
+
+# We shoudl consider deactivating this. For the Momemnt the Baselining is a bit harsch, e
+# specially given that we know that it is still backward compatible.
+-fixupmessages: \
+	"Baseline mismatch";\
+		restrict:=error;\
+    	is:=warning,\
+	"The bundle version";\
+		restrict:=error;\
+    	is:=warning
 	
 -sub: *.bnd

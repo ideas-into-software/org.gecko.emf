@@ -1,0 +1,15 @@
+org.geckoprojects.emf:org.gecko.emf.osgi.example.model.basic:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.itest:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.api:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.component:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.bnd.library.project:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.bnd.templates.project:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.codegen:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.doc.mermaid:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.doc.plantuml:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.example.model.manual:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.model.info:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.bnd.library.workspace:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.osgi.test.assertj.monitoring:0.0.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.doc.mermaid.itest:4.1.1-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.example.model.extended:4.1.1-SNAPSHOT
