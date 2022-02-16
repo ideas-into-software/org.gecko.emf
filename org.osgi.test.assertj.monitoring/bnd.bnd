@@ -15,3 +15,5 @@ Private-Package: org.osgi.test.assertj.monitoring.internal
 	junit-jupiter-api,\
 	org.mockito.mockito-core,\
 	org.osgi.test.junit5
+
+-maven-release: local
