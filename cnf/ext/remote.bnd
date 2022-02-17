@@ -25,7 +25,7 @@
 	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/osgiR8.bnd,\
 	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/slf4j.bnd,\
 	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/osgitest_junit5.bnd
-#	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/jacoco.bnd
+	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/jacoco.bnd
 #	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/gecko_defaults_run.bnd,\
 	
 -require-bnd: "(version>=6.0.0)"
