@@ -13,6 +13,7 @@ sonarqube {
     property "sonar.organization", "geckoprojects-org"
     property "sonar.host.url", "https://sonarcloud.io"
     property "sonar.coverage.jacoco.xmlReportPaths", "${rootDir}/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
+    property "sonar.exclusions", "org.gecko.emf.osgi.example.model.basic/**/*.java, org.gecko.emf.osgi.example.model.extended/**/*.java, org.gecko.emf.osgi.example.model.manual/**/*.java, org.gecko.emf.osgi.example.model.basic/**/*.java, org.gecko.emf.osgi.bnd.library/**/*.java, org.gecko.emf.osgi.bnd.library.project/**/*.java, org.gecko.emf.osgi.bnd.templates.project/**/*.java, org.gecko.emf.osgi.doc.mermaid.itest/**/*.java, org.gecko.emf.osgi.itest/**/*.java"
   }
 }
 
