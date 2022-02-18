@@ -87,7 +87,7 @@
     <setupTask
         xsi:type="setup:EclipseIniTask"
         option="-Doomph.redirection.geckoprojects.emf"
-        value="=https://gitlab.com/gecko.io/geckoBndTemplates/-/raw/develop/cnf/eclipse/GeckoprojectsEMF.setup->${git.clone.geckoprojects.emf.location|uri}//GeckoprojectsEMF.setup"
+        value="=https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.emf/snapshot/cnf/eclipse/GeckoprojectsEMF.setup->${git.clone.geckoprojects.emf.location|uri}//GeckoprojectsEMF.setup"
         vm="true">
       <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
     </setupTask>
@@ -98,7 +98,7 @@
     <setupTask
         xsi:type="setup:EclipseIniTask"
         option="-Doomph.redirection.geckoprojects.emf"
-        value="=https://gitlab.com/gecko.io/geckoBndTemplates/-/raw/develop/cnf/eclipse/GeckoprojectsEMF.setup->${git.clone.geckoprojects.emf.location|uri}//GeckoprojectsEMF.setup"
+        value="=https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.emf/snapshot/cnf/eclipse/GeckoprojectsEMF.setup->${git.clone.geckoprojects.emf.location|uri}//GeckoprojectsEMF.setup"
         vm="true">
       <description>Set an Oomph redirection system property to redirect the logical location of this setup to its physical location in the Git clone.</description>
     </setupTask>

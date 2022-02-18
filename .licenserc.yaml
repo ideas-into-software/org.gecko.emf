@@ -19,6 +19,7 @@ header:
     - '**/packageinfo'
     - '**/module-info.java'
     - '**/*.bnd'
+    - '**/*.setup'
     - '**/*.bndrun'
     - '**/*.xml'
     - '**/*.ecore'
