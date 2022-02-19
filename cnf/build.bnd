@@ -48,6 +48,11 @@ Bundle-Developers: \
 
 
 -groupid: org.geckoprojects.emf
+
+-fixupmessages: \
+	"No metadata for revision";\
+		restrict:=error;\
+    	is:=warning
 	
 emf-version: ${base-version}.${tstamp}-SNAPSHOT
 releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${version}));REPOS}
