@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.URIHandler;
 
 import aQute.bnd.build.Container;
+import aQute.bnd.exceptions.Exceptions;
 import aQute.bnd.osgi.Constants;
 import aQute.bnd.osgi.Jar;
 import aQute.bnd.osgi.Resource;
-import aQute.lib.exceptions.Exceptions;
 import aQute.lib.io.IO;
 
 /**

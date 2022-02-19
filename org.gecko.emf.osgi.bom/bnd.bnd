@@ -1,0 +1,8 @@
+-include: \
+	${.}/../org.gecko.emf.osgi.bnd.library.workspace/buildpath.bnd
+
+Bundle-Version: ${emf-version}
+
+-diffignore: */pom.properties
+
+	

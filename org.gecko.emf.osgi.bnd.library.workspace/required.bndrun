@@ -15,7 +15,6 @@
 	bnd.identity;id='org.gecko.emf.osgi.bnd.templates.project',\
 	bnd.identity;id='slf4j.simple'
 -runbundles: \
-	aQute.libg;version='[5.3.0,5.3.1)',\
 	org.apache.felix.configadmin;version='[1.9.22,1.9.23)',\
 	org.apache.felix.scr;version='[2.1.28,2.1.29)',\
 	org.eclipse.emf.ecore.xmi;version='[2.16.0,2.16.1)',\
@@ -28,13 +27,14 @@
 	org.gecko.emf.osgi.model.info;version=snapshot,\
 	org.osgi.service.cm;version='[1.6.0,1.6.1)',\
 	org.osgi.util.function;version='[1.1.0,1.1.1)',\
-	org.osgi.util.promise;version='[1.1.1,1.1.2)',\
 	slf4j.api;version='[1.7.25,1.7.26)',\
 	org.gecko.emf.osgi.bnd.library.project;version=snapshot,\
 	org.gecko.emf.osgi.bnd.templates.project;version=snapshot,\
 	slf4j.simple;version='[1.7.25,1.7.26)',\
 	org.eclipse.emf.common;version='[2.23.0,2.23.1)',\
-	org.eclipse.emf.ecore;version='[2.25.0,2.25.1)'
+	org.eclipse.emf.ecore;version='[2.25.0,2.25.1)',\
+	aQute.libg;version='[6.1.0,6.1.1)',\
+	org.osgi.util.promise;version='[1.2.0,1.2.1)'
 -runblacklist: \
 	bnd.identity;id='ch.qos.logback.classic',\
 	bnd.identity;id='ch.qos.logback.core'

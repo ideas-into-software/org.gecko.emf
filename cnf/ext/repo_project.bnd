@@ -15,14 +15,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 -plugin.org.gecko.emf.osgi: \
-	aQute.bnd.repository.maven.pom.provider.BndPomRepository;\
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
 		releaseUrl			= "https://repo.maven.apache.org/maven2/";\
 		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/";\
-		revision            = "${dependencies.project}";\
+		index               = ${.}/repo_project.maven;\
 		transitive          = false;\
-		poll_time           = 300;\
+		poll_time           = -1;\
+		readOnly            = true;\
 		name                = "Project Dependencies"
-
 
 ##  All Project Deps
 dependencies.project:\

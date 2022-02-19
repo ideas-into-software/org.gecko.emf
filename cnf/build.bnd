@@ -49,8 +49,8 @@ Bundle-Developers: \
 
 -groupid: org.geckoprojects.emf
 	
-emf-version: 4.1.1.${tstamp}-SNAPSHOT
-releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${Bundle-Version}));REPOS}
+emf-version: ${base-version}.${tstamp}-SNAPSHOT
+releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${version}));REPOS}
 -maven-release.local: ${if;${def;releaseNotNeeded};local;remote}
 #-pom: version=${if;${def;-snapshot};${versionmask;===;${@version}}-${def;-snapshot};${versionmask;===s;${@version}}}
 
