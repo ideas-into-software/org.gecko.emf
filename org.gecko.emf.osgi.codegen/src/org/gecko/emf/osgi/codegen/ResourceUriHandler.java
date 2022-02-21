@@ -87,24 +87,24 @@ public class ResourceUriHandler implements URIHandler {
 	}
 
 	private Optional<URI> doSanitize(URI toSanitize) {
-		String uri = ""; //$NON-NLS-1$
+		StringBuilder uri = new StringBuilder();
 		for(int i = toSanitize.segmentCount() -1; i >= 0;  i--) {
 			String segment = toSanitize.segment(i);
 			if("..".equals(segment)) { //$NON-NLS-1$
 				i--;
 			} else {
 				if(toSanitize.segmentCount() - 1 == i) {
-					uri = segment;
+					uri.append(segment);
 				} else {
-					uri = segment + SLASH + uri;
+					uri.append(segment + SLASH + uri.toString());
 				}
 			}
 			if(i <= 0 ) {
 				String host = toSanitize.host();
 				if("..".equals(segment)) { //$NON-NLS-1$
-					return Optional.of(URI.createURI(toSanitize.scheme() + "://" +uri)); //$NON-NLS-1$
+					return Optional.of(URI.createURI(toSanitize.scheme() + "://" + uri.toString())); //$NON-NLS-1$
 				}
-				return Optional.of(URI.createURI(toSanitize.scheme() + "://"+ host + SLASH + uri)); //$NON-NLS-1$
+				return Optional.of(URI.createURI(toSanitize.scheme() + "://"+ host + SLASH + uri.toString())); //$NON-NLS-1$
 			}
 		};
 		return Optional.empty();

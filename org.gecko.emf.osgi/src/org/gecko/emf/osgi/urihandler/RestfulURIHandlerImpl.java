@@ -43,6 +43,34 @@ import org.gecko.emf.osgi.EMFUriHandlerConstants;
  */
 public class RestfulURIHandlerImpl extends URIHandlerImpl {
 
+	/** SCHEMA_HTTPS */
+	private static final String SCHEMA_HTTPS = "https";
+	/** SCHEMA_HTTP */
+	private static final String SCHEMA_HTTP = "http";
+	/** AUTH_BASIC */
+	private static final String AUTH_BASIC = "Basic ";
+	/** HEADER_AUTHORIZATION */
+	private static final String HEADER_AUTHORIZATION = "Authorization";
+	/** HEADER_CONTENT_LENGTH */
+	private static final String HEADER_CONTENT_LENGTH = "Content-Length";
+	/** HTTP_HEAD */
+	private static final String HTTP_HEAD = "HEAD";
+	/** HEADER_ALLOW */
+	private static final String HEADER_ALLOW = "Allow";
+	/** HTTP_OPTIONS */
+	private static final String HTTP_OPTIONS = "OPTIONS";
+	/** HTTP_DELETE */
+	private static final String HTTP_DELETE = "DELETE";
+	/** PROP_HTTP_RESPONSE_CODE */
+	private static final String PROP_HTTP_RESPONSE_CODE = "HTTPResponseCode";
+	/** HEADER_LAST_MODIFIED */
+	private static final String HEADER_LAST_MODIFIED = "Last-Modified";
+	/** HEADER_CONTENT_CLASS */
+	private static final String HEADER_CONTENT_CLASS = "Content-Class";
+	/** PROP_ECLASS */
+	private static final String PROP_ECLASS = "EClass";
+	/** HTTP_PUT */
+	private static final String HTTP_PUT = "PUT";
 	private static final Logger LOG = Logger.getLogger(RestfulURIHandlerImpl.class.getName());
 
 	/* 
@@ -54,7 +82,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 	public OutputStream createOutputStream(URI uri, final Map<?, ?> options) throws IOException {
 		URL url = new URL(uri.toString());
 		final HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-		String method = "PUT";
+		String method = HTTP_PUT;
 		if (options.containsKey(EMFUriHandlerConstants.OPTION_HTTP_METHOD)) {
 			method = options.get(EMFUriHandlerConstants.OPTION_HTTP_METHOD).toString().toUpperCase();
 		}
@@ -62,8 +90,8 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		httpURLConnection.setDoOutput(Boolean.TRUE);
 		setRequestHeaders(httpURLConnection,
 				(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
-		if (options.containsKey("EClass")) {
-			httpURLConnection.setRequestProperty("Content-Class", options.get("EClass").toString());
+		if (options.containsKey(PROP_ECLASS)) {
+			httpURLConnection.setRequestProperty(HEADER_CONTENT_CLASS, options.get(PROP_ECLASS).toString());
 		}
 		handleBasicAuth(httpURLConnection, options);
 		return new FilterOutputStream(httpURLConnection.getOutputStream()) {
@@ -75,7 +103,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 					Map<Object, Object> response = getResponse(options);
 					if (response != null) {
 						try {
-							String lastModified = httpURLConnection.getHeaderField("Last-Modified");
+							String lastModified = httpURLConnection.getHeaderField(HEADER_LAST_MODIFIED);
 							if (lastModified != null) {
 								Long lm = Long.parseLong(lastModified);
 								response.put(URIConverter.RESPONSE_TIME_STAMP_PROPERTY, lm);
@@ -83,7 +111,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 						} catch (Exception e) {
 							LOG.log(Level.SEVERE, "Error reading last modified header from the response", e);
 						}
-						response.put("HTTPResponseCode", responseCode);
+						response.put(PROP_HTTP_RESPONSE_CODE, responseCode);
 						response.putAll(httpURLConnection.getHeaderFields());
 					}
 					InputStream in = extreactStreamAndLogResponse(options, httpURLConnection);
@@ -142,7 +170,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			Map<Object, Object> response = getResponse(options);
 			if (response != null) {
 				try {
-					String lastModified = httpURLConnection.getHeaderField("Last-Modified");
+					String lastModified = httpURLConnection.getHeaderField(HEADER_LAST_MODIFIED);
 					if (lastModified != null) {
 						Long lm = Long.parseLong(lastModified);
 						response.put(URIConverter.RESPONSE_TIME_STAMP_PROPERTY, lm);
@@ -232,7 +260,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			handleBasicAuth(httpURLConnection, options);
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
-			httpURLConnection.setRequestMethod("DELETE");
+			httpURLConnection.setRequestMethod(HTTP_DELETE);
 			int responseCode = httpURLConnection.getResponseCode();
 			httpURLConnection.disconnect();
 			switch (responseCode) {
@@ -266,14 +294,14 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 				urlConnection = url.openConnection();
 				if (urlConnection instanceof HttpURLConnection) {
 					HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
-					httpURLConnection.setRequestMethod("OPTIONS");
+					httpURLConnection.setRequestMethod(HTTP_OPTIONS);
 					handleBasicAuth(httpURLConnection, options);
 					setRequestHeaders(httpURLConnection,
 							(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 					int responseCode = httpURLConnection.getResponseCode();
 					if (responseCode == HttpURLConnection.HTTP_OK) {
-						String allow = httpURLConnection.getHeaderField("Allow");
-						result.put(URIConverter.ATTRIBUTE_READ_ONLY, allow == null || !allow.contains("PUT"));
+						String allow = httpURLConnection.getHeaderField(HEADER_ALLOW);
+						result.put(URIConverter.ATTRIBUTE_READ_ONLY, allow == null || !allow.contains(HTTP_PUT));
 					}
 					urlConnection = null;
 				} else {
@@ -288,11 +316,11 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 						HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
 						setRequestHeaders(httpURLConnection,
 								(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
-						httpURLConnection.setRequestMethod("HEAD");
+						httpURLConnection.setRequestMethod(HTTP_HEAD);
 						httpURLConnection.getResponseCode();
 					}
 				}
-				if (urlConnection.getHeaderField("last-modified") != null) {
+				if (urlConnection.getHeaderField(HEADER_LAST_MODIFIED) != null) {
 					result.put(URIConverter.ATTRIBUTE_TIME_STAMP, urlConnection.getLastModified());
 				}
 			}
@@ -304,11 +332,11 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 						HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
 						setRequestHeaders(httpURLConnection,
 								(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
-						httpURLConnection.setRequestMethod("HEAD");
+						httpURLConnection.setRequestMethod(HTTP_HEAD);
 						httpURLConnection.getResponseCode();
 					}
 				}
-				if (urlConnection.getHeaderField("content-length") != null) {
+				if (urlConnection.getHeaderField(HEADER_CONTENT_LENGTH) != null) {
 					result.put(URIConverter.ATTRIBUTE_LENGTH, urlConnection.getContentLength());
 				}
 			}
@@ -328,7 +356,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		try {
 			URL url = new URL(uri.toString());
 			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-			httpURLConnection.setRequestMethod("HEAD");
+			httpURLConnection.setRequestMethod(HTTP_HEAD);
 			handleBasicAuth(httpURLConnection, options);
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
@@ -336,9 +364,9 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			Map<Object, Object> response = getResponse(options);
 			if (response != null) {
 				try {
-					String lastModified = httpURLConnection.getHeaderField("Last-Modified");
+					String lastModified = httpURLConnection.getHeaderField(HEADER_LAST_MODIFIED);
 					if (lastModified != null) {
-						Long lm = Long.parseLong(httpURLConnection.getHeaderField("Last-Modified"));
+						Long lm = Long.parseLong(httpURLConnection.getHeaderField(HEADER_LAST_MODIFIED));
 						response.put(URIConverter.RESPONSE_TIME_STAMP_PROPERTY, lm);
 					}
 				} catch (Exception e) {
@@ -376,7 +404,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 
 			String userpassword = username + (mandant != null ? "@" + mandant : "") + ":" + password;
 			String encodedAuthorization = Base64.getEncoder().encodeToString(userpassword.getBytes());
-			httpURLConnection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
+			httpURLConnection.setRequestProperty(HEADER_AUTHORIZATION, AUTH_BASIC + encodedAuthorization);
 		}
 	}
 
@@ -386,7 +414,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 	 */
 	@Override
 	public boolean canHandle(URI uri) {
-		return uri.scheme().equalsIgnoreCase("http") || uri.scheme().equalsIgnoreCase("https");
+		return uri.scheme().equalsIgnoreCase(SCHEMA_HTTP) || uri.scheme().equalsIgnoreCase(SCHEMA_HTTPS);
 	}
 
 }

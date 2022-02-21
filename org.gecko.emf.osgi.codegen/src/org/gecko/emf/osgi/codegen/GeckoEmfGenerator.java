@@ -91,7 +91,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		}
 	}
 
-	private static void initializeLog(File base, String file) throws FileNotFoundException, IOException {
+	private static void initializeLog(File base, String file) throws IOException {
 		File logFile = new File(base, file);
 		IO.delete(logFile);
 		if (logFile.createNewFile()) {
@@ -227,8 +227,6 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 			if(diagnostic.getSeverity() != Diagnostic.OK) {
 				return Optional.of(diagnostic.toString());
 			} 
-		} finally {
-
 		}
 		return Optional.empty();
 	}
