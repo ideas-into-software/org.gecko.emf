@@ -103,11 +103,14 @@ public class ResourceUriHandler implements URIHandler {
 		return sanatized == null ? null : sanatized.trimFragment().trimQuery(); 
 	}
 	
-
 	@Override
 	public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to open InputStream for " + uri);
 		URI theUri = trimmedSanatize(uri);
+		if (theUri == null) {
+			GeckoEmfGenerator.error("URI is null, InputStream cannot be created");
+			return null;
+		}
 		GeckoEmfGenerator.info("sanatized uri " + theUri);
 		String uriBSN = theUri.host();
 		GeckoEmfGenerator.info("bsn according to URI" + uriBSN);
@@ -162,6 +165,10 @@ public class ResourceUriHandler implements URIHandler {
 	public OutputStream createOutputStream(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to open OutputStream for " + uri);
 		URI theUri = trimmedSanatize(uri);
+		if (theUri == null) {
+			GeckoEmfGenerator.error("URI is null, OutputStream cannot be created");
+			return null;
+		}
 		GeckoEmfGenerator.info("Sanatized " + theUri);
 		String uriBSN = theUri.host();
 		if(bsn.equals(uriBSN)) {
@@ -179,6 +186,10 @@ public class ResourceUriHandler implements URIHandler {
 	public void delete(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to delete " + uri);
 		URI theUri = trimmedSanatize(uri);
+		if (theUri == null) {
+			GeckoEmfGenerator.error("URI is null, Delete cannot be executed");
+			return;
+		}
 		GeckoEmfGenerator.info("Sanatized " + theUri);
 		String uriBSN = theUri.segment(0);
 		if(bsn.equals(uriBSN)) {
@@ -198,6 +209,10 @@ public class ResourceUriHandler implements URIHandler {
 	public boolean exists(URI uri, Map<?, ?> options) {
 		GeckoEmfGenerator.info("Asked if exists " + uri);
 		URI theUri = trimmedSanatize(uri);
+		if (theUri == null) {
+			GeckoEmfGenerator.error("URI is null, existence cannot be checked");
+			return false;
+		}
 		GeckoEmfGenerator.info("Sanatized " + uri);
 		String uriBSN = theUri.segment(0);
 		if(bsn.equals(uriBSN)) {
@@ -210,7 +225,6 @@ public class ResourceUriHandler implements URIHandler {
 
 	@Override
 	public Map<String, ?> getAttributes(URI uri, Map<?, ?> options) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
