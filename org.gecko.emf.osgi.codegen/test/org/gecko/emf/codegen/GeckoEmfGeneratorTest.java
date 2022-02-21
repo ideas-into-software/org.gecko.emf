@@ -11,6 +11,7 @@
  */
 package org.gecko.emf.codegen;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -85,7 +86,7 @@ public class GeckoEmfGeneratorTest {
 		}
 		sb.append(segments);
 		System.out.println(sb.toString());
-		
+		assertNotNull(uri);
 //		String genmodelPath = "testdata/model/test.genmodel";
 //		
 //		File genmodel = new File(genmodelPath);

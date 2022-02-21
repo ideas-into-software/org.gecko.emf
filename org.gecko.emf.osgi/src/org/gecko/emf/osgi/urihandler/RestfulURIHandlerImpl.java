@@ -96,6 +96,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 							responseResource.load(in, (Map<?, ?>) options
 									.get(EMFUriHandlerConstants.OPTIONS_EXPECTED_RESPONSE_RESOURCE_OPTIONS));
 						}
+						break;
 					case HttpURLConnection.HTTP_NO_CONTENT: {
 						break;
 					}
