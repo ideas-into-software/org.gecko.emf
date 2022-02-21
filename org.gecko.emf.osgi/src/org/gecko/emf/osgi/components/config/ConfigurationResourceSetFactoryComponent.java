@@ -82,6 +82,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * Inject a {@link Registry} for resource factories
 	 * @param resourceFactoryRegistry the resource factory to be injected
 	 */
+	@Override
 	@Reference(name="resourceFactoryRegistry", policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry")
 	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry) {
 		super.setResourceFactoryRegistry(resourceFactoryRegistry);
@@ -91,6 +92,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * Removed the registry on shutdown
 	 * @param resourceFactoryRegistry the registry to be removed
 	 */
+	@Override
 	public void unsetResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry) {
 		super.unsetResourceFactoryRegistry(resourceFactoryRegistry);
 	}
@@ -100,6 +102,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param configurator the {@link EPackageConfigurator} to be registered
 	 * @param properties the service properties
 	 */
+	@Override
 	@Reference(unbind ="removeEPackageConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.AT_LEAST_ONE, target="(emf.model.name=ecore)")
 	public void addEcoreConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
 		super.addEcoreConfigurator(configurator, properties);
@@ -110,6 +113,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param configurator the {@link EPackageConfigurator} to be registered
 	 * @param properties the service properties
 	 */
+	@Override
 	@Reference(name="ePackageConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, target="(!(emf.model.name=ecore))", updated = "modifyEPackageConfigurator", unbind = "removeEPackageConfigurator")
 	public void addEPackageConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
 		super.addEPackageConfigurator(configurator, properties);
@@ -129,6 +133,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param configurator the configurator to be removed
 	 * @param properties the service properties
 	 */
+	@Override
 	public void removeEPackageConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
 		super.removeEPackageConfigurator(configurator, properties);
 	}
@@ -138,6 +143,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param configurator the resource factory configurator to be registered
 	 * @param properties the service properties
 	 */
+	@Override
 	@Reference(unbind = "removeResourceFactoryConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.AT_LEAST_ONE, target="(emf.model.name=ecore)")
 	public void addEcoreResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
 		super.addEcoreResourceFactoryConfigurator(configurator, properties);
@@ -148,6 +154,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param configurator the resource factory configurator to be registered
 	 * @param properties the service properties
 	 */
+	@Override
 	@Reference(name="resourceFactoryConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, target="(!(emf.model.name=ecore))", updated = "modifyResourceFactoryConfigurator")
 	public void addResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
 		super.addResourceFactoryConfigurator(configurator, properties);
@@ -167,6 +174,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param configurator the resource factory configurator to be removed
 	 * @param properties the service properties
 	 */
+	@Override
 	public void removeResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
 		super.removeResourceFactoryConfigurator(configurator, properties);
 	}
@@ -176,6 +184,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param resourceSetConfigurator the new configurator to be added
 	 * @param properties the service properties
 	 */
+	@Override
 	@Reference(policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, updated = "modifyResourceSetConfigurator")
 	public void addResourceSetConfigurator(ResourceSetConfigurator resourceSetConfigurator, Map<String, Object> properties) {
 		super.addResourceSetConfigurator(resourceSetConfigurator, properties);
@@ -195,6 +204,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param resourceSetConfigurator
 	 * @param properties the service properties
 	 */
+	@Override
 	public void removeResourceSetConfigurator(ResourceSetConfigurator resourceSetConfigurator, Map<String, Object> properties) {
 		super.removeResourceSetConfigurator(resourceSetConfigurator, properties);
 	}
@@ -203,6 +213,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * Called on component activation
 	 * @param ctx the component context
 	 */
+	@Override
 	@Activate
 	public void activate(ComponentContext ctx) {
 		properties = ctx.getProperties();
@@ -212,6 +223,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	/**
 	 * Called on component deactivation
 	 */
+	@Override
 	@Deactivate
 	public void deactivate() {
 		super.deactivate();

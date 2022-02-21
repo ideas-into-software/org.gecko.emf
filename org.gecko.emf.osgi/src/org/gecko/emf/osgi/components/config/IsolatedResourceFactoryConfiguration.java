@@ -74,7 +74,7 @@ public class IsolatedResourceFactoryConfiguration {
 			rsfConfig = configAdmin.getFactoryConfiguration(RESOURCE_SET_FACTORY_CONFIG_NAME, name, "?");
 			rsfConfig.update(getResourceSetFactoryProperties(name, filter));
 		} catch (IOException e) {
-			logger.log(Level.SEVERE, "[{0}] Error creating an isolated resource set factory", new Object[] {name, e});
+			logger.log(Level.SEVERE, String.format("[%s] Error creating an isolated resource set factory", name), e);
 		}
 	}
 	
@@ -99,7 +99,7 @@ public class IsolatedResourceFactoryConfiguration {
 			}
 			rsfConfig.updateIfDifferent(getResourceSetFactoryProperties(name, filter));
 		} catch (IOException e) {
-			logger.log(Level.SEVERE, "[{0}] Error updating an isolated resource set factory", new Object[] {name, e});
+			logger.log(Level.SEVERE, String.format("[%s] Error updating an isolated resource set factory", name), e);
 		}
 	}
 	
@@ -109,21 +109,21 @@ public class IsolatedResourceFactoryConfiguration {
 			try {
 				rsfConfig.delete();
 			} catch (IOException e) {
-				logger.log(Level.SEVERE, "Error removing an ResourceSetFactory configuration", new Object[] {e});
+				logger.log(Level.SEVERE, "Error removing an ResourceSetFactory configuration", e);
 			}
 		}
 		if (eprConfig != null) {
 			try {
 				eprConfig.delete();
 			} catch (IOException e) {
-				logger.log(Level.SEVERE, "Error removing an EPackage registry configuration", new Object[] {e});
+				logger.log(Level.SEVERE, "Error removing an EPackage registry configuration", e);
 			}
 		}
 		if (rfConfig != null) {
 			try {
 				rfConfig.delete();
 			} catch (IOException e) {
-				logger.log(Level.SEVERE, "Error removing a ResourceFactory registry configuration", new Object[] {e});
+				logger.log(Level.SEVERE, "Error removing a ResourceFactory registry configuration", e);
 			}
 		}
 	}

@@ -78,9 +78,6 @@ public class ResourceUriHandler implements URIHandler {
 		return doSanatize(toSanatize);
 	}
 
-	/**
-	 * @param toSanatize
-	 */
 	private Optional<URI> doSanatize(URI toSanatize) {
 		String uri = "";
 		for(int i = toSanatize.segmentCount() -1; i >= 0;  i--) {

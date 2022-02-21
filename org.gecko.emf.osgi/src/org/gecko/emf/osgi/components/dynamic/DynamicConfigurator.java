@@ -20,7 +20,6 @@ import static org.gecko.emf.osgi.EMFNamespaces.PROP_DYNAMIC_CONFIG_FILE_EXTENSIO
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -141,14 +140,7 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 		if (bsnVersion.length == 2) {
 			version = Version.parseVersion(bsnVersion[1]);
 		}
-		Set<Bundle> candidates = new TreeSet<>(new Comparator<Bundle>() {
-
-
-			@Override
-			public int compare(Bundle o1, Bundle o2) {
-				return o1.getVersion().compareTo(o2.getVersion());
-			}
-		});
+		Set<Bundle> candidates = new TreeSet<>((o1, o2) -> o1.getVersion().compareTo(o2.getVersion()));
 		for (Bundle b : ctx.getBundleContext().getBundles()) {
 			if (bsn.equalsIgnoreCase(b.getSymbolicName())) {
 				if (version == null) {
@@ -156,8 +148,6 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 				} else {
 					if (b.getVersion().compareTo(version) == 0) {
 						return b;
-					} else {
-						continue;
 					}
 				}
 			}
