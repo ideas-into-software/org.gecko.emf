@@ -66,7 +66,7 @@ public class ResourceUriHandler implements URIHandler {
 		return uri.scheme().equals("resource") || uri.toString().startsWith(PLATFORM_RESOURCE) || uri.toString().startsWith(PLATFORM_PLUGIN); 
 	}
 
-	private Optional<URI> sanatize(URI toSanatize) {
+	private Optional<URI> sanitize(URI toSanatize) {
 		if (toSanatize == null) {
 			return Optional.empty();
 		}
@@ -75,10 +75,10 @@ public class ResourceUriHandler implements URIHandler {
 		} else if(toSanatize.toString().startsWith(PLATFORM_PLUGIN)) {
 			toSanatize = URI.createURI("resource://" + toSanatize.toString().substring(PLATFORM_PLUGIN.length()));
 		}
-		return doSanatize(toSanatize);
+		return doSanitize(toSanatize);
 	}
 
-	private Optional<URI> doSanatize(URI toSanatize) {
+	private Optional<URI> doSanitize(URI toSanatize) {
 		String uri = "";
 		for(int i = toSanatize.segmentCount() -1; i >= 0;  i--) {
 			String segment = toSanatize.segment(i);
@@ -102,15 +102,15 @@ public class ResourceUriHandler implements URIHandler {
 		return Optional.empty();
 	}
 
-	private URI trimmedSanatize(URI toSanatize) {
-		Optional<URI> sanatized = sanatize(toSanatize);
+	private URI trimmedSanitize(URI toSanatize) {
+		Optional<URI> sanatized = sanitize(toSanatize);
 		return sanatized.map(URI::trimFragment).map(URI::trimQuery).orElse(null); 
 	}
 	
 	@Override
 	public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to open InputStream for " + uri);
-		URI theUri = trimmedSanatize(uri);
+		URI theUri = trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, InputStream cannot be created");
 			return null;
@@ -165,10 +165,14 @@ public class ResourceUriHandler implements URIHandler {
 		}
 	}
 
+	/* 
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.resource.URIHandler#createOutputStream(org.eclipse.emf.common.util.URI, java.util.Map)
+	 */
 	@Override
 	public OutputStream createOutputStream(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to open OutputStream for " + uri);
-		URI theUri = trimmedSanatize(uri);
+		URI theUri = trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, OutputStream cannot be created");
 			return null;
@@ -186,10 +190,14 @@ public class ResourceUriHandler implements URIHandler {
 		return null;
 	}
 
+	/* 
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.resource.URIHandler#delete(org.eclipse.emf.common.util.URI, java.util.Map)
+	 */
 	@Override
 	public void delete(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to delete " + uri);
-		URI theUri = trimmedSanatize(uri);
+		URI theUri = trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, Delete cannot be executed");
 			return;
@@ -203,16 +211,24 @@ public class ResourceUriHandler implements URIHandler {
 		} 
 	}
 
+	/* 
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.resource.URIHandler#contentDescription(org.eclipse.emf.common.util.URI, java.util.Map)
+	 */
 	@Override
 	public Map<String, ?> contentDescription(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked for content Descriptor " + uri);
 		return Collections.singletonMap(ContentHandler.CONTENT_TYPE_PROPERTY, "application/xmi");
 	}
 
+	/* 
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.resource.URIHandler#exists(org.eclipse.emf.common.util.URI, java.util.Map)
+	 */
 	@Override
 	public boolean exists(URI uri, Map<?, ?> options) {
 		GeckoEmfGenerator.info("Asked if exists " + uri);
-		URI theUri = trimmedSanatize(uri);
+		URI theUri = trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, existence cannot be checked");
 			return false;
@@ -227,16 +243,22 @@ public class ResourceUriHandler implements URIHandler {
 		return false;
 	}
 
+	/* 
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.resource.URIHandler#getAttributes(org.eclipse.emf.common.util.URI, java.util.Map)
+	 */
 	@Override
 	public Map<String, ?> getAttributes(URI uri, Map<?, ?> options) {
-		return null;
+		return Collections.emptyMap();
 	}
 
 
+	/* 
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.resource.URIHandler#setAttributes(org.eclipse.emf.common.util.URI, java.util.Map, java.util.Map)
+	 */
 	@Override
 	public void setAttributes(URI uri, Map<String, ?> attributes, Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
-
 	}
 
 }

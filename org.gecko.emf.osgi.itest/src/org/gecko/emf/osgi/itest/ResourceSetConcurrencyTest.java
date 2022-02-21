@@ -173,6 +173,7 @@ public class ResourceSetConcurrencyTest {
 					}
 				} catch (Exception ex) {
 					error.set(true);
+					Thread.currentThread().interrupt();
 					System.out.println("Exception in thread 1:");
 				}
 			}
@@ -201,6 +202,7 @@ public class ResourceSetConcurrencyTest {
 					}
 				} catch (Exception e) {
 					System.out.println("Exception in thread 2:");
+					Thread.currentThread().interrupt();
 					error.set(true);
 				}
 			}
@@ -249,6 +251,7 @@ public class ResourceSetConcurrencyTest {
 					}
 				} catch (Exception ex) {
 					error.set(true);
+					Thread.currentThread().interrupt();
 					System.out.println("Exception in thread 1:");
 				}
 			}
@@ -276,6 +279,7 @@ public class ResourceSetConcurrencyTest {
 					}
 				} catch (Exception e) {
 					System.out.println("Exception in thread 2:");
+					Thread.currentThread().interrupt();
 					error.set(true);
 				}
 			}

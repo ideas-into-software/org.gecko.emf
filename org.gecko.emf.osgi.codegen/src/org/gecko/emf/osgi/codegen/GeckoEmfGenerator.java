@@ -144,7 +144,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 
     private void configureEMFGenerator(org.eclipse.emf.codegen.ecore.generator.Generator gen) {
     	info("Configuring Jet");
-    	gen.getAdapterFactoryDescriptorRegistry().addDescriptor("http://www.eclipse.org/emf/2002/GenModel", BNDGeneratorAdapterFactory.DESCRIPTOR);
+    	gen.getAdapterFactoryDescriptorRegistry().addDescriptor(GenModelPackage.eNS_URI, BNDGeneratorAdapterFactory.DESCRIPTOR);
     }
 
     private void configureEMF(ResourceSet resourceSet, Map<Container, List<String>> refModels, String bsn, File base) {
