@@ -34,8 +34,8 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 @RequireConfigurationAdmin
 public class ResourceSetCacheComponent implements ResourceSetCache {
 	
-	private AtomicReference<ResourceSetFactory> resourceSetFactoryReference = new AtomicReference<ResourceSetFactory>();
-	private AtomicReference<ResourceSet> resourceSet = new AtomicReference<ResourceSet>();
+	private AtomicReference<ResourceSetFactory> resourceSetFactoryReference = new AtomicReference<>();
+	private AtomicReference<ResourceSet> resourceSet = new AtomicReference<>();
 
 
 	@Override

@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.StringJoiner;
 
 import org.eclipse.emf.common.util.URI;
@@ -65,16 +66,22 @@ public class ResourceUriHandler implements URIHandler {
 		return uri.scheme().equals("resource") || uri.toString().startsWith(PLATFORM_RESOURCE) || uri.toString().startsWith(PLATFORM_PLUGIN); 
 	}
 
-	private URI sanatize(URI toSanatize) {
+	private Optional<URI> sanatize(URI toSanatize) {
 		if (toSanatize == null) {
-			return null;
+			return Optional.empty();
 		}
 		if(toSanatize.toString().startsWith(PLATFORM_RESOURCE)) {
 			toSanatize = URI.createURI("resource://" + toSanatize.toString().substring(PLATFORM_RESOURCE.length()));
-		}
-		if(toSanatize.toString().startsWith(PLATFORM_PLUGIN)) {
+		} else if(toSanatize.toString().startsWith(PLATFORM_PLUGIN)) {
 			toSanatize = URI.createURI("resource://" + toSanatize.toString().substring(PLATFORM_PLUGIN.length()));
 		}
+		return doSanatize(toSanatize);
+	}
+
+	/**
+	 * @param toSanatize
+	 */
+	private Optional<URI> doSanatize(URI toSanatize) {
 		String uri = "";
 		for(int i = toSanatize.segmentCount() -1; i >= 0;  i--) {
 			String segment = toSanatize.segment(i);
@@ -90,17 +97,17 @@ public class ResourceUriHandler implements URIHandler {
 			if(i <= 0 ) {
 				String host = toSanatize.host();
 				if("..".equals(segment)) {
-					return URI.createURI(toSanatize.scheme() + "://" +uri);
+					return Optional.of(URI.createURI(toSanatize.scheme() + "://" +uri));
 				}
-				return URI.createURI(toSanatize.scheme() + "://"+ host + "/" + uri);
+				return Optional.of(URI.createURI(toSanatize.scheme() + "://"+ host + "/" + uri));
 			}
 		};
-		return null;
+		return Optional.empty();
 	}
 
 	private URI trimmedSanatize(URI toSanatize) {
-		URI sanatized = sanatize(toSanatize);
-		return sanatized == null ? null : sanatized.trimFragment().trimQuery(); 
+		Optional<URI> sanatized = sanatize(toSanatize);
+		return sanatized.map(URI::trimFragment).map(URI::trimQuery).orElse(null); 
 	}
 	
 	@Override
