@@ -101,6 +101,9 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 			throw new IllegalStateException("There are at least two segments expected in the ecore path");
 		}
 		Bundle bundle = getBundle(segments[0]);
+		if (bundle == null) {
+			throw new IllegalStateException("No bundle can be found for segment " + segments[0]);
+		}
 		String path = ecorePath.replace(segments[0], "");
 		String file = segments[segments.length - 1];
 		URL url = bundle.getResource(path);
