@@ -232,8 +232,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 					String error = new String(baos.toByteArray());
 					error(prefix + error);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					error("Error printing results " + e.getMessage());
 				}
 			}
 		}
