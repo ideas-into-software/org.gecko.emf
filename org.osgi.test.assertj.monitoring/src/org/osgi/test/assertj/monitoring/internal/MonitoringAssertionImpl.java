@@ -258,6 +258,7 @@ public class MonitoringAssertionImpl implements MonitoringAssertionTimeoutStep, 
 				return runner.await();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+				Thread.currentThread().interrupt();
 				return false;
 			}
 

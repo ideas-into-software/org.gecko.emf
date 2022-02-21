@@ -35,19 +35,19 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 public class ResourceSetCacheComponent implements ResourceSetCache {
 	
 	private AtomicReference<ResourceSetFactory> resourceSetFactoryReference = new AtomicReference<ResourceSetFactory>();
-	private volatile ResourceSet resourceSet;
+	private AtomicReference<ResourceSet> resourceSet = new AtomicReference<ResourceSet>();
 
 
 	@Override
 	public synchronized ResourceSet getResourceSet() {
-		if (resourceSet == null) {
+		if (resourceSet.get() == null) {
 			ResourceSetFactory resourceSetFactory = resourceSetFactoryReference.get();
 
 			if (resourceSetFactory != null) {
-				resourceSet = resourceSetFactory.createResourceSet();
+				resourceSet.compareAndSet(null, resourceSetFactory.createResourceSet());
 			}
 		}
-		return resourceSet;
+		return resourceSet.get();
 	}
 
 	/**

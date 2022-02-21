@@ -66,6 +66,9 @@ public class ResourceUriHandler implements URIHandler {
 	}
 
 	private URI sanatize(URI toSanatize) {
+		if (toSanatize == null) {
+			return null;
+		}
 		if(toSanatize.toString().startsWith(PLATFORM_RESOURCE)) {
 			toSanatize = URI.createURI("resource://" + toSanatize.toString().substring(PLATFORM_RESOURCE.length()));
 		}
@@ -94,12 +97,17 @@ public class ResourceUriHandler implements URIHandler {
 		};
 		return null;
 	}
+
+	private URI trimmedSanatize(URI toSanatize) {
+		URI sanatized = sanatize(toSanatize);
+		return sanatized == null ? null : sanatized.trimFragment().trimQuery(); 
+	}
 	
 
 	@Override
 	public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to open InputStream for " + uri);
-		URI theUri = sanatize(uri).trimFragment().trimQuery();
+		URI theUri = trimmedSanatize(uri);
 		GeckoEmfGenerator.info("sanatized uri " + theUri);
 		String uriBSN = theUri.host();
 		GeckoEmfGenerator.info("bsn according to URI" + uriBSN);
@@ -153,7 +161,7 @@ public class ResourceUriHandler implements URIHandler {
 	@Override
 	public OutputStream createOutputStream(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to open OutputStream for " + uri);
-		URI theUri = sanatize(uri).trimFragment().trimQuery();
+		URI theUri = trimmedSanatize(uri);
 		GeckoEmfGenerator.info("Sanatized " + theUri);
 		String uriBSN = theUri.host();
 		if(bsn.equals(uriBSN)) {
@@ -170,7 +178,7 @@ public class ResourceUriHandler implements URIHandler {
 	@Override
 	public void delete(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to delete " + uri);
-		URI theUri = sanatize(uri).trimFragment().trimQuery();
+		URI theUri = trimmedSanatize(uri);
 		GeckoEmfGenerator.info("Sanatized " + theUri);
 		String uriBSN = theUri.segment(0);
 		if(bsn.equals(uriBSN)) {
@@ -189,7 +197,7 @@ public class ResourceUriHandler implements URIHandler {
 	@Override
 	public boolean exists(URI uri, Map<?, ?> options) {
 		GeckoEmfGenerator.info("Asked if exists " + uri);
-		URI theUri = sanatize(uri).trimFragment().trimQuery();
+		URI theUri = trimmedSanatize(uri);
 		GeckoEmfGenerator.info("Sanatized " + uri);
 		String uriBSN = theUri.segment(0);
 		if(bsn.equals(uriBSN)) {

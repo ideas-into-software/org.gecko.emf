@@ -162,7 +162,7 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 		if (candidates.isEmpty()) {
 			throw new IllegalStateException("There is no bundle with this bsn and version '" + bsn + ":" + version + "'");
 		} else {
-			return candidates.stream().findFirst().get();
+			return candidates.stream().findFirst().orElse(null);
 		}
 	}
 

@@ -82,8 +82,9 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
     		if(context.get("logfile") != null) {
     			File logFile = new File(context.getBase(), context.get("logfile"));
     			IO.delete(logFile);
-    			logFile.createNewFile();
-    			logWriter = new PrintStream(logFile);
+    			if (logFile.createNewFile()) {
+    				logWriter = new PrintStream(logFile);
+    			}
     		}
     		String genFolder = context.get("output");
     		File output = null;
