@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.StringSegment;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.gecko.emf.osgi.EPackageConfigurator;
@@ -75,16 +76,16 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 		this.ctx = ctx;
 		modelName = (String) properties.get(EMF_MODEL_NAME);
 		if (modelName == null) {
-			throw new ConfigurationException(EMF_MODEL_NAME, "The EMF model name property is missing in the configuration");
+			throw new ConfigurationException(EMF_MODEL_NAME, "The EMF model name property is missing in the configuration"); //$NON-NLS-1$
 		}
 		ecorePath = (String) properties.get(PROP_DYNAMIC_CONFIG_ECORE_PATH);
 		if (ecorePath == null) {
-			throw new ConfigurationException(PROP_DYNAMIC_CONFIG_ECORE_PATH, "The EMF model ecore file path is missing in the configuration");
+			throw new ConfigurationException(PROP_DYNAMIC_CONFIG_ECORE_PATH, "The EMF model ecore file path is missing in the configuration"); //$NON-NLS-1$
 		}
 		try {
 			loadModel();
 		} catch (Exception e) {
-			throw new ConfigurationException(PROP_DYNAMIC_CONFIG_ECORE_PATH, "The EMF model ecore file path is invalid please use: '<bsn>:(<version>)/(<path>)/<file>.ecore': " + e.getMessage());
+			throw new ConfigurationException(PROP_DYNAMIC_CONFIG_ECORE_PATH, "The EMF model ecore file path is invalid please use: '<bsn>:(<version>)/(<path>)/<file>.ecore': " + e.getMessage()); //$NON-NLS-1$
 		}
 		fileExtension = (String) properties.get(PROP_DYNAMIC_CONFIG_FILE_EXTENSION);
 		contentTypeIdentifier = (String) properties.get(PROP_DYNAMIC_CONFIG_CONTENT_TYPE);
