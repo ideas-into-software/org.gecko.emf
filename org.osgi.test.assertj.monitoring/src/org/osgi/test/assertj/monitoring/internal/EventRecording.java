@@ -191,6 +191,7 @@ interface EventRecording {
 			timedOut = !latch.await(timeout, TimeUnit.MILLISECONDS);
 		} catch (InterruptedException e) {
 			timedOut = true;
+			Thread.currentThread().interrupt();
 		}
 		bc.removeServiceListener(sListener);
 		bc.removeBundleListener(bListener);

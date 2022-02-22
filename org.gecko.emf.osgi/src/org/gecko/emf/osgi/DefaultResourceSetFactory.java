@@ -57,8 +57,8 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	private final Map<Long, Set<String>> configuratorNameMap = new ConcurrentHashMap<>();
 	private final Map<Long, Set<String>> resourceFactoryNameMap = new ConcurrentHashMap<>();
 	private final Map<Long, Set<String>> modelNameMap = new ConcurrentHashMap<>();
-	protected volatile EPackage.Registry packageRegistry;
-	protected volatile Resource.Factory.Registry resourceFactoryRegistry;
+	protected EPackage.Registry packageRegistry;
+	protected Resource.Factory.Registry resourceFactoryRegistry;
 	protected ServiceRegistration<ResourceSetFactory> rsfRegistration = null;
 	protected ServiceRegistration<ResourceSet> rsRegistration = null;
 	private long serviceChangeCount = 0;

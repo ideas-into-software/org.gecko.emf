@@ -11,9 +11,19 @@
  */
 package org.gecko.emf.codegen;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
+import org.gecko.emf.osgi.codegen.GeckoEmfGenerator;
 import org.junit.jupiter.api.Test;
 
 
@@ -61,7 +71,22 @@ public class GeckoEmfGeneratorTest {
 				}
 			}
 		};
-		
+		List<String> uris = Arrays.asList(toSanatize.segments());
+		String segments = uris
+				.stream()
+				.filter(s->!s.equals(".."))
+				.collect(Collectors.joining("/"));
+		boolean noHost = uris.stream().filter(s->s.equals("..")).findFirst().isPresent();
+		StringBuilder sb = new StringBuilder();
+		sb.append(toSanatize.scheme());
+		sb.append("://");
+		if (!noHost) {
+			sb.append(toSanatize.host());
+			sb.append("/");
+		}
+		sb.append(segments);
+		System.out.println(sb.toString());
+		assertNotNull(uri);
 //		String genmodelPath = "testdata/model/test.genmodel";
 //		
 //		File genmodel = new File(genmodelPath);
@@ -71,7 +96,7 @@ public class GeckoEmfGeneratorTest {
 //		GeckoEmfGenerator geckoEmfGenerator = new GeckoEmfGenerator();
 //		File out = new File("out");
 //		out.mkdir();
-		
+//		
 //		Optional<String> result = geckoEmfGenerator.doGenerate(out, genmodelPath, genmodel);
 //		assertTrue(result.isEmpty());
 	}

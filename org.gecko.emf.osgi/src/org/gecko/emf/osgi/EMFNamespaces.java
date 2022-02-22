@@ -22,25 +22,25 @@ import org.gecko.emf.osgi.annotation.EMFResourceSetConfigurator;
  */
 public class EMFNamespaces {
 
-	public static final String EMF_NAMESPACE = "emf.core";
-	public static final String EMF_CONFIGURATOR_NAMESPACE = "emf.configurator";
+	public static final String EMF_NAMESPACE = "emf.core"; //$NON-NLS-1$
+	public static final String EMF_CONFIGURATOR_NAMESPACE = "emf.configurator"; //$NON-NLS-1$
 	
 	/**
 	 * Attribute name constants for {@link EMFResourceFactoryConfigurator} annotation
 	 */
 
 	// Attribute PREFIX for the ResourceSetFactory configurator name
-	public static final String EMF_RESOURCE_CONFIGURATOR_PREFIX = "emf.resource.configurator.";
+	public static final String EMF_RESOURCE_CONFIGURATOR_PREFIX = "emf.resource.configurator."; //$NON-NLS-1$
 	// Attribute name for the ResourceSetFactory configurator name
-	public static final String EMF_RESOURCE_CONFIGURATOR_NAME = EMF_RESOURCE_CONFIGURATOR_PREFIX+"name";
+	public static final String EMF_RESOURCE_CONFIGURATOR_NAME = EMF_RESOURCE_CONFIGURATOR_PREFIX + "name"; //$NON-NLS-1$
 	// Attribute name for the ResourceSetFactory configurator content type
-	public static final String EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE = EMF_RESOURCE_CONFIGURATOR_PREFIX+"contentType";
+	public static final String EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE = EMF_RESOURCE_CONFIGURATOR_PREFIX + "contentType"; //$NON-NLS-1$
 	// Attribute name for the ResourceSetFactory configurator file extension
-	public static final String EMF_RESOURCE_CONFIGURATOR_FILE_EXT = EMF_RESOURCE_CONFIGURATOR_PREFIX+"fileExtension";
+	public static final String EMF_RESOURCE_CONFIGURATOR_FILE_EXT = EMF_RESOURCE_CONFIGURATOR_PREFIX + "fileExtension"; //$NON-NLS-1$
 	// Attribute name for the ResourceSetFactory configurator feature
-	public static final String EMF_RESOURCE_CONFIGURATOR_FEATURE = EMF_RESOURCE_CONFIGURATOR_PREFIX+"feature";
+	public static final String EMF_RESOURCE_CONFIGURATOR_FEATURE = EMF_RESOURCE_CONFIGURATOR_PREFIX + "feature"; //$NON-NLS-1$
 	// Attribute name for the ResourceSetFactory configurator protocol
-	public static final String EMF_RESOURCE_CONFIGURATOR_PROTOCOL = EMF_RESOURCE_CONFIGURATOR_PREFIX+"protocol";
+	public static final String EMF_RESOURCE_CONFIGURATOR_PROTOCOL = EMF_RESOURCE_CONFIGURATOR_PREFIX + "protocol";
 
 	/**
 	 * Attribute name constants for {@link EMFResourceSetConfigurator} annotation

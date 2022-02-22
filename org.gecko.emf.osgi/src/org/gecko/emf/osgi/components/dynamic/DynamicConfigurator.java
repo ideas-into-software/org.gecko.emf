@@ -20,7 +20,6 @@ import static org.gecko.emf.osgi.EMFNamespaces.PROP_DYNAMIC_CONFIG_FILE_EXTENSIO
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -76,16 +75,16 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 		this.ctx = ctx;
 		modelName = (String) properties.get(EMF_MODEL_NAME);
 		if (modelName == null) {
-			throw new ConfigurationException(EMF_MODEL_NAME, "The EMF model name property is missing in the configuration");
+			throw new ConfigurationException(EMF_MODEL_NAME, "The EMF model name property is missing in the configuration"); //$NON-NLS-1$
 		}
 		ecorePath = (String) properties.get(PROP_DYNAMIC_CONFIG_ECORE_PATH);
 		if (ecorePath == null) {
-			throw new ConfigurationException(PROP_DYNAMIC_CONFIG_ECORE_PATH, "The EMF model ecore file path is missing in the configuration");
+			throw new ConfigurationException(PROP_DYNAMIC_CONFIG_ECORE_PATH, "The EMF model ecore file path is missing in the configuration"); //$NON-NLS-1$
 		}
 		try {
 			loadModel();
 		} catch (Exception e) {
-			throw new ConfigurationException(PROP_DYNAMIC_CONFIG_ECORE_PATH, "The EMF model ecore file path is invalid please use: '<bsn>:(<version>)/(<path>)/<file>.ecore': " + e.getMessage());
+			throw new ConfigurationException(PROP_DYNAMIC_CONFIG_ECORE_PATH, "The EMF model ecore file path is invalid please use: '<bsn>:(<version>)/(<path>)/<file>.ecore': " + e.getMessage()); //$NON-NLS-1$
 		}
 		fileExtension = (String) properties.get(PROP_DYNAMIC_CONFIG_FILE_EXTENSION);
 		contentTypeIdentifier = (String) properties.get(PROP_DYNAMIC_CONFIG_CONTENT_TYPE);
@@ -101,6 +100,9 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 			throw new IllegalStateException("There are at least two segments expected in the ecore path");
 		}
 		Bundle bundle = getBundle(segments[0]);
+		if (bundle == null) {
+			throw new IllegalStateException("No bundle can be found for segment " + segments[0]);
+		}
 		String path = ecorePath.replace(segments[0], "");
 		String file = segments[segments.length - 1];
 		URL url = bundle.getResource(path);
@@ -138,14 +140,7 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 		if (bsnVersion.length == 2) {
 			version = Version.parseVersion(bsnVersion[1]);
 		}
-		Set<Bundle> candidates = new TreeSet<>(new Comparator<Bundle>() {
-
-
-			@Override
-			public int compare(Bundle o1, Bundle o2) {
-				return o1.getVersion().compareTo(o2.getVersion());
-			}
-		});
+		Set<Bundle> candidates = new TreeSet<>((o1, o2) -> o1.getVersion().compareTo(o2.getVersion()));
 		for (Bundle b : ctx.getBundleContext().getBundles()) {
 			if (bsn.equalsIgnoreCase(b.getSymbolicName())) {
 				if (version == null) {
@@ -153,8 +148,6 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 				} else {
 					if (b.getVersion().compareTo(version) == 0) {
 						return b;
-					} else {
-						continue;
 					}
 				}
 			}
@@ -162,7 +155,7 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 		if (candidates.isEmpty()) {
 			throw new IllegalStateException("There is no bundle with this bsn and version '" + bsn + ":" + version + "'");
 		} else {
-			return candidates.stream().findFirst().get();
+			return candidates.stream().findFirst().orElse(null);
 		}
 	}
 

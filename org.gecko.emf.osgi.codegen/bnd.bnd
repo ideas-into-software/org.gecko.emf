@@ -22,9 +22,6 @@
 	aQute.libg,\
 	org.eclipse.core.contenttype
 	
--testpath: \
-	junit-jupiter-api
-
 -includeresource: \
 	/=resources,\
 	templates
