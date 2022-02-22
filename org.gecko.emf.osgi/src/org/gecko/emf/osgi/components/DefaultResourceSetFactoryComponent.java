@@ -86,9 +86,15 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	 * Inject a {@link Registry} for resource factories
 	 * @param resourceFactoryRegistry the resource factory to be injected
 	 */
-	@Reference(policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry")
-	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry) {
-		super.setResourceFactoryRegistry(resourceFactoryRegistry);
+	@Reference(policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+		System.err.println("Adding Resource Factory with props: " + properties);
+		super.setResourceFactoryRegistry(resourceFactoryRegistry, properties);
+	}
+
+	public void modifiedResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+		System.err.println("Updating Resource Factory with props: " + properties);
+		super.modifiedResourceFactoryRegistry(resourceFactoryRegistry, properties);
 	}
 
 	/**

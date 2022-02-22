@@ -53,8 +53,9 @@ Bundle-Developers: \
 	"No metadata for revision";\
 		restrict:=error;\
     	is:=warning
-	
-emf-version: ${base-version}.${tstamp}-SNAPSHOT
+
+-snapshot: ${tstamp}-SNAPSHOT
+emf-version: ${base-version}.SNAPSHOT
 releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${version}));REPOS}
 -maven-release.local: ${if;${def;releaseNotNeeded};local;remote}
 #-pom: version=${if;${def;-snapshot};${versionmask;===;${@version}}-${def;-snapshot};${versionmask;===s;${@version}}}

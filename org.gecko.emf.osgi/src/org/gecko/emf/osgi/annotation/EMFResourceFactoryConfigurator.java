@@ -16,12 +16,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.gecko.emf.osgi.EMFNamespaces;
+import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.annotation.require.RequireEMF;
 import org.osgi.service.component.annotations.ComponentPropertyType;
 
 /**
- * A meta annotation for the {@link EMFNamespaces#EMF_RESOURCE_CONFIGURATOR_FEATURE} property of the {@link ResourceResourceConfigurator} 
+ * A meta annotation for the {@link EMFNamespaces#EMF_RESOURCE_CONFIGURATOR_FEATURE} property of the {@link ResourceFactoryConfigurator} and EMF Whiteboard.
+ * It can annotate a {@link ResourceFactoryConfigurator} or {@link Resource.Factory} 
  * @author Juergen Albert
  * @since 12 Feb 2018
  */
@@ -33,7 +36,9 @@ public @interface EMFResourceFactoryConfigurator {
 	String PREFIX_ = EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_PREFIX;
 
 	String name();
+	//TODO: Do we even use this or was this a mistake?
 	String[] feature() default "";
+	String[] protocol() default "";
 	String[] contentType() default "";
 	String[] fileExtension() default "";
 	

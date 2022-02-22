@@ -6,4 +6,5 @@ Provide-Capability: \
 gecko-base:\
     bnd.library;\
         bnd.library     = enable-emf; \
+        version			= 1.0.0;\
         path            = template
