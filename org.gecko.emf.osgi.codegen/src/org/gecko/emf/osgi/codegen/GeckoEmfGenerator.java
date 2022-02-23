@@ -13,7 +13,6 @@ package org.gecko.emf.osgi.codegen;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -199,7 +198,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 	 * @return
 	 * @throws IOException
 	 */
-	protected Optional<String> doGenerate(String output, String genmodel, Map<Container, List<String>> refModels, File base, String bsn) throws IOException {
+	public Optional<String> doGenerate(String output, String genmodel, Map<Container, List<String>> refModels, File base, String bsn) throws IOException {
 		info("Running for genmodel " + genmodel + " in " + base.getAbsolutePath()); 
 		ResourceSet resourceSet = new ResourceSetImpl();
 

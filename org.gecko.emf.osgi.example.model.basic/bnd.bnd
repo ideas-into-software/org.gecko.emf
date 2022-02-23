@@ -12,21 +12,14 @@ src=${^src},src-gen
 	org.gecko.emf.osgi.api,\
 	osgi.cmpn
 
--includeresource: model=model
+-includeresource.model: model=model
 
-Private-Package: \
-	org.gecko.emf.osgi.example.model.basic.configuration
-	
-Export-Package: \
-	org.gecko.emf.osgi.example.model.basic,\
-	org.gecko.emf.osgi.example.model.basic.impl,\
-	org.gecko.emf.osgi.example.model.basic.util
-	
 -dependson: org.gecko.emf.osgi.codegen
 
 
 -generate:\
 	model/basic.genmodel;\
-		generate="geckoEMF 1>out.log 2>err.log";\
+		generate="geckoEMF 1>out.log 2>out.log";\
 		genmodel=model/basic.genmodel;\
-		output=src-gen
+		output=src-gen;\
+		logFile=test.log
