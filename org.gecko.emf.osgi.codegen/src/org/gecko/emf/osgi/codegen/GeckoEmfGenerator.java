@@ -198,7 +198,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 	 * @return
 	 * @throws IOException
 	 */
-	public Optional<String> doGenerate(String output, String genmodel, Map<Container, List<String>> refModels, File base, String bsn) throws IOException {
+	protected Optional<String> doGenerate(String output, String genmodel, Map<Container, List<String>> refModels, File base, String bsn) throws IOException {
 		info("Running for genmodel " + genmodel + " in " + base.getAbsolutePath()); 
 		ResourceSet resourceSet = new ResourceSetImpl();
 

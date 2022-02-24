@@ -20,6 +20,7 @@ import java.lang.annotation.Target;
 
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
+import org.gecko.emf.osgi.annotation.require.RequireEMF;
 import org.osgi.annotation.bundle.Attribute;
 import org.osgi.annotation.bundle.Capability;
 
@@ -36,6 +37,7 @@ import org.osgi.annotation.bundle.Capability;
 })
 @Capability(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
 		name = ResourceSetConfigurator.EMF_CONFIGURATOR_NAME)
+@RequireEMF
 public @interface ProvideEMFResourceConfigurator {
 
 	@Attribute()

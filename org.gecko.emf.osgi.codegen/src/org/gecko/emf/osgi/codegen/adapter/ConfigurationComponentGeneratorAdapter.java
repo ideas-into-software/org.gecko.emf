@@ -15,9 +15,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.codegen.ecore.CodeGenEcorePlugin;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenPackageGeneratorAdapter;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
@@ -36,13 +38,15 @@ public class ConfigurationComponentGeneratorAdapter extends GenPackageGeneratorA
 	protected static final int PACKAGE_INFO = 15;
 	protected static final int PACKAGE_INFO_IMPL = 16;
 	protected static final int PACKAGE_INFO_UTIL = 17;
+	protected static final int RESOURCE_FACOTRY = 18;
 
 	private static final JETEmitterDescriptor[] JET_EMITTER_DESCRIPTORS =
 		{
 				new JETEmitterDescriptor("model/ConfigComponent.javajet", "org.gecko.emf.osgi.codegen.templates.model.ConfigurationComponentClass"),
 				new JETEmitterDescriptor("model/PackageInfo.javajet", "org.gecko.emf.osgi.codegen.templates.model.PackageInfo"),
 				new JETEmitterDescriptor("model/PackageInfoImpl.javajet", "org.gecko.emf.osgi.codegen.templates.model.PackageInfoImpl"),
-				new JETEmitterDescriptor("model/PackageInfoUtil.javajet", "org.gecko.emf.osgi.codegen.templates.model.PackageInfoUtil")
+				new JETEmitterDescriptor("model/PackageInfoUtil.javajet", "org.gecko.emf.osgi.codegen.templates.model.PackageInfoUtil"),
+				new JETEmitterDescriptor("model/ResourceFactoryClass.javajet", "org.gecko.emf.osgi.codegen.templates.model.ResourceFactoryClass")
 		};
 
 	public ConfigurationComponentGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
@@ -56,10 +60,7 @@ public class ConfigurationComponentGeneratorAdapter extends GenPackageGeneratorA
 	{
 		List<JETEmitterDescriptor> descs = new LinkedList<JETEmitterDescriptor>();
 		descs.addAll(Arrays.asList(super.getJETEmitterDescriptors()));
-		descs.add(JET_EMITTER_DESCRIPTORS[0]);
-		descs.add(JET_EMITTER_DESCRIPTORS[1]);
-		descs.add(JET_EMITTER_DESCRIPTORS[2]);
-		descs.add(JET_EMITTER_DESCRIPTORS[3]);
+		descs.addAll(Arrays.asList(JET_EMITTER_DESCRIPTORS));
 		return descs.toArray(new JETEmitterDescriptor[descs.size()]);
 	}
 
@@ -96,6 +97,28 @@ public class ConfigurationComponentGeneratorAdapter extends GenPackageGeneratorA
 		return Diagnostic.OK_INSTANCE;
 	}
 
+	@Override
+	protected void generateResourceFactoryClass(GenPackage genPackage, Monitor monitor)
+	  {
+	    if (genPackage.getResource() != GenResourceKind.NONE_LITERAL)
+	    {
+	      message = CodeGenEcorePlugin.INSTANCE.getString
+	        ("_UI_GeneratingJavaClass_message", new Object[] { genPackage.getQualifiedResourceFactoryClassName() });
+	      monitor.subTask(message);
+	      generateJava
+	        (genPackage.getGenModel().getModelDirectory(),
+	         genPackage.getUtilitiesPackageName(),
+	         genPackage.getResourceFactoryClassName(),
+	         getJETEmitter(getJETEmitterDescriptors(), RESOURCE_FACOTRY),
+	         null,
+	         createMonitor(monitor, 1));
+	    }
+	    else
+	    {
+	      monitor.worked(1);
+	    }
+	  }
+	
 	/**
 	 * Generates the configuration service component for the {@link GenPackage}
 	 * @param genPackage the package to create the configuration component for

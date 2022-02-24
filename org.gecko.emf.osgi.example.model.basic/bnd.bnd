@@ -10,7 +10,8 @@ src=${^src},src-gen
 	org.osgi.service.component.annotations,\
 	org.osgi.framework,\
 	org.gecko.emf.osgi.api,\
-	osgi.cmpn
+	osgi.cmpn,\
+	org.gecko.emf.osgi.codegen
 
 -includeresource.model: model=model
 
