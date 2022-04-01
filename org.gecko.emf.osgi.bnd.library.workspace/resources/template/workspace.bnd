@@ -5,3 +5,17 @@
 		index            = "${.}/geckoEMF.maven" ;\
 		readOnly            = true;\
 		name="GeckoEMF Dependencies"
+
+-enable-emf: false
+-buildpath.emf: ${if;${-enable-emf};${emf.buildpath}}
+
+# Default build path when using EMF and Gecko EMF
+emf.buildpath: \
+	org.gecko.emf.osgi.api;version=latest,\
+	org.eclipse.emf.common;version=latest,\
+	org.eclipse.emf.ecore;version=latest,\
+	org.eclipse.emf.ecore.xmi;version=latest,\
+	org.osgi.service.component.annotations;version=1.4,\
+	org.osgi.framework;version=1.9,\
+	org.osgi.annotation.versioning,\
+	org.osgi.annotation.bundle
