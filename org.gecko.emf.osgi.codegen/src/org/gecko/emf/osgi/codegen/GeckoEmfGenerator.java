@@ -11,6 +11,8 @@
  */
 package org.gecko.emf.osgi.codegen;
 
+import static org.junit.jupiter.api.DynamicTest.stream;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -219,8 +221,14 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		genModel.setCanGenerate(true);
 		genModel.setUpdateClasspath(false);
 
+		genModel.getGenPackages().stream().findFirst().ifPresent(p -> {
+			p.getGenClasses().stream().filter(c -> c.getEcoreClass().getName().equals("Person")).findFirst().ifPresent(genClass -> {
+				genClass.getGenFeatures().stream().filter(gf -> gf.getEcoreFeature().getName().equals("properties")).findFirst().ifPresent(System.err::println);
+			});
+		});
+		
 		try(PrintStream tmpStream = new PrintStream(new ByteArrayOutputStream())) {
-
+			
 			Diagnostic diagnostic = gen.generate(genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, CodeGenUtil.EclipseUtil.createMonitor(new LoggingProgressMonitor(), 1));
 			printResult(diagnostic);
 			if(diagnostic.getSeverity() != Diagnostic.OK) {

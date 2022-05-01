@@ -16,7 +16,6 @@
 <%@ include file="Header.javajetinc"%>
 package <%=genPackage.getUtilitiesPackageName()%>;
 
-<%genModel.addImport("org.osgi.service.component.annotations.Component");%>
 <%genModel.getImportedName("org.eclipse.emf.common.util.URI");%>
 <%genModel.getImportedName("org.eclipse.emf.ecore.resource.Resource");%>
 <%genModel.addImport("org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator");%>
@@ -33,7 +32,7 @@ package <%=genPackage.getUtilitiesPackageName()%>;
 <%}%>
  * @generated
  */
- @Component
+ @<%=genModel.getImportedName("org.osgi.service.component.annotations.Component")%>( name = <%=genPackage.getPackageInterfaceName()%>.eNAME + "Factory", service = Resource.Factory.class )
  @ProvideEMFResourceConfigurator( name = <%=genPackage.getPackageInterfaceName()%>.eNAME,
 <%if (genPackage.getContentTypeIdentifier() != null) {%>
 	contentType = { "<%=genPackage.getContentTypeIdentifier()%>" },

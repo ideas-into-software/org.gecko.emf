@@ -1,0 +1,52 @@
+<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.*" class="EPackageConfiguratorClass"%>
+<%final GenPackage genPackage = (GenPackage)((Object[])argument)[0]; final GenModel genModel=genPackage.getGenModel();%>
+<%@ include file="Header.javajetinc"%>
+package <%=genPackage.getInterfacePackageName()%>.impl;
+
+<%genModel.markImportLocation(stringBuffer, genPackage);%>
+<%genModel.addImport("org.gecko.emf.osgi.EPackageConfigurator");%>
+<%genModel.addImport(genPackage.getQualifiedPackageInterfaceName());%>
+
+/**
+ * <!-- begin-user-doc -->
+ * The <b>EPackageConfiguration</b> and <b>ResourceFactoryConfigurator</b> for the model.
+ * The package will be registered into a OSGi base model registry.
+ * <!-- end-user-doc -->
+<%if (genPackage.hasDocumentation()) {%>
+ * <!-- begin-model-doc -->
+ * <%=genPackage.getDocumentation(genModel.getIndentation(stringBuffer))%>
+ * <!-- end-model-doc -->
+<%}%>
+ * @see EPackageConfigurator
+ * @generated
+ */
+public class <%=genPackage.getPrefix()%>EPackageConfigurator implements EPackageConfigurator
+{
+	
+	private <%=genPackage.getPackageInterfaceName()%> ePackage;
+
+	protected <%=genPackage.getPrefix()%>EPackageConfigurator(<%=genPackage.getPackageInterfaceName()%> ePackage){
+		this.ePackage = ePackage;
+	}
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
+	 * @generated
+	 */
+	@Override
+	public void configureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {
+		registry.put(<%=genPackage.getPackageInterfaceName()%>.eNS_URI, ePackage);
+	}
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
+	 * @generated
+	 */
+	@Override
+	public void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {
+		registry.remove(<%=genPackage.getPackageInterfaceName()%>.eNS_URI);
+	}
+}
+<%genModel.emitSortedImports();%>

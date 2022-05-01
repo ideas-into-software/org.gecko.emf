@@ -55,6 +55,7 @@ Bundle-Developers: \
     	is:=warning
 
 -snapshot: ${tstamp}-SNAPSHOT
+-pom: version=${versionmask;===s;${@version}}	
 emf-version: ${base-version}.SNAPSHOT
 releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${version}));REPOS}
 -maven-release.local: ${if;${def;releaseNotNeeded};local;remote}
@@ -75,3 +76,8 @@ releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version
 #        noupdateOnRelease=false
 
 #-buildrepo: "Local Maven Release"
+-plugin: aQute.bnd.deployer.repository.LocalIndexedRepo;\
+		local               =${.}/local;\
+		overwrite           =true;\
+		pretty              =true;\
+		name            	=local

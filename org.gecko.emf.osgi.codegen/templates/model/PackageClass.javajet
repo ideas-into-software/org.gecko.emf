@@ -32,11 +32,15 @@ package <%=genPackage.getReflectionPackageName()%>;
 <%genModel.addPseudoImport("org.eclipse.emf.ecore.impl.EPackageImpl.EBasicWhiteList");%>
 <%genModel.addPseudoImport("org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container");%>
 <%genModel.addPseudoImport("org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container.Dynamic");%>
+<%genModel.addImport("org.gecko.emf.osgi.annotation.EMFModel");%>
+<%genModel.addImport("org.gecko.emf.osgi.annotation.provide.ProvideEMFModel");%>
+<%genModel.addImport("org.gecko.emf.osgi.EMFNamespaces");%>
   <%if (genPackage.isLiteralsInterface()) {%>
 <%genModel.addPseudoImport(genPackage.getQualifiedPackageInterfaceName() + ".Literals");%>
   <%}%>
 <%for (GenClassifier genClassifier : genPackage.getOrderedGenClassifiers()) genModel.addPseudoImport(genPackage.getQualifiedPackageInterfaceName() + "." + genPackage.getClassifierID(genClassifier));%>
 <%}%>
+<% boolean doPureOSGi = (genModel.isOSGiCompatible() & !genPackage.isLiteralsInterface()); %>
 <%if (isInterface) {%>
 
 /**
@@ -87,6 +91,9 @@ package <%=genPackage.getReflectionPackageName()%>;
   <%if (packageNeedsSuppressDeprecation) {%>
 @SuppressWarnings("deprecation")
   <%}%>
+@EMFModel(name=<%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI={<%=genPackage.getPackageInterfaceName()%>.eNS_URI}, version="1.0.0")
+@ProvideEMFModel(name = <%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI = { <%=genPackage.getPackageInterfaceName()%>.eNS_URI }, version = "1.0.0")
+@<%=genModel.getImportedName("org.osgi.service.component.annotations.Component")%>( name = <%=genPackage.getPackageInterfaceName()%>.eNAME, service = { <%=genPackage.getPackageInterfaceName()%>.class, <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.class }, immediate = true)
 public class <%=genPackage.getPackageClassName()%> extends <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.EPackageImpl")%><%if (!isInterface){%> implements <%=genPackage.getImportedPackageInterfaceName()%><%}%>
 <%} else {%>
 public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>
@@ -135,7 +142,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 	 */
 	<%=publicStaticFinalFlag%><%=genModel.getImportedName("java.lang.String")%> eCONTENT_TYPE = "<%=genPackage.getContentTypeIdentifier()%>";<%=genModel.getNonNLS()%>
   <%}%>
-
+  <%if (!doPureOSGi){%>
 	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
@@ -143,7 +150,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 	 * @generated
 	 */
 	<%=publicStaticFinalFlag%><%=genPackage.getPackageInterfaceName()%> eINSTANCE = <%=genPackage.getQualifiedPackageClassName()%>.init();
-
+  <%}%>
   <%for (GenClassifier genClassifier : genPackage.getOrderedGenClassifiers()) {%>
 	/**
     <%if (genClassifier instanceof GenClass) { GenClass genClass = (GenClass)genClassifier;%>
@@ -280,13 +287,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 
   <%}%>
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
+	 * Creates an instance of the model <b>Package</b>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
@@ -296,51 +297,37 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 	 */
 	private <%=genPackage.getPackageClassName()%>()
 	{
-		super(eNS_URI, <%=genPackage.getQualifiedEFactoryInstanceAccessor()%>);
+		super();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static boolean isInited = false;
+  <%if (!genPackage.getPackageSimpleDependencies().isEmpty()) {%>
+	// Reference the imported Models
+	<%for (GenPackage dep : genPackage.getPackageSimpleDependencies()) {%>
+		<%if (!dep.isLiteralsInterface() && dep.getGenModel().isOSGiCompatible()) {%>
+	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Reference")%>
+	private <%=dep.getImportedPackageInterfaceName()%> the<%=dep.getImportedPackageInterfaceName()%>; 
+	    <%}%>
+    <%}%>
+   <%}%>
 
-	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><<%=genPackage.getPrefix()%>EPackageConfigurator> ePackageConfiguratorRegistration = null;
+
+    /**
+	 * Activates and initializes the Package and registers the Package {@link org.gecko.emf.osgi.EPackageConfigurator}.
 	 *
-	 * <p>This method is used to initialize {@link <%=genPackage.getImportedPackageInterfaceName()%>#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #eNS_URI
-  <%if (!genPackage.isLoadedInitialization()) {%>
-	 * @see #createPackageContents()
-	 * @see #initializePackageContents()
-  <%}%>
-	 * @generated
+     * @generated
 	 */
-	public static <%=genPackage.getImportedPackageInterfaceName()%> init()
-	{
-		if (isInited) return (<%=genPackage.getImportedPackageInterfaceName()%>)<%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.getEPackage(<%=genPackage.getImportedPackageInterfaceName()%>.eNS_URI);
-
-    <%if (genModel.getRuntimePlatform() == GenRuntimePlatform.GWT) {%>
-		initializeRegistryHelpers();
-
-    <%}%>
-		// Obtain or create and register package
-		Object registered<%=genPackage.getBasicPackageName()%> = <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.get(eNS_URI);
-		<%=genPackage.getPackageClassName()%> the<%=genPackage.getBasicPackageName()%> = registered<%=genPackage.getBasicPackageName()%> instanceof <%=genPackage.getPackageClassName()%> ? (<%=genPackage.getPackageClassName()%>)registered<%=genPackage.getBasicPackageName()%> : new <%=genPackage.getPackageClassName()%>();
-
-		isInited = true;
-
-    <%if (!genPackage.getPackageSimpleDependencies().isEmpty()) {%>
+    @<%=genModel.getImportedName("org.osgi.service.component.annotations.Activate")%>
+  	public void activate(<%=genModel.getImportedName("org.osgi.framework.BundleContext")%> ctx)
+  	{
+  	    <%if (!genPackage.getPackageSimpleDependencies().isEmpty()) {%>
 		// Initialize simple dependencies
-    <%for (GenPackage dep : genPackage.getPackageSimpleDependencies()) {%>
+	    <%for (GenPackage dep : genPackage.getPackageSimpleDependencies()) {
+	    	if (dep.isLiteralsInterface() || !dep.getGenModel().isOSGiCompatible()) {%>
 		<%=dep.getImportedPackageInterfaceName()%>.eINSTANCE.eClass();
+	    	<%}
+    	}%>
     <%}%>
-
-  <%}%>
   <%if (!genPackage.getPackageInterDependencies().isEmpty()) {%>
 		// Obtain or create and register interdependencies
     <%for (ListIterator<GenPackage> i = genPackage.getPackageInterDependencies().listIterator(); i.hasNext(); ) { GenPackage interdep = i.next(); %>
@@ -352,7 +339,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
   <%if (genPackage.isLoadedInitialization() || !genPackage.getPackageLoadInterDependencies().isEmpty()) {%>
 		// Load packages
     <%if (genPackage.isLoadingInitialization()) {%>
-		the<%=genPackage.getBasicPackageName()%>.loadPackage();
+		loadPackage();
     <%}%>
     <%for (GenPackage interdep : genPackage.getPackageLoadInterDependencies()) {%>
       <%if (interdep.isLoadingInitialization()) {%>
@@ -364,7 +351,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
   <%if (!genPackage.isLoadedInitialization() || !genPackage.getPackageBuildInterDependencies().isEmpty()) {%>
 		// Create package meta-data objects
     <%if (!genPackage.isLoadedInitialization()) {%>
-		the<%=genPackage.getBasicPackageName()%>.createPackageContents();
+		createPackageContents();
     <%}%>
     <%for (GenPackage interdep : genPackage.getPackageBuildInterDependencies()) {%>
 		<%=genPackage.getPackageInstanceVariable(interdep)%>.createPackageContents();
@@ -372,7 +359,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 
 		// Initialize created meta-data
     <%if (!genPackage.isLoadedInitialization()) {%>
-		the<%=genPackage.getBasicPackageName()%>.initializePackageContents();
+		initializePackageContents();
     <%}%>
     <%for (GenPackage interdep : genPackage.getPackageBuildInterDependencies()) {%>
 		<%=genPackage.getPackageInstanceVariable(interdep)%>.initializePackageContents();
@@ -382,7 +369,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
   <%if (genPackage.isLoadedInitialization() || !genPackage.getPackageLoadInterDependencies().isEmpty()) {%>
 		// Fix loaded packages
     <%if (genPackage.isLoadedInitialization()) {%>
-		the<%=genPackage.getBasicPackageName()%>.fixPackageContents();
+		fixPackageContents();
     <%}%>
     <%for (GenPackage interdep : genPackage.getPackageLoadInterDependencies()) {%>
 		<%=genPackage.getPackageInstanceVariable(interdep)%>.fixPackageContents();
@@ -407,12 +394,25 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
   <%}%>
   <%if (!genPackage.isEcorePackage()) {%>
 		// Mark meta-data to indicate it can't be changed
-		the<%=genPackage.getBasicPackageName()%>.freeze();
+		freeze();
 
   <%}%>
-		// Update the registry and return the package
-		<%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.put(<%=genPackage.getImportedPackageInterfaceName()%>.eNS_URI, the<%=genPackage.getBasicPackageName()%>);
-		return the<%=genPackage.getBasicPackageName()%>;
+		setEFactoryInstance(new <%=genPackage.getFactoryClassName()%>(this));
+		// register the EPackageConfigurator
+		<%=genModel.getImportedName("java.util.Dictionary")%><String, Object> properties = new <%=genModel.getImportedName("java.util.Hashtable")%><String, Object>();
+		properties.put(EMFNamespaces.EMF_MODEL_NAME, <%=genPackage.getPackageInterfaceName()%>.eNAME);
+		properties.put(EMFNamespaces.EMF_MODEL_NSURI, <%=genPackage.getPackageInterfaceName()%>.eNS_URI);
+		properties.put(EMFNamespaces.EMF_MODEL_FILE_EXT, "<%=genPackage.getFileExtension()%>");<% if (genPackage.getContentTypeIdentifier() != null) {%>
+		properties.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, "<%=genPackage.getContentTypeIdentifier()%>");<%}%>
+		
+		ePackageConfiguratorRegistration = ctx.registerService(<%=genPackage.getPrefix()%>EPackageConfigurator.class, new <%=genPackage.getPrefix()%>EPackageConfigurator(this), properties);
+	}
+	
+	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Deactivate")%>
+	public void deactivate() {
+		if(ePackageConfiguratorRegistration != null){
+			ePackageConfiguratorRegistration.unregister();
+		}
 	}
   <%if (genModel.getRuntimePlatform() == GenRuntimePlatform.GWT) {%>
 
@@ -864,9 +864,11 @@ int maxGenericTypeAssignment = 0;
     <%if (!genPackage.getPackageInitializationDependencies().isEmpty()) {%>
 
 		// Obtain other dependent packages
-      <%for (GenPackage dep : genPackage.getPackageInitializationDependencies()) {%>
+      <%for (GenPackage dep : genPackage.getPackageInitializationDependencies()) {
+      	if (dep.isLiteralsInterface() || !dep.getGenModel().isOSGiCompatible()) {%>
 		<%=dep.getImportedPackageInterfaceName()%> <%=genPackage.getPackageInstanceVariable(dep)%> = (<%=dep.getImportedPackageInterfaceName()%>)<%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.getEPackage(<%=dep.getImportedPackageInterfaceName()%>.eNS_URI);
-      <%}%>
+      	<%}
+       }%>
     <%}%>
     <%if (!genPackage.getSubGenPackages().isEmpty()) {%>
 

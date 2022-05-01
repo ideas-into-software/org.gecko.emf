@@ -25,7 +25,7 @@ public class ConfigurationComponentClass
   protected final String TEXT_9 = NL + " * @see EPackageConfigurator" + NL + " * @see ResourceFactoryConfigurator" + NL + " * @generated" + NL + " */" + NL + "@Component(name=\"";
   protected final String TEXT_10 = "Configurator\", service= EPackageConfigurator.class)" + NL + "@EMFModel(name=";
   protected final String TEXT_11 = ".eNAME, nsURI={";
-  protected final String TEXT_12 = ".eNS_URI}, version=\"1.0.0\")" + NL + "@RequireEMF" + NL + "@ProvideEMFModel(name = ";
+  protected final String TEXT_12 = ".eNS_URI}, version=\"1.0.0\")" + NL + "@ProvideEMFModel(name = ";
   protected final String TEXT_13 = ".eNAME, nsURI = { ";
   protected final String TEXT_14 = ".eNS_URI }, version = \"1.0.0\")" + NL + "public class ";
   protected final String TEXT_15 = "ConfigurationComponent implements EPackageConfigurator" + NL + "{" + NL + "\tprivate ";

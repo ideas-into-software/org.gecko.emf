@@ -30,7 +30,6 @@ package <%=genPackage.getInterfacePackageName()%>.configuration;
  */
 @Component(name="<%=genPackage.getPrefix()%>Configurator", service= EPackageConfigurator.class)
 @EMFModel(name=<%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI={<%=genPackage.getPackageInterfaceName()%>.eNS_URI}, version="1.0.0")
-@RequireEMF
 @ProvideEMFModel(name = <%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI = { <%=genPackage.getPackageInterfaceName()%>.eNS_URI }, version = "1.0.0")
 public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPackageConfigurator
 {
