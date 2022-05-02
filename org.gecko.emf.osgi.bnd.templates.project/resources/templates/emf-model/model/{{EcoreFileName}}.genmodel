@@ -6,7 +6,7 @@
     copyrightFields="false" operationReflection="true" importOrganizing="true" oSGiCompatible="true">
   <foreignModel>{{EcoreFileName}}.ecore</foreignModel>
   <genPackages prefix="{{GenModelPrefix}}" basePackage="{{basePackageName}}" resource="XMI"
-      disposableProviderFactory="true" ecorePackage="{{EcoreFileName}}.ecore#/">
+      disposableProviderFactory="true" ecorePackage="{{EcoreFileName}}.ecore#/" literalsInterface="false">
     <genClasses ecoreClass="{{EcoreFileName}}.ecore#//Example"/>
   </genPackages>
 </genmodel:GenModel>
