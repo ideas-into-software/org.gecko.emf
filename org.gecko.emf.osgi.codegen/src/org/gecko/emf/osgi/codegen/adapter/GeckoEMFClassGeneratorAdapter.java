@@ -20,13 +20,10 @@ import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
-import org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenClassGeneratorAdapter;
-import org.eclipse.emf.codegen.ecore.genmodel.generator.GenPackageGeneratorAdapter;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 
 /**
  * EMF codegen generator adapter that is responsible to generate the 

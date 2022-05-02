@@ -14,7 +14,6 @@ package org.gecko.emf.osgi.codegen.adapter;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notifier;
 
 /**
  * EMF codegen generator adapter factory that is responsible to create the Bnd adapter

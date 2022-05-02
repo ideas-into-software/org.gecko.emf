@@ -11,8 +11,6 @@
  */
 package org.gecko.emf.osgi.codegen;
 
-import static org.junit.jupiter.api.DynamicTest.stream;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
