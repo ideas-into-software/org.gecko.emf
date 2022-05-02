@@ -93,7 +93,7 @@ package <%=genPackage.getReflectionPackageName()%>;
   <%}%>
 @EMFModel(name=<%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI={<%=genPackage.getPackageInterfaceName()%>.eNS_URI}, version="1.0.0")
 @ProvideEMFModel(name = <%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI = { <%=genPackage.getPackageInterfaceName()%>.eNS_URI }, version = "1.0.0")
-@<%=genModel.getImportedName("org.osgi.service.component.annotations.Component")%>( name = <%=genPackage.getPackageInterfaceName()%>.eNAME, service = { <%=genPackage.getPackageInterfaceName()%>.class, <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.class }, immediate = true)
+@<%=genModel.getImportedName("org.osgi.service.component.annotations.Component")%>( name = <%=genPackage.getPackageInterfaceName()%>.eNAME, service = { <%=genPackage.getPackageInterfaceName()%>.class, <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.class }, immediate = true, scope = <%=genModel.getImportedName("org.osgi.service.component.annotations.ServiceScope")%>.SINGLETON)
 public class <%=genPackage.getPackageClassName()%> extends <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.EPackageImpl")%><%if (!isInterface){%> implements <%=genPackage.getImportedPackageInterfaceName()%><%}%>
 <%} else {%>
 public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>
@@ -286,6 +286,18 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 	private <%=genClassifier.getImportedMetaType()%> <%=genClassifier.getClassifierInstanceName()%> = null;
 
   <%}%>
+	<%if (!genPackage.getPackageSimpleDependencies().isEmpty()) {%>
+	// Reference the imported Models
+		<%for (GenPackage dep : genPackage.getPackageSimpleDependencies()) {%>
+			<%if (!dep.isLiteralsInterface() && dep.getGenModel().isOSGiCompatible()) {%>
+	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Reference")%>
+	private <%=dep.getImportedPackageInterfaceName()%> the<%=dep.getImportedPackageInterfaceName()%>; 
+		    <%}%>
+	    <%}%>
+   <%}%>
+
+	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><<%=genModel.getImportedName("org.gecko.emf.osgi.EPackageConfigurator")%>> ePackageConfiguratorRegistration = null;
+  
 	/**
 	 * Creates an instance of the model <b>Package</b>
 	 * <!-- begin-user-doc -->
@@ -295,22 +307,10 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 	 * @see #init()
 	 * @generated
 	 */
-	private <%=genPackage.getPackageClassName()%>()
+	public <%=genPackage.getPackageClassName()%>()
 	{
 		super();
 	}
-
-  <%if (!genPackage.getPackageSimpleDependencies().isEmpty()) {%>
-	// Reference the imported Models
-	<%for (GenPackage dep : genPackage.getPackageSimpleDependencies()) {%>
-		<%if (!dep.isLiteralsInterface() && dep.getGenModel().isOSGiCompatible()) {%>
-	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Reference")%>
-	private <%=dep.getImportedPackageInterfaceName()%> the<%=dep.getImportedPackageInterfaceName()%>; 
-	    <%}%>
-    <%}%>
-   <%}%>
-
-	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><<%=genPackage.getPrefix()%>EPackageConfigurator> ePackageConfiguratorRegistration = null;
 
     /**
 	 * Activates and initializes the Package and registers the Package {@link org.gecko.emf.osgi.EPackageConfigurator}.
@@ -405,7 +405,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 		properties.put(EMFNamespaces.EMF_MODEL_FILE_EXT, "<%=genPackage.getFileExtension()%>");<% if (genPackage.getContentTypeIdentifier() != null) {%>
 		properties.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, "<%=genPackage.getContentTypeIdentifier()%>");<%}%>
 		
-		ePackageConfiguratorRegistration = ctx.registerService(<%=genPackage.getPrefix()%>EPackageConfigurator.class, new <%=genPackage.getPrefix()%>EPackageConfigurator(this), properties);
+		ePackageConfiguratorRegistration = ctx.registerService(<%=genModel.getImportedName("org.gecko.emf.osgi.EPackageConfigurator")%>.class, new <%=genPackage.getPrefix()%>EPackageConfigurator(this), properties);
 	}
 	
 	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Deactivate")%>

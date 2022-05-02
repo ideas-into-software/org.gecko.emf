@@ -507,7 +507,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	{
 	<%if (genClass.getBaseGenClass() == null) {%>
 		super();
-	<%} else if(genClass.getBaseGenClass().getGenPackage().getGenModel().isOSGiCompatible()){%>
+	<%} else if(genClass.getBaseGenClass().getGenPackage().getGenModel().isOSGiCompatible() && !genClass.getBaseGenClass().getGenPackage().isLiteralsInterface()){%>
 		super(instanceEClass);
 	<%}%>
 		this.instanceEClass = instanceEClass;

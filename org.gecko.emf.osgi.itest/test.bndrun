@@ -35,7 +35,6 @@
 	org.gecko.emf.osgi.itest;version=snapshot,\
 	org.eclipse.emf.common;version='[2.23.0,2.23.1)',\
 	org.eclipse.emf.ecore;version='[2.25.0,2.25.1)',\
-	org.osgi.service.component;version='[1.4.0,1.4.1)',\
 	net.bytebuddy.byte-buddy;version='[1.10.19,1.10.20)',\
 	net.bytebuddy.byte-buddy-agent;version='[1.10.19,1.10.20)',\
 	org.mockito.mockito-core;version='[3.6.0,3.6.1)',\

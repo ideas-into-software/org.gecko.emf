@@ -41,6 +41,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.test.common.annotation.InjectService;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
 
@@ -65,11 +66,13 @@ public class ResourceSetConcurrencyTest {
 	 * @throws InterruptedException
 	 */
 	@Test
-	public void testResourceSetConcurrencyOld() throws IOException, URISyntaxException, InterruptedException {
+	public void testResourceSetConcurrencyOld(
+			@InjectService(cardinality = 1) BasicPackage basicPackage
+			) throws IOException, URISyntaxException, InterruptedException {
 		// default resource set implementation
 		ResourceSet rs = new ResourceSetImpl();
 
-		rs.getPackageRegistry().put(BasicPackage.eNS_URI, BasicPackage.eINSTANCE);
+		rs.getPackageRegistry().put(BasicPackage.eNS_URI, basicPackage);
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("basic", new BasicResourceFactoryImpl());
 		URI personUri = createUri("mark.basic");
 		Resource r = rs.createResource(personUri);
@@ -109,11 +112,13 @@ public class ResourceSetConcurrencyTest {
 	 * @throws InterruptedException
 	 */
 	@Test
-	public void testResourceSetConcurrencyNew() throws IOException, URISyntaxException, InterruptedException {
+	public void testResourceSetConcurrencyNew(
+			@InjectService(cardinality = 1) BasicPackage basicPackage
+			) throws IOException, URISyntaxException, InterruptedException {
 		// user our resource set
 		ResourceSet rs = new SynchronizedResourceSetImpl();
 
-		rs.getPackageRegistry().put(BasicPackage.eNS_URI, BasicPackage.eINSTANCE);
+		rs.getPackageRegistry().put(BasicPackage.eNS_URI, basicPackage);
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("basic", new BasicResourceFactoryImpl());
 		URI personUri = createUri("mark.basic");
 		Resource r = rs.createResource(personUri);
