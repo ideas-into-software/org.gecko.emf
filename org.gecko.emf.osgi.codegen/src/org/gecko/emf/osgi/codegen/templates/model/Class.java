@@ -135,9 +135,9 @@ public class Class
   protected final String TEXT_116 = NL + NL + "\tprivate final EClass instanceEClass;" + NL + "\t" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
   protected final String TEXT_117 = "public";
   protected final String TEXT_118 = "protected";
-  protected final String TEXT_119 = "(EClass instanceEClass)" + NL + "\t{" + NL + "\t";
-  protected final String TEXT_120 = NL + "\t\tsuper();" + NL + "\t";
-  protected final String TEXT_121 = NL + "\t\tsuper(instanceEClass);" + NL + "\t";
+  protected final String TEXT_119 = "(EClass instanceEClass)" + NL + "\t{";
+  protected final String TEXT_120 = NL + "\t\tsuper();";
+  protected final String TEXT_121 = NL + "\t\tsuper(instanceEClass.getESuperTypes().get(0));";
   protected final String TEXT_122 = NL + "\t\tthis.instanceEClass = instanceEClass;";
   protected final String TEXT_123 = NL + "\t\t";
   protected final String TEXT_124 = " |= ";
