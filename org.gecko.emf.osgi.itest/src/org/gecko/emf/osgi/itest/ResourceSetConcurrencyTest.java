@@ -36,6 +36,7 @@ import org.gecko.emf.osgi.example.model.basic.GenderType;
 import org.gecko.emf.osgi.example.model.basic.Person;
 import org.gecko.emf.osgi.example.model.basic.util.BasicResourceFactoryImpl;
 import org.gecko.emf.osgi.resourceset.SynchronizedResourceSetImpl;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleContext;
@@ -60,12 +61,15 @@ public class ResourceSetConcurrencyTest {
 	/**
 	 * Tests how concurrency fails with the default implementation
 	 * 
+	 * TODO This does not seem to fail every time, which makes the tests a bit flacky
+	 * 
 	 * @throws IOException
 	 * @throws URISyntaxException
 	 * @throws InvalidSyntaxException
 	 * @throws InterruptedException
 	 */
 	@Test
+	@Disabled
 	public void testResourceSetConcurrencyOld(
 			@InjectService(cardinality = 1) BasicPackage basicPackage
 			) throws IOException, URISyntaxException, InterruptedException {
