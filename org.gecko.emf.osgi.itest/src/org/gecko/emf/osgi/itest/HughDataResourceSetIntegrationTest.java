@@ -238,7 +238,8 @@ public class HughDataResourceSetIntegrationTest {
 	@Test
 	public void testDeactivateHughdataResourceSet(
 			@InjectService(cardinality = 0) ServiceAware<ResourceSetFactory> sa,
-			@InjectService(cardinality = 1) BasicPackage basicPackage
+			@InjectService(cardinality = 1) BasicPackage basicPackage,
+			@InjectService(cardinality = 1) BasicFactory basicFactory
 			)
 			throws InterruptedException {
 
@@ -259,7 +260,7 @@ public class HughDataResourceSetIntegrationTest {
 		for (int i = 1; i <= 500000; i++) {
 			lastUri = URI.createURI("file://test/" + i);
 			Resource resource = hdr.createResource(lastUri);
-			Person p = basicPackage.getBasicFactory().createPerson();
+			Person p = basicFactory.createPerson();
 			p.setId(Integer.toString(i));
 			resource.getContents().add(p);
 			lastUri = lastUri.appendFragment(Integer.toString(i));
@@ -297,7 +298,7 @@ public class HughDataResourceSetIntegrationTest {
 		for (int i = 1; i <= 500000; i++) {
 			lastUri = URI.createURI("file://test/" + i);
 			Resource resource = hdr.createResource(lastUri);
-			Person p = basicPackage.getBasicFactory().createPerson();
+			Person p = basicFactory.createPerson();
 			p.setId(Integer.toString(i));
 			resource.getContents().add(p);
 			lastUri = lastUri.appendFragment(Integer.toString(i));

@@ -152,61 +152,64 @@ public class EMFModelInfoTest {
 
 		BundleAssert.assertThat(extBundle).isNotNull();
 
-		List<EClass> personHirachy = emfModelInfo.getUpperTypeHierarchyForEClass(getServiceAndRelease(ctx, BasicPackage.class).getPerson());
-
-		assertNotNull(personHirachy);
-		assertEquals(2, personHirachy.size());
-
-//		
-
-		extBundle.stop();
-		Thread.sleep(1000);
-
-		EClass eclass = getServiceAndRelease(ctx, BasicPackage.class).getPerson();
-		
-		List<EClass> personHirachy2 = emfModelInfo.getUpperTypeHierarchyForEClass(eclass);
-		System.out.println("");
-
-		System.out.println("______ personHirachy2");
-		System.out.println(personHirachy2);
-		System.out.println("______");
-		basicBundle.stop();
-		Thread.sleep(1000);
-		List<EClass> personHirachy3 = emfModelInfo.getUpperTypeHierarchyForEClass(eclass);
-		System.out.println("");
-		System.out.println("______ personHirachy3");
-		System.out.println(personHirachy3);
-		System.out.println("______");
-
-		basicBundle.start();
-		Thread.sleep(1000);
-		List<EClass> personHirachy4 = emfModelInfo.getUpperTypeHierarchyForEClass(getServiceAndRelease(ctx, BasicPackage.class).getPerson());
-		System.out.println("");
-		System.out.println("______ personHirachy 4");
-		System.out.println(personHirachy4);
-		System.out.println("______");
-
-		extBundle.start();
-
-		Thread.sleep(1000);
-		List<EClass> personHirachy5 = emfModelInfo.getUpperTypeHierarchyForEClass(getServiceAndRelease(ctx, BasicPackage.class).getPerson());
-		System.out.println("");
-		System.out.println("______ personHirachy5");
-		System.out.println(personHirachy5);
-		System.out.println("______");
-
-		assertNotNull(personHirachy2);
-
-		assertEquals(1, personHirachy2.size());
-
-		assertNotNull(personHirachy3);
-		assertEquals(0, personHirachy3.size());
-
-		assertNotNull(personHirachy4);
-		assertEquals(1, personHirachy4.size());
-
-		assertNotNull(personHirachy5);
-		assertEquals(2, personHirachy5.size());
+		try {
+			List<EClass> personHirachy = emfModelInfo.getUpperTypeHierarchyForEClass(getServiceAndRelease(ctx, BasicPackage.class).getPerson());
+	
+			assertNotNull(personHirachy);
+			assertEquals(2, personHirachy.size());
+	
+			extBundle.stop();
+			Thread.sleep(1000);
+	
+			EClass eclass = getServiceAndRelease(ctx, BasicPackage.class).getPerson();
+			
+			List<EClass> personHirachy2 = emfModelInfo.getUpperTypeHierarchyForEClass(eclass);
+			System.out.println("");
+	
+			System.out.println("______ personHirachy2");
+			System.out.println(personHirachy2);
+			System.out.println("______");
+			basicBundle.stop();
+			Thread.sleep(1000);
+			List<EClass> personHirachy3 = emfModelInfo.getUpperTypeHierarchyForEClass(eclass);
+			System.out.println("");
+			System.out.println("______ personHirachy3");
+			System.out.println(personHirachy3);
+			System.out.println("______");
+	
+			basicBundle.start();
+			Thread.sleep(1000);
+			List<EClass> personHirachy4 = emfModelInfo.getUpperTypeHierarchyForEClass(getServiceAndRelease(ctx, BasicPackage.class).getPerson());
+			System.out.println("");
+			System.out.println("______ personHirachy 4");
+			System.out.println(personHirachy4);
+			System.out.println("______");
+	
+			extBundle.start();
+	
+			Thread.sleep(1000);
+			List<EClass> personHirachy5 = emfModelInfo.getUpperTypeHierarchyForEClass(getServiceAndRelease(ctx, BasicPackage.class).getPerson());
+			System.out.println("");
+			System.out.println("______ personHirachy5");
+			System.out.println(personHirachy5);
+			System.out.println("______");
+	
+			assertNotNull(personHirachy2);
+	
+			assertEquals(1, personHirachy2.size());
+	
+			assertNotNull(personHirachy3);
+			assertEquals(0, personHirachy3.size());
+	
+			assertNotNull(personHirachy4);
+			assertEquals(1, personHirachy4.size());
+	
+			assertNotNull(personHirachy5);
+			assertEquals(2, personHirachy5.size());
+		} finally {
+			basicBundle.start();
+			extBundle.start();
+		}
 
 	}
 

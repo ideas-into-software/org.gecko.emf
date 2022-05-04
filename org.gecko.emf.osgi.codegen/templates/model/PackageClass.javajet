@@ -298,6 +298,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
    <%}%>
 
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><<%=genModel.getImportedName("org.gecko.emf.osgi.EPackageConfigurator")%>> ePackageConfiguratorRegistration = null;
+	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> eFactoryRegistration = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>
@@ -399,6 +400,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 
   <%}%>
 		setEFactoryInstance(new <%=genPackage.getFactoryClassName()%>(this));
+
 		// register the EPackageConfigurator
 		<%=genModel.getImportedName("java.util.Dictionary")%><String, Object> properties = new <%=genModel.getImportedName("java.util.Hashtable")%><String, Object>();
 		properties.put(EMFNamespaces.EMF_MODEL_NAME, <%=genPackage.getPackageInterfaceName()%>.eNAME);
@@ -407,12 +409,18 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 		properties.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, "<%=genPackage.getContentTypeIdentifier()%>");<%}%>
 		
 		ePackageConfiguratorRegistration = ctx.registerService(<%=genModel.getImportedName("org.gecko.emf.osgi.EPackageConfigurator")%>.class, new <%=genPackage.getPrefix()%>EPackageConfigurator(this), properties);
+		
+		//regsiter the EFactory as a service
+		eFactoryRegistration = ctx.registerService(new String[]{<%=genModel.getImportedName("org.eclipse.emf.ecore.EFactory")%>.class.getName(), <%=genPackage.getImportedFactoryInterfaceName()%>.class.getName()}, get<%=genPackage.getFactoryName()%>(), properties);
 	}
 	
 	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Deactivate")%>
 	public void deactivate() {
 		if(ePackageConfiguratorRegistration != null){
 			ePackageConfiguratorRegistration.unregister();
+		}
+		if(eFactoryRegistration != null){
+			eFactoryRegistration.unregister();
 		}
 	}
   <%if (genModel.getRuntimePlatform() == GenRuntimePlatform.GWT) {%>
