@@ -27,6 +27,8 @@ import org.osgi.annotation.bundle.Capability;
  * Marker annotation that the bundle has the capability to provide a certain
  * model
  * 
+ * @deprecated Version 4.2. With the new Codegenerator, the EPackages will be properly registered as a service and should be used to indicate a Model requirement   
+ * 
  * @author Juergen Albert
  * @since 9 Feb 2018
  */
@@ -36,6 +38,7 @@ import org.osgi.annotation.bundle.Capability;
 @Capability(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
 		name = EPackageConfigurator.EMF_CONFIGURATOR_NAME)
 @RequireEMF
+@Deprecated
 public @interface ProvideEMFModel {
 
 	@Attribute()

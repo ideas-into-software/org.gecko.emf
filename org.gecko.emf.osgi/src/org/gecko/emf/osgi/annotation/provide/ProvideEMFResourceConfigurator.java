@@ -40,13 +40,13 @@ import org.osgi.annotation.bundle.Capability;
 @RequireEMF
 public @interface ProvideEMFResourceConfigurator {
 
-	@Attribute()
+	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_NAME)
 	String name(); 
 	
-	@Attribute()
+	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_CONTENT_TYPE)
 	String[] contentType();
 
-	@Attribute()
+	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_FILE_EXT)
 	String[] fileExtension();
 	
 //	@Attribute

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.gecko.emf.osgi.annotation.EMFResourceFactoryConfigurator;
+import org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator;
 import org.gecko.emf.osgi.components.DefaultEPackageRegistryComponent;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -32,6 +33,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component
 @EMFResourceFactoryConfigurator(name = "GeckoXMLResourceFactory", contentType = "application/xml", fileExtension = "xml")
+@ProvideEMFResourceConfigurator(name = "GeckoXMLResourceFactory", contentType = "application/xml", fileExtension = "xml")
 public class GeckoXMLResourceFactory extends XMLResourceFactoryImpl implements Resource.Factory{
 
 	private org.eclipse.emf.ecore.EPackage.Registry registry;

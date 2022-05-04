@@ -34,8 +34,9 @@ import org.osgi.annotation.bundle.Requirement;
 		ElementType.TYPE, ElementType.PACKAGE
 })
 @Requirement(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
-		name = ResourceSetConfigurator.EMF_CONFIGURATOR_NAME)
-@Deprecated //Not Sure if this even works
+		name = ResourceSetConfigurator.EMF_CONFIGURATOR_NAME,
+		filter = "(" + EMFNamespaces.EMF_CONFIGURATOR_NAME + "=${#name})" 
+		)
 public @interface RequireResourceConfigByName {
 	
 	/**
@@ -43,12 +44,4 @@ public @interface RequireResourceConfigByName {
 	 */
 	@Attribute()
 	String name(); 
-	
-	
-	/**
-	 * The Version of the {@link ResourceSetConfigurator}
-	 */
-	@Attribute()
-	String version() default "1.0.0";
-
 }
