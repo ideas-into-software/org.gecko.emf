@@ -16,10 +16,6 @@
 
 # this will be replaced with `bnd-workspace-extensions` to solve the caching problem and use fixed versions. 
 -include: \
-	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/gecko_defaults_baseline.bnd,\
-	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/gecko_defaults_build.bnd,\
-	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/gecko_defaults_header.bnd,\
-	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/gecko_defaults_release.bnd,\
 	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/felix.bnd,\
 	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/osgiR7.bnd,\
 	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/osgiR8.bnd,\
@@ -43,3 +39,4 @@
     net.bytebuddy.byte-buddy-agent;version=latest,\
     org.objenesis;version=latest
 	
+-library: geckoDIMC

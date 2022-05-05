@@ -1,0 +1,24 @@
+# Enable semantic versioning for all bundles
+-baselinerepo: Baseline
+-baseline: *
+
+# Ignore files for baselining
+-diffignore: *.xml,\
+	*/pom.properties,\
+	 Git-SHA,\
+	 Bundle-Vendor,\
+	 Bundle-License,\
+	 Bundle-DocURL,\
+	 Bundle-SCM,\
+	 Bundle-Developers,\
+	 Bundle-Copyright,\
+	 Bundle-ContactAddress,\
+	 META-INF/maven/*,\
+	 OSGI-OPT/*
+	 
+-plugin.baseline: \
+	aQute.bnd.repository.osgi.OSGiRepository;\
+		locations	= https://devel.data-in-motion.biz/repository/gecko/release/org.gecko.emf/index.xml;\
+		max.stale	= -1;\
+		name		= Baseline;\
+		cache		= ${build}/cache/Baseline
