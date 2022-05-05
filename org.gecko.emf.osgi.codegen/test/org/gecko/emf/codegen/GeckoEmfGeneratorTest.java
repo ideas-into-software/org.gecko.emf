@@ -12,18 +12,15 @@
 package org.gecko.emf.codegen;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.assertj.core.api.Assertions;
 import org.eclipse.emf.common.util.URI;
-import org.gecko.emf.osgi.codegen.GeckoEmfGenerator;
+import org.gecko.emf.osgi.codegen.UriSanatizer;
 import org.junit.jupiter.api.Test;
 
 
@@ -34,6 +31,14 @@ import org.junit.jupiter.api.Test;
  */
 public class GeckoEmfGeneratorTest {
 
+	
+	@Test
+	public void testURIHandler() {
+		URI toTest = URI.createURI("resource://org.gecko.emf.osgi.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.genmodel");
+		URI result = UriSanatizer.trimmedSanitize(toTest);
+		Assertions.assertThat(result).isSameAs(URI.createURI("resource://org.eclipse.emf.ecore/model/Ecore.genmodel"));
+	}
+	
 	/**
 	 * Test method for {@link org.gecko.emf.osgi.codegen.GeckoEmfGenerator#doGenerate(java.io.File, java.lang.String, java.io.File)}.
 	 * @throws IOException 
@@ -87,7 +92,7 @@ public class GeckoEmfGeneratorTest {
 		sb.append(segments);
 		System.out.println(sb.toString());
 		assertNotNull(uri);
-//		String genmodelPath = "testdata/model/test.genmodel";
+//		String genmodelPath = "testdata/model/basic.genmodel";
 //		
 //		File genmodel = new File(genmodelPath);
 //		
@@ -97,8 +102,8 @@ public class GeckoEmfGeneratorTest {
 //		File out = new File("out");
 //		out.mkdir();
 //		
-//		Optional<String> result = geckoEmfGenerator.doGenerate(out, genmodelPath, genmodel);
-//		assertTrue(result.isEmpty());
+//		Optional<String> result = geckoEmfGenerator.doGenerate("out", genmodelPath, Collections.emptyMap(), new File("."), "test.bsn");
+//		assertTrue(!result.isPresent());
 	}
 
 }

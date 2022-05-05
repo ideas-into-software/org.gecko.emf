@@ -33,7 +33,7 @@ import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
 import org.gecko.emf.osgi.example.model.basic.BasicPackage;
-import org.gecko.emf.osgi.example.model.extended.ExtendedPackage.Literals;
+import org.gecko.emf.osgi.example.model.extended.ExtendedPackage;
 import org.gecko.emf.osgi.example.model.extended.ExtendedPerson;
 import org.gecko.emf.osgi.example.model.manual.Foo;
 import org.gecko.emf.osgi.example.model.manual.ManualFactory;
@@ -44,6 +44,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.test.assertj.bundle.BundleAssert;
 import org.osgi.test.common.annotation.InjectBundleContext;
@@ -128,9 +129,14 @@ public class EMFModelInfoTest {
 	 * @throws BundleException
 	 */
 	@Test
-	public void testFindEClassByClassName(@InjectService(cardinality = 0) ServiceAware<EMFModelInfo> saMI)
+	public void testFindEClassByClassName(
+			@InjectService(cardinality = 0) ServiceAware<EMFModelInfo> saMI,
+			@InjectService(cardinality = 1) ExtendedPackage markerForStart,
+			@InjectBundleContext BundleContext ctx
+			)
 			throws IOException, InterruptedException, BundleException {
-		EClass mustExist = Literals.EXTENDED_PERSON;
+		
+		EClass mustExist = getServiceAndRelease(ctx, ExtendedPackage.class).getExtendedPerson();
 		Assertions.assertThat(mustExist).isNotNull();
 		Assertions.assertThat(ExtendedPerson.class).isNotNull();
 		EMFModelInfo emfModelInfo = saMI.waitForService(1000);
@@ -146,60 +152,73 @@ public class EMFModelInfoTest {
 
 		BundleAssert.assertThat(extBundle).isNotNull();
 
-		List<EClass> personHirachy = emfModelInfo.getUpperTypeHierarchyForEClass(BasicPackage.Literals.PERSON);
-
-		assertNotNull(personHirachy);
-		assertEquals(2, personHirachy.size());
-
-//		
-
-		extBundle.stop();
-		Thread.sleep(1000);
-
-		List<EClass> personHirachy2 = emfModelInfo.getUpperTypeHierarchyForEClass(BasicPackage.Literals.PERSON);
-		System.out.println("");
-
-		System.out.println("______");
-		System.out.println(personHirachy2);
-		System.out.println("______");
-		basicBundle.stop();
-		Thread.sleep(1000);
-		List<EClass> personHirachy3 = emfModelInfo.getUpperTypeHierarchyForEClass(BasicPackage.Literals.PERSON);
-		System.out.println("");
-		System.out.println("______");
-		System.out.println(personHirachy3);
-		System.out.println("______");
-
-		basicBundle.start();
-		Thread.sleep(1000);
-		List<EClass> personHirachy4 = emfModelInfo.getUpperTypeHierarchyForEClass(BasicPackage.Literals.PERSON);
-		System.out.println("");
-		System.out.println("______");
-		System.out.println(personHirachy4);
-		System.out.println("______");
-
-		extBundle.start();
-
-		Thread.sleep(1000);
-		List<EClass> personHirachy5 = emfModelInfo.getUpperTypeHierarchyForEClass(BasicPackage.Literals.PERSON);
-		System.out.println("");
-		System.out.println("______");
-		System.out.println(personHirachy5);
-		System.out.println("______");
-
-		assertNotNull(personHirachy2);
-
-		assertEquals(1, personHirachy2.size());
-
-		assertNotNull(personHirachy3);
-		assertEquals(0, personHirachy3.size());
-
-		assertNotNull(personHirachy4);
-		assertEquals(1, personHirachy4.size());
-
-		assertNotNull(personHirachy5);
-		assertEquals(2, personHirachy5.size());
+		try {
+			List<EClass> personHirachy = emfModelInfo.getUpperTypeHierarchyForEClass(getServiceAndRelease(ctx, BasicPackage.class).getPerson());
+	
+			assertNotNull(personHirachy);
+			assertEquals(2, personHirachy.size());
+	
+			extBundle.stop();
+			Thread.sleep(1000);
+	
+			EClass eclass = getServiceAndRelease(ctx, BasicPackage.class).getPerson();
+			
+			List<EClass> personHirachy2 = emfModelInfo.getUpperTypeHierarchyForEClass(eclass);
+			System.out.println("");
+	
+			System.out.println("______ personHirachy2");
+			System.out.println(personHirachy2);
+			System.out.println("______");
+			basicBundle.stop();
+			Thread.sleep(1000);
+			List<EClass> personHirachy3 = emfModelInfo.getUpperTypeHierarchyForEClass(eclass);
+			System.out.println("");
+			System.out.println("______ personHirachy3");
+			System.out.println(personHirachy3);
+			System.out.println("______");
+	
+			basicBundle.start();
+			Thread.sleep(1000);
+			List<EClass> personHirachy4 = emfModelInfo.getUpperTypeHierarchyForEClass(getServiceAndRelease(ctx, BasicPackage.class).getPerson());
+			System.out.println("");
+			System.out.println("______ personHirachy 4");
+			System.out.println(personHirachy4);
+			System.out.println("______");
+	
+			extBundle.start();
+	
+			Thread.sleep(1000);
+			List<EClass> personHirachy5 = emfModelInfo.getUpperTypeHierarchyForEClass(getServiceAndRelease(ctx, BasicPackage.class).getPerson());
+			System.out.println("");
+			System.out.println("______ personHirachy5");
+			System.out.println(personHirachy5);
+			System.out.println("______");
+	
+			assertNotNull(personHirachy2);
+	
+			assertEquals(1, personHirachy2.size());
+	
+			assertNotNull(personHirachy3);
+			assertEquals(0, personHirachy3.size());
+	
+			assertNotNull(personHirachy4);
+			assertEquals(1, personHirachy4.size());
+	
+			assertNotNull(personHirachy5);
+			assertEquals(2, personHirachy5.size());
+		} finally {
+			basicBundle.start();
+			extBundle.start();
+		}
 
 	}
 
+	private <T> T getServiceAndRelease(BundleContext ctx, Class<T> clazz){
+		ServiceReference<T> serviceReference = ctx.getServiceReference(clazz);
+		assertNotNull(serviceReference);
+		T result = ctx.getService(serviceReference);
+		ctx.ungetService(serviceReference);
+		return result;
+	}
+	
 }

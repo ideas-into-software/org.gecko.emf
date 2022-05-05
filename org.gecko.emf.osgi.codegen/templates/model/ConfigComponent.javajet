@@ -1,4 +1,4 @@
-<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="java.util.* org.eclipse.emf.codegen.ecore.genmodel.*" class="ConfigurationComponentClass"%>
+<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.*" class="ConfigurationComponentClass"%>
 <%final GenPackage genPackage = (GenPackage)((Object[])argument)[0]; final GenModel genModel=genPackage.getGenModel();%>
 <%@ include file="Header.javajetinc"%>
 package <%=genPackage.getInterfacePackageName()%>.configuration;
@@ -7,18 +7,12 @@ package <%=genPackage.getInterfacePackageName()%>.configuration;
 <%genModel.addImport("org.osgi.service.component.annotations.Component");%>
 <%genModel.addImport("org.osgi.service.component.annotations.Deactivate");%>
 <%genModel.addImport("org.osgi.framework.BundleContext");%>
-<%genModel.addImport("org.eclipse.emf.ecore.resource.Resource.Factory.Registry");%>
 <%genModel.addImport("org.gecko.emf.osgi.EMFNamespaces");%>
 <%genModel.addImport("org.gecko.emf.osgi.EPackageConfigurator");%>
-<%genModel.addImport("org.gecko.emf.osgi.ResourceFactoryConfigurator");%>
 <%genModel.addImport("org.gecko.emf.osgi.annotation.EMFModel");%>
 <%genModel.addImport("org.gecko.emf.osgi.annotation.provide.ProvideEMFModel");%>
-<%genModel.addImport("org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator");%>
 <%genModel.addImport("org.gecko.emf.osgi.annotation.require.RequireEMF");%>
 <%genModel.addImport(genPackage.getQualifiedPackageInterfaceName());%>
-<%if (!GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {%>
-<%genModel.addImport(genPackage.getQualifiedResourceFactoryClassName());%>
-<%}%>
 
 /**
  * <!-- begin-user-doc -->
@@ -34,27 +28,10 @@ package <%=genPackage.getInterfacePackageName()%>.configuration;
  * @see ResourceFactoryConfigurator
  * @generated
  */
-@Component(name="<%=genPackage.getPrefix()%>Configurator", service= {EPackageConfigurator.class, ResourceFactoryConfigurator.class})
+@Component(name="<%=genPackage.getPrefix()%>Configurator", service= EPackageConfigurator.class)
 @EMFModel(name=<%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI={<%=genPackage.getPackageInterfaceName()%>.eNS_URI}, version="1.0.0")
-@RequireEMF
 @ProvideEMFModel(name = <%=genPackage.getPackageInterfaceName()%>.eNAME, nsURI = { <%=genPackage.getPackageInterfaceName()%>.eNS_URI }, version = "1.0.0")
-@ProvideEMFResourceConfigurator( name = <%=genPackage.getPackageInterfaceName()%>.eNAME,
-<%if (genPackage.getContentTypeIdentifier() != null) {%>
-	contentType = { "<%=genPackage.getContentTypeIdentifier()%>" },
-<%} else {%>
-	contentType = { "" },
-<%}%> 
-<%if (!genPackage.getFileExtensionList().isEmpty()) {%>
-<%Iterator<String> fileExtensionIterator = genPackage.getFileExtensionList().iterator(); if (fileExtensionIterator.hasNext()) { String fileExtension = fileExtensionIterator.next();%>
-	fileExtension = {
-	"<%=fileExtension%>"<%while(fileExtensionIterator.hasNext()) { fileExtension = fileExtensionIterator.next();%>,
- 	"<%=fileExtension%>"<%}%>
- 	},
-<%}%> 
-<%}%> 
-	version = "1.0.0"
-)
-public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPackageConfigurator, ResourceFactoryConfigurator
+public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPackageConfigurator
 {
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> packageRegistration = null;
 	
@@ -74,27 +51,6 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent implements EPacka
 		packageRegistration = ctx.registerService(serviceClasses, p, properties);
 	}
 
-	/* 
-	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.ResourceFactoryConfigurator#configureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
-	 * @generated
-	 */
-	@Override
-	public void configureResourceFactory(Registry registry) {
-		<%if (!genPackage.getFileExtensionList().isEmpty() && !GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {%><%for (String fileExtension : genPackage.getFileExtensionList()) {%>registry.getExtensionToFactoryMap().put("<%=fileExtension%>", new <%=genPackage.getResourceFactoryClassName()%>());<%}%><%}%> 
-		<%if (genPackage.getContentTypeIdentifier() != null && !GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {%>registry.getContentTypeToFactoryMap().put("<%=genPackage.getContentTypeIdentifier()%>", new <%=genPackage.getResourceFactoryClassName()%>());<%}%> 
-	}
-	
-	/* 
-	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.ResourceFactoryConfigurator#unconfigureResourceFactory(org.eclipse.emf.ecore.resource.Resource.Factory.Registry)
-	 * @generated
-	 */
-	@Override
-	public void unconfigureResourceFactory(Registry registry) {
-		<%if (!genPackage.getFileExtensionList().isEmpty() && !GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {%><%for (String fileExtension : genPackage.getFileExtensionList()) {%>registry.getExtensionToFactoryMap().remove("<%=fileExtension%>");<%}%><%}%> 
-		<%if (genPackage.getContentTypeIdentifier() != null && !GenResourceKind.NONE_LITERAL.equals(genPackage.getResource())) {%>registry.getContentTypeToFactoryMap().remove("<%=genPackage.getContentTypeIdentifier()%>");<%}%> 
-	}
 	
 	/* 
 	 * (non-Javadoc)

@@ -20,7 +20,7 @@
 		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/";\
 		index               = ${.}/repo_project.maven;\
 		transitive          = false;\
-		poll_time           = -1;\
+		poll.time           = -1;\
 		readOnly            = true;\
 		name                = "Project Dependencies"
 

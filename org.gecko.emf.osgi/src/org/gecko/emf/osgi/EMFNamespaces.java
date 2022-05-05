@@ -39,6 +39,8 @@ public class EMFNamespaces {
 	public static final String EMF_RESOURCE_CONFIGURATOR_FILE_EXT = EMF_RESOURCE_CONFIGURATOR_PREFIX + "fileExtension"; //$NON-NLS-1$
 	// Attribute name for the ResourceSetFactory configurator feature
 	public static final String EMF_RESOURCE_CONFIGURATOR_FEATURE = EMF_RESOURCE_CONFIGURATOR_PREFIX + "feature"; //$NON-NLS-1$
+	// Attribute name for the ResourceSetFactory configurator protocol
+	public static final String EMF_RESOURCE_CONFIGURATOR_PROTOCOL = EMF_RESOURCE_CONFIGURATOR_PREFIX + "protocol";
 
 	/**
 	 * Attribute name constants for {@link EMFResourceSetConfigurator} annotation

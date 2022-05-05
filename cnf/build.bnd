@@ -53,8 +53,10 @@ Bundle-Developers: \
 	"No metadata for revision";\
 		restrict:=error;\
     	is:=warning
-	
-emf-version: ${base-version}.${tstamp}-SNAPSHOT
+
+-snapshot: ${tstamp}-SNAPSHOT
+-pom: version=${versionmask;===s;${@version}}	
+emf-version: ${base-version}.SNAPSHOT
 releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${version}));REPOS}
 -maven-release.local: ${if;${def;releaseNotNeeded};local;remote}
 #-pom: version=${if;${def;-snapshot};${versionmask;===;${@version}}-${def;-snapshot};${versionmask;===s;${@version}}}
@@ -74,3 +76,8 @@ releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version
 #        noupdateOnRelease=false
 
 #-buildrepo: "Local Maven Release"
+-plugin: aQute.bnd.deployer.repository.LocalIndexedRepo;\
+		local               =${.}/local;\
+		overwrite           =true;\
+		pretty              =true;\
+		name            	=local

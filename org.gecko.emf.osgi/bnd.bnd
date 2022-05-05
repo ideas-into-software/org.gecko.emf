@@ -8,10 +8,12 @@
 	org.eclipse.emf.common,\
 	org.eclipse.emf.ecore,\
 	org.eclipse.emf.ecore.xmi,\
-	org.osgi.namespace.service
+	org.osgi.namespace.service,\
+	org.osgi.util.converter
 	
 Export-Package: \
 	org.gecko.emf.osgi,\
+	org.gecko.emf.osgi.helper,\
 	org.gecko.emf.osgi.annotation.*
 
 # We shoudl consider deactivating this. For the Momemnt the Baselining is a bit harsch, e

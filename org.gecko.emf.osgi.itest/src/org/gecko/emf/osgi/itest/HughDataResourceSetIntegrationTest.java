@@ -29,6 +29,7 @@ import org.gecko.emf.osgi.example.model.basic.BasicPackage;
 import org.gecko.emf.osgi.example.model.basic.Person;
 import org.gecko.emf.osgi.example.model.basic.util.BasicResourceFactoryImpl;
 import org.gecko.emf.osgi.resourceset.HughDataResourceSetImpl;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.ServiceReference;
@@ -48,12 +49,15 @@ import org.osgi.util.promise.TimeoutException;
  */
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
+@Disabled
 public class HughDataResourceSetIntegrationTest {
 
 	@Test
-	public void testHughDataResourceSet() throws InterruptedException {
+	public void testHughDataResourceSet(
+			@InjectService(cardinality = 1) BasicPackage basicPackage
+			) throws InterruptedException {
 		HughDataResourceSet hdr = new HughDataResourceSetImpl();
-		hdr.getPackageRegistry().put(BasicPackage.eNS_URI, BasicPackage.eINSTANCE);
+		hdr.getPackageRegistry().put(BasicPackage.eNS_URI, basicPackage);
 		hdr.getResourceFactoryRegistry().getProtocolToFactoryMap().put("file", new BasicResourceFactoryImpl());
 
 		URI lastUri = null;
@@ -63,7 +67,7 @@ public class HughDataResourceSetIntegrationTest {
 		for (int i = 1; i <= 500000; i++) {
 			lastUri = URI.createURI("file://test/" + i);
 			Resource resource = hdr.createResource(lastUri);
-			Person p = BasicFactory.eINSTANCE.createPerson();
+			Person p = basicPackage.getBasicFactory().createPerson();
 			p.setId(Integer.toString(i));
 			resource.getContents().add(p);
 			lastUri = lastUri.appendFragment(Integer.toString(i));
@@ -103,7 +107,7 @@ public class HughDataResourceSetIntegrationTest {
 		for (int i = 1; i <= 500000; i++) {
 			lastUri = URI.createURI("file://test/" + i);
 			Resource resource = hdr.createResource(lastUri);
-			Person p = BasicFactory.eINSTANCE.createPerson();
+			Person p = basicPackage.getBasicFactory().createPerson();
 			p.setId(Integer.toString(i));
 			resource.getContents().add(p);
 			lastUri = lastUri.appendFragment(Integer.toString(i));
@@ -137,7 +141,9 @@ public class HughDataResourceSetIntegrationTest {
 	}
 
 	@Test
-	public void testWrappedHughDataResourceSet(@InjectService(cardinality = 0) ServiceAware<ResourceSetFactory> sa)
+	public void testWrappedHughDataResourceSet(
+			@InjectService(cardinality = 0) ServiceAware<ResourceSetFactory> sa,
+			@InjectService(cardinality = 1) BasicPackage basicPackage)
 			throws InterruptedException {
 
 		ServiceReference<ResourceSetFactory> reference = sa.getServiceReference();
@@ -148,7 +154,7 @@ public class HughDataResourceSetIntegrationTest {
 		assertNotNull(rs1);
 		assertTrue(rs1 instanceof ResourceSetImpl);
 
-		rs1.getPackageRegistry().put(BasicPackage.eNS_URI, BasicPackage.eINSTANCE);
+		rs1.getPackageRegistry().put(BasicPackage.eNS_URI, basicPackage);
 
 		URI lastUri = null;
 		URI firstUri = null;
@@ -157,7 +163,7 @@ public class HughDataResourceSetIntegrationTest {
 		for (int i = 1; i <= 500000; i++) {
 			lastUri = URI.createURI("file://test/" + i);
 			Resource resource = rs1.createResource(lastUri);
-			Person p = BasicFactory.eINSTANCE.createPerson();
+			Person p = basicPackage.getBasicFactory().createPerson();
 			p.setId(Integer.toString(i));
 			resource.getContents().add(p);
 			lastUri = lastUri.appendFragment(Integer.toString(i));
@@ -196,7 +202,7 @@ public class HughDataResourceSetIntegrationTest {
 		for (int i = 1; i <= 500000; i++) {
 			lastUri = URI.createURI("file://test/" + i);
 			Resource resource = hdr.createResource(lastUri);
-			Person p = BasicFactory.eINSTANCE.createPerson();
+			Person p = basicPackage.getBasicFactory().createPerson();
 			p.setId(Integer.toString(i));
 			resource.getContents().add(p);
 			lastUri = lastUri.appendFragment(Integer.toString(i));
@@ -230,7 +236,11 @@ public class HughDataResourceSetIntegrationTest {
 	}
 
 	@Test
-	public void testDeactivateHughdataResourceSet(@InjectService(cardinality = 0) ServiceAware<ResourceSetFactory> sa)
+	public void testDeactivateHughdataResourceSet(
+			@InjectService(cardinality = 0) ServiceAware<ResourceSetFactory> sa,
+			@InjectService(cardinality = 1) BasicPackage basicPackage,
+			@InjectService(cardinality = 1) BasicFactory basicFactory
+			)
 			throws InterruptedException {
 
 		ServiceReference<ResourceSetFactory> reference = sa.getServiceReference();
@@ -241,7 +251,7 @@ public class HughDataResourceSetIntegrationTest {
 		assertNotNull(rs1);
 		assertTrue(rs1 instanceof ResourceSetImpl);
 
-		rs1.getPackageRegistry().put(BasicPackage.eNS_URI, BasicPackage.eINSTANCE);
+		rs1.getPackageRegistry().put(BasicPackage.eNS_URI, basicPackage);
 
 		System.out.println("Creating 500000 Persons");
 		HughDataResourceSet hdr = new HughDataResourceSetImpl(rs1);
@@ -250,7 +260,7 @@ public class HughDataResourceSetIntegrationTest {
 		for (int i = 1; i <= 500000; i++) {
 			lastUri = URI.createURI("file://test/" + i);
 			Resource resource = hdr.createResource(lastUri);
-			Person p = BasicFactory.eINSTANCE.createPerson();
+			Person p = basicFactory.createPerson();
 			p.setId(Integer.toString(i));
 			resource.getContents().add(p);
 			lastUri = lastUri.appendFragment(Integer.toString(i));
@@ -288,7 +298,7 @@ public class HughDataResourceSetIntegrationTest {
 		for (int i = 1; i <= 500000; i++) {
 			lastUri = URI.createURI("file://test/" + i);
 			Resource resource = hdr.createResource(lastUri);
-			Person p = BasicFactory.eINSTANCE.createPerson();
+			Person p = basicFactory.createPerson();
 			p.setId(Integer.toString(i));
 			resource.getContents().add(p);
 			lastUri = lastUri.appendFragment(Integer.toString(i));

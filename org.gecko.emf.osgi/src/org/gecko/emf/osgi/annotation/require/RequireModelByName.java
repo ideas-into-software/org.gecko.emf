@@ -35,6 +35,7 @@ import org.osgi.annotation.bundle.Requirement;
 })
 @Requirement(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
 		name = EPackageConfigurator.EMF_CONFIGURATOR_NAME)
+@Deprecated //Not Sure if this even works
 public @interface RequireModelByName {
 	
 	/**

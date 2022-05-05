@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.StringJoiner;
 
 import org.eclipse.emf.common.util.URI;
@@ -42,18 +41,7 @@ import aQute.lib.io.IO;
  */
 public class ResourceUriHandler implements URIHandler {
 
-	/** RESOURCE_SCHEMA_NAME */
-	private static final String RESOURCE_SCHEMA_NAME = "resource"; //$NON-NLS-1$
-	/** APPLICATION_XMI */
-	private static final String APPLICATION_XMI = "application/xmi"; //$NON-NLS-1$
-	/** SLASH */
-	private static final String SLASH = "/"; //$NON-NLS-1$
-	/** SCHEMA_RESOURCE */
-	private static final String SCHEMA_RESOURCE = "resource://"; //$NON-NLS-1$
-	/** PLATFORM_PLUGIN */
-	private static final String PLATFORM_PLUGIN = "platform:/plugin/"; //$NON-NLS-1$
-	/** PLATFORM_RESOURCE */
-	private static final String PLATFORM_RESOURCE = "platform:/resource/"; //$NON-NLS-1$
+	
 	private final Map<Container, List<String>> buildPathModels;
 	private String bsn;
 	private File base;
@@ -71,54 +59,15 @@ public class ResourceUriHandler implements URIHandler {
 	@Override
 	public boolean canHandle(URI uri) {
 		GeckoEmfGenerator.info("Asked to handle " + uri); //$NON-NLS-1$
-		return uri.scheme().equals(RESOURCE_SCHEMA_NAME) || uri.toString().startsWith(PLATFORM_RESOURCE) || uri.toString().startsWith(PLATFORM_PLUGIN); 
+		return uri.scheme().equals(UriSanatizer.RESOURCE_SCHEMA_NAME) || uri.toString().startsWith(UriSanatizer.PLATFORM_RESOURCE) || uri.toString().startsWith(UriSanatizer.PLATFORM_PLUGIN); 
 	}
 
-	private Optional<URI> sanitize(URI toSanatize) {
-		if (toSanatize == null) {
-			return Optional.empty();
-		}
-		if(toSanatize.toString().startsWith(PLATFORM_RESOURCE)) {
-			toSanatize = URI.createURI(SCHEMA_RESOURCE + toSanatize.toString().substring(PLATFORM_RESOURCE.length()));
-		} else if(toSanatize.toString().startsWith(PLATFORM_PLUGIN)) {
-			toSanatize = URI.createURI(SCHEMA_RESOURCE + toSanatize.toString().substring(PLATFORM_PLUGIN.length()));
-		}
-		return doSanitize(toSanatize);
-	}
-
-	private Optional<URI> doSanitize(URI toSanitize) {
-		StringBuilder uri = new StringBuilder();
-		for(int i = toSanitize.segmentCount() -1; i >= 0;  i--) {
-			String segment = toSanitize.segment(i);
-			if("..".equals(segment)) { //$NON-NLS-1$
-				i--;
-			} else {
-				if(toSanitize.segmentCount() - 1 == i) {
-					uri.append(segment);
-				} else {
-					uri.append(segment + SLASH + uri.toString());
-				}
-			}
-			if(i <= 0 ) {
-				String host = toSanitize.host();
-				if("..".equals(segment)) { //$NON-NLS-1$
-					return Optional.of(URI.createURI(toSanitize.scheme() + "://" + uri.toString())); //$NON-NLS-1$
-				}
-				return Optional.of(URI.createURI(toSanitize.scheme() + "://"+ host + SLASH + uri.toString())); //$NON-NLS-1$
-			}
-		};
-		return Optional.empty();
-	}
-
-	private URI trimmedSanitize(URI toSanitize) {
-		Optional<URI> sanitized = sanitize(toSanitize);
-		return sanitized.map(URI::trimFragment).map(URI::trimQuery).orElse(null); 
-	}
+	
 	
 	@Override
 	public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to open InputStream for " + uri); //$NON-NLS-1$
-		URI theUri = trimmedSanitize(uri);
+		URI theUri = UriSanatizer.trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, InputStream cannot be created"); //$NON-NLS-1$
 			return null;
@@ -128,7 +77,7 @@ public class ResourceUriHandler implements URIHandler {
 		GeckoEmfGenerator.info("bsn according to URI" + uriBSN); //$NON-NLS-1$
 		if(bsn.equals(uriBSN)) {
 			GeckoEmfGenerator.info("The bsn segment part fits to: " + bsn); //$NON-NLS-1$
-			StringJoiner joiner = new StringJoiner(SLASH);
+			StringJoiner joiner = new StringJoiner(UriSanatizer.SLASH);
 			uri.segmentsList().stream().forEach(joiner::add);
 			return IO.stream( new File(base, joiner.toString() ));
 		} 
@@ -140,7 +89,7 @@ public class ResourceUriHandler implements URIHandler {
 			if(containerBSN.equals(uriBSN)) {
 				GeckoEmfGenerator.info("Match in " + c); //$NON-NLS-1$
 				for(String path : entry.getValue()) {
-					String testUri = SCHEMA_RESOURCE + containerBSN + SLASH + path;
+					String testUri = UriSanatizer.SCHEMA_RESOURCE + containerBSN + UriSanatizer.SLASH + path;
 					GeckoEmfGenerator.info("comparing URIs " + testUri + " with the requested " + theUri); //$NON-NLS-1$ //$NON-NLS-2$
 					if(testUri.equals(theUri.toString())) {
 						try(Jar jar = new Jar(c.getFile())){
@@ -180,7 +129,7 @@ public class ResourceUriHandler implements URIHandler {
 	@Override
 	public OutputStream createOutputStream(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to open OutputStream for " + uri); //$NON-NLS-1$
-		URI theUri = trimmedSanitize(uri);
+		URI theUri = UriSanatizer.trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, OutputStream cannot be created"); //$NON-NLS-1$
 			return null;
@@ -188,7 +137,7 @@ public class ResourceUriHandler implements URIHandler {
 		GeckoEmfGenerator.info("Sanatized " + theUri); //$NON-NLS-1$
 		String uriBSN = theUri.host();
 		if(bsn.equals(uriBSN)) {
-			StringJoiner joiner = new StringJoiner(SLASH);
+			StringJoiner joiner = new StringJoiner(UriSanatizer.SLASH);
 			theUri.segmentsList().stream().forEach(joiner::add);
 			File theFile = new File(base, joiner.toString());
 			theFile.getParentFile().mkdirs();
@@ -205,7 +154,7 @@ public class ResourceUriHandler implements URIHandler {
 	@Override
 	public void delete(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked to delete " + uri); //$NON-NLS-1$
-		URI theUri = trimmedSanitize(uri);
+		URI theUri = UriSanatizer.trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, Delete cannot be executed"); //$NON-NLS-1$
 			return;
@@ -213,7 +162,7 @@ public class ResourceUriHandler implements URIHandler {
 		GeckoEmfGenerator.info("Sanatized " + theUri); //$NON-NLS-1$
 		String uriBSN = theUri.segment(0);
 		if(bsn.equals(uriBSN)) {
-			StringJoiner joiner = new StringJoiner(SLASH);
+			StringJoiner joiner = new StringJoiner(UriSanatizer.SLASH);
 			uri.segmentsList().stream().skip(1).forEach(joiner::add);
 			IO.delete(new File(base, joiner.toString() + uri.fileExtension()));
 		} 
@@ -226,7 +175,7 @@ public class ResourceUriHandler implements URIHandler {
 	@Override
 	public Map<String, ?> contentDescription(URI uri, Map<?, ?> options) throws IOException {
 		GeckoEmfGenerator.info("Asked for content Descriptor " + uri); //$NON-NLS-1$
-		return Collections.singletonMap(ContentHandler.CONTENT_TYPE_PROPERTY, APPLICATION_XMI);
+		return Collections.singletonMap(ContentHandler.CONTENT_TYPE_PROPERTY, UriSanatizer.APPLICATION_XMI);
 	}
 
 	/* 
@@ -236,7 +185,7 @@ public class ResourceUriHandler implements URIHandler {
 	@Override
 	public boolean exists(URI uri, Map<?, ?> options) {
 		GeckoEmfGenerator.info("Asked if exists " + uri); //$NON-NLS-1$
-		URI theUri = trimmedSanitize(uri);
+		URI theUri = UriSanatizer.trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, existence cannot be checked"); //$NON-NLS-1$
 			return false;
@@ -244,7 +193,7 @@ public class ResourceUriHandler implements URIHandler {
 		GeckoEmfGenerator.info("Sanatized " + uri); //$NON-NLS-1$
 		String uriBSN = theUri.segment(0);
 		if(bsn.equals(uriBSN)) {
-			StringJoiner joiner = new StringJoiner(SLASH);
+			StringJoiner joiner = new StringJoiner(UriSanatizer.SLASH);
 			uri.segmentsList().stream().skip(1).forEach(joiner::add);
 			return new File(base, joiner.toString() + uri.fileExtension()).exists();
 		} 

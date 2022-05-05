@@ -64,12 +64,10 @@ import org.osgi.service.component.annotations.Component;
 			"org.eclipse.emf.ecore", 
 			"org.eclipse.emf.emof", 
 			"application/xmi", 
-			"application/xml", 
 			"application/octet-stream"
 			}, 
 	fileExtension = { 
 			"*", 
-			"xml", 
 			"xmi", 
 			"ecore", 
 			"emof", 
@@ -89,7 +87,6 @@ public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryC
 	@Override
 	public void configureResourceFactory(Registry registry) {
 		registry.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
-		registry.getExtensionToFactoryMap().put("xml", new XMLResourceFactoryImpl());
 		registry.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		registry.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 		registry.getExtensionToFactoryMap().put("emof", new EMOFResourceFactoryImpl());
@@ -97,7 +94,6 @@ public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryC
 		registry.getContentTypeToFactoryMap().put("org.eclipse.emf.ecore", new EcoreResourceFactoryImpl());
 		registry.getContentTypeToFactoryMap().put("org.eclipse.emf.emof", new EcoreResourceFactoryImpl());
 		registry.getContentTypeToFactoryMap().put("application/xmi", new XMIResourceFactoryImpl());
-		registry.getContentTypeToFactoryMap().put("application/xml", new XMLResourceFactoryImpl());
 		registry.getContentTypeToFactoryMap().put("application/octet-stream", BINARY_FACTORY);
 	}
 

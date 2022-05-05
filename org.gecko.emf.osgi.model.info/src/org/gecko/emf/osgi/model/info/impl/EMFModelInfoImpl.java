@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -54,7 +56,9 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 
 	private Map<EClass, List<EClass>> needsRevisiting = new ConcurrentHashMap<>();
 
-	List<EPackageConfigurator> list = new ArrayList<>();
+	private List<EPackageConfigurator> list = new ArrayList<>();
+	
+	private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
 	/*
 	 * (non-Javadoc)
@@ -77,15 +81,25 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	 */
 	@Override
 	public Optional<EClassifier> getEClassifierForClass(String fullQualifiedClassName) {
-		return classes.entrySet().stream().filter(e -> e.getKey().getName().equals(fullQualifiedClassName))
-				.map(e -> e.getValue()).findFirst();
+		lock.readLock().lock();
+		try {
+			return classes.entrySet().stream().filter(e -> e.getKey().getName().equals(fullQualifiedClassName))
+					.map(e -> e.getValue()).findFirst();
+		} finally {
+			lock.readLock().unlock();
+		}
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY)
 	public void bindEPackageConfigurator(EPackageConfigurator configurator) {
-		System.out.println("+" + configurator);
-		list.add(configurator);
-		refresh();
+		lock.writeLock().lock();
+		try {
+			System.out.println("+" + configurator);
+			list.add(configurator);
+			refresh();
+		} finally {
+			lock.writeLock().unlock();
+		}
 	}
 
 	private synchronized void refresh() {
@@ -104,10 +118,15 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	}
 
 	public void unbindEPackageConfigurator(EPackageConfigurator configurator) {
-		list.remove(configurator);
-		configurator.unconfigureEPackage(this);
-		System.out.println("-" + configurator);
-		refresh();
+		lock.writeLock().lock();
+		try {
+			list.remove(configurator);
+			configurator.unconfigureEPackage(this);
+			System.out.println("-" + configurator);
+			refresh();
+		} finally {
+			lock.writeLock().unlock();
+		}
 	}
 
 	/*
@@ -126,7 +145,7 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	}
 
 	private synchronized void addEClassesOfEPackage(EPackage ePackage) {
-		ePackage.getEClassifiers().forEach(ec -> {
+		ePackage.getEClassifiers().stream().filter(ec -> ec.getInstanceClass() != null).forEach(ec -> {
 			analyseHirachy(ec);
 			Class<?> instanceClass = ec.getInstanceClass();
 			if (instanceClass != DynamicEObjectImpl.class) {
@@ -167,20 +186,6 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 
 	}
 
-//	protected void putEntry(Map.Entry<? extends String, ? extends Object> entry) {
-//		put(entry.getKey(), entry.getValue());
-//	}
-
-//	/*
-//	 * (non-Javadoc)
-//	 * 
-//	 * @see java.util.HashMap#putAll(java.util.Map)
-//	 */
-//	@Override
-//	public void putAll(Map<? extends String, ? extends Object> map) {
-//		map.entrySet().stream().forEach(this::putEntry);
-//	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -212,10 +217,15 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	 */
 	@Override
 	public List<EClass> getUpperTypeHierarchyForEClass(EClass eClass) {
-		if (!upperHirachy.containsKey(eClass)) {
-			return Collections.emptyList();
+		lock.readLock().lock();
+		try {
+			if (!upperHirachy.containsKey(eClass)) {
+				return Collections.emptyList();
+			}
+			
+			return upperHirachy.get(eClass);
+		} finally {
+			lock.readLock().unlock();
 		}
-
-		return upperHirachy.get(eClass);
 	}
 }

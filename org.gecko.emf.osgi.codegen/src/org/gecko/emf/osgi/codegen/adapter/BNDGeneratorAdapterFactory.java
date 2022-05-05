@@ -27,17 +27,6 @@ public class BNDGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory 
 			return new BNDGeneratorAdapterFactory();
 		}
 	};
-	  
-
-	@Override
-	public Adapter createGenModelAdapter() {
-		if (genModelGeneratorAdapter == null)
-		{
-			genModelGeneratorAdapter = new BNDGeneratorAdapter(this);
-		}
-		return genModelGeneratorAdapter;
-	}
-
 
 	@Override
 	public Adapter createGenPackageAdapter() {
@@ -47,5 +36,27 @@ public class BNDGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory 
 		}
 		return genPackageGeneratorAdapter;
 	}
-
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory#createGenClassAdapter()
+	 */
+	@Override
+	public Adapter createGenClassAdapter() {
+		if (genClassGeneratorAdapter == null)
+		{
+			genClassGeneratorAdapter = new GeckoEMFClassGeneratorAdapter(this);
+		} 
+		return genClassGeneratorAdapter;
+	}
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory#createGenModelAdapter()
+	 */
+	@Override
+	public Adapter createGenModelAdapter() {
+		// TODO Auto-generated method stub
+		return super.createGenModelAdapter();
+	}
 }

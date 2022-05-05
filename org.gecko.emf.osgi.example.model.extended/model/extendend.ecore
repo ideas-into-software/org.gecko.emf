@@ -4,4 +4,7 @@
     nsPrefix="extended">
   <eClassifiers xsi:type="ecore:EClass" name="ExtendedAddress" eSuperTypes="../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//Address"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExtendedPerson" eSuperTypes="../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//EmployeeInfo ../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//Person"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TestWithEcoreDep" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aReference" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
+  </eClassifiers>
 </ecore:EPackage>

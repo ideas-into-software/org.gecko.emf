@@ -33,7 +33,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.ResourceSetFactory;
 import org.gecko.emf.osgi.example.model.basic.BasicFactory;
+import org.gecko.emf.osgi.example.model.basic.BasicPackage;
 import org.gecko.emf.osgi.example.model.basic.Person;
+import org.gecko.emf.osgi.example.model.manual.Foo;
+import org.gecko.emf.osgi.example.model.manual.ManualFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -68,7 +71,8 @@ public class DynamicModelConfiguratorTest {
 	@Test
 
 	public void testCreateDynamicModel(
-			@InjectService(cardinality = 1) ServiceAware<ResourceSetFactory> resourceSetFactory) throws Exception {
+			@InjectService(cardinality = 1) ServiceAware<ResourceSetFactory> resourceSetFactory
+		) throws Exception {
 
 		assertThat(resourceSetFactory.getServices()).hasSize(1);
 		ServiceReference<ResourceSetFactory> reference = resourceSetFactory.getServiceReference();
@@ -89,7 +93,7 @@ public class DynamicModelConfiguratorTest {
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_CONTENT_TYPE, "test#1.0");
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_FILE_EXTENSION, "test");
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_ECORE_PATH,
-				"org.gecko.emf.osgi.example.model.basic/model/basic.ecore");
+				"org.gecko.emf.osgi.example.model.manual/model/manual.ecore");
 
 		AtomicReference<Configuration> refConfig = new AtomicReference<>();
 
@@ -119,9 +123,8 @@ public class DynamicModelConfiguratorTest {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		Resource testSaveResource = rs.createResource(uri);
 		assertNotNull(testSaveResource);
-		Person p = BasicFactory.eINSTANCE.createPerson();
-		p.setFirstName("Emil");
-		p.setLastName("Tester");
+		Foo p = ManualFactory.eINSTANCE.createFoo();
+		p.setValue("Emil Tester");
 		testSaveResource.getContents().add(p);
 		testSaveResource.save(baos, null);
 
@@ -133,12 +136,9 @@ public class DynamicModelConfiguratorTest {
 		assertFalse(testLoadResource.getContents().isEmpty());
 		EObject eo = testLoadResource.getContents().get(0);
 		assertFalse(eo instanceof Person);
-		EStructuralFeature firstName = eo.eClass().getEStructuralFeature("firstName");
-		assertNotNull(firstName);
-		EStructuralFeature lastName = eo.eClass().getEStructuralFeature("lastName");
-		assertNotNull(lastName);
-		assertEquals("Emil", eo.eGet(firstName));
-		assertEquals("Tester", eo.eGet(lastName));
+		EStructuralFeature value = eo.eClass().getEStructuralFeature("value");
+		assertNotNull(value);
+		assertEquals("Emil Tester", eo.eGet(value));
 		refConfig.get().delete();
 	}
 
@@ -170,7 +170,7 @@ public class DynamicModelConfiguratorTest {
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_CONTENT_TYPE, "test#1.0");
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_FILE_EXTENSION, "test");
 		properties.put(EMFNamespaces.PROP_DYNAMIC_CONFIG_ECORE_PATH,
-				"org.gecko.emf.osgi.example.model.basic/model/basic.ecore");
+				"org.gecko.emf.osgi.example.model.manual/model/manual.ecore");
 
 		AtomicReference<Configuration> refConfig = new AtomicReference<>();
 		MonitoringAssertion.executeAndObserve(() -> {
@@ -198,9 +198,9 @@ public class DynamicModelConfiguratorTest {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		Resource testSaveResource = rs.createResource(uri);
 		assertNotNull(testSaveResource);
-		Person p = BasicFactory.eINSTANCE.createPerson();
-		p.setFirstName("Emil");
-		p.setLastName("Tester");
+		Foo p = ManualFactory.eINSTANCE.createFoo();
+		p.setValue("Emil Tester");
+		
 		testSaveResource.getContents().add(p);
 		testSaveResource.save(baos, null);
 
@@ -212,12 +212,9 @@ public class DynamicModelConfiguratorTest {
 		assertFalse(testLoadResource.getContents().isEmpty());
 		EObject eo = testLoadResource.getContents().get(0);
 		assertFalse(eo instanceof Person);
-		EStructuralFeature firstName = eo.eClass().getEStructuralFeature("firstName");
-		assertNotNull(firstName);
-		EStructuralFeature lastName = eo.eClass().getEStructuralFeature("lastName");
-		assertNotNull(lastName);
-		assertEquals("Emil", eo.eGet(firstName));
-		assertEquals("Tester", eo.eGet(lastName));
+		EStructuralFeature value = eo.eClass().getEStructuralFeature("value");
+		assertNotNull(value);
+		assertEquals("Emil Tester", eo.eGet(value));
 
 		refConfig.get().delete();
 

@@ -83,11 +83,15 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param resourceFactoryRegistry the resource factory to be injected
 	 */
 	@Override
-	@Reference(name="resourceFactoryRegistry", policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry")
-	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry) {
-		super.setResourceFactoryRegistry(resourceFactoryRegistry);
+	@Reference(name="resourceFactoryRegistry", policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+		super.setResourceFactoryRegistry(resourceFactoryRegistry, properties);
 	}
 
+	public void modifiedResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+		super.modifiedResourceFactoryRegistry(resourceFactoryRegistry, properties);
+	}
+	
 	/**
 	 * Removed the registry on shutdown
 	 * @param resourceFactoryRegistry the registry to be removed
