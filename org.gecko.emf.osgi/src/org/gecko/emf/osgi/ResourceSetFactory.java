@@ -24,7 +24,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 public interface ResourceSetFactory
 {
 	public static final String EMF_CAPABILITY_NAME = "osgi";
-	public static final String GECKOPROKECTS_EMF_VERSION = "2.0";
+	public static final String GECKOPROKECTS_EMF_VERSION = "4.0";
+	public static final String CONDITION_ID = "org.gecko.emf.osgi.ResourceSetFactory";
 	
 	/**
 	 * Returns a new instance of a resource set

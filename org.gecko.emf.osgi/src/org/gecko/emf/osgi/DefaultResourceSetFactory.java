@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
@@ -38,6 +39,7 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.ComponentConstants;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.condition.Condition;
 
 /**
  * Implementation of a {@link ResourceSetFactory}. It hold the {@link EPackage} registry as well as the {@link Factory} registry.
@@ -61,6 +63,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	protected Resource.Factory.Registry resourceFactoryRegistry;
 	protected ServiceRegistration<ResourceSetFactory> rsfRegistration = null;
 	protected ServiceRegistration<ResourceSet> rsRegistration = null;
+	protected ServiceRegistration<Condition> conditionRegistration = null;
 	private long serviceChangeCount = 0;
 	
 	/**
@@ -225,9 +228,11 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @param ctx the component context
 	 */
 	protected void registerServices(ComponentContext ctx) {
-		rsfRegistration = ctx.getBundleContext().registerService(ResourceSetFactory.class, this, getDictionary());
+		Dictionary<String, Object> props = getDictionary();
+		rsfRegistration = ctx.getBundleContext().registerService(ResourceSetFactory.class, this, copyDictionary(props));
 		PrototypeServiceFactory<ResourceSet> protoFactory = new ResourceSetPrototypeFactory(this);
-		rsRegistration = ctx.getBundleContext().registerService(ResourceSet.class, protoFactory, getDictionary());
+		rsRegistration = ctx.getBundleContext().registerService(ResourceSet.class, protoFactory, copyDictionary(props));
+		conditionRegistration = ctx.getBundleContext().registerService(Condition.class, Condition.INSTANCE, copyDictionaryForCondition(props));
 	}
 	
 	/**
@@ -332,12 +337,41 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * Updates the service registration properties
 	 */
 	protected void updateRegistrationProperties() {
+		Dictionary<String, Object> dictionary = getDictionary();
 		if (rsfRegistration != null) {
-			rsfRegistration.setProperties(getDictionary());
+			rsfRegistration.setProperties(copyDictionary(dictionary));
 		}
 		if (rsRegistration != null) {
-			rsRegistration.setProperties(getDictionary());
+			rsRegistration.setProperties(copyDictionary(dictionary));
 		}
+		if (conditionRegistration != null) {
+			conditionRegistration.setProperties(copyDictionaryForCondition(dictionary));
+		}
+	}
+
+	
+	/**
+	 * @param dictionary the dictionary to copy
+	 * @return a copy of the original Dictionary
+	 */
+	private Dictionary<String, Object> copyDictionaryForCondition(Dictionary<String, Object> dictionary) {
+		Dictionary<String, Object> copy = copyDictionary(dictionary);
+		copy.put(Condition.CONDITION_ID, CONDITION_ID);
+		return copy;
+	}
+	
+	/**
+	 * @param dictionary the dictionary to copy
+	 * @return a copy of the original Dictionary
+	 */
+	private Dictionary<String, Object> copyDictionary(Dictionary<String, Object> dictionary) {
+		Hashtable<String, Object> props = new Hashtable<String, Object>();
+		Enumeration<String> enumeration = dictionary.keys();
+		while (enumeration.hasMoreElements()) {
+			String string = (String) enumeration.nextElement();
+			props.put(string, dictionary.get(string));
+		}
+		return props;
 	}
 
 	/**

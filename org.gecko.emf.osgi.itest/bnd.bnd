@@ -17,7 +17,8 @@
 	org.gecko.emf.osgi.model.info,\
 	org.osgi.annotation.versioning,\
 	org.osgi.test.assertj.framework,\
-	org.gecko.emf.osgi.example.model.manual
+	org.gecko.emf.osgi.example.model.manual,\
+	org.osgi.service.condition
 
 -includeresource: \
 	data/=data/

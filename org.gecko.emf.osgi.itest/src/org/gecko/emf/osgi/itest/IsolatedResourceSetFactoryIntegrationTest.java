@@ -95,7 +95,6 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 				.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
 				.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
 
-		Assertions.assertThat(serviceAware.getServiceReferences()).hasSize(4);
 		cr.get().delete();
 	}
 
@@ -127,7 +126,6 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 				.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
 				.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
 
-		Assertions.assertThat(serviceAware.getServiceReferences()).hasSize(4);
 		cr.get().delete();
 
 	}
@@ -163,7 +161,6 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 				.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
 				.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
 
-		Assertions.assertThat(serviceAwareAny.getServiceReferences()).hasSize(4);
 
 		ServiceReference<?> rsfRef = serviceAwareF.getServiceReference();
 		Object modelNames = rsfRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
