@@ -74,10 +74,7 @@ public class DefaultResourceFactoryRegistryComponent {
 	}
 	
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY, target = "(|" + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE + "=* ) " + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_FILE_EXT + "=* ) " + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_PROTOCOL + "=* ) " + ")")
-//	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY, target = "(|" + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE + "=* ) " + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_FILE_EXT + "=* ) " + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_PROTOCOL + "=* ) " + ")" )
-//	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY)
 	public void addFactory(Factory factory, Map<String, Object> props) {
-		System.err.println("Adding Factory for " + props);
 		EMFResourceFactoryConfigurator configuration = Converters.standardConverter().convert(props).to(EMFResourceFactoryConfigurator.class);
 		Arrays.asList(configuration.contentType()).forEach(s -> registry.getContentTypeToFactoryMap().put(s, factory)); 
 		Arrays.asList(configuration.fileExtension()).forEach(s -> registry.getExtensionToFactoryMap().put(s, factory)); 
@@ -86,7 +83,6 @@ public class DefaultResourceFactoryRegistryComponent {
 	}
 	
 	public void removeFactory(Factory factory, Map<String, Object> props) {
-		System.err.println("Removing Factory for " + props);
 		EMFResourceFactoryConfigurator configuration = Converters.standardConverter().convert(props).to(EMFResourceFactoryConfigurator.class);
 		Arrays.asList(configuration.contentType()).forEach(registry.getContentTypeToFactoryMap()::remove); 
 		Arrays.asList(configuration.fileExtension()).forEach(registry.getExtensionToFactoryMap()::remove); 
