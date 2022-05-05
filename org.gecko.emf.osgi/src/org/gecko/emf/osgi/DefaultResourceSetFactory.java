@@ -216,6 +216,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @param ctx the component context
 	 */
 	protected void activate(ComponentContext ctx) {
+		
 		packageRegistry.putAll(EPackage.Registry.INSTANCE);
 		resourceFactoryRegistry.getExtensionToFactoryMap().putAll(Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap());
 		resourceFactoryRegistry.getContentTypeToFactoryMap().putAll(Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap());
@@ -246,6 +247,10 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 		if (rsRegistration != null) {
 			rsRegistration.unregister();
 			rsRegistration = null;
+		}
+		if (conditionRegistration != null) {
+			conditionRegistration.unregister();
+			conditionRegistration = null;
 		}
 	}
 	
@@ -337,15 +342,17 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * Updates the service registration properties
 	 */
 	protected void updateRegistrationProperties() {
-		Dictionary<String, Object> dictionary = getDictionary();
-		if (rsfRegistration != null) {
-			rsfRegistration.setProperties(copyDictionary(dictionary));
-		}
-		if (rsRegistration != null) {
-			rsRegistration.setProperties(copyDictionary(dictionary));
-		}
-		if (conditionRegistration != null) {
-			conditionRegistration.setProperties(copyDictionaryForCondition(dictionary));
+		if(rsfRegistration != null || rsRegistration != null || conditionRegistration != null) {
+			Dictionary<String, Object> dictionary = getDictionary();
+			if (rsfRegistration != null) {
+				rsfRegistration.setProperties(copyDictionary(dictionary));
+			}
+			if (rsRegistration != null) {
+				rsRegistration.setProperties(copyDictionary(dictionary));
+			}
+			if (conditionRegistration != null) {
+				conditionRegistration.setProperties(copyDictionaryForCondition(dictionary));
+			}
 		}
 	}
 
