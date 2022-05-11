@@ -34,7 +34,7 @@ import org.osgi.annotation.bundle.Requirement;
 })
 @Requirement(namespace = EMFNamespaces.EMF_NAMESPACE, //
 		name = ResourceSetFactory.EMF_CAPABILITY_NAME, //
-		version = ResourceSetFactory.GECKOPROKECTS_EMF_VERSION)
+		version = ResourceSetFactory.GECKOPROJECTS_EMF_VERSION)
 public @interface RequireEMF {
 
 }

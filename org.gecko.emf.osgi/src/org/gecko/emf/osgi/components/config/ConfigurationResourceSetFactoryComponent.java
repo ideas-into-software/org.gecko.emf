@@ -52,7 +52,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 @Capability(
 		namespace = EMFNamespaces.EMF_NAMESPACE,
 		name = ResourceSetFactory.EMF_CAPABILITY_NAME,
-		version = ResourceSetFactory.GECKOPROKECTS_EMF_VERSION
+		version = ResourceSetFactory.GECKOPROJECTS_EMF_VERSION
 		)
 
 @Requirement(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
