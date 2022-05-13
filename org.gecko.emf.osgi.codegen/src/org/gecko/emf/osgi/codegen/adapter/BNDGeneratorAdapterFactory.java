@@ -28,6 +28,7 @@ public class BNDGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory 
 		}
 	};
 
+	
 	@Override
 	public Adapter createGenPackageAdapter() {
 		if (genPackageGeneratorAdapter == null)
@@ -56,7 +57,10 @@ public class BNDGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory 
 	 */
 	@Override
 	public Adapter createGenModelAdapter() {
-		// TODO Auto-generated method stub
-		return super.createGenModelAdapter();
+		if (genModelGeneratorAdapter == null)
+		{
+			genModelGeneratorAdapter = new GeckoGenModelGeneratorAdapter(this);
+		} 
+		return genModelGeneratorAdapter;
 	}
 }
