@@ -1860,6 +1860,7 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 		<%=genOperation.getBody(genModel.getIndentation(stringBuffer))%>
   <%} else if (genOperation.isInvariant()) {GenClass opClass = genOperation.getGenClass(); String diagnostics = genOperation.getGenParameters().get(0).getName(); String context = genOperation.getGenParameters().get(1).getName();%>
     <%if (genOperation.hasInvariantExpression()) {%>
+    	//Note: This is currently untested. As this code generator does not have any static accessors like Literals or eINSTANCE, it may be that the eClass Accessor will not be correct. This may be the case with inherited classes. 
 		return
 			<%=opClass.getGenPackage().getImportedValidatorClassName()%>.validate
 				(<%=genClass.getQualifiedClassifierAccessor()%>,

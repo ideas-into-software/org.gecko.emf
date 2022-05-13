@@ -484,7 +484,7 @@ public class Class
   protected final String TEXT_465 = NL + "\t * @param ";
   protected final String TEXT_466 = NL + "\t *   ";
   protected final String TEXT_467 = NL + "\t{";
-  protected final String TEXT_468 = NL + "\t\treturn" + NL + "\t\t\t";
+  protected final String TEXT_468 = NL + "    \t//Note: This is currently untested. As this code generator does not have any static accessors like Literals or eINSTANCE, it may be that the eClass Accessor will not be correct. This may be the case with inherited classes. " + NL + "\t\treturn" + NL + "\t\t\t";
   protected final String TEXT_469 = ".validate" + NL + "\t\t\t\t(";
   protected final String TEXT_470 = "," + NL + "\t\t\t\t this," + NL + "\t\t\t\t ";
   protected final String TEXT_471 = "," + NL + "\t\t\t\t ";
