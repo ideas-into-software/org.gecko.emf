@@ -722,7 +722,7 @@ public interface <%=genPackage.getFactoryInterfaceName()%><%if (!genModel.isSupp
  <%}%>
 	public <%=genPackage.getImportedPackageInterfaceName()%> get<%=genPackage.getBasicPackageName()%>()
 	{
-		return (<%=genPackage.getImportedPackageInterfaceName()%>)getEPackage();
+		return ePackage;
 	}
 <%}%>
 } //<%=isInterface ? genPackage.getFactoryInterfaceName() : genPackage.getFactoryClassName()%>

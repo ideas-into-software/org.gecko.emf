@@ -217,9 +217,8 @@ public class FactoryClass
   protected final String TEXT_199 = " instanceValue);" + NL;
   protected final String TEXT_200 = NL + "\t/**" + NL + "\t * Returns the package supported by this factory." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the package supported by this factory." + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
   protected final String TEXT_201 = " get";
-  protected final String TEXT_202 = "()" + NL + "\t{" + NL + "\t\treturn (";
-  protected final String TEXT_203 = ")getEPackage();" + NL + "\t}";
-  protected final String TEXT_204 = NL + "} //";
+  protected final String TEXT_202 = "()" + NL + "\t{" + NL + "\t\treturn ePackage;" + NL + "\t}";
+  protected final String TEXT_203 = NL + "} //";
 
   public String generate(Object argument)
   {
@@ -1367,10 +1366,8 @@ public class FactoryClass
     stringBuffer.append(TEXT_201);
     stringBuffer.append(genPackage.getBasicPackageName());
     stringBuffer.append(TEXT_202);
-    stringBuffer.append(genPackage.getImportedPackageInterfaceName());
-    stringBuffer.append(TEXT_203);
     }
-    stringBuffer.append(TEXT_204);
+    stringBuffer.append(TEXT_203);
     stringBuffer.append(isInterface ? genPackage.getFactoryInterfaceName() : genPackage.getFactoryClassName());
     genModel.emitSortedImports();
     stringBuffer.append(TEXT_7);

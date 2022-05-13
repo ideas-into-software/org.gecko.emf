@@ -358,7 +358,7 @@ public abstract class GenClassifierImpl extends GenBaseImpl implements GenClassi
     return getGenPackage().isLiteralsInterface()
       ? getGenPackage().getImportedPackageInterfaceName() + ".Literals." + getClassifierID()
       : getGenModel().isOSGiCompatible() 
-      ? "((" + getGenPackage().getImportedPackageInterfaceName() + ") instanceEClass.getEPackage()).get" + getClassifierAccessorName() + "()"
+      ? "ePackage.get" + getClassifierAccessorName() + "()"
 	  : getGenPackage().getImportedPackageInterfaceName() + ".eINSTANCE.get" + getClassifierAccessorName() + "()";
   }
 
