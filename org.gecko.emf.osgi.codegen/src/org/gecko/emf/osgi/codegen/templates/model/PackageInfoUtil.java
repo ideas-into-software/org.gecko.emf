@@ -17,7 +17,7 @@ public class PackageInfoUtil
   protected final String TEXT_1 = "";
   protected final String TEXT_2 = "/*";
   protected final String TEXT_3 = NL + " * ";
-  protected final String TEXT_4 = NL + " */" + NL + "@org.osgi.annotation.versioning.Version(\"1.0.0\")" + NL + "@org.osgi.annotation.bundle.Export" + NL + "package ";
+  protected final String TEXT_4 = NL + " */" + NL + "@org.osgi.annotation.bundle.Export" + NL + "package ";
   protected final String TEXT_5 = ";";
 
   public String generate(Object argument)
