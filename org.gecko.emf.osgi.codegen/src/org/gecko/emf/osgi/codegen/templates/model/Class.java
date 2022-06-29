@@ -1357,7 +1357,7 @@ public class Class
     stringBuffer.append(TEXT_70);
     stringBuffer.append(genClass.getClassName());
     stringBuffer.append(TEXT_120);
-    if (genClass.getBaseGenClass() == null) {
+    if (genClass.getBaseGenClass() == null || genClass.getBaseGenClass().getEcoreClass().isInterface()) {
     stringBuffer.append(TEXT_121);
     } else if(genClass.getBaseGenClass().getGenPackage().getGenModel().isOSGiCompatible() && !genClass.getBaseGenClass().getGenPackage().isLiteralsInterface()){
     stringBuffer.append(TEXT_122);

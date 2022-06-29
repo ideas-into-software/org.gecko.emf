@@ -7,4 +7,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="TestWithEcoreDep" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass">
     <eStructuralFeatures xsi:type="ecore:EReference" name="aReference" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnInterface" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InterfaceImpl" eSuperTypes="#//AnInterface"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InterfaceWithExtendsImpl" eSuperTypes="#//AnInterface #//ExtendedAddress"/>
 </ecore:EPackage>

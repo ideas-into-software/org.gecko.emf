@@ -505,7 +505,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	 */
 	<%if (genModel.isPublicConstructors()) {%>public<%} else {%>protected<%}%> <%=genClass.getClassName()%>(EClass instanceEClass)
 	{
-    <%if (genClass.getBaseGenClass() == null) {%>
+    <%if (genClass.getBaseGenClass() == null || genClass.getBaseGenClass().getEcoreClass().isInterface()) {%>
 		super();
     <%} else if(genClass.getBaseGenClass().getGenPackage().getGenModel().isOSGiCompatible() && !genClass.getBaseGenClass().getGenPackage().isLiteralsInterface()){%>
 		super(instanceEClass.getESuperTypes().get(0));
