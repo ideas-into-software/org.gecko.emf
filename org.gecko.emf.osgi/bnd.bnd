@@ -15,6 +15,7 @@
 Export-Package: \
 	org.gecko.emf.osgi,\
 	org.gecko.emf.osgi.helper,\
+	org.gecko.emf.osgi.factory,\
 	org.gecko.emf.osgi.annotation.*
 
 # We shoudl consider deactivating this. For the Momemnt the Baselining is a bit harsch, e
