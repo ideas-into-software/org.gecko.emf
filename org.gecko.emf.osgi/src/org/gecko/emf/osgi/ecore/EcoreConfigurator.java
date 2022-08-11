@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.gecko.emf.osgi.EPackageConfigurator;
@@ -101,13 +100,11 @@ public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryC
 	public void unconfigureResourceFactory(Registry registry) {
 		registry.getExtensionToFactoryMap().remove("*");
 		registry.getExtensionToFactoryMap().remove("xmi");
-		registry.getExtensionToFactoryMap().remove("xml");
 		registry.getExtensionToFactoryMap().remove("ecore");
 		registry.getExtensionToFactoryMap().remove("emof");
 		registry.getContentTypeToFactoryMap().remove("org.eclipse.emf.ecore");
 		registry.getContentTypeToFactoryMap().remove("org.eclipse.emf.emof");
 		registry.getContentTypeToFactoryMap().remove("application/xmi");
-		registry.getContentTypeToFactoryMap().remove("application/xml");
 		registry.getContentTypeToFactoryMap().remove("application/octet-stream");
 	}
 

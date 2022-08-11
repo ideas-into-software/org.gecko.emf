@@ -23,4 +23,5 @@ src=${^src},src-gen
 		generate="geckoEMF 1>out.log 2>out.log";\
 		genmodel=model/basic.genmodel;\
 		output=src-gen;\
-		logFile=test.log
+		logFile=test.log;\
+		version=5.0

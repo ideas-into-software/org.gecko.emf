@@ -27,8 +27,9 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
+ * A {@link XMLResourceFactory} with some reasonable defaults.
  * 
- * @author ungei
+ * @author Juergen Albert
  * @since 22 Feb 2022
  */
 @Component
@@ -79,6 +80,4 @@ public class GeckoXMLResourceFactory extends XMLResourceFactoryImpl implements R
 		result.getDefaultLoadOptions().put(XMLResource.OPTION_USE_LEXICAL_HANDLER, Boolean.TRUE);
 		return result;
 	}
-
-	
 }
