@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @author Juergen Albert
  * @since 25.07.2017
  */
-public class GeckoEMFClassGeneratorAdapter extends GenClassGeneratorAdapter {
+public class GeckoGenClassGeneratorAdapter extends GenClassGeneratorAdapter {
 
 
 	protected static final int CLASS = 3;
@@ -42,7 +42,7 @@ public class GeckoEMFClassGeneratorAdapter extends GenClassGeneratorAdapter {
 					"org.gecko.emf.osgi.codegen.templates.model.Class")
 			};
 
-	public GeckoEMFClassGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
+	public GeckoGenClassGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
 		super(generatorAdapterFactory);
 	}
 

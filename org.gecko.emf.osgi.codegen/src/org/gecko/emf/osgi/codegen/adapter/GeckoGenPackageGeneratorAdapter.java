@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * @author Mark Hoffmann
  * @since 25.07.2017
  */
-public class ConfigurationComponentGeneratorAdapter extends GenPackageGeneratorAdapter {
+public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter {
 
 	protected static final int PACKAGE_OSGI_CONFIGURATION = 14;
 	protected static final int PACKAGE_INFO = 15;
@@ -46,6 +46,7 @@ public class ConfigurationComponentGeneratorAdapter extends GenPackageGeneratorA
 	protected static final int ADAPTER_FACTORY_CLASS = 21;
 	protected static final int SWITCH_CLASS = 22;
 	protected static final int EPACKAGE_CONFIGURATOR_CLASS = 23;
+	protected static final int GECKO_XML_PROCESSOR_CLASS_ID = 24;
 
 	private static final JETEmitterDescriptor[] JET_EMITTER_DESCRIPTORS = {
 			new JETEmitterDescriptor("model/ConfigComponent.javajet",
@@ -67,10 +68,12 @@ public class ConfigurationComponentGeneratorAdapter extends GenPackageGeneratorA
 			new JETEmitterDescriptor("model/SwitchClass.javajet",
 					"org.gecko.emf.osgi.codegen.templates.model.SwitchClass"),
 			new JETEmitterDescriptor("model/EPackageConfigurator.javajet",
-					"org.gecko.emf.osgi.codegen.templates.model.EPackageConfiguratorClass")
+					"org.gecko.emf.osgi.codegen.templates.model.EPackageConfiguratorClass"),
+			new JETEmitterDescriptor("model/XMLProcessorClass.javajet", 
+					"org.gecko.emf.osgi.codegen.templates.model.XMLProcessorClass")
 			};
 
-	public ConfigurationComponentGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
+	public GeckoGenPackageGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
 		super(generatorAdapterFactory);
 	}
 
@@ -332,6 +335,19 @@ public class ConfigurationComponentGeneratorAdapter extends GenPackageGeneratorA
 					getJETEmitter(getJETEmitterDescriptors(), PACKAGE_INFO_IMPL),
 					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
 					createMonitor(monitor, 1));
+		} else {
+			monitor.worked(1);
+		}
+	}
+	
+	protected void generateXMLProcessorClass(GenPackage genPackage, Monitor monitor) {
+		if (genPackage.hasClassifiers() && genPackage.getResource().getValue() == GenResourceKind.XML) {
+			message = CodeGenEcorePlugin.INSTANCE.getString("_UI_GeneratingJavaClass_message",
+					new Object[] { genPackage.getQualifiedXMLProcessorClassName() });
+			monitor.subTask(message);
+			generateJava(genPackage.getGenModel().getModelDirectory(), genPackage.getUtilitiesPackageName(),
+					genPackage.getXMLProcessorClassName(),
+					getJETEmitter(getJETEmitterDescriptors(), GECKO_XML_PROCESSOR_CLASS_ID), null, createMonitor(monitor, 1));
 		} else {
 			monitor.worked(1);
 		}

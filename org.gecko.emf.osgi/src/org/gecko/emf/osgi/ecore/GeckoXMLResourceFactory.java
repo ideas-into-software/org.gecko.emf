@@ -43,7 +43,7 @@ public class GeckoXMLResourceFactory extends XMLResourceFactoryImpl implements R
 	 * Creates a new instance.
 	 */
 	@Activate
-	public GeckoXMLResourceFactory(@Reference(target = "(component.name=" +  DefaultEPackageRegistryComponent.NAME + ")") EPackage.Registry registry) {
+	public GeckoXMLResourceFactory(@Reference(name = "EPackageRegistry", target = "(component.name=" +  DefaultEPackageRegistryComponent.NAME + ")") EPackage.Registry registry) {
 		this.registry = registry;
 	}
 	

@@ -1,0 +1,95 @@
+<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.*" class="XMLProcessorClass"%>
+<%
+/**
+ * Copyright (c) 2005-2006 IBM Corporation and others. 
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v2.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v20.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ */
+%>
+<%GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();%>
+<%final boolean isJDK50 = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50;%>
+<%@ include file="Header.javajetinc"%>
+package <%=genPackage.getUtilitiesPackageName()%>;
+
+<%genModel.getImportedName("java.util.Map");%>
+<%genModel.markImportLocation(stringBuffer);%>
+
+/**
+ * This class contains helper methods to serialize and deserialize XML documents
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
+<%if (genPackage.hasAPITags()) {%>
+ * <%=genPackage.getAPITags(genModel.getIndentation(stringBuffer))%>
+<%}%>
+ * @generated
+ */
+<%if (isJDK50 && genPackage.hasAPIDeprecatedTag()) {%>
+@Deprecated
+<%}%>
+@<%=genModel.getImportedName("org.osgi.service.component.annotations.Component")%>( name = <%=genModel.getImportedName(genPackage.getQualifiedPackageInterfaceName())%>.eNAME + "XMLProcessor", service = <%=genPackage.getXMLProcessorClassName()%>.class, scope = <%=genModel.getImportedName("org.osgi.service.component.annotations.ServiceScope")%>.SINGLETON)
+public class <%=genPackage.getXMLProcessorClassName()%> extends <%=genPackage.getImportedXMLProcessorBaseClassName()%>
+{
+<%if (genModel.hasCopyrightField()) {%>
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final <%=genModel.getImportedName("java.lang.String")%> copyright = <%=genModel.getCopyrightFieldLiteral()%>;<%=genModel.getNonNLS()%>
+
+<%}%>
+
+	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Reference")%>
+	private <%=genPackage.getResourceFactoryClassName()%> resourceFactory; 
+
+<% boolean special = (genPackage.hasExtendedMetaData() && !genPackage.hasTargetNamespace()); %>
+
+	/**
+	 * Public constructor to instantiate the helper.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Activate")%>
+	public <%=genPackage.getXMLProcessorClassName()%>(
+		@<%=genModel.getImportedName("org.osgi.service.component.annotations.Reference")%>(name = "EPackageRegistry", target = "(component.name=DefaultEPackageRegistry)") <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry registry<%if (special) {%>,<%}%>
+<%if (special) {%>
+		@<%=genModel.getImportedName("org.osgi.service.component.annotations.Reference")%>(name = <%=genPackage.getImportedPackageInterfaceName()%>.eName) <%=genPackage.getImportedPackageInterfaceName()%> the<%=genPackage.getImportedPackageInterfaceName()%>
+		)
+	{
+		super(new <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.EPackageRegistryImpl")%>(registry));
+		extendedMetaData.putPackage(null, the<%=genPackage.getImportedPackageInterfaceName()%>);
+<%} else {%>
+		)
+	{
+		super(registry);
+<%}%>
+	}
+	
+	/**
+	 * Register for "*" and "xml" file extensions the <%=genPackage.getResourceFactoryClassName()%> factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+  <%if (genModel.useClassOverrideAnnotation()) {%>
+	@Override
+  <%}%>
+	protected Map<%if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) {%><<%=genModel.getImportedName("java.lang.String")%>, <%=genModel.getImportedName("org.eclipse.emf.ecore.resource.Resource")%>.Factory><%}%> getRegistrations()
+	{
+		if (registrations == null)
+		{
+			super.getRegistrations();
+			registrations.put(XML_EXTENSION, resourceFactory);
+			registrations.put(STAR_EXTENSION, resourceFactory);
+		}
+		return registrations;
+	}
+
+} //<%=genPackage.getXMLProcessorClassName()%>
+<%genModel.emitSortedImports();%>

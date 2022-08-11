@@ -33,7 +33,7 @@ public class BNDGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory 
 	public Adapter createGenPackageAdapter() {
 		if (genPackageGeneratorAdapter == null)
 		{
-			genPackageGeneratorAdapter = new ConfigurationComponentGeneratorAdapter(this);
+			genPackageGeneratorAdapter = new GeckoGenPackageGeneratorAdapter(this);
 		}
 		return genPackageGeneratorAdapter;
 	}
@@ -46,7 +46,7 @@ public class BNDGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory 
 	public Adapter createGenClassAdapter() {
 		if (genClassGeneratorAdapter == null)
 		{
-			genClassGeneratorAdapter = new GeckoEMFClassGeneratorAdapter(this);
+			genClassGeneratorAdapter = new GeckoGenClassGeneratorAdapter(this);
 		} 
 		return genClassGeneratorAdapter;
 	}

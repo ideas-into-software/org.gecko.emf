@@ -32,7 +32,9 @@ package <%=genPackage.getUtilitiesPackageName()%>;
 <%}%>
  * @generated
  */
- @<%=genModel.getImportedName("org.osgi.service.component.annotations.Component")%>( name = <%=genPackage.getPackageInterfaceName()%>.eNAME + "Factory", service = Resource.Factory.class, scope = <%=genModel.getImportedName("org.osgi.service.component.annotations.ServiceScope")%>.SINGLETON)
+ @<%=genModel.getImportedName("org.osgi.service.component.annotations.Component")%>( name = <%=genPackage.getPackageInterfaceName()%>.eNAME + "Factory", service = Resource.Factory.class, scope = <%=genModel.getImportedName("org.osgi.service.component.annotations.ServiceScope")%>.SINGLETON,
+ 	reference = @<%=genModel.getImportedName("org.osgi.service.component.annotations.Reference")%>( name = <%=genPackage.getPackageInterfaceName()%>.eNAME + "Package", service = <%=genPackage.getPackageInterfaceName()%>.class, cardinality = <%=genModel.getImportedName("org.osgi.service.component.annotations.ReferenceCardinality")%>.MANDATORY)
+ )
  @ProvideEMFResourceConfigurator( name = <%=genPackage.getPackageInterfaceName()%>.eNAME,
 <%if (genPackage.getContentTypeIdentifier() != null) {%>
 	contentType = { "<%=genPackage.getContentTypeIdentifier()%>" },
