@@ -48,6 +48,7 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 	protected static final int SWITCH_CLASS = 22;
 	protected static final int EPACKAGE_CONFIGURATOR_CLASS = 23;
 	protected static final int GECKO_XML_PROCESSOR_CLASS_ID = 24;
+	protected static final int GECKO_VALIDATOR_CLASS_ID = 25;
 
 	private static final JETEmitterDescriptor[] JET_EMITTER_DESCRIPTORS = {
 			new JETEmitterDescriptor("model/ConfigComponent.javajet",
@@ -71,7 +72,9 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 			new JETEmitterDescriptor("model/EPackageConfigurator.javajet",
 					"org.gecko.emf.osgi.codegen.templates.model.EPackageConfiguratorClass"),
 			new JETEmitterDescriptor("model/XMLProcessorClass.javajet", 
-					"org.gecko.emf.osgi.codegen.templates.model.XMLProcessorClass")
+					"org.gecko.emf.osgi.codegen.templates.model.XMLProcessorClass"),
+			new JETEmitterDescriptor("model/ValidatorClass.javajet", 
+					"org.gecko.emf.osgi.codegen.templates.model.ValidatorClass")
 			};
 
 	public GeckoGenPackageGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
@@ -110,7 +113,6 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 		generatePackagePublication(genPackage, monitor);
 		generatePackageSerialization(genPackage, monitor);
 		generateXMLProcessorClass(genPackage, monitor);
-		generateValidatorClass(genPackage, monitor);
 		generateResourceClass(genPackage, monitor);
 		if(genModel.isOSGiCompatible()) {
 			generatePackageInfo(genPackage, monitor);
@@ -127,6 +129,7 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 			generateResourceFactoryClass(genPackage, monitor);
 			generateSwitchClass(genPackage, monitor);
 			generateAdapterFactoryClass(genPackage, monitor);
+			generateValidatorClass(genPackage, monitor);
 		} else {
 			super.generatePackageInterface(genPackage, monitor);
 			super.generatePackageClass(genPackage, monitor);
@@ -135,6 +138,7 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 			super.generateResourceFactoryClass(genPackage, monitor);
 			super.generateSwitchClass(genPackage, monitor);
 			super.generateAdapterFactoryClass(genPackage, monitor);
+			super.generateValidatorClass(genPackage, monitor);
 		}
 
 		return Diagnostic.OK_INSTANCE;
@@ -354,6 +358,23 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 		}
 	}
 
+	/* 
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.codegen.ecore.genmodel.generator.GenPackageGeneratorAdapter#generateValidatorClass(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.emf.common.util.Monitor)
+	 */
+	protected void generateValidatorClass(GenPackage genPackage, Monitor monitor) {
+		if (genPackage.hasClassifiers() && genPackage.hasConstraints()) {
+			message = CodeGenEcorePlugin.INSTANCE.getString("_UI_GeneratingJavaClass_message",
+					new Object[] { genPackage.getQualifiedValidatorClassName() });
+			monitor.subTask(message);
+			generateJava(genPackage.getGenModel().getModelDirectory(), genPackage.getUtilitiesPackageName(),
+					genPackage.getValidatorClassName(), getJETEmitter(getJETEmitterDescriptors(), GECKO_VALIDATOR_CLASS_ID),
+					null, createMonitor(monitor, 1));
+		} else {
+			monitor.worked(1);
+		}
+	}
+	
 	/**
 	 * Returns the configuration component package name
 	 * 

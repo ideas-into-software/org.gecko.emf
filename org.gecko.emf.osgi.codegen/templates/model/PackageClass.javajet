@@ -411,7 +411,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
  <%}%>
 				 public <%=genModel.getImportedName("org.eclipse.emf.ecore.EValidator")%> getEValidator()
 				 {
-					 return <%=genPackage.getImportedValidatorClassName()%>.INSTANCE;
+					 return new <%=genPackage.getImportedValidatorClassName()%>(<%=genPackage.getPackageClassName()%>.this);
 				 }
 			 });
 
