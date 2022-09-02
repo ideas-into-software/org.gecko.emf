@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+import org.gecko.emf.osgi.codegen.templates.model.helper.Dependencies;
 
 /**
  * EMF codegen generator adapter that is responsible to generate the OSGi
@@ -100,7 +101,7 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 		
 		GenModel genModel = genPackage.getGenModel();
 
-		boolean doPureOSGi = (genModel.isOSGiCompatible() & !genPackage.isLiteralsInterface());
+		boolean doPureOSGi = Dependencies.isPureOSGi(genPackage);
 		
 		ensureProjectExists(genModel.getModelDirectory(), genPackage, MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(),
 				createMonitor(monitor, 1));

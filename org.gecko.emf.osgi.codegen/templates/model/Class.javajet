@@ -1042,7 +1042,8 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 <%@ include file="Class/getGenFeature.TODO.override.javajetinc" fail="alternative" %>
 <%@ start %>
 		// TODO: implement this method to return the '<%=genFeature.getFormattedName()%>' <%=genFeature.getFeatureKind()%>
-		// Ensure that you remove @generated or mark it @generated NOT
+		// Please add an annotation to your model with the source http://www.eclipse.org/emf/2002/GenModel and an entry 
+		// with the key <code>body</code> and your code as the value. With this your code will be generated with the next run.
         <%if (genFeature.isListType()) {%>
 		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
 		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.<%if (genFeature.isMapType()) {%>EcoreEMap<%} else if (genFeature.isFeatureMapType()) {%>BasicFeatureMap<%} else {%>EcoreEList<%}%> should be used.
@@ -1649,7 +1650,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 <%@ include file="Class/unsetGenFeature.TODO.override.javajetinc" fail="alternative" %>
 <%@ start %>
 		// TODO: implement this method to unset the '<%=genFeature.getFormattedName()%>' <%=genFeature.getFeatureKind()%>
-		// Ensure that you remove @generated or mark it @generated NOT
+		// NOTE: The bnd code generator will delete the file on regeneration, so generate NOT does not take affact. 
+		// Please add an annotation to your model with the source http://www.eclipse.org/emf/2002/GenModel and an entry 
+		// with the key <code>body</code> and your code as the value. With this your code will be generated with the next run.  
 		throw new UnsupportedOperationException();
 <%@ end %><%//Class/unsetGenFeature.todo.override.javajetinc%>
     <%}%>
@@ -1741,7 +1744,8 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 <%@ include file="Class/isSetGenFeature.TODO.override.javajetinc" fail="alternative" %>
 <%@ start %>
 		// TODO: implement this method to return whether the '<%=genFeature.getFormattedName()%>' <%=genFeature.getFeatureKind()%> is set
-		// Ensure that you remove @generated or mark it @generated NOT
+		// Please add an annotation to your model with the source http://www.eclipse.org/emf/2002/GenModel and an entry 
+		// with the key <code>body</code> and your code as the value. With this your code will be generated with the next run.
 		throw new UnsupportedOperationException();
 <%@ end %><%//Class/isSetGenFeature.todo.override.javajetinc%>
     <%}%>
@@ -1877,7 +1881,8 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
-		// Ensure that you remove @generated or mark it @generated NOT
+		// Please add an annotation to your model with the source http://www.eclipse.org/emf/2002/GenModel and an entry 
+		// with the key <code>body</code> and your code as the value. With this your code will be generated with the next run.
 		if (false)
 		{
 			if (<%=diagnostics%> != null)
@@ -1911,7 +1916,8 @@ if (index != -1) { head = typeName.substring(0, index); tail = "<code>" + CodeGe
 <%@ include file="Class/implementedGenOperation.TODO.override.javajetinc" fail="alternative" %>
 <%@ start %>
 		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
+		// Please add an annotation to your model with the source http://www.eclipse.org/emf/2002/GenModel and an entry 
+		// with the key <code>body</code> and your code as the value. With this your code will be generated with the next run.
 		throw new UnsupportedOperationException();
 <%@ end %><%//Class/implementedGenOperation.todo.override.javajetinc%>
   <%}%>
