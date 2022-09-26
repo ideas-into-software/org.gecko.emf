@@ -1,4 +1,4 @@
-<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.ecore.EFactory org.gecko.emf.osgi.EPackageConfigurator java.util.Hashtable org.osgi.service.condition.Condition" class="ConfigurationComponentClass"%>
+<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.ecore.EFactory org.gecko.emf.osgi.EPackageConfigurator java.util.Hashtable org.osgi.service.condition.Condition java.util.Set java.util.HashSet org.gecko.emf.osgi.ResourceSetFactory" class="ConfigurationComponentClass"%>
 <%final GenPackage genPackage = (GenPackage)((Object[])argument)[0]; final GenModel genModel=genPackage.getGenModel();%>
 <%@ include file="Header.javajetinc"%>
 package <%=genPackage.getInterfacePackageName()%>.configuration;
@@ -11,34 +11,47 @@ package <%=genPackage.getInterfacePackageName()%>.configuration;
 <%genModel.addImport(genPackage.getQualifiedFactoryInterfaceName());%>
 
 /**
- * <!-- begin-user-doc -->
  * The <b>PackageConfiguration</b> for the model.
  * The package will be registered into a OSGi base model registry.
- * <!-- end-user-doc -->
+ * 
  * @generated
  */
-@Component(name = "<%=genPackage.getPrefix()%>Configurator")
+@Component(name = "<%=genPackage.getPrefix()%>Configurator",
+ 	reference = @<%=genModel.getImportedName("org.osgi.service.component.annotations.Reference")%>( name = "ResourceSetFactory", service = <%=ResourceSetFactory.class.getName()%>.class, cardinality = <%=genModel.getImportedName("org.osgi.service.component.annotations.ReferenceCardinality")%>.MANDATORY)
+ )
 @<%=genModel.getImportedName("org.osgi.annotation.bundle.Capability")%>( namespace = "osgi.service", attribute = { "objectClass:List<String>=\"<%=genPackage.getQualifiedFactoryInterfaceName()%>, org.eclipse.emf.ecore.EFactory\"" , "uses:=org.eclipse.emf.ecore,<%=genPackage.getInterfacePackageName()%>" })
 @<%=genModel.getImportedName("org.osgi.annotation.bundle.Capability")%>( namespace = "osgi.service", attribute = { "objectClass:List<String>=\"<%=genPackage.getQualifiedPackageInterfaceName()%>, org.eclipse.emf.ecore.EPackage\"" , "uses:=org.eclipse.emf.ecore,<%=genPackage.getInterfacePackageName()%>" })
 @<%=genModel.getImportedName("org.osgi.annotation.bundle.Capability")%>( namespace = "osgi.service", attribute = { "objectClass:List<String>=\"<%=EPackageConfigurator.class.getName()%>\"" , "uses:=org.eclipse.emf.ecore,<%=genPackage.getInterfacePackageName()%>" })
+@<%=genModel.getImportedName("org.osgi.annotation.bundle.Capability")%>( namespace = "osgi.service", attribute = { "objectClass:List<String>=\"<%=Condition.class.getName()%>\"" , "uses:=org.osgi.service.condition" })
 public class <%=genPackage.getPrefix()%>ConfigurationComponent
 {
+	
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> packageRegistration = null;
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><<%=genModel.getImportedName("org.gecko.emf.osgi.EPackageConfigurator")%>> ePackageConfiguratorRegistration = null;
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> eFactoryRegistration = null;
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> conditionRegistration = null;
 
+	/**
+	 * Activates the Configuration Component.
+	 *
+	 * @generated
+	 */
 	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Activate")%>
 	public void activate(BundleContext ctx) {
 		<%=genPackage.getPackageInterfaceName()%> ePackage = <%=genModel.getImportedName(genPackage.getQualifiedPackageClassName())%>.init();
 		
-		<%=genPackage.getPrefix()%>EPackageConfigurator packageConfigurator = registerEPackageConfigurator(ePackage, ctx);
-		registerEPackage(ePackage, packageConfigurator, ctx);
-		registerEFactory(ePackage, packageConfigurator, ctx);
-		registerCondition(packageConfigurator, ctx);
+		<%=genPackage.getPrefix()%>EPackageConfigurator packageConfigurator = registerEPackageConfiguratorService(ePackage, ctx);
+		registerEPackageService(ePackage, packageConfigurator, ctx);
+		registerEFactoryService(ePackage, packageConfigurator, ctx);
+		registerConditionService(packageConfigurator, ctx);
 	}
-
-	private <%=genPackage.getPrefix()%>EPackageConfigurator registerEPackageConfigurator(<%=genPackage.getPackageInterfaceName()%> ePackage, BundleContext ctx){
+	
+	/**
+	 * Registers the <%=genPackage.getPrefix()%>EPackageConfigurator as a service.
+	 *
+	 * @generated
+	 */
+	private <%=genPackage.getPrefix()%>EPackageConfigurator registerEPackageConfiguratorService(<%=genPackage.getPackageInterfaceName()%> ePackage, BundleContext ctx){
 		<%=genPackage.getPrefix()%>EPackageConfigurator packageConfigurator = new <%=genPackage.getPrefix()%>EPackageConfigurator(ePackage);
 		// register the EPackageConfigurator
 		<%=genModel.getImportedName(Hashtable.class.getName())%><String, Object> properties = new <%=genModel.getImportedName(Hashtable.class.getName())%><String, Object>();
@@ -48,23 +61,31 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 		return packageConfigurator;
 	}
 
-	private void registerEPackage(<%=genPackage.getPackageInterfaceName()%> ePackage, EPackageConfigurator packageConfigurator, BundleContext ctx){
-		// register the EPackage
+	/**
+	 * Registers the <%=genPackage.getPackageInterfaceName()%> as a service.
+	 *
+	 * @generated
+	 */
+	private void registerEPackageService(<%=genPackage.getPackageInterfaceName()%> ePackage, EPackageConfigurator packageConfigurator, BundleContext ctx){
 		<%=genModel.getImportedName(Hashtable.class.getName())%><String, Object> properties = new <%=genModel.getImportedName(Hashtable.class.getName())%><String, Object>();
 		properties.putAll(packageConfigurator.getServiceProperties());
 		String[] serviceClasses = new String[] {<%=genPackage.getPackageInterfaceName()%>.class.getName(), <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.class.getName()};
 		packageRegistration = ctx.registerService(serviceClasses, ePackage, properties);
 	}
 
-	private void registerEFactory(<%=genPackage.getPackageInterfaceName()%> ePackage, EPackageConfigurator packageConfigurator, BundleContext ctx){
-		// register the EPackage
+	/**
+	 * Registers the <%=genPackage.getFactoryInterfaceName()%> as a service.
+	 *
+	 * @generated
+	 */
+	private void registerEFactoryService(<%=genPackage.getPackageInterfaceName()%> ePackage, EPackageConfigurator packageConfigurator, BundleContext ctx){
 		<%=genModel.getImportedName(Hashtable.class.getName())%><String, Object> properties = new <%=genModel.getImportedName(Hashtable.class.getName())%><String, Object>();
 		properties.putAll(packageConfigurator.getServiceProperties());
 		String[] serviceClasses = new String[] {<%=genPackage.getFactoryInterfaceName()%>.class.getName(), <%=genModel.getImportedName(EFactory.class.getName())%>.class.getName()};
 		eFactoryRegistration = ctx.registerService(serviceClasses, ePackage.get<%=genPackage.getFactoryName()%>(), properties);
 	}
 
-	private void registerCondition(EPackageConfigurator packageConfigurator, BundleContext ctx){
+	private void registerConditionService(EPackageConfigurator packageConfigurator, BundleContext ctx){
 		// register the EPackage
 		<%=genModel.getImportedName(Hashtable.class.getName())%><String, Object> properties = new <%=genModel.getImportedName(Hashtable.class.getName())%><String, Object>();
 		properties.putAll(packageConfigurator.getServiceProperties());
@@ -72,7 +93,11 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 		conditionRegistration = ctx.registerService(<%=genModel.getImportedName(Condition.class.getName())%>.class, <%=genModel.getImportedName(Condition.class.getName())%>.INSTANCE, properties);
 	}
 
-	
+	/**
+	 * Deactivates and unregisteres everything.
+	 *
+	 * @generated
+	 */
 	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Deactivate")%>
 	public void deactivate() {
 		conditionRegistration.unregister();

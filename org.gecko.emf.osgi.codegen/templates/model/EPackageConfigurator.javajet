@@ -29,7 +29,7 @@ public class <%=genPackage.getPrefix()%>EPackageConfigurator implements EPackage
 		this.ePackage = ePackage;
 	}
 	
-	/* 
+	/**
 	 * (non-Javadoc)
 	 * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
 	 * @generated
@@ -39,7 +39,7 @@ public class <%=genPackage.getPrefix()%>EPackageConfigurator implements EPackage
 		registry.put(<%=genPackage.getPackageInterfaceName()%>.eNS_URI, ePackage);
 	}
 	
-	/* 
+	/**
 	 * (non-Javadoc)
 	 * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)
 	 * @generated
@@ -49,7 +49,7 @@ public class <%=genPackage.getPrefix()%>EPackageConfigurator implements EPackage
 		registry.remove(<%=genPackage.getPackageInterfaceName()%>.eNS_URI);
 	}
 	
-		/* 
+	/**
 	 * (non-Javadoc)
 	 * @see org.gecko.emf.osgi.EPackageConfigurator#getServiceProperties()
 	 * @generated
