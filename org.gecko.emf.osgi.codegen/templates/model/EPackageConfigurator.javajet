@@ -1,7 +1,7 @@
 <%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.*" class="EPackageConfiguratorClass"%>
 <%final GenPackage genPackage = (GenPackage)((Object[])argument)[0]; final GenModel genModel=genPackage.getGenModel();%>
 <%@ include file="Header.javajetinc"%>
-package <%=genPackage.getInterfacePackageName()%>.impl;
+package <%=genPackage.getInterfacePackageName()%>.configuration;
 
 <%genModel.markImportLocation(stringBuffer, genPackage);%>
 <%genModel.addImport("org.gecko.emf.osgi.EPackageConfigurator");%>
@@ -47,6 +47,24 @@ public class <%=genPackage.getPrefix()%>EPackageConfigurator implements EPackage
 	@Override
 	public void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {
 		registry.remove(<%=genPackage.getPackageInterfaceName()%>.eNS_URI);
+	}
+	
+		/* 
+	 * (non-Javadoc)
+	 * @see org.gecko.emf.osgi.EPackageConfigurator#getServiceProperties()
+	 * @generated
+	 */
+	@Override
+	public <%=genModel.getImportedName("java.util.Map")%><String, Object> getServiceProperties() {
+		<%=genModel.getImportedName("java.util.Map")%><String, Object> properties = new <%=genModel.getImportedName("java.util.HashMap")%><String, Object>();
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_NAME, <%=genPackage.getPackageInterfaceName()%>.eNAME);
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_NSURI, <%=genPackage.getPackageInterfaceName()%>.eNS_URI);
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_FILE_EXT, "<%=genPackage.getFileExtension()%>");
+    <% if (genPackage.getContentTypeIdentifier() != null) {%>
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_CONTENT_TYPE, "<%=genPackage.getContentTypeIdentifier()%>");
+    <%}%>
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_CONFIGURATOR_VERSION, "1.0");
+		return properties;
 	}
 }
 <%genModel.emitSortedImports();%>

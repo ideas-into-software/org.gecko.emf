@@ -40,19 +40,6 @@ public class BNDGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory 
 	
 	/* 
 	 * (non-Javadoc)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory#createGenClassAdapter()
-	 */
-	@Override
-	public Adapter createGenClassAdapter() {
-		if (genClassGeneratorAdapter == null)
-		{
-			genClassGeneratorAdapter = new GeckoGenClassGeneratorAdapter(this);
-		} 
-		return genClassGeneratorAdapter;
-	}
-	
-	/* 
-	 * (non-Javadoc)
 	 * @see org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory#createGenModelAdapter()
 	 */
 	@Override

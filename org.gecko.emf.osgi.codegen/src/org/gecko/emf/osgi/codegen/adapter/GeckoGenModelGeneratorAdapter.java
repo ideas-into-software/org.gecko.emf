@@ -17,8 +17,9 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
 
 /**
+ * Used to avoid the PDE specific Files
  * 
- * @author ungei
+ * @author Juergen Albert
  * @since 13 May 2022
  */
 public class GeckoGenModelGeneratorAdapter extends GenModelGeneratorAdapter {

@@ -11,7 +11,8 @@ src=${^src},src-gen
 	org.osgi.framework,\
 	org.gecko.emf.osgi.api,\
 	osgi.cmpn,\
-	org.gecko.emf.osgi.codegen
+	org.gecko.emf.osgi.codegen,\
+	org.osgi.service.condition
 
 -includeresource.model: model=model
 

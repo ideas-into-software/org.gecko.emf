@@ -11,6 +11,9 @@
  */
 package org.gecko.emf.osgi;
 
+import java.util.List;
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EPackage;
 
 /**
@@ -33,5 +36,13 @@ public interface EPackageConfigurator {
 	 * @param registry the registry to un-configure
 	 */
 	public void unconfigureEPackage(EPackage.Registry registry);
+	
+	/**
+	 * The content of this method is usually generated for you, but it can be overwritten to add additional properties or modify the generated ones.
+	 * @return a {@link List} of Service properties to return. They will be used to register any model related service. 
+	 */
+	public default Map<String, Object> getServiceProperties(){
+		return null;
+	}
 
 }

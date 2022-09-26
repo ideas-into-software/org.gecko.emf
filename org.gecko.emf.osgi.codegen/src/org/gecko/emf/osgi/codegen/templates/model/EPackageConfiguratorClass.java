@@ -18,7 +18,7 @@ public class EPackageConfiguratorClass
   protected final String TEXT_2 = "/*";
   protected final String TEXT_3 = NL + " * ";
   protected final String TEXT_4 = NL + " */" + NL + "package ";
-  protected final String TEXT_5 = ".impl;" + NL;
+  protected final String TEXT_5 = ".configuration;" + NL;
   protected final String TEXT_6 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>EPackageConfiguration</b> and <b>ResourceFactoryConfigurator</b> for the model." + NL + " * The package will be registered into a OSGi base model registry." + NL + " * <!-- end-user-doc -->";
   protected final String TEXT_7 = NL + " * <!-- begin-model-doc -->" + NL + " * ";
   protected final String TEXT_8 = NL + " * <!-- end-model-doc -->";
@@ -28,7 +28,19 @@ public class EPackageConfiguratorClass
   protected final String TEXT_12 = "EPackageConfigurator(";
   protected final String TEXT_13 = " ePackage){" + NL + "\t\tthis.ePackage = ePackage;" + NL + "\t}" + NL + "\t" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void configureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {" + NL + "\t\tregistry.put(";
   protected final String TEXT_14 = ".eNS_URI, ePackage);" + NL + "\t}" + NL + "\t" + NL + "\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {" + NL + "\t\tregistry.remove(";
-  protected final String TEXT_15 = ".eNS_URI);" + NL + "\t}" + NL + "}";
+  protected final String TEXT_15 = ".eNS_URI);" + NL + "\t}" + NL + "\t" + NL + "\t\t/* " + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.gecko.emf.osgi.EPackageConfigurator#getServiceProperties()" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic ";
+  protected final String TEXT_16 = "<String, Object> getServiceProperties() {" + NL + "\t\t";
+  protected final String TEXT_17 = "<String, Object> properties = new ";
+  protected final String TEXT_18 = "<String, Object>();" + NL + "\t\tproperties.put(";
+  protected final String TEXT_19 = ".EMF_MODEL_NAME, ";
+  protected final String TEXT_20 = ".eNAME);" + NL + "\t\tproperties.put(";
+  protected final String TEXT_21 = ".EMF_MODEL_NSURI, ";
+  protected final String TEXT_22 = ".eNS_URI);" + NL + "\t\tproperties.put(";
+  protected final String TEXT_23 = ".EMF_MODEL_FILE_EXT, \"";
+  protected final String TEXT_24 = "\");";
+  protected final String TEXT_25 = NL + "\t\tproperties.put(";
+  protected final String TEXT_26 = ".EMF_MODEL_CONTENT_TYPE, \"";
+  protected final String TEXT_27 = ".EMF_CONFIGURATOR_VERSION, \"1.0\");" + NL + "\t\treturn properties;" + NL + "\t}" + NL + "}";
 
   public String generate(Object argument)
   {
@@ -66,6 +78,34 @@ public class EPackageConfiguratorClass
     stringBuffer.append(TEXT_14);
     stringBuffer.append(genPackage.getPackageInterfaceName());
     stringBuffer.append(TEXT_15);
+    stringBuffer.append(genModel.getImportedName("java.util.Map"));
+    stringBuffer.append(TEXT_16);
+    stringBuffer.append(genModel.getImportedName("java.util.Map"));
+    stringBuffer.append(TEXT_17);
+    stringBuffer.append(genModel.getImportedName("java.util.HashMap"));
+    stringBuffer.append(TEXT_18);
+    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces"));
+    stringBuffer.append(TEXT_19);
+    stringBuffer.append(genPackage.getPackageInterfaceName());
+    stringBuffer.append(TEXT_20);
+    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces"));
+    stringBuffer.append(TEXT_21);
+    stringBuffer.append(genPackage.getPackageInterfaceName());
+    stringBuffer.append(TEXT_22);
+    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces"));
+    stringBuffer.append(TEXT_23);
+    stringBuffer.append(genPackage.getFileExtension());
+    stringBuffer.append(TEXT_24);
+     if (genPackage.getContentTypeIdentifier() != null) {
+    stringBuffer.append(TEXT_25);
+    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces"));
+    stringBuffer.append(TEXT_26);
+    stringBuffer.append(genPackage.getContentTypeIdentifier());
+    stringBuffer.append(TEXT_24);
+    }
+    stringBuffer.append(TEXT_25);
+    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces"));
+    stringBuffer.append(TEXT_27);
     genModel.emitSortedImports();
     return stringBuffer.toString();
   }
