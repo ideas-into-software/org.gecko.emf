@@ -117,7 +117,6 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 			} else {
 				output = context.getFile(OUTPUT_DEFAULT);
 			}
-			info("Am I the right Version?");
 			info("Output configured: " + genFolder);
 			info("Output result: " + output);
 			output.mkdirs();
