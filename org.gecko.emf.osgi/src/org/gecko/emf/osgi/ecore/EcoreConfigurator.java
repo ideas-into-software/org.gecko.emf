@@ -85,6 +85,8 @@ public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryC
 	
 	@Override
 	public void configureResourceFactory(Registry registry) {
+		registry.getProtocolToFactoryMap().put("http", new XMIResourceFactoryImpl());
+		registry.getProtocolToFactoryMap().put("https", new XMIResourceFactoryImpl());
 		registry.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 		registry.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		registry.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
@@ -98,6 +100,8 @@ public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryC
 
 	@Override
 	public void unconfigureResourceFactory(Registry registry) {
+		registry.getProtocolToFactoryMap().remove("http");
+		registry.getProtocolToFactoryMap().remove("https");
 		registry.getExtensionToFactoryMap().remove("*");
 		registry.getExtensionToFactoryMap().remove("xmi");
 		registry.getExtensionToFactoryMap().remove("ecore");
