@@ -20,6 +20,9 @@ Export-Package: \
 	
 -dependson: org.gecko.emf.osgi.codegen
 
+Require-Capability: \
+	osgi.extender;\
+	filter:="(osgi.extender=emf.model)"
 #-generate:\
 #	model/manual.genmodel;\
 #		generate="geckoEMF 1>out.log 2>err.log";\

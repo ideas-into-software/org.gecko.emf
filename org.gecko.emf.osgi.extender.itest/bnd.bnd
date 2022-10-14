@@ -1,0 +1,12 @@
+-buildpath: \
+	org.gecko.emf.osgi.api;version=latest,\
+	junit-jupiter-api,\
+	org.osgi.test.junit5,\
+	org.osgi.test.common,\
+	org.osgi.test.assertj.framework,\
+	org.eclipse.emf.common,\
+	org.eclipse.emf.ecore,\
+	org.eclipse.emf.ecore.xmi,\
+	org.osgi.framework
+Bundle-Name: EMF Model Extender Tests
+Bundle-Description: Gecko EMF OSGi model extender integration tests

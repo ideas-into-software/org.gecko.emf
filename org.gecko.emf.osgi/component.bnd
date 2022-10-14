@@ -8,3 +8,5 @@
 Export-Package: \
 	org.gecko.emf.osgi.resourceset,\
 	org.gecko.emf.osgi.components.config
+Bundle-Name: EMF OSGi Implementation
+Bundle-Description: Gecko EMF OSGi Implementation

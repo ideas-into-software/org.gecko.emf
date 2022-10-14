@@ -108,4 +108,12 @@ public class EMFNamespaces {
 	public static final String EPACKAGE_TARGET = "ePackageConfigurator.target";
 	// Configuration target filter property for the ResourceFactory configurators 
 	public static final String RESOURCE_FACTORY_TARGET = "resourceFactoryConfigurator.target";
+	
+	// Name for the EMF ecore model extender
+	public static final String EMF_MODEL_EXTENDER_NAME = "emf.model";
+	// Requirement property for model paths
+	public static final String EMF_MODEL_EXTENDER_PROP_MODELS_NAME = "models";
+	// Default model path to look into
+	public static final String EMF_MODEL_EXTENDER_DEFAULT_PATH = "model";
+	
 }

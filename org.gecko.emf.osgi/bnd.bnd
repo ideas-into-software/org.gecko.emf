@@ -10,7 +10,8 @@
 	org.eclipse.emf.ecore.xmi,\
 	org.osgi.namespace.service,\
 	org.osgi.util.converter,\
-	org.osgi.service.condition
+	org.osgi.service.condition,\
+	org.osgi.namespace.extender
 	
 Export-Package: \
 	org.gecko.emf.osgi,\

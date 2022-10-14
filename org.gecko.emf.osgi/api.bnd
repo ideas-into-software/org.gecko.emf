@@ -1,1 +1,3 @@
 # Export over bnd.bnd file
+Bundle-Name: EMF OSGi API
+Bundle-Description: Gecko EMF OSGI API
