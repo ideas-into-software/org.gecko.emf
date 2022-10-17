@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v20.html
  * 
  * Contributors:
- *      Data In Motion - initial API and implementation
+ *     Data In Motion - initial API and implementation
  */
 package org.gecko.emf.osgi.annotation;
 

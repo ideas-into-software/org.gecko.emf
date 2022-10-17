@@ -10,3 +10,5 @@
 	org.osgi.framework
 Bundle-Name: EMF Model Extender Tests
 Bundle-Description: Gecko EMF OSGi model extender integration tests
+
+-dependson: org.gecko.emf.osgi.example.model.manual
