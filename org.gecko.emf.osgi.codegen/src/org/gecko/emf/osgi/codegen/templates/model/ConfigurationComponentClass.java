@@ -45,7 +45,7 @@ public class ConfigurationComponentClass
   protected final String TEXT_22 = "<?> conditionRegistration = null;" + NL + "" + NL + "\t/**" + NL + "\t * Activates the Configuration Component." + NL + "\t *" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@";
   protected final String TEXT_23 = NL + "\tpublic void activate(BundleContext ctx) {" + NL + "\t\t";
   protected final String TEXT_24 = " ePackage = ";
-  protected final String TEXT_25 = ".init();" + NL + "\t\t" + NL + "\t\t";
+  protected final String TEXT_25 = ".eINSTANCE;" + NL + "\t\t" + NL + "\t\t";
   protected final String TEXT_26 = "EPackageConfigurator packageConfigurator = registerEPackageConfiguratorService(ePackage, ctx);" + NL + "\t\tregisterEPackageService(ePackage, packageConfigurator, ctx);" + NL + "\t\tregisterEFactoryService(ePackage, packageConfigurator, ctx);" + NL + "\t\tregisterConditionService(packageConfigurator, ctx);" + NL + "\t}" + NL + "\t" + NL + "\t/**" + NL + "\t * Registers the ";
   protected final String TEXT_27 = "EPackageConfigurator as a service." + NL + "\t *" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate ";
   protected final String TEXT_28 = "EPackageConfigurator registerEPackageConfiguratorService(";

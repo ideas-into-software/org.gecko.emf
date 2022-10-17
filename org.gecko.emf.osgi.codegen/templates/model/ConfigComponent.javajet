@@ -38,7 +38,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 	 */
 	@<%=genModel.getImportedName("org.osgi.service.component.annotations.Activate")%>
 	public void activate(BundleContext ctx) {
-		<%=genPackage.getPackageInterfaceName()%> ePackage = <%=genModel.getImportedName(genPackage.getQualifiedPackageClassName())%>.init();
+		<%=genPackage.getPackageInterfaceName()%> ePackage = <%=genModel.getImportedName(genPackage.getQualifiedPackageClassName())%>.eINSTANCE;
 		
 		<%=genPackage.getPrefix()%>EPackageConfigurator packageConfigurator = registerEPackageConfiguratorService(ePackage, ctx);
 		registerEPackageService(ePackage, packageConfigurator, ctx);
