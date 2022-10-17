@@ -26,7 +26,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,10 +40,6 @@ public class State extends AbstractState implements Serializable {
 
     private Map<Long, Long> bundlesLastModified = new HashMap<>();
 
-    private Map<Long, Long> bundlesConfigAdminBundleId = new HashMap<>();
-
-    private volatile Set<String> initialHashes;
-
     /**
      * Serialize the object
      * - write version id
@@ -56,8 +51,6 @@ public class State extends AbstractState implements Serializable {
     throws IOException {
         out.writeInt(VERSION);
         out.writeObject(bundlesLastModified);
-        out.writeObject(bundlesConfigAdminBundleId);
-        out.writeObject(initialHashes);
     }
 
     /**
@@ -73,8 +66,6 @@ public class State extends AbstractState implements Serializable {
             throw new ClassNotFoundException(this.getClass().getName());
         }
         this.bundlesLastModified =(Map<Long, Long>) in.readObject();
-        this.bundlesConfigAdminBundleId = (Map<Long, Long>) in.readObject();
-        initialHashes = (Set<String>) in.readObject();
     }
 
     public static State createOrReadState(final File f)
@@ -111,45 +102,8 @@ public class State extends AbstractState implements Serializable {
         this.bundlesLastModified.remove(bundleId);
     }
 
-    public Long getConfigAdminBundleId(final long bundleId) {
-        return this.bundlesConfigAdminBundleId.get(bundleId);
-    }
-
-    public void setConfigAdminBundleId(final long bundleId, final long lastModified) {
-        this.bundlesConfigAdminBundleId.put(bundleId, lastModified);
-    }
-
-    public void removeConfigAdminBundleId(final long bundleId) {
-        this.bundlesConfigAdminBundleId.remove(bundleId);
-    }
-
     public Set<Long> getKnownBundleIds() {
         return this.bundlesLastModified.keySet();
-    }
-
-   public Set<String> getInitialHashes() {
-        return this.initialHashes;
-    }
-
-    public void setInitialHashes(final Set<String> value) {
-        this.initialHashes = value;
-    }
-
-    /**
-     * Add all configurations for a pid
-     * @param pid The pid
-     * @param configs The list of configurations
-     */
-    public void addAll(final String pid, final ModelList configs) {
-        if ( configs != null ) {
-            ModelList list = this.getModels().get(pid);
-            if ( list == null ) {
-                list = new ModelList();
-                this.getModels().put(pid, list);
-            }
-
-            list.addAll(configs);
-        }
     }
 
     /**
@@ -158,7 +112,7 @@ public class State extends AbstractState implements Serializable {
      */
     public void checkEnvironments(final long bundleId) {
         for(final String pid : this.getNamespaces()) {
-            final ModelList configList = this.getModels(pid);
+            final ModelNamespace configList = this.getModels(pid);
             for(final Model cfg : configList) {
                 if ( cfg.getBundleId() == bundleId ) {
                     configList.setHasChanges(true);
@@ -170,12 +124,6 @@ public class State extends AbstractState implements Serializable {
 
     @Override
     public String toString() {
-        return "State [bundlesLastModified=" + bundlesLastModified +
-                ", initialHashes=" + initialHashes +
-                ", bundlesConfigAdminBundleId=" + bundlesConfigAdminBundleId + "]";
-    }
-
-    public Set<Long> getBundleIdsUsingConfigAdmin() {
-        return new HashSet<>(this.bundlesConfigAdminBundleId.keySet());
+        return "State [bundlesLastModified=" + bundlesLastModified+ "]";
     }
 }

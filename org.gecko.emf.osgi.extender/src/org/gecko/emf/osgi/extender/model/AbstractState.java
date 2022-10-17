@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * This object holds a sorted map of configurations
+ * This object holds a sorted map of models
  */
 public class AbstractState implements Serializable {
 
@@ -34,7 +34,7 @@ public class AbstractState implements Serializable {
     /** Serialization version. */
     private static final int VERSION = 1;
 
-    private Map<String, ModelList> modelsByNamespace = new TreeMap<>();
+    private Map<String, ModelNamespace> modelsByNamespace = new TreeMap<>();
 
     /**
      * Serialize the object
@@ -61,25 +61,25 @@ public class AbstractState implements Serializable {
         if ( version < 1 || version > VERSION ) {
             throw new ClassNotFoundException(this.getClass().getName());
         }
-        this.modelsByNamespace = (Map<String, ModelList>) in.readObject();
+        this.modelsByNamespace = (Map<String, ModelNamespace>) in.readObject();
     }
 
     public void add(final Model c) {
-        ModelList configs = this.modelsByNamespace.get(c.getNamespace());
-        if ( configs == null ) {
-            configs = new ModelList();
-            this.modelsByNamespace.put(c.getNamespace(), configs);
+        ModelNamespace models = this.modelsByNamespace.get(c.getNamespace());
+        if ( models == null ) {
+            models = new ModelNamespace();
+            this.modelsByNamespace.put(c.getNamespace(), models);
         }
 
-        configs.add(c);
+        models.add(c);
     }
 
-    public Map<String, ModelList> getModels() {
+    public Map<String, ModelNamespace> getModels() {
         return this.modelsByNamespace;
     }
 
-    public ModelList getModels(final String pid) {
-        return this.getModels().get(pid);
+    public ModelNamespace getModels(final String ns) {
+        return this.getModels().get(ns);
     }
 
     public Collection<String> getNamespaces() {

@@ -21,14 +21,14 @@ package org.gecko.emf.osgi.extender.model;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 /**
- * The model list holds all models for a single namespace
+ * The model list holds all models for a single namespace.
+ * Usually only one model exists for a namespace, but there might be use-case that make the need of many models per name-space necessary
  */
-public class ModelList implements Serializable, Iterable<Model> {
+public class ModelNamespace implements Serializable, Iterable<Model> {
 
     private static final long serialVersionUID = 1L;
 
@@ -43,7 +43,7 @@ public class ModelList implements Serializable, Iterable<Model> {
     /** Flag to indicate whether this list needs to be processed. */
     private volatile boolean hasChanges;
 
-    /** Last installed configuration. */
+    /** Last registered model. */
     private volatile Model lastInstalled;
 
     /**
@@ -97,28 +97,27 @@ public class ModelList implements Serializable, Iterable<Model> {
     }
 
     /**
-     * Add a configuration to the list.
-     * @param c The configuration.
+     * Add a model to the list.
+     * @param m The model.
      */
-    public void add(final Model c) {
+    public void add(final Model m) {
         this.hasChanges = true;
-        this.models.add(c);
-        Collections.sort(this.models);
+        this.models.add(m);
     }
 
     /**
-     * Add all configurations from another list
-     * @param configs The config list
+     * Add all models from another model list
+     * @param models The current model list
      */
-    public void addAll(final ModelList configs) {
-        for(final Model cfg : configs) {
+    public void addAll(final List<Model> models) {
+        for(final Model model : models) {
             // search if we already have this configuration
 
             for(final Model current : this.models) {
-                if ( current.getBundleId() == cfg.getBundleId()
-                  && current.getProperties().equals(cfg.getProperties()) ) {
+                if ( current.getBundleId() == model.getBundleId()
+                  && current.getProperties().equals(model.getProperties()) ) {
                     if ( current.getState() == ModelState.UNINSTALL ) {
-                        cfg.setState(ModelState.INSTALLED);
+                        model.setState(ModelState.INSTALLED);
                         current.setState(ModelState.UNINSTALLED);
                     }
                     break;
@@ -126,13 +125,12 @@ public class ModelList implements Serializable, Iterable<Model> {
             }
 
             this.hasChanges = true;
-            this.models.add(cfg);
+            this.models.add(model);
         }
-        Collections.sort(this.models);
     }
 
     /**
-     * Get the size of the list of configurations
+     * Get the size of the list of models
      * @return
      */
     public int size() {
@@ -169,17 +167,17 @@ public class ModelList implements Serializable, Iterable<Model> {
     }
 
     /**
-     * Mark configurations for a bundle uninstall
+     * Mark models for a bundle uninstall
      * @param bundleId The bundle id of the uninstalled bundle
      */
     public void uninstall(final long bundleId) {
-        for(final Model cfg : this.models) {
-            if ( cfg.getBundleId() == bundleId ) {
+        for(final Model model : this.models) {
+            if ( model.getBundleId() == bundleId ) {
                 this.hasChanges = true;
-                if ( cfg.getState() == ModelState.INSTALLED ) {
-                    cfg.setState(ModelState.UNINSTALL);
+                if ( model.getState() == ModelState.INSTALLED ) {
+                    model.setState(ModelState.UNINSTALL);
                 } else {
-                    cfg.setState(ModelState.UNINSTALLED);
+                    model.setState(ModelState.UNINSTALLED);
                 }
             }
         }

@@ -23,8 +23,8 @@ import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 
 /**
- * 
- * @author mark
+ * Implementation for Gecko EMF configurators, used by the extender.
+ * @author Mark Hoffmann
  * @since 13.10.2022
  */
 public class ModelExtenderConfigurator implements EPackageConfigurator, ResourceFactoryConfigurator {

@@ -21,13 +21,14 @@ package org.gecko.emf.osgi.extender.model;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.Dictionary;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.osgi.framework.ServiceRegistration;
 
-public class Model implements Serializable, Comparable<Model> {
+public class Model implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,17 +38,14 @@ public class Model implements Serializable, Comparable<Model> {
     /** The model namespace */
     private String ns;
 
-    /** The model ranking */
-    private int ranking;
-
     /** The bundle id. */
     private long bundleId;
+    
+    /** The model URL */
+    private URL url;
 
     /** The model properties. */
     private Dictionary<String, Object> properties;
-
-    /** The index within the list of models if several. */
-    private volatile int index = 0;
     
     private transient EPackage ePackage = null;
     private transient ServiceRegistration<?> modelRegistration = null;
@@ -58,12 +56,12 @@ public class Model implements Serializable, Comparable<Model> {
     private volatile List<File> files;
 
     public Model(final EPackage ePackage,
+    		final URL url,
             final Dictionary<String, Object> properties,
-            final long bundleId,
-            final int ranking) {
+            final long bundleId) {
         this.ePackage = ePackage;
         this.ns = ePackage.getNsURI();
-        this.ranking = ranking;
+        this.url = url;
         this.bundleId = bundleId;
         this.properties = properties;
     }
@@ -79,10 +77,9 @@ public class Model implements Serializable, Comparable<Model> {
     throws IOException {
         out.writeInt(VERSION);
         out.writeObject(ns);
+        out.writeObject(url.toExternalForm());
         out.writeObject(properties);
         out.writeLong(bundleId);
-        out.writeInt(ranking);
-        out.writeInt(index);
         out.writeObject(state.name());
         out.writeObject(files);
     }
@@ -100,10 +97,9 @@ public class Model implements Serializable, Comparable<Model> {
             throw new ClassNotFoundException(this.getClass().getName());
         }
         this.ns = (String) in.readObject();
+        this.url = new URL((String) in.readObject());
         this.properties = (Dictionary<String, Object>) in.readObject();
         this.bundleId = in.readLong();
-        this.ranking = in.readInt();
-        this.index = in.readInt();
         this.state = ModelState.valueOf((String)in.readObject());
         this.files = (List<File>) in.readObject();
     }
@@ -117,36 +113,11 @@ public class Model implements Serializable, Comparable<Model> {
     }
 
     /**
-     * The model ranking
-     * @return The model ranking
-     */
-    public int getRanking() {
-        return this.ranking;
-    }
-
-    /**
      * The bundle id
      * @return The bundle id
      */
     public long getBundleId() {
         return this.bundleId;
-    }
-
-    /**
-     * The index of the model. This value is only
-     * relevant if there are several models for the
-     * same namespace with same ranking and bundle id.
-     * @return The index within the model set
-     */
-    public int getIndex() {
-        return this.index;
-    }
-
-    /**
-     * Set the index
-     */
-    public void setIndex(final int value) {
-        this.index = value;
     }
 
     /**
@@ -205,29 +176,11 @@ public class Model implements Serializable, Comparable<Model> {
 		this.modelRegistration = modelREgistration;
 	}
 
-	@Override
-    public int compareTo(final Model o) {
-        // sort by ranking, highest first
-        // if same ranking, sort by bundle id, lowest first
-        // if same bundle id, sort by index
-        if ( this.getRanking() > o.getRanking() ) {
-            return -1;
-        } else if ( this.getRanking() == o.getRanking() ) {
-            if ( this.getBundleId() < o.getBundleId() ) {
-                return -1;
-            } else if ( this.getBundleId() == o.getBundleId() ) {
-                return this.getIndex() - o.getIndex();
-            }
-        }
-        return 1;
-    }
-
     @Override
     public String toString() {
         return "Model [namespace=" + ns
-                + ", ranking=" + ranking
+                + ", url=" + url.toExternalForm()
                 + ", bundleId=" + bundleId
-                + ", index=" + index
                 + ", properties=" + properties
                 + ", state=" + state + "]";
     }

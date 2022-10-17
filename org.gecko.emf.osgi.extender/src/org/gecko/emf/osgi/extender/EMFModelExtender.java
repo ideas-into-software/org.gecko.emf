@@ -1,3 +1,4 @@
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -20,10 +21,16 @@ package org.gecko.emf.osgi.extender;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,9 +42,8 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
-import org.gecko.emf.osgi.extender.model.BundleState;
 import org.gecko.emf.osgi.extender.model.Model;
-import org.gecko.emf.osgi.extender.model.ModelList;
+import org.gecko.emf.osgi.extender.model.ModelNamespace;
 import org.gecko.emf.osgi.extender.model.ModelState;
 import org.gecko.emf.osgi.extender.model.State;
 import org.osgi.annotation.bundle.Capability;
@@ -69,7 +75,7 @@ public class EMFModelExtender {
 
 	private volatile Object coordinator;
 
-	private final WorkerQueue queue;
+	private final ExecutorService queue;
 
 	private final ResourceSet resourceSet;
 
@@ -79,7 +85,16 @@ public class EMFModelExtender {
 	 * @param bc The bundle context
 	 */
 	public EMFModelExtender(final BundleContext bc) {
-		this.queue = new WorkerQueue();
+		this.queue = Executors.newSingleThreadExecutor(new ThreadFactory() {
+			
+			@Override
+			public Thread newThread(Runnable r) {
+				Thread t = Executors.defaultThreadFactory().newThread(r);
+                t.setDaemon(true);
+                t.setName("Gecko EMF Model Extender Worker Thread");
+                return t;
+			}
+		});
 		this.resourceSet = new ResourceSetImpl();
 		this.resourceSet.getPackageRegistry().put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
 		this.resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(EcorePackage.eNAME, new EcoreResourceFactoryImpl());
@@ -104,7 +119,7 @@ public class EMFModelExtender {
 				if ( active &&
 						(state == Bundle.ACTIVE || state == Bundle.STARTING) ) {
 					LOGGER.fine(()->"Adding bundle " + getBundleIdentity(bundle) + " : " + getBundleState(state));
-					queue.enqueue(new Runnable() {
+					queue.submit(new Runnable() {
 
 						@Override
 						public void run() {
@@ -139,7 +154,7 @@ public class EMFModelExtender {
 				final int state = bundle.getState();
 				if ( active && (state == Bundle.UNINSTALLED || state == Bundle.STOPPING)) {
 					LOGGER.fine(()->"Removing bundle " + getBundleIdentity(bundle) + " : " + getBundleState(state));
-					queue.enqueue(new Runnable() {
+					queue.submit(new Runnable() {
 
 						@Override
 						public void run() {
@@ -183,7 +198,14 @@ public class EMFModelExtender {
 	 */
 	public void shutdown() {
 		this.active = false;
-		this.queue.stop();
+		this.queue.shutdown();
+		try {
+			if (!this.queue.awaitTermination(1, TimeUnit.SECONDS)) { //optional *
+			    this.queue.shutdownNow(); 
+			}
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE, e, ()->"Error shutting down EMF Model Extender executor service");
+		}
 		this.tracker.close();
 	}
 
@@ -219,12 +241,12 @@ public class EMFModelExtender {
 			return false;
 		}
 
-		BundleState bundleState = null;
+		List<Model> bundleModels = Collections.emptyList();
 		try {
-			final Set<String> paths = Util.isModelBundle(bundle, this.bundleContext.getBundle().getBundleId());
+			final Set<String> paths = ModelHelper.isModelBundle(bundle, this.bundleContext.getBundle().getBundleId());
 			if ( paths != null ) {
-                final ModelUtil.Report report = new ModelUtil.Report();
-                bundleState = ModelUtil.readModelsFromBundle(bundle, resourceSet, paths, report);
+                final ModelHelper.Diagnostic report = new ModelHelper.Diagnostic();
+                bundleModels = ModelHelper.readModelsFromBundle(bundle, resourceSet, paths, report);
                 for(final String w : report.warnings) {
                 	LOGGER.log(Level.WARNING, w);
                 }
@@ -238,10 +260,8 @@ public class EMFModelExtender {
         if ( lastModified != null ) {
             processRemoveBundle(bundleId);
         }
-        if ( bundleState != null ) {
-            for(final String ns : bundleState.getNamespaces()) {
-                state.addAll(ns, bundleState.getModels(ns));
-            }
+        if ( !bundleModels.isEmpty() ) {
+        	bundleModels.forEach(state::add);
             state.setLastModified(bundleId, bundleLastModified);
             return true;
         }
@@ -252,7 +272,7 @@ public class EMFModelExtender {
 		if ( state.getLastModified(bundleId) != null ) {
 			state.removeLastModified(bundleId);
 			for(final String ns : state.getNamespaces()) {
-				final ModelList modelList = state.getModels(ns);
+				final ModelNamespace modelList = state.getModels(ns);
 				modelList.uninstall(bundleId);
 			}
 			return true;
@@ -278,10 +298,9 @@ public class EMFModelExtender {
 			coordination = CoordinatorUtil.getCoordination(localCoordinator);
 		}
 
-		boolean retry = false;
 		try {
 			for(final String mns : state.getNamespaces()) {
-				final ModelList modelList = state.getModels(mns);
+				final ModelNamespace modelList = state.getModels(mns);
 
 				if ( modelList.hasChanges() ) {
 					if ( process(modelList) ) {
@@ -290,8 +309,6 @@ public class EMFModelExtender {
 						} catch ( final IOException ioe) {
 							LOGGER.log(Level.SEVERE, ioe, ()->"Unable to persist state to " + State.FILE_NAME);
 						}
-					} else {
-						retry = true;
 					}
 				}
 			}
@@ -301,23 +318,6 @@ public class EMFModelExtender {
 				CoordinatorUtil.endCoordination(coordination);
 			}
 		}
-		if ( !retry ) {
-			// check whether there is a stale config admin bundle id
-			boolean changed = false;
-			for(final Long bundleId : this.state.getBundleIdsUsingConfigAdmin()) {
-				if ( this.state.getLastModified(bundleId) == null ) {
-					this.state.removeConfigAdminBundleId(bundleId);
-					changed = true;
-				}
-			}
-			if ( changed ) {
-				try {
-					State.writeState(this.bundleContext.getDataFile(State.FILE_NAME), state);
-				} catch ( final IOException ioe) {
-					LOGGER.log(Level.SEVERE, ioe, ()->"Unable to persist state to " + State.FILE_NAME);
-				}
-			}
-		}
 	}
 
 	/**
@@ -325,7 +325,7 @@ public class EMFModelExtender {
 	 * @param modelList The config list
 	 * @return {@code true} if the change has been processed, {@code false} if a retry is required
 	 */
-	public boolean process(final ModelList modelList) {
+	public boolean process(final ModelNamespace modelList) {
 		Model toActivate = null;
 		Model toDeactivate = null;
 
@@ -403,7 +403,7 @@ public class EMFModelExtender {
 	 * @param model The configuration to activate
 	 * @return {@code true} if activation was successful
 	 */
-	public boolean activate(final ModelList modelList, final Model model) {
+	public boolean activate(final ModelNamespace modelList, final Model model) {
 		
 		final Bundle modelBundle = model.getBundleId() == -1 ? this.bundleContext.getBundle() : this.bundleContext.getBundle(Constants.SYSTEM_BUNDLE_LOCATION).getBundleContext().getBundle(model.getBundleId());
 		EPackage ePackage = model.getEPackage();
@@ -424,7 +424,7 @@ public class EMFModelExtender {
 	 * Check policy and change count
 	 * @param model The configuration
 	 */
-	public boolean deactivate(final ModelList configList, final Model model) {
+	public boolean deactivate(final ModelNamespace configList, final Model model) {
 		ServiceRegistration<?> modelRegistration = model.getModelRegistration();
 		if (modelRegistration != null) {
 			try {

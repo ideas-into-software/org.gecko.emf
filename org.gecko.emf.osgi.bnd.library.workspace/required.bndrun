@@ -8,6 +8,7 @@
 	bnd.identity;id='org.gecko.emf.osgi.api',\
 	bnd.identity;id='org.gecko.emf.osgi.codegen',\
 	bnd.identity;id='org.gecko.emf.osgi.component',\
+	bnd.identity;id='org.gecko.emf.osgi.extender',\
 	bnd.identity;id='org.gecko.emf.osgi.doc.mermaid',\
 	bnd.identity;id='org.gecko.emf.osgi.doc.plantuml',\
 	bnd.identity;id='org.gecko.emf.osgi.model.info',\
@@ -22,6 +23,7 @@
 	org.gecko.emf.osgi.api;version=snapshot,\
 	org.gecko.emf.osgi.codegen;version=snapshot,\
 	org.gecko.emf.osgi.component;version=snapshot,\
+	org.gecko.emf.osgi.extender;version=snapshot,\
 	org.gecko.emf.osgi.doc.mermaid;version=snapshot,\
 	org.gecko.emf.osgi.doc.plantuml;version=snapshot,\
 	org.gecko.emf.osgi.model.info;version=snapshot,\
