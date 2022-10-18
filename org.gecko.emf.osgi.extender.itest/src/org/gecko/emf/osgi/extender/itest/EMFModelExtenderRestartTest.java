@@ -75,6 +75,7 @@ public class EMFModelExtenderRestartTest {
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+						Thread.currentThread().interrupt();
 					}
 				}
 			}
@@ -118,6 +119,7 @@ public class EMFModelExtenderRestartTest {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Thread.currentThread().interrupt();
 		}
 		assertTrue(rsAware.isEmpty());
 	}
@@ -158,6 +160,7 @@ public class EMFModelExtenderRestartTest {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Thread.currentThread().interrupt();
 		}
 		assertTrue(rsAware.isEmpty());
 		try {
@@ -171,6 +174,7 @@ public class EMFModelExtenderRestartTest {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Thread.currentThread().interrupt();
 		}
 		assertFalse(rsAware.isEmpty());
 		try {

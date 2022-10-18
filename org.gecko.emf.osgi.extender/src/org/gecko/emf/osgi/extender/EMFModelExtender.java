@@ -19,7 +19,6 @@
  */
 package org.gecko.emf.osgi.extender;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Dictionary;
@@ -73,7 +72,7 @@ public class EMFModelExtender {
 
 	private volatile boolean active = true;
 
-	private volatile Object coordinator;
+	private Object coordinator;
 
 	private final ExecutorService queue;
 
@@ -205,6 +204,7 @@ public class EMFModelExtender {
 			}
 		} catch (InterruptedException e) {
 			LOGGER.log(Level.SEVERE, e, ()->"Error shutting down EMF Model Extender executor service");
+			Thread.currentThread().interrupt();
 		}
 		this.tracker.close();
 	}
@@ -373,17 +373,12 @@ public class EMFModelExtender {
 			final Iterator<Model> iter = modelList.iterator();
 			boolean foundInstalled = false;
 			while ( iter.hasNext() ) {
-				final Model cfg = iter.next();
-				if ( cfg.getState() == ModelState.UNINSTALL || cfg.getState() == ModelState.UNINSTALLED ) {
-					if ( cfg.getFiles() != null ) {
-						for(final File f : cfg.getFiles()) {
-							f.delete();
-						}
-					}
+				final Model model = iter.next();
+				if ( model.getState() == ModelState.UNINSTALL || model.getState() == ModelState.UNINSTALLED ) {
 					iter.remove();
-				} else if ( cfg.getState() == ModelState.INSTALLED ) {
+				} else if ( model.getState() == ModelState.INSTALLED ) {
 					if ( foundInstalled ) {
-						cfg.setState(ModelState.INSTALL);
+						model.setState(ModelState.INSTALL);
 					} else {
 						foundInstalled = true;
 					}

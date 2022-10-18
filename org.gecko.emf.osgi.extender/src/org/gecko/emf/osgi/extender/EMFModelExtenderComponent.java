@@ -35,7 +35,7 @@ public class EMFModelExtenderComponent {
 	private static Logger LOGGER = Logger.getLogger(EMFModelExtenderComponent.class.getName());
 
     /** The current EMF extender. */
-    private volatile EMFModelExtender modelExtender;
+    private EMFModelExtender modelExtender;
 	
 	@Activate
 	public void activate(ComponentContext ctx) {

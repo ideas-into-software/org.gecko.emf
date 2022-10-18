@@ -44,7 +44,7 @@ public class ModelNamespace implements Serializable, Iterable<Model> {
     private volatile boolean hasChanges;
 
     /** Last registered model. */
-    private volatile Model lastInstalled;
+    private Model lastInstalled;
 
     /**
      * Serialize the object

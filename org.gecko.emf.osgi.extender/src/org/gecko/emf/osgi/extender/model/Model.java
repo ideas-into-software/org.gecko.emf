@@ -18,12 +18,11 @@
  */
 package org.gecko.emf.osgi.extender.model;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Dictionary;
-import java.util.List;
+import java.util.Hashtable;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.osgi.framework.ServiceRegistration;
@@ -45,7 +44,7 @@ public class Model implements Serializable {
     private URL url;
 
     /** The model properties. */
-    private Dictionary<String, Object> properties;
+    private Hashtable<String, Object> properties;
     
     private transient EPackage ePackage = null;
     private transient ServiceRegistration<?> modelRegistration = null;
@@ -53,17 +52,15 @@ public class Model implements Serializable {
     /** The model state. */
     private volatile ModelState state = ModelState.INSTALL;
 
-    private volatile List<File> files;
-
     public Model(final EPackage ePackage,
     		final URL url,
-            final Dictionary<String, Object> properties,
+            final Hashtable<String, Object> properties,
             final long bundleId) {
         this.ePackage = ePackage;
         this.ns = ePackage.getNsURI();
         this.url = url;
         this.bundleId = bundleId;
-        this.properties = properties;
+        this.properties = new Hashtable<>(properties);
     }
 
     /**
@@ -81,7 +78,6 @@ public class Model implements Serializable {
         out.writeObject(properties);
         out.writeLong(bundleId);
         out.writeObject(state.name());
-        out.writeObject(files);
     }
 
     /**
@@ -98,10 +94,9 @@ public class Model implements Serializable {
         }
         this.ns = (String) in.readObject();
         this.url = new URL((String) in.readObject());
-        this.properties = (Dictionary<String, Object>) in.readObject();
+        this.properties = (Hashtable<String, Object>) in.readObject();
         this.bundleId = in.readLong();
         this.state = ModelState.valueOf((String)in.readObject());
-        this.files = (List<File>) in.readObject();
     }
 
     /**
@@ -142,14 +137,6 @@ public class Model implements Serializable {
      */
     public Dictionary<String, Object> getProperties() {
         return this.properties;
-    }
-
-    public void setFiles(final List<File> f) {
-        this.files = f;
-    }
-
-    public List<File> getFiles() {
-        return this.files;
     }
 
     /**

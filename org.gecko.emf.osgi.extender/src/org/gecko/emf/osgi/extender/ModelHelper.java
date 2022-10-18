@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -101,7 +100,7 @@ public class ModelHelper {
 		Map<String, String> properties = new HashMap<String, String>();
 		String plainPath = extractProperties(path, properties);
 		final Enumeration<URL> urls;
-		if (plainPath.endsWith(".ecore")) {
+		if (plainPath != null && plainPath.endsWith(".ecore")) {
 			URL url = bundle.getEntry(plainPath);
 			if (url == null) {
 				urls = bundle.findEntries(plainPath, "*.ecore", false);
@@ -178,7 +177,7 @@ public class ModelHelper {
 			r.load(url.openStream(), null);
 			if (!r.getContents().isEmpty()) {
 				EPackage ePackage = (EPackage) r.getContents().get(0);
-				Dictionary<String, Object> serviceProperties = new Hashtable<>();
+				Hashtable<String, Object> serviceProperties = new Hashtable<>();
 				if (properties != null) {
 					properties.forEach(serviceProperties::put);
 				}
