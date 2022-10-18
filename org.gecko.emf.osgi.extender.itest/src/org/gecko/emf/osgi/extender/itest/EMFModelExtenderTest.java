@@ -47,7 +47,7 @@ public class EMFModelExtenderTest {
 	private BundleContext ctx;
 
 	@BeforeEach
-	private void before(@InjectBundleContext BundleContext ctx) {
+	public void before(@InjectBundleContext BundleContext ctx) {
 		this.ctx = ctx;
 	}
 	

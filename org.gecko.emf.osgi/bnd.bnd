@@ -30,3 +30,5 @@ Export-Package: \
     	is:=warning
 	
 -sub: *.bnd
+
+-baseline: *

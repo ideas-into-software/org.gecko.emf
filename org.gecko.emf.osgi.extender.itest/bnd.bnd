@@ -1,3 +1,5 @@
+Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
+
 -buildpath: \
 	org.gecko.emf.osgi.api;version=snapshot,\
 	junit-jupiter-api;version=latest,\

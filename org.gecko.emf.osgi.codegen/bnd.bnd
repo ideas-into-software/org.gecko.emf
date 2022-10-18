@@ -42,3 +42,5 @@ Private-Package: \
 	
 Import-Package: \
 	!*
+	
+-baseline: *

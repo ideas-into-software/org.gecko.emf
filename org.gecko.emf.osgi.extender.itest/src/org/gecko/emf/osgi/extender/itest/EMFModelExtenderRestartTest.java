@@ -55,12 +55,12 @@ public class EMFModelExtenderRestartTest {
 	private BundleContext ctx;
 
 	@BeforeEach
-	private void before(@InjectBundleContext BundleContext ctx) {
+	public void before(@InjectBundleContext BundleContext ctx) {
 		this.ctx = ctx;
 	}
 	
 	@AfterEach
-	private void after() {
+	public void after() {
 		for (Bundle b : ctx.getBundles()) {
 			if (EXTENDER_TEST_MODEL_BSN.equals(b.getSymbolicName())) {
 				if (b.getState() != Bundle.ACTIVE) {

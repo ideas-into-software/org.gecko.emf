@@ -1,6 +1,5 @@
 # Enable semantic versioning for all bundles
 -baselinerepo: Baseline
--baseline: *
 
 # Ignore files for baselining
 -diffignore: *.xml,\

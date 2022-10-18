@@ -11,23 +11,34 @@
  */
 package org.osgi.test.assertj.monitoring.internal;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.test.assertj.monitoring.MonitoringAssertion;
 import org.osgi.test.assertj.monitoring.MonitoringAssertionResult;
+import org.osgi.test.common.annotation.InjectBundleContext;
 import org.osgi.test.common.dictionary.Dictionaries;
+import org.osgi.test.junit5.context.BundleContextExtension;
 
+@Disabled
+@ExtendWith(BundleContextExtension.class)
 public class EventRecordingAssertIntegrationTest {
 
-	BundleContext bc = FrameworkUtil.getBundle(EventRecordingAssertIntegrationTest.class).getBundleContext();
+	private BundleContext bc;
 	String k1 = "key1";
 	String v1 = "value1";
 
 	String k2 = "key2";
 	String v2 = "value2";
+	
+	@BeforeEach
+	public void before(@InjectBundleContext BundleContext ctx) {
+		this.bc = ctx;
+	}
 
 	@Test
 	void exampleIntegrationTest() throws Exception {

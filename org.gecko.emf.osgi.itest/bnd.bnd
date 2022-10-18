@@ -1,3 +1,4 @@
+Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
 # Build dependencies 
 -buildpath: \
 	org.gecko.emf.osgi;version=project,\

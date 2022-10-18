@@ -4,7 +4,12 @@ plugins {
   id 'java'
 }
 
-
+// Available to customize the build
+subprojects {
+  tasks.withType(Test) {
+    useJUnitPlatform()
+  }
+}
 
 sonarqube {
   properties {
@@ -22,36 +27,8 @@ tasks.named('wrapper') {
 }
 
 
-// Disable bnd plugin built-in task 'testOSGi' and register custom task for testing
-gradle.startParameter.excludedTaskNames += "testOSGi"
-
-
-tasks.register('itest'){
-  subprojects.each { sp ->
-    sp.tasks.each { t -> 
-      if(t.name ==~ "resolve\\.(test|export)(.*)?"){
-        dependsOn t
-      }
-    }
-  }
-  subprojects.each { sp ->
-    sp.tasks.each { t -> 
-      if(t.name ==~ "testrun\\.test(.*)?"){
-        dependsOn t
-      }
-    }
-  }
-  subprojects.each { sp ->
-    sp.tasks.each { t -> 
-      if(t.name ==~ "export\\.export(.*)?"){
-        dependsOn t
-      }
-    }
-  }
-}
-
 task codeCoverageReport(type: JacocoReport) {
-    dependsOn itest
+    dependsOn test
     // Gather execution data from all subprojects
     executionData fileTree(project.rootDir.absolutePath).include("**/**/jacoco.exec")
 

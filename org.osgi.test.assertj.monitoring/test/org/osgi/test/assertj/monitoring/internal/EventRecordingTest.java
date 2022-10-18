@@ -21,6 +21,7 @@ import java.util.function.Predicate;
 
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.osgi.framework.Bundle;
@@ -36,6 +37,7 @@ import org.osgi.test.assertj.monitoring.TimedEvent;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Disabled
 public class EventRecordingTest {
 
 	static List<FrameworkListener> frameworkListeners = new ArrayList<>();

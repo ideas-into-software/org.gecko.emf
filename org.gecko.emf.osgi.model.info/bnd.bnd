@@ -8,3 +8,5 @@
 
 Export-Package: org.gecko.emf.osgi.model.info
 Private-Package: org.gecko.emf.osgi.model.info.impl
+
+-baseline: *

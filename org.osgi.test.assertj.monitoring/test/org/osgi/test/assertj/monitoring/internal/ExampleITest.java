@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import org.assertj.core.api.Condition;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleContext;
@@ -29,6 +30,7 @@ import org.osgi.test.common.dictionary.Dictionaries;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
 
+@Disabled
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
 public class ExampleITest {
