@@ -10,11 +10,7 @@ src=${^src},src-gen
 	org.osgi.service.component.annotations,\
 	org.osgi.framework
 
--includeresource: model/manual.ecore=model/manual.ecore,\
-	model/manual.genmodel=model/manual.genmodel,\
-	OSGI-INF/model/test.ecore=model/test.ecore,\
-	/toast/test.ecore=model/test.ecore,\
-	/toast/toast.ecore=model/toast.ecore
+-includeresource: model=model
 
 Export-Package: \
 	org.gecko.emf.osgi.example.model.manual,\
@@ -24,10 +20,6 @@ Export-Package: \
 	
 -dependson: org.gecko.emf.osgi.codegen
 
-Require-Capability: \
-	osgi.extender;\
-	filter:="(osgi.extender=emf.model)";\
-	models:List<String>="/model;foo=bar;test=me,OSGI-INF/model;test=me;foo=baz,/toast/toast.ecore;toast=me;foo=toast"
 #-generate:\
 #	model/manual.genmodel;\
 #		generate="geckoEMF 1>out.log 2>err.log";\

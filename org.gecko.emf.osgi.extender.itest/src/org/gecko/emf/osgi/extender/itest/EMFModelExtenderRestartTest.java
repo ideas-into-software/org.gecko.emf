@@ -50,6 +50,8 @@ import org.osgi.test.junit5.service.ServiceExtension;
 @ExtendWith(BundleContextExtension.class)
 public class EMFModelExtenderRestartTest {
 	
+	/** EXTENDER_TEST_MODEL_BSN */
+	private static final String EXTENDER_TEST_MODEL_BSN = "org.gecko.emf.osgi.example.model.extender";
 	private BundleContext ctx;
 
 	@BeforeEach
@@ -60,7 +62,7 @@ public class EMFModelExtenderRestartTest {
 	@AfterEach
 	private void after() {
 		for (Bundle b : ctx.getBundles()) {
-			if ("org.gecko.emf.osgi.example.model.manual".equals(b.getSymbolicName())) {
+			if (EXTENDER_TEST_MODEL_BSN.equals(b.getSymbolicName())) {
 				if (b.getState() != Bundle.ACTIVE) {
 					try {
 						b.start();
@@ -104,7 +106,7 @@ public class EMFModelExtenderRestartTest {
 		ServiceReference<EPackageConfigurator> manualConfigurator = configurators.iterator().next();
 		Bundle origin = manualConfigurator.getBundle();
 		assertNotNull(origin);
-		assertEquals("org.gecko.emf.osgi.example.model.manual", origin.getSymbolicName());
+		assertEquals(EXTENDER_TEST_MODEL_BSN, origin.getSymbolicName());
 		try {
 			origin.stop();
 		} catch (BundleException e) {
@@ -144,7 +146,7 @@ public class EMFModelExtenderRestartTest {
 		ServiceReference<EPackageConfigurator> manualConfigurator = configurators.iterator().next();
 		Bundle origin = manualConfigurator.getBundle();
 		assertNotNull(origin);
-		assertEquals("org.gecko.emf.osgi.example.model.manual", origin.getSymbolicName());
+		assertEquals(EXTENDER_TEST_MODEL_BSN, origin.getSymbolicName());
 		try {
 			origin.stop();
 		} catch (BundleException e) {
@@ -180,7 +182,7 @@ public class EMFModelExtenderRestartTest {
 		manualConfigurator = configurators.iterator().next();
 		origin = manualConfigurator.getBundle();
 		assertNotNull(origin);
-		assertEquals("org.gecko.emf.osgi.example.model.manual", origin.getSymbolicName());
+		assertEquals(EXTENDER_TEST_MODEL_BSN, origin.getSymbolicName());
 	}
 	
 }

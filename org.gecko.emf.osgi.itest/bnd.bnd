@@ -18,7 +18,9 @@
 	org.osgi.annotation.versioning,\
 	org.osgi.test.assertj.framework,\
 	org.gecko.emf.osgi.example.model.manual,\
-	org.osgi.service.condition
+	org.osgi.service.condition,\
+	junit-platform-commons,\
+	org.apiguardian.api
 
 -includeresource: \
 	data/=data/

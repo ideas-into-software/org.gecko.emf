@@ -18,7 +18,6 @@
 	junit-platform-commons;version='[1.7.0,1.7.1)',\
 	junit-platform-engine;version='[1.7.0,1.7.1)',\
 	junit-platform-launcher;version='[1.7.0,1.7.1)',\
-	org.apache.felix.scr;version='[2.1.28,2.1.29)',\
 	org.eclipse.emf.ecore.xmi;version='[2.16.0,2.16.1)',\
 	org.gecko.emf.osgi.example.model.basic;version=snapshot,\
 	org.gecko.emf.osgi.example.model.extended;version=snapshot,\
@@ -35,10 +34,9 @@
 	org.gecko.emf.osgi.itest;version=snapshot,\
 	org.eclipse.emf.common;version='[2.23.0,2.23.1)',\
 	org.eclipse.emf.ecore;version='[2.25.0,2.25.1)',\
-	net.bytebuddy.byte-buddy;version='[1.10.19,1.10.20)',\
-	net.bytebuddy.byte-buddy-agent;version='[1.10.19,1.10.20)',\
-	org.mockito.mockito-core;version='[3.6.0,3.6.1)',\
-	org.objenesis;version='[3.1.0,3.1.1)',\
 	org.osgi.test.assertj.monitoring;version=snapshot,\
 	org.osgi.util.converter;version='[1.0.8,1.0.9)',\
-	org.osgi.util.promise;version='[1.2.0,1.2.1)'
+	org.osgi.util.promise;version='[1.2.0,1.2.1)',\
+	org.apache.felix.scr;version='[2.2.0,2.2.1)',\
+	org.osgi.service.component;version='[1.5.0,1.5.1)'
+-runblacklist: bnd.identity;id='org.gecko.emf.osgi.extender'

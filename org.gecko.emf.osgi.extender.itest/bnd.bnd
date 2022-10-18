@@ -1,14 +1,16 @@
 -buildpath: \
-	org.gecko.emf.osgi.api;version=latest,\
-	junit-jupiter-api,\
-	org.osgi.test.junit5,\
-	org.osgi.test.common,\
-	org.osgi.test.assertj.framework,\
-	org.eclipse.emf.common,\
-	org.eclipse.emf.ecore,\
-	org.eclipse.emf.ecore.xmi,\
-	org.osgi.framework
+	org.gecko.emf.osgi.api;version=snapshot,\
+	junit-jupiter-api;version=latest,\
+	junit-platform-commons;version=latest,\
+	org.osgi.test.junit5;version=latest,\
+	org.apiguardian.api;version=latest,\
+	org.osgi.test.common;version=latest,\
+	org.osgi.test.assertj.framework;version=latest,\
+	org.eclipse.emf.common;version=latest,\
+	org.eclipse.emf.ecore;version=latest,\
+	org.eclipse.emf.ecore.xmi;version=latest,\
+	org.osgi.framework;version=latest
 Bundle-Name: EMF Model Extender Tests
 Bundle-Description: Gecko EMF OSGi model extender integration tests
 
--dependson: org.gecko.emf.osgi.example.model.manual
+-dependson: org.gecko.emf.osgi.example.model.extender

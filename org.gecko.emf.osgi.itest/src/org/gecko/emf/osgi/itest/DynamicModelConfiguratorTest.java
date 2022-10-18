@@ -32,8 +32,6 @@ import org.eclipse.emf.ecore.resource.Resource.IOWrappedException;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.ResourceSetFactory;
-import org.gecko.emf.osgi.example.model.basic.BasicFactory;
-import org.gecko.emf.osgi.example.model.basic.BasicPackage;
 import org.gecko.emf.osgi.example.model.basic.Person;
 import org.gecko.emf.osgi.example.model.manual.Foo;
 import org.gecko.emf.osgi.example.model.manual.ManualFactory;

@@ -94,7 +94,6 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	public void bindEPackageConfigurator(EPackageConfigurator configurator) {
 		lock.writeLock().lock();
 		try {
-			System.out.println("+" + configurator);
 			list.add(configurator);
 			refresh();
 		} finally {
@@ -108,10 +107,8 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 		upperHirachy = new ConcurrentHashMap<>();
 
 		needsRevisiting = new ConcurrentHashMap<>();
-		System.out.println("-------");
 
 		list.forEach(c -> {
-			System.out.println("=" + c);
 			c.configureEPackage(this);
 		});
 
@@ -122,7 +119,6 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 		try {
 			list.remove(configurator);
 			configurator.unconfigureEPackage(this);
-			System.out.println("-" + configurator);
 			refresh();
 		} finally {
 			lock.writeLock().unlock();
