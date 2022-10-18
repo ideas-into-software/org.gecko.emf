@@ -1,7 +1,7 @@
 plugins {
   id "org.sonarqube" version "3.3"
-  id 'jacoco'
-  id 'java'
+  id "jacoco" version "0.8.7"
+  id "java"
 }
 
 // Available to customize the build
