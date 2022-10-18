@@ -156,7 +156,7 @@ public class EMFModelExtenderRestartTest {
 			e.printStackTrace();
 		}
 		try {
-			Thread.sleep(200l);
+			Thread.sleep(1000l);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,7 +170,7 @@ public class EMFModelExtenderRestartTest {
 			e.printStackTrace();
 		}
 		try {
-			Thread.sleep(200l);
+			Thread.sleep(1000l);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
