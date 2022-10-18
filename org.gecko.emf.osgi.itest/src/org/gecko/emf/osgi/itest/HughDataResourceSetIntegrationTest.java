@@ -29,6 +29,7 @@ import org.gecko.emf.osgi.example.model.basic.BasicPackage;
 import org.gecko.emf.osgi.example.model.basic.Person;
 import org.gecko.emf.osgi.example.model.basic.util.BasicResourceFactoryImpl;
 import org.gecko.emf.osgi.resourceset.HughDataResourceSetImpl;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.ServiceReference;
@@ -48,7 +49,7 @@ import org.osgi.util.promise.TimeoutException;
  */
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
-//@Disabled
+@Disabled
 public class HughDataResourceSetIntegrationTest {
 
 	@Test
