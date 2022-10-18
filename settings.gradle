@@ -8,7 +8,9 @@ pluginManagement {
     maven { url bnd_snapshots }
   }
 }
+
 plugins {
   id 'biz.aQute.bnd.workspace'
 }
+
 rootProject.name = "geckoemf"
