@@ -113,8 +113,15 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 		super.generatePackageSerialization(genPackage, monitor);
 		super.generateXMLProcessorClass(genPackage, monitor);
 		super.generateResourceClass(genPackage, monitor);
+		super.generatePackageInterface(genPackage, monitor);
+		super.generatePackageClass(genPackage, monitor);
+		super.generateFactoryInterface(genPackage, monitor);
+		super.generateFactoryClass(genPackage, monitor);
+		super.generateSwitchClass(genPackage, monitor);
+		super.generateAdapterFactoryClass(genPackage, monitor);
+		super.generateValidatorClass(genPackage, monitor);
+
 		if(genModel.isOSGiCompatible()) {
-			generatePackageInfo(genPackage, monitor);
 			generateEPackageConfigurator(genPackage, monitor);
 			generateResourceFactoryClass(genPackage, monitor);
 			generateConfigurationComponent(genPackage, monitor);
@@ -125,16 +132,12 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 //			generateSwitchClass(genPackage, monitor);
 //			generateAdapterFactoryClass(genPackage, monitor);
 //			generateValidatorClass(genPackage, monitor);
+
+			generatePackageInfo(genPackage, monitor);
+			
 		} else {
 			super.generateResourceFactoryClass(genPackage, monitor);
 		}
-		super.generatePackageInterface(genPackage, monitor);
-		super.generatePackageClass(genPackage, monitor);
-		super.generateFactoryInterface(genPackage, monitor);
-		super.generateFactoryClass(genPackage, monitor);
-		super.generateSwitchClass(genPackage, monitor);
-		super.generateAdapterFactoryClass(genPackage, monitor);
-		super.generateValidatorClass(genPackage, monitor);
 
 		return Diagnostic.OK_INSTANCE;
 	}
@@ -327,48 +330,26 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 					getJETEmitter(getJETEmitterDescriptors(), PACKAGE_INFO),
 					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
 					createMonitor(monitor, 1));
-			generateJava(genModel.getModelDirectory(), genPackage.getUtilitiesPackageName(), "package-info",
-					getJETEmitter(getJETEmitterDescriptors(), PACKAGE_INFO_UTIL),
-					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
-					createMonitor(monitor, 1));
 			generateJava(genModel.getModelDirectory(), getClassPackageName(genPackage), "package-info",
 					getJETEmitter(getJETEmitterDescriptors(), PACKAGE_INFO_IMPL),
 					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
 					createMonitor(monitor, 1));
+			if (
+				(genPackage.hasClassifiers() && genPackage.getResource().getValue() == GenResourceKind.XML) ||
+				(genPackage.getResource() != GenResourceKind.NONE_LITERAL) ||
+				(genPackage.hasClassifiers() && genPackage.isAdapterFactory() && !genPackage.getGenClasses().isEmpty()) ||
+				(genPackage.hasClassifiers() && genPackage.hasConstraints()) ||
+				(genPackage.hasClassifiers() && genPackage.getResource().getValue() == GenResourceKind.XML)
+				) {
+				generateJava(genModel.getModelDirectory(), genPackage.getUtilitiesPackageName(), "package-info",
+						getJETEmitter(getJETEmitterDescriptors(), PACKAGE_INFO_UTIL),
+						new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
+						createMonitor(monitor, 1));
+			}
 		} else {
 			monitor.worked(1);
 		}
 	}
-	
-//	protected void generateXMLProcessorClass(GenPackage genPackage, Monitor monitor) {
-//		if (genPackage.hasClassifiers() && genPackage.getResource().getValue() == GenResourceKind.XML) {
-//			message = CodeGenEcorePlugin.INSTANCE.getString("_UI_GeneratingJavaClass_message",
-//					new Object[] { genPackage.getQualifiedXMLProcessorClassName() });
-//			monitor.subTask(message);
-//			generateJava(genPackage.getGenModel().getModelDirectory(), genPackage.getUtilitiesPackageName(),
-//					genPackage.getXMLProcessorClassName(),
-//					getJETEmitter(getJETEmitterDescriptors(), GECKO_XML_PROCESSOR_CLASS_ID), null, createMonitor(monitor, 1));
-//		} else {
-//			monitor.worked(1);
-//		}
-//	}
-
-	/* 
-	 * (non-Javadoc)
-	 * @see org.eclipse.emf.codegen.ecore.genmodel.generator.GenPackageGeneratorAdapter#generateValidatorClass(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.emf.common.util.Monitor)
-	 */
-//	protected void generateValidatorClass(GenPackage genPackage, Monitor monitor) {
-//		if (genPackage.hasClassifiers() && genPackage.hasConstraints()) {
-//			message = CodeGenEcorePlugin.INSTANCE.getString("_UI_GeneratingJavaClass_message",
-//					new Object[] { genPackage.getQualifiedValidatorClassName() });
-//			monitor.subTask(message);
-//			generateJava(genPackage.getGenModel().getModelDirectory(), genPackage.getUtilitiesPackageName(),
-//					genPackage.getValidatorClassName(), getJETEmitter(getJETEmitterDescriptors(), GECKO_VALIDATOR_CLASS_ID),
-//					null, createMonitor(monitor, 1));
-//		} else {
-//			monitor.worked(1);
-//		}
-//	}
 	
 	/**
 	 * Returns the configuration component package name
