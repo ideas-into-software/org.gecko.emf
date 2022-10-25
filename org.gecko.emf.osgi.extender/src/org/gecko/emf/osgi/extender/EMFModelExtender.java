@@ -405,8 +405,10 @@ public class EMFModelExtender {
 		Dictionary<String,Object> properties = model.getProperties();
 		ModelExtenderConfigurator configurator = new ModelExtenderConfigurator(ePackage, null, null);
 		
-		ServiceRegistration<?> modelRegistration = modelBundle.getBundleContext().registerService(new String[]{EPackageConfigurator.class.getName(), 
+		ServiceRegistration<?> modelConfigRegistration = modelBundle.getBundleContext().registerService(new String[]{EPackageConfigurator.class.getName(), 
 				ResourceFactoryConfigurator.class.getName()}, configurator, properties);
+		ServiceRegistration<EPackage> modelRegistration = modelBundle.getBundleContext().registerService(EPackage.class, ePackage, properties);
+		model.setModelConfigRegistration(modelConfigRegistration);
 		model.setModelRegistration(modelRegistration);
 		model.setState(ModelState.INSTALLED);
 		modelList.setChangeCount(modelList.getChangeCount() + 1);
@@ -420,12 +422,24 @@ public class EMFModelExtender {
 	 * @param model The configuration
 	 */
 	public boolean deactivate(final ModelNamespace configList, final Model model) {
-		ServiceRegistration<?> modelRegistration = model.getModelRegistration();
+		ServiceRegistration<EPackage> modelRegistration = model.getModelRegistration();
 		if (modelRegistration != null) {
 			try {
 				modelRegistration.unregister();
 			} catch (IllegalStateException ise) {
-				LOGGER.log(Level.FINE, ise, ()->"Service might be already unregsitered");
+				LOGGER.log(Level.FINE, ise, ()->"Model - Service might be already unregistered");
+			} finally {
+				model.setModelRegistration(null);
+			}
+		}
+		ServiceRegistration<?> modelConfigRegistration = model.getModelConfigRegistration();
+		if (modelConfigRegistration != null) {
+			try {
+				modelConfigRegistration.unregister();
+			} catch (IllegalStateException ise) {
+				LOGGER.log(Level.FINE, ise, ()->"Model Configuration Service might be already unregistered");
+			} finally {
+				model.setModelConfigRegistration(null);
 			}
 		}
 		model.setState(ModelState.UNINSTALLED);

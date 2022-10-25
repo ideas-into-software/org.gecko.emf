@@ -67,6 +67,18 @@ public class EMFModelExtenderTest {
 	}
 	
 	@Test
+	public void simpleTestEPackage(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<EPackage> epackageAware) {
+		assertNotNull(epackageAware);
+		EPackage ePackage = epackageAware.getService();
+		assertNotNull(ePackage);
+		// Foo class exists
+		EClass foo = (EClass) ePackage.getEClassifier("Foo");
+		assertNotNull(foo);
+		EClass bar = (EClass) ePackage.getEClassifier("Bar");
+		assertNull(bar);
+	}
+	
+	@Test
 	public void simpleMultipleFolders(@InjectService(filter = "(&(emf.model.name=manual)(emf.model.name=foobar))") ServiceAware<ResourceSet> rsAware) {
 		ResourceSet rs = rsAware.getService();
 		assertNotNull(rs);
@@ -83,6 +95,26 @@ public class EMFModelExtenderTest {
 		EFactory foobarFactory = rs.getPackageRegistry().getEFactory("http://foo.bar");
 		assertNotNull(foobarFactory);
 		EPackage foobarPackage = foobarFactory.getEPackage();
+		assertNotNull(foobarPackage);
+		// Foo class exists
+		EClass foobarFoo = (EClass) foobarPackage.getEClassifier("Foo");
+		assertNotNull(foobarFoo);
+		// Bar class exists in this package
+		EClass foobarBar = (EClass) foobarPackage.getEClassifier("Bar");
+		assertNotNull(foobarBar);
+	}
+	
+	@Test
+	public void simpleMultipleFoldersEPackage(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<EPackage> manualAware, @InjectService(filter = "(emf.model.name=foobar)") ServiceAware<EPackage> fooAware) {
+		EPackage manualPackage = manualAware.getService();
+		assertNotNull(manualPackage);
+		// Foo class exists
+		EClass manualFoo = (EClass) manualPackage.getEClassifier("Foo");
+		assertNotNull(manualFoo);
+		// Bar class does not exist in this package
+		EClass manualBar = (EClass) manualPackage.getEClassifier("Bar");
+		assertNull(manualBar);
+		EPackage foobarPackage = fooAware.getService();
 		assertNotNull(foobarPackage);
 		// Foo class exists
 		EClass foobarFoo = (EClass) foobarPackage.getEClassifier("Foo");
@@ -211,5 +243,39 @@ public class EMFModelExtenderTest {
 		assertNotNull(toastBar);
 	}
 	
+	@Test
+	public void simpleMultiplePropertiesFileEPackage(@InjectService(filter = "(toast=me)") ServiceAware<EPackage> epackageAware) {
+		List<ServiceReference<EPackage>> references = epackageAware.getServiceReferences();
+		assertEquals(1, references.size());
+		ResourceSet rs = new ResourceSetImpl();
+		EFactory toastFactory = rs.getPackageRegistry().getEFactory("http://foo.bar/toast");
+		assertNull(toastFactory);
+		
+		List<EPackage> epackages = epackageAware.getServices();
+		for (EPackage epackage : epackages) {
+			rs.getPackageRegistry().put(epackage.getNsURI(), epackage);
+		}
+		EFactory manualFactory = rs.getPackageRegistry().getEFactory("http://gecko.org/example/model/manual/1.0");
+		assertNull(manualFactory);
+		EFactory foobarFactory = rs.getPackageRegistry().getEFactory("http://foo.bar");
+		assertNull(foobarFactory);
+		
+		toastFactory = rs.getPackageRegistry().getEFactory("http://foo.bar/toast");
+		assertNotNull(toastFactory);
+		EPackage toastPackage = toastFactory.getEPackage();
+		assertNotNull(toastPackage);
+		// Foo class does not exists
+		EClass foobarFoo = (EClass) toastPackage.getEClassifier("Foo");
+		assertNull(foobarFoo);
+		// Bar class does not exists in this package
+		EClass foobarBar = (EClass) toastPackage.getEClassifier("Bar");
+		assertNull(foobarBar);
+		// FooToast class exists
+		EClass toastFoo = (EClass) toastPackage.getEClassifier("FooToast");
+		assertNotNull(toastFoo);
+		// BarToast class exists in this package
+		EClass toastBar = (EClass) toastPackage.getEClassifier("BarToast");
+		assertNotNull(toastBar);
+	}
 
 }

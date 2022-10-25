@@ -83,13 +83,16 @@ public class EMFModelExtenderRestartTest {
 	}
 	
 	@Test
-	public void stopBundleTest(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<ResourceSet> rsAware) {
+	public void stopBundleTest(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<ResourceSet> rsAware, @InjectService(filter = "(emf.model.name=manual)") ServiceAware<EPackage> ePackageAware) {
 		ResourceSet rs = rsAware.getService();
 		assertNotNull(rs);
+		EPackage ePackageService = ePackageAware.getService();
+		assertNotNull(ePackageService);
 		EFactory eFactory = rs.getPackageRegistry().getEFactory("http://gecko.org/example/model/manual/1.0");
 		assertNotNull(eFactory);
 		EPackage ePackage = eFactory.getEPackage();
 		assertNotNull(ePackage);
+		assertEquals(ePackage, ePackageService);
 		// Foo class exists
 		EClass foo = (EClass) ePackage.getEClassifier("Foo");
 		assertNotNull(foo);
@@ -122,16 +125,20 @@ public class EMFModelExtenderRestartTest {
 			Thread.currentThread().interrupt();
 		}
 		assertTrue(rsAware.isEmpty());
+		assertTrue(ePackageAware.isEmpty());
 	}
 	
 	@Test
-	public void restartBundleTest(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<ResourceSet> rsAware) {
+	public void restartBundleTest(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<ResourceSet> rsAware, @InjectService(filter = "(emf.model.name=manual)") ServiceAware<EPackage> ePackageAware) {
 		ResourceSet rs = rsAware.getService();
 		assertNotNull(rs);
+		EPackage ePackageService = ePackageAware.getService();
+		assertNotNull(ePackageService);
 		EFactory eFactory = rs.getPackageRegistry().getEFactory("http://gecko.org/example/model/manual/1.0");
 		assertNotNull(eFactory);
 		EPackage ePackage = eFactory.getEPackage();
 		assertNotNull(ePackage);
+		assertEquals(ePackage, ePackageService);
 		// Foo class exists
 		EClass foo = (EClass) ePackage.getEClassifier("Foo");
 		assertNotNull(foo);
@@ -163,6 +170,7 @@ public class EMFModelExtenderRestartTest {
 			Thread.currentThread().interrupt();
 		}
 		assertTrue(rsAware.isEmpty());
+		assertTrue(ePackageAware.isEmpty());
 		try {
 			origin.start();
 		} catch (BundleException e) {
@@ -177,6 +185,7 @@ public class EMFModelExtenderRestartTest {
 			Thread.currentThread().interrupt();
 		}
 		assertFalse(rsAware.isEmpty());
+		assertFalse(ePackageAware.isEmpty());
 		try {
 			configurators = ctx.getServiceReferences(EPackageConfigurator.class, "(emf.model.name=manual)");
 		} catch (InvalidSyntaxException e1) {

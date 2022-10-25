@@ -47,7 +47,8 @@ public class Model implements Serializable {
     private Hashtable<String, Object> properties;
     
     private transient EPackage ePackage = null;
-    private transient ServiceRegistration<?> modelRegistration = null;
+    private transient ServiceRegistration<EPackage> modelRegistration = null;
+    private transient ServiceRegistration<?> modelConfigRegistration = null;
 
     /** The model state. */
     private volatile ModelState state = ModelState.INSTALL;
@@ -151,7 +152,7 @@ public class Model implements Serializable {
 	 * Returns the modelREgistration.
 	 * @return the modelREgistration
 	 */
-	public ServiceRegistration<?> getModelRegistration() {
+	public ServiceRegistration<EPackage> getModelRegistration() {
 		return modelRegistration;
 	}
 
@@ -159,10 +160,26 @@ public class Model implements Serializable {
 	 * Sets the modelREgistration.
 	 * @param modelREgistration the modelREgistration to set
 	 */
-	public void setModelRegistration(ServiceRegistration<?> modelREgistration) {
+	public void setModelRegistration(ServiceRegistration<EPackage> modelREgistration) {
 		this.modelRegistration = modelREgistration;
 	}
-
+	
+	/**
+	 * Returns the modelConfigRegistration.
+	 * @return the modelConfigRegistration
+	 */
+	public ServiceRegistration<?> getModelConfigRegistration() {
+		return modelConfigRegistration;
+	}
+	
+	/**
+	 * Sets the modelConfigRegistration.
+	 * @param modelConfigRegistration the modelConfigRegistration to set
+	 */
+	public void setModelConfigRegistration(ServiceRegistration<?> modelConfigRegistration) {
+		this.modelConfigRegistration = modelConfigRegistration;
+	}
+	
     @Override
     public String toString() {
         return "Model [namespace=" + ns
