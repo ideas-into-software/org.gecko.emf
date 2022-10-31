@@ -1,4 +1,4 @@
-<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.*" class="EPackageConfiguratorClass"%>
+<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.* org.gecko.emf.osgi.codegen.templates.model.helper.Dependencies" class="EPackageConfiguratorClass"%>
 <%final GenPackage genPackage = (GenPackage)((Object[])argument)[0]; final GenModel genModel=genPackage.getGenModel();%>
 <%@ include file="Header.javajetinc"%>
 package <%=genPackage.getInterfacePackageName()%>.configuration;
@@ -63,7 +63,7 @@ public class <%=genPackage.getPrefix()%>EPackageConfigurator implements EPackage
     <% if (genPackage.getContentTypeIdentifier() != null) {%>
 		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_CONTENT_TYPE, "<%=genPackage.getContentTypeIdentifier()%>");
     <%}%>
-		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_CONFIGURATOR_VERSION, "1.0");
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_CONFIGURATOR_VERSION, "<%=Dependencies.getVersion(genPackage)%>");
 		return properties;
 	}
 }

@@ -84,6 +84,13 @@ An example project bnd file can look as follows:
 Bundle-Version: 1.0.0.SNAPSHOT
 ```
 
+##### Bnd Codegenerator
+
+The provided Code generator is based on the default code generator Version as declared in https://github.com/geckoprojects-org/org.geckoprojects.emf/blob/master/cnf/ext/repo_project.maven. As the use is not intended for PDE, no Manifest, plugin.xml or any other PDE Project specific files will be created. 
+
+A few additions have been made though. It will create a Component that will register your EPackage, EPackageFactory and a Condition for you. If a ResourceFactory is generated, it will be Component as well. All generated Packages will be served with a `package-info.java` as well. If a `EAnnotation` with the source `Version` and a detailed entry with `value` as key is present on any `EPackage` this will define you exported version. If non is present the default is `1.0`.
+
+As  
 
 ## Links
 

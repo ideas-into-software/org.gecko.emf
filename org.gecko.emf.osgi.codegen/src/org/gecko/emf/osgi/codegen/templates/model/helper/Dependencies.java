@@ -12,6 +12,7 @@
 package org.gecko.emf.osgi.codegen.templates.model.helper;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.ecore.EAnnotation;
 
 /**
  * A helper for some special OSGi specific dependency deduction
@@ -23,6 +24,18 @@ public class Dependencies {
 	
 	public static boolean isPureOSGi(GenPackage genPackage) {
 		return !genPackage.isLiteralsInterface() && genPackage.getGenModel().isOSGiCompatible();
+	}
+
+	public static String getVersion(GenPackage genPackage) {
+		EAnnotation versionAnnotation = genPackage.getEcorePackage().getEAnnotation("Version");
+		if(versionAnnotation == null) {
+			return "1.0";
+		}
+		String value = versionAnnotation.getDetails().get("value");
+		if(value == null) {
+			return "1.0";
+		}
+		return value; 
 	}
 
 }

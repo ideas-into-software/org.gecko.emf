@@ -1,4 +1,4 @@
-<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="java.util.* org.eclipse.emf.codegen.ecore.genmodel.*" class="ResourceFactoryClass"%>
+<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="java.util.* org.eclipse.emf.codegen.ecore.genmodel.* org.gecko.emf.osgi.codegen.templates.model.helper.Dependencies" class="ResourceFactoryClass"%>
 <%
 /**
  * Copyright (c) 2002-2006 IBM Corporation and others.
@@ -49,7 +49,7 @@ package <%=genPackage.getUtilitiesPackageName()%>;
  	},
 <%}%> 
 <%}%> 
-	version = "1.0.0"
+	version = "<%=Dependencies.getVersion(genPackage)%>"
 )
 <%if (isJDK50 && genPackage.hasAPIDeprecatedTag()) {%>
 @Deprecated

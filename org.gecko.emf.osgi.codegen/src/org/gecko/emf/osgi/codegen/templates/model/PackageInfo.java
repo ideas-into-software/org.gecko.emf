@@ -1,6 +1,7 @@
 package org.gecko.emf.osgi.codegen.templates.model;
 
 import org.eclipse.emf.codegen.ecore.genmodel.*;
+import org.gecko.emf.osgi.codegen.templates.model.helper.Dependencies;
 
 public class PackageInfo
 {
@@ -17,8 +18,9 @@ public class PackageInfo
   protected final String TEXT_1 = "";
   protected final String TEXT_2 = "/*";
   protected final String TEXT_3 = NL + " * ";
-  protected final String TEXT_4 = NL + " */" + NL + "@org.osgi.annotation.bundle.Export" + NL + "package ";
-  protected final String TEXT_5 = ";";
+  protected final String TEXT_4 = NL + " */" + NL + "@org.osgi.annotation.bundle.Export" + NL + "@org.osgi.annotation.versioning.Version(\"";
+  protected final String TEXT_5 = "\")" + NL + "package ";
+  protected final String TEXT_6 = ";";
 
   public String generate(Object argument)
   {
@@ -32,8 +34,10 @@ public class PackageInfo
     stringBuffer.append(copyrightHolder.getCopyright(copyrightHolder.getGenModel().getIndentation(stringBuffer)));
     }}
     stringBuffer.append(TEXT_4);
-    stringBuffer.append(genPackage.getInterfacePackageName());
+    stringBuffer.append(Dependencies.getVersion(genPackage));
     stringBuffer.append(TEXT_5);
+    stringBuffer.append(genPackage.getInterfacePackageName());
+    stringBuffer.append(TEXT_6);
     return stringBuffer.toString();
   }
 }

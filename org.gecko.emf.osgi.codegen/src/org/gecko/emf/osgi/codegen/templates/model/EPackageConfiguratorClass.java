@@ -1,6 +1,7 @@
 package org.gecko.emf.osgi.codegen.templates.model;
 
 import org.eclipse.emf.codegen.ecore.genmodel.*;
+import org.gecko.emf.osgi.codegen.templates.model.helper.Dependencies;
 
 public class EPackageConfiguratorClass
 {
@@ -40,7 +41,8 @@ public class EPackageConfiguratorClass
   protected final String TEXT_24 = "\");";
   protected final String TEXT_25 = NL + "\t\tproperties.put(";
   protected final String TEXT_26 = ".EMF_MODEL_CONTENT_TYPE, \"";
-  protected final String TEXT_27 = ".EMF_CONFIGURATOR_VERSION, \"1.0\");" + NL + "\t\treturn properties;" + NL + "\t}" + NL + "}";
+  protected final String TEXT_27 = ".EMF_CONFIGURATOR_VERSION, \"";
+  protected final String TEXT_28 = "\");" + NL + "\t\treturn properties;" + NL + "\t}" + NL + "}";
 
   public String generate(Object argument)
   {
@@ -106,6 +108,8 @@ public class EPackageConfiguratorClass
     stringBuffer.append(TEXT_25);
     stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces"));
     stringBuffer.append(TEXT_27);
+    stringBuffer.append(Dependencies.getVersion(genPackage));
+    stringBuffer.append(TEXT_28);
     genModel.emitSortedImports();
     return stringBuffer.toString();
   }
