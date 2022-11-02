@@ -20,7 +20,7 @@ javac.target: 1.8
 
 Bundle-Version: ${emf-version}
 
-github-project: org.geckoprojects.emf
+github-project: org.gecko.emf
 
 -groupid: org.geckoprojects.emf
 
