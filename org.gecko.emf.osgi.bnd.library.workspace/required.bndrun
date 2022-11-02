@@ -9,23 +9,17 @@
 	bnd.identity;id='org.gecko.emf.osgi.codegen',\
 	bnd.identity;id='org.gecko.emf.osgi.component',\
 	bnd.identity;id='org.gecko.emf.osgi.extender',\
-	bnd.identity;id='org.gecko.emf.osgi.doc.mermaid',\
-	bnd.identity;id='org.gecko.emf.osgi.doc.plantuml',\
 	bnd.identity;id='org.gecko.emf.osgi.model.info',\
 	bnd.identity;id='org.gecko.emf.osgi.bnd.library.project',\
 	bnd.identity;id='org.gecko.emf.osgi.bnd.templates.project',\
 	bnd.identity;id='slf4j.simple'
 -runbundles: \
 	org.apache.felix.configadmin;version='[1.9.22,1.9.23)',\
-	org.apache.felix.scr;version='[2.1.28,2.1.29)',\
 	org.eclipse.emf.ecore.xmi;version='[2.16.0,2.16.1)',\
-	org.freemarker.freemarker;version='[2.3.31,2.3.32)',\
 	org.gecko.emf.osgi.api;version=snapshot,\
 	org.gecko.emf.osgi.codegen;version=snapshot,\
 	org.gecko.emf.osgi.component;version=snapshot,\
 	org.gecko.emf.osgi.extender;version=snapshot,\
-	org.gecko.emf.osgi.doc.mermaid;version=snapshot,\
-	org.gecko.emf.osgi.doc.plantuml;version=snapshot,\
 	org.gecko.emf.osgi.model.info;version=snapshot,\
 	org.osgi.service.cm;version='[1.6.0,1.6.1)',\
 	org.osgi.util.function;version='[1.1.0,1.1.1)',\
@@ -35,8 +29,11 @@
 	slf4j.simple;version='[1.7.25,1.7.26)',\
 	org.eclipse.emf.common;version='[2.23.0,2.23.1)',\
 	org.eclipse.emf.ecore;version='[2.25.0,2.25.1)',\
-	aQute.libg;version='[6.1.0,6.1.1)',\
-	org.osgi.util.promise;version='[1.2.0,1.2.1)'
+	org.osgi.util.promise;version='[1.2.0,1.2.1)',\
+	org.apache.felix.scr;version='[2.2.0,2.2.1)',\
+	org.osgi.service.component;version='[1.5.0,1.5.1)',\
+	org.osgi.service.coordinator;version='[1.0.2,1.0.3)',\
+	org.osgi.util.converter;version='[1.0.8,1.0.9)'
 -runblacklist: \
 	bnd.identity;id='ch.qos.logback.classic',\
 	bnd.identity;id='ch.qos.logback.core'
