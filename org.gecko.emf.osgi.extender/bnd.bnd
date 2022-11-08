@@ -12,5 +12,3 @@
 	
 Bundle-Name: EMF OSGI Model Extender
 Bundle-Description: Gecko EMF: OSGi extender implementation for EMF Models
-
--baseline: *
