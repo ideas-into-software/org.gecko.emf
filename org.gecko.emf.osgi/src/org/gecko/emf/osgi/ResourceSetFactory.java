@@ -16,12 +16,14 @@ package org.gecko.emf.osgi;
 import java.util.Collection;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * This OSGi service builds an EMF ResourceSet.
  * @author bhunt
  * @author Mark Hoffmann
  */
+@ProviderType
 public interface ResourceSetFactory
 {
 	public static final String EMF_CAPABILITY_NAME = "osgi";

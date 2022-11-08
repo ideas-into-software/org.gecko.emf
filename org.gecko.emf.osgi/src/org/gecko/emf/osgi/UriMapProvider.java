@@ -16,6 +16,7 @@ package org.gecko.emf.osgi;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provider to convert Uri's
@@ -23,6 +24,7 @@ import org.eclipse.emf.common.util.URI;
  * @author Mark Hoffmann
  * @since 25.07.2017
  */
+@ProviderType
 public interface UriMapProvider {
 	
 	public static final String URI_MAP_SOURE = "uri.map.src"; 

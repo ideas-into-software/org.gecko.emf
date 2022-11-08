@@ -14,6 +14,7 @@
 package org.gecko.emf.osgi;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * The ResourceSet from this service is not thread safe. This service
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * @author bhunt
  * @author Mark Hoffmann
  */
+@ProviderType
 public interface ResourceSetCache {
 	
 	/** Service property name to define a name for the instance */

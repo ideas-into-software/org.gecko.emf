@@ -14,12 +14,14 @@
 package org.gecko.emf.osgi;
 
 import org.eclipse.emf.ecore.EObject;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Interface to detach EObjects from a resource or/and resource sets
  * @author Mark Hoffmann
  * @since 23.11.2017
  */
+@ProviderType
 public interface Detachable {
 	
 	/**

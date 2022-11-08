@@ -14,6 +14,7 @@
 package org.gecko.emf.osgi;
 
 import org.eclipse.emf.ecore.resource.URIHandler;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * This OSGi service provides a URI handler. It is intended to be used with the
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.resource.URIHandler;
  * @author bhunt
  * 
  */
+@ProviderType
 public interface UriHandlerProvider {
 	
 	/**
