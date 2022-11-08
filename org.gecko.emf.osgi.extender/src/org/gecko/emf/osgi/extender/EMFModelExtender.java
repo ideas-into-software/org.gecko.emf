@@ -153,19 +153,13 @@ public class EMFModelExtender {
 				final int state = bundle.getState();
 				if ( active && (state == Bundle.UNINSTALLED || state == Bundle.STOPPING)) {
 					LOGGER.fine(()->"Removing bundle " + getBundleIdentity(bundle) + " : " + getBundleState(state));
-					queue.submit(new Runnable() {
-
-						@Override
-						public void run() {
-							try {
-								if ( processRemoveBundle(bundle.getBundleId()) ) {
-									process();
-								}
-							} catch ( final IllegalStateException ise) {
-								LOGGER.log(Level.SEVERE, ise, ()->"Error processing bundle " + getBundleIdentity(bundle));
-							}
+					try {
+						if ( processRemoveBundle(bundle.getBundleId()) ) {
+							process();
 						}
-					});
+					} catch ( final IllegalStateException ise) {
+						LOGGER.log(Level.SEVERE, ise, ()->"Error processing bundle " + getBundleIdentity(bundle));
+					}
 				}
 			}
 
