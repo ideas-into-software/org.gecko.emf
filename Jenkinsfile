@@ -38,9 +38,9 @@ pipeline  {
             steps  {
                 echo "I am building on ${env.JOB_NAME}"
                 sh "./gradlew testOSGi release --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
-                sh "mkdir -p $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf.osgi"
-                sh "rm -rf $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf.osgi/*"
-                sh "cp -r cnf/release/* $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf.osgi"
+                sh "mkdir -p $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf"
+                sh "rm -rf $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf/*"
+                sh "cp -r cnf/release/* $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf"
             }
         }
     }
