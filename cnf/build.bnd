@@ -18,8 +18,6 @@ javac.target: 1.8
 # SPDX-License-Identifier: Apache-2.0
 
 
-Bundle-Version: ${emf-version}
-
 github-project: org.gecko.emf
 
 -groupid: org.geckoprojects.emf
@@ -28,10 +26,6 @@ github-project: org.gecko.emf
 	"No metadata for revision";\
 		restrict:=error;\
     	is:=warning
-
-emf-version: ${base-version}.SNAPSHOT
-releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${version}));REPOS}
--maven-release.local: ${if;${def;releaseNotNeeded};local;remote}
 
 -plugin: aQute.bnd.deployer.repository.LocalIndexedRepo;\
 		local               =${.}/local;\
