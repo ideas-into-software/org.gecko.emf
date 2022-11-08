@@ -17,12 +17,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Configurator for the {@link EPackage} registry
  * @author Mark Hoffmann
  * @since 25.07.2017
  */
+@ProviderType
 public interface EPackageConfigurator {
 	
 	public static final String EMF_CONFIGURATOR_NAME = "epackage";

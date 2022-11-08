@@ -14,6 +14,7 @@
 package org.gecko.emf.osgi;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * This OSGi service configures a resource set during construction. It is
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * 
  * @author bhunt, Mark Hoffmann
  */
+@ProviderType
 public interface ResourceSetConfigurator {
 	
 	public static final String EMF_CONFIGURATOR_NAME = "resourceSet";

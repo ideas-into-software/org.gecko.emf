@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * A special {@link ResourceSet}, that can deal with large data sets.
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * @author Mark Hoffmann
  * @since 27.09.2019
  */
+@ProviderType
 public interface HughDataResourceSet extends ResourceSet {
 	
 	/**

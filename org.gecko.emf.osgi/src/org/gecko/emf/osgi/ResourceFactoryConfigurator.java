@@ -15,12 +15,14 @@ package org.gecko.emf.osgi;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
+import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Configurator for the {@link Registry} registry
  * @author Mark Hoffmann
  * @since 25.07.2017
  */
+@ProviderType
 public interface ResourceFactoryConfigurator {
 	
 	/**
