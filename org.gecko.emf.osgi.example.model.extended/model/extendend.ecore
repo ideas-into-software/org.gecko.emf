@@ -2,7 +2,12 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="extended" nsURI="http://gecko.org/example/model/extendendend/1.0"
     nsPrefix="extended">
-  <eClassifiers xsi:type="ecore:EClass" name="ExtendedAddress" eSuperTypes="../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//Address"/>
+  <eAnnotations source="Version">
+    <details key="value" value="1.1"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendedAddress" eSuperTypes="../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//Address">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="asdasd" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtendedPerson" eSuperTypes="../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//EmployeeInfo ../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//Person"/>
   <eClassifiers xsi:type="ecore:EClass" name="TestWithEcoreDep" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass">
     <eStructuralFeatures xsi:type="ecore:EReference" name="aReference" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>

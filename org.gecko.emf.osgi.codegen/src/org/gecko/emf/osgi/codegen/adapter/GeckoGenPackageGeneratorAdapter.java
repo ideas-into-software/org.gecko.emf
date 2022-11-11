@@ -44,12 +44,8 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 	protected static final int PACKAGE_INFO_UTIL = 17;
 	protected static final int RESOURCE_FACOTRY = 18;
 	protected static final int EPACKAGE_CONFIGURATOR_CLASS = 19;
-//	protected static final int PACKAGE_CLASS = 19;
-//	protected static final int FACTORY_CLASS = 20;
-//	protected static final int ADAPTER_FACTORY_CLASS = 21;
-//	protected static final int SWITCH_CLASS = 22;
-//	protected static final int GECKO_XML_PROCESSOR_CLASS_ID = 24;
-//	protected static final int GECKO_VALIDATOR_CLASS_ID = 25;
+	protected static final int PACKAGE_CLASS = 20;
+	protected static final int FACTORY_CLASS = 21;
 
 	private static final JETEmitterDescriptor[] JET_EMITTER_DESCRIPTORS = {
 			new JETEmitterDescriptor("model/ConfigComponent.javajet",
@@ -63,20 +59,11 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 			new JETEmitterDescriptor("model/ResourceFactoryClass.javajet",
 					"org.gecko.emf.osgi.codegen.templates.model.ResourceFactoryClass"),
 			new JETEmitterDescriptor("model/EPackageConfigurator.javajet",
-					"org.gecko.emf.osgi.codegen.templates.model.EPackageConfiguratorClass")
-//			new JETEmitterDescriptor("model/PackageClass.javajet",
-//					"org.gecko.emf.osgi.codegen.templates.model.PackageClass"),
-//			new JETEmitterDescriptor("model/FactoryClass.javajet",
-//					"org.gecko.emf.osgi.codegen.templates.model.FactoryClass"),
-//			new JETEmitterDescriptor("model/AdapterFactoryClass.javajet",
-//					"org.gecko.emf.osgi.codegen.templates.model.AdapterFactoryClass"),
-//			new JETEmitterDescriptor("model/SwitchClass.javajet",
-//					"org.gecko.emf.osgi.codegen.templates.model.SwitchClass"),
-//			new JETEmitterDescriptor("model/XMLProcessorClass.javajet", 
-//					"org.gecko.emf.osgi.codegen.templates.model.XMLProcessorClass"),
-//			new JETEmitterDescriptor("model/ValidatorClass.javajet", 
-//					"org.gecko.emf.osgi.codegen.templates.model.ValidatorClass")
-			};
+					"org.gecko.emf.osgi.codegen.templates.model.EPackageConfiguratorClass"),
+			new JETEmitterDescriptor("model/PackageClass.javajet",
+					"org.gecko.emf.osgi.codegen.templates.model.PackageClass"),
+			new JETEmitterDescriptor("model/FactoryClass.javajet",
+					"org.gecko.emf.osgi.codegen.templates.model.FactoryClass") };
 
 	public GeckoGenPackageGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
 		super(generatorAdapterFactory);
@@ -102,11 +89,8 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 		message = "Generating Code for " + genPackage.getBasicPackageName();
 		monitor.subTask(message);
 
-		
 		GenModel genModel = genPackage.getGenModel();
 
-//		boolean doPureOSGi = Dependencies.isPureOSGi(genPackage);
-		
 		ensureProjectExists(genModel.getModelDirectory(), genPackage, MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(),
 				createMonitor(monitor, 1));
 
@@ -115,149 +99,26 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 		super.generatePackageSerialization(genPackage, monitor);
 		super.generateXMLProcessorClass(genPackage, monitor);
 		super.generateResourceClass(genPackage, monitor);
-		super.generatePackageInterface(genPackage, monitor);
+		generatePackageInterface(genPackage, monitor);
 		super.generatePackageClass(genPackage, monitor);
-		super.generateFactoryInterface(genPackage, monitor);
+		generateFactoryInterface(genPackage, monitor);
 		super.generateFactoryClass(genPackage, monitor);
 		super.generateSwitchClass(genPackage, monitor);
 		super.generateAdapterFactoryClass(genPackage, monitor);
 		super.generateValidatorClass(genPackage, monitor);
 
-		if(genModel.isOSGiCompatible()) {
+		if (genModel.isOSGiCompatible()) {
 			generateEPackageConfigurator(genPackage, monitor);
 			generateResourceFactoryClass(genPackage, monitor);
 			generateConfigurationComponent(genPackage, monitor);
-//			generatePackageInterface(genPackage, monitor);
-//			generatePackageClass(genPackage, monitor);
-//			generateFactoryInterface(genPackage, monitor);
-//			generateFactoryClass(genPackage, monitor);
-//			generateSwitchClass(genPackage, monitor);
-//			generateAdapterFactoryClass(genPackage, monitor);
-//			generateValidatorClass(genPackage, monitor);
-
 			generatePackageInfo(genPackage, monitor);
-			
+
 		} else {
 			super.generateResourceFactoryClass(genPackage, monitor);
 		}
 
 		return Diagnostic.OK_INSTANCE;
 	}
-
-//	  protected void generateSwitchClass(GenPackage genPackage, Monitor monitor)
-//	  {
-//	    if (genPackage.hasClassifiers() && genPackage.isAdapterFactory() && !genPackage.getGenClasses().isEmpty())
-//	    {
-//	      message = CodeGenEcorePlugin.INSTANCE.getString
-//	        ("_UI_GeneratingJavaClass_message", new Object[] { genPackage.getQualifiedSwitchClassName() });
-//	      monitor.subTask(message);
-//	      generateJava
-//	        (genPackage.getGenModel().getModelDirectory(),
-//	         genPackage.getUtilitiesPackageName(),
-//	         genPackage.getSwitchClassName(),
-//	         getJETEmitter(getJETEmitterDescriptors(), SWITCH_CLASS),
-//	         null,
-//	         createMonitor(monitor, 1));
-//	    }
-//	    else
-//	    {
-//	      monitor.worked(1);
-//	    }
-//	  }
-
-//	  protected void generateAdapterFactoryClass(GenPackage genPackage, Monitor monitor)
-//	  {
-//	    if (genPackage.hasClassifiers() && genPackage.isAdapterFactory() && !genPackage.getGenClasses().isEmpty())
-//	    {
-//	      message = CodeGenEcorePlugin.INSTANCE.getString
-//	        ("_UI_GeneratingJavaClass_message", new Object[] { genPackage.getQualifiedAdapterFactoryClassName() });
-//	      monitor.subTask(message);
-//	      generateJava
-//	        (genPackage.getGenModel().getModelDirectory(),
-//	         genPackage.getUtilitiesPackageName(),
-//	         genPackage.getAdapterFactoryClassName(),
-//	         getJETEmitter(getJETEmitterDescriptors(), ADAPTER_FACTORY_CLASS),
-//	         null,
-//	         createMonitor(monitor, 1));
-//	    }
-//	    else
-//	    {
-//	      monitor.worked(1);
-//	    }
-//	  }
-//	
-//	
-//	@Override
-//	protected void generatePackageInterface(GenPackage genPackage, Monitor monitor) {
-//		GenModel genModel = genPackage.getGenModel();
-//
-//		if (genPackage.hasClassifiers() && !genModel.isSuppressEMFMetaData() && !genModel.isSuppressInterfaces()) {
-//			message = CodeGenEcorePlugin.INSTANCE.getString("_UI_GeneratingJavaInterface_message",
-//					new Object[] { genPackage.getQualifiedPackageInterfaceName() });
-//			monitor.subTask(message);
-//			generateJava(genModel.getModelDirectory(), genPackage.getReflectionPackageName(),
-//					genPackage.getPackageInterfaceName(), getJETEmitter(getJETEmitterDescriptors(), PACKAGE_CLASS),
-//					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
-//					createMonitor(monitor, 1));
-//		} else {
-//			monitor.worked(1);
-//		}
-//	}
-//	
-//	@Override
-//	protected void generatePackageClass(GenPackage genPackage, Monitor monitor) {
-//		GenModel genModel = genPackage.getGenModel();
-//
-//		if (genPackage.hasClassifiers()) {
-//			message = CodeGenEcorePlugin.INSTANCE.getString("_UI_GeneratingJavaClass_message",
-//					new Object[] { genPackage.getQualifiedPackageClassName() });
-//			monitor.subTask(message);
-//			generateJava(genModel.getModelDirectory(), genPackage.getReflectionClassPackageName(),
-//					genPackage.getPackageClassName(), getJETEmitter(getJETEmitterDescriptors(), PACKAGE_CLASS),
-//					new Object[] { new Object[] { genPackage,
-//							genModel.isSuppressEMFMetaData() || genModel.isSuppressInterfaces() ? Boolean.TRUE
-//									: Boolean.FALSE,
-//							Boolean.TRUE } },
-//					createMonitor(monitor, 1));
-//		} else {
-//			monitor.worked(1);
-//		}
-//	}
-//
-//	@Override
-//	protected void generateFactoryInterface(GenPackage genPackage, Monitor monitor) {
-//		GenModel genModel = genPackage.getGenModel();
-//
-//		if (genPackage.hasClassifiers() && !genModel.isSuppressInterfaces()) {
-//			message = CodeGenEcorePlugin.INSTANCE.getString("_UI_GeneratingJavaInterface_message",
-//					new Object[] { genPackage.getQualifiedFactoryInterfaceName() });
-//			monitor.subTask(message);
-//			generateJava(genModel.getModelDirectory(), genPackage.getReflectionPackageName(),
-//					genPackage.getFactoryInterfaceName(), getJETEmitter(getJETEmitterDescriptors(), FACTORY_CLASS),
-//					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
-//					createMonitor(monitor, 1));
-//		} else {
-//			monitor.worked(1);
-//		}
-//	}
-//
-//	@Override
-//	protected void generateFactoryClass(GenPackage genPackage, Monitor monitor) {
-//		GenModel genModel = genPackage.getGenModel();
-//
-//		if (genPackage.hasClassifiers()) {
-//			message = CodeGenEcorePlugin.INSTANCE.getString("_UI_GeneratingJavaClass_message",
-//					new Object[] { genPackage.getQualifiedFactoryClassName() });
-//			monitor.subTask(message);
-//			generateJava(genModel.getModelDirectory(), genPackage.getReflectionClassPackageName(),
-//					genPackage.getFactoryClassName(), getJETEmitter(getJETEmitterDescriptors(), FACTORY_CLASS),
-//					new Object[] { new Object[] { genPackage,
-//							genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE, Boolean.TRUE } },
-//					createMonitor(monitor, 1));
-//		} else {
-//			monitor.worked(1);
-//		}
-//	}
 
 	@Override
 	protected void generateResourceFactoryClass(GenPackage genPackage, Monitor monitor) {
@@ -282,8 +143,7 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 	protected void generateEPackageConfigurator(GenPackage genPackage, Monitor monitor) {
 		GenModel genModel = genPackage.getGenModel();
 		if (genPackage.hasClassifiers()) {
-			message = String.format("Generating EPackageConfigurator for package '%s'",
-					genPackage.getPackageName());
+			message = String.format("Generating EPackageConfigurator for package '%s'", genPackage.getPackageName());
 			monitor.subTask(message);
 			generateJava(genModel.getModelDirectory(), getConfigurationPackageName(genPackage),
 					getBasicConfiguratorClassName(genPackage),
@@ -294,7 +154,7 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 			monitor.worked(1);
 		}
 	}
-	
+
 	/**
 	 * Generates the configuration service component for the {@link GenPackage}
 	 * 
@@ -336,13 +196,11 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 					getJETEmitter(getJETEmitterDescriptors(), PACKAGE_INFO_IMPL),
 					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
 					createMonitor(monitor, 1));
-			if (
-				(genPackage.hasClassifiers() && genPackage.getResource().getValue() == GenResourceKind.XML) ||
-				(genPackage.getResource() != GenResourceKind.NONE_LITERAL) ||
-				(genPackage.hasClassifiers() && genPackage.isAdapterFactory() && !genPackage.getGenClasses().isEmpty()) ||
-				(genPackage.hasClassifiers() && genPackage.hasConstraints()) ||
-				(genPackage.hasClassifiers() && genPackage.getResource().getValue() == GenResourceKind.XML)
-				) {
+			if ((genPackage.hasClassifiers() && genPackage.getResource().getValue() == GenResourceKind.XML)
+					|| (genPackage.getResource() != GenResourceKind.NONE_LITERAL)
+					|| (genPackage.hasClassifiers() && genPackage.isAdapterFactory()
+							&& !genPackage.getGenClasses().isEmpty())
+					|| (genPackage.hasClassifiers() && genPackage.hasConstraints())) {
 				generateJava(genModel.getModelDirectory(), genPackage.getUtilitiesPackageName(), "package-info",
 						getJETEmitter(getJETEmitterDescriptors(), PACKAGE_INFO_UTIL),
 						new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
@@ -352,7 +210,57 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 			monitor.worked(1);
 		}
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.emf.codegen.ecore.genmodel.generator.GenPackageGeneratorAdapter#
+	 * generatePackageInterface(org.eclipse.emf.codegen.ecore.genmodel.GenPackage,
+	 * org.eclipse.emf.common.util.Monitor)
+	 */
+	@Override
+	protected void generatePackageInterface(GenPackage genPackage, Monitor monitor) {
+		GenModel genModel = genPackage.getGenModel();
+
+		if (genPackage.hasClassifiers() && !genModel.isSuppressEMFMetaData() && !genModel.isSuppressInterfaces()) {
+			message = String.format("Generating package interface info for package '%s'",
+					genPackage.getQualifiedPackageInterfaceName());
+			monitor.subTask(message);
+			generateJava(genModel.getModelDirectory(), genPackage.getReflectionPackageName(),
+					genPackage.getPackageInterfaceName(), getJETEmitter(getJETEmitterDescriptors(), PACKAGE_CLASS),
+					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
+					createMonitor(monitor, 1));
+		} else {
+			monitor.worked(1);
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.emf.codegen.ecore.genmodel.generator.GenPackageGeneratorAdapter#
+	 * generateFactoryInterface(org.eclipse.emf.codegen.ecore.genmodel.GenPackage,
+	 * org.eclipse.emf.common.util.Monitor)
+	 */
+	@Override
+	protected void generateFactoryInterface(GenPackage genPackage, Monitor monitor) {
+		GenModel genModel = genPackage.getGenModel();
+
+		if (genPackage.hasClassifiers() && !genModel.isSuppressInterfaces()) {
+			message = String.format("Generating factory interface info for package '%s'",
+					genPackage.getQualifiedFactoryInterfaceName());
+			monitor.subTask(message);
+			generateJava(genModel.getModelDirectory(), genPackage.getReflectionPackageName(),
+					genPackage.getFactoryInterfaceName(), getJETEmitter(getJETEmitterDescriptors(), FACTORY_CLASS),
+					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
+					createMonitor(monitor, 1));
+		} else {
+			monitor.worked(1);
+		}
+	}
+
 	/**
 	 * Returns the configuration component package name
 	 * 

@@ -20,6 +20,8 @@ javac.target: 1.8
 
 github-project: org.gecko.emf
 
+-baseline: *
+
 -groupid: org.geckoprojects.emf
 
 -fixupmessages: \

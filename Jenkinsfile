@@ -43,6 +43,22 @@ pipeline  {
                 sh "cp -r cnf/release/* $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf"
             }
         }
+        stage('Other branch') {
+            when {
+            	allOf {
+            		not {
+	                	branch 'snapshot'
+	            	}
+            		not {
+	                	branch 'main'
+	            	}
+            	}
+            }
+            steps  {
+                echo "I am building on ${env.JOB_NAME}"
+                sh "./gradlew testOSGi --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
+            }
+        }
     }
 
 }

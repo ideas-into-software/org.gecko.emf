@@ -17,7 +17,7 @@
 -plugin.org.gecko.emf.osgi: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
 		releaseUrl			= "https://repo.maven.apache.org/maven2/";\
-		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/";\
+		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/,https://bndtools.jfrog.io/artifactory/libs-snapshot-local/";\
 		index               = ${.}/repo_project.maven;\
 		transitive          = false;\
 		poll.time           = -1;\

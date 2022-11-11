@@ -14,13 +14,7 @@ src=${^src},src-gen
 	
 
 
--includeresource: model=model
-
-Export-Package: \
-	org.gecko.emf.osgi.example.model.extended.impl,\
-	org.gecko.emf.osgi.example.model.extended.util,\
-	org.gecko.emf.osgi.example.model.extended
-	
+-includeresource.model: model=model
 	
 -dependson: org.gecko.emf.osgi.codegen
 
@@ -28,6 +22,6 @@ Export-Package: \
 	model/extendend.genmodel;\
 		generate="geckoEMF 1>out.log 2>err.log";\
 		genmodel=model/extendend.genmodel;\
-		output=src-gen
+		output=src-gen;\
+		version=${base-version}
 
--privatepackage: org.gecko.emf.osgi.example.model.extended.configuration
