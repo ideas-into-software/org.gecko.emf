@@ -9,7 +9,9 @@
   <foreignModel>extendend.ecore</foreignModel>
   <genPackages prefix="Extended" basePackage="org.gecko.emf.osgi.example.model" resource="XMI"
       disposableProviderFactory="true" literalsInterface="false" ecorePackage="extendend.ecore#/">
-    <genClasses ecoreClass="extendend.ecore#//ExtendedAddress"/>
+    <genClasses ecoreClass="extendend.ecore#//ExtendedAddress">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extendend.ecore#//ExtendedAddress/asdasd"/>
+    </genClasses>
     <genClasses ecoreClass="extendend.ecore#//ExtendedPerson"/>
     <genClasses ecoreClass="extendend.ecore#//TestWithEcoreDep">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference extendend.ecore#//TestWithEcoreDep/aReference"/>

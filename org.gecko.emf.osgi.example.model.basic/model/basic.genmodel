@@ -46,6 +46,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute basic.ecore#//Person/image"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference basic.ecore#//Person/relatives"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference basic.ecore#//Person/transientAddress"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute basic.ecore#//Person/test"/>
     </genClasses>
     <genClasses ecoreClass="basic.ecore#//Address">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute basic.ecore#//Address/street"/>

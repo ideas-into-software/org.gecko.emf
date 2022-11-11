@@ -18,10 +18,10 @@ src=${^src},src-gen
 
 -dependson: org.gecko.emf.osgi.codegen
 
-
 -generate:\
 	model/basic.genmodel;\
-		generate="geckoEMF 1>out.log 2>out.log";\
+		generate="geckoEMF 1>1.log 2>2.log";\
 		genmodel=model/basic.genmodel;\
 		output=src-gen;\
-		logFile=test.log
+		version=${base-version};\
+		clean=false
