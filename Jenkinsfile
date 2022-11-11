@@ -43,7 +43,7 @@ pipeline  {
                 sh "cp -r cnf/release/* $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf"
             }
         }
-        stage('Snapshot branch release') {
+        stage('Other branch') {
             when {
             	allOf {
             		not {
