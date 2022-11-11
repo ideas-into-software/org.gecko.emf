@@ -44,11 +44,15 @@ pipeline  {
             }
         }
         stage('Snapshot branch release') {
-            when { 
-            	not {
-	                branch 'snapshot'
-	                main 'snapshot'
-	            }
+            when {
+            	allOf {
+            		not {
+	                	branch 'snapshot'
+	            	}
+            		not {
+	                	branch 'main'
+	            	}
+            	}
             }
             steps  {
                 echo "I am building on ${env.JOB_NAME}"
