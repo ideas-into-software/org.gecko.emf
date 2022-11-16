@@ -50,7 +50,7 @@ import aQute.bnd.service.generate.Generator;
 import aQute.bnd.service.generate.Options;
 import aQute.lib.io.IO;
 
-@ExternalPlugin(name = "geckoEMF", objectClass = Generator.class, version = "4.4.0")
+@ExternalPlugin(name = "geckoEMF", objectClass = Generator.class, version = VersionConstant.CODE_GEN_VERSION)
 public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 
 	/** OUTPUT_DEFAULT */
