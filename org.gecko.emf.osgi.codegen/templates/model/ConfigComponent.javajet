@@ -1,4 +1,4 @@
-<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.ecore.EFactory org.gecko.emf.osgi.EPackageConfigurator java.util.Hashtable org.osgi.service.condition.Condition java.util.Set java.util.HashSet org.gecko.emf.osgi.ResourceSetFactory" class="ConfigurationComponentClass"%>
+<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.ecore.EFactory org.gecko.emf.osgi.EPackageConfigurator java.util.Hashtable org.osgi.service.condition.Condition org.gecko.emf.osgi.ResourceSetFactory" class="ConfigurationComponentClass"%>
 <%final GenPackage genPackage = (GenPackage)((Object[])argument)[0]; final GenModel genModel=genPackage.getGenModel();%>
 <%@ include file="Header.javajetinc"%>
 package <%=genPackage.getInterfacePackageName()%>.configuration;
@@ -66,7 +66,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 	 *
 	 * @generated
 	 */
-	private void registerEPackageService(<%=genPackage.getPackageInterfaceName()%> ePackage, EPackageConfigurator packageConfigurator, BundleContext ctx){
+	private void registerEPackageService(<%=genPackage.getPackageInterfaceName()%> ePackage, <%=genPackage.getPrefix()%>EPackageConfigurator packageConfigurator, BundleContext ctx){
 		<%=genModel.getImportedName(Hashtable.class.getName())%><String, Object> properties = new <%=genModel.getImportedName(Hashtable.class.getName())%><String, Object>();
 		properties.putAll(packageConfigurator.getServiceProperties());
 		String[] serviceClasses = new String[] {<%=genPackage.getPackageInterfaceName()%>.class.getName(), <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.class.getName()};
@@ -78,14 +78,14 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 	 *
 	 * @generated
 	 */
-	private void registerEFactoryService(<%=genPackage.getPackageInterfaceName()%> ePackage, EPackageConfigurator packageConfigurator, BundleContext ctx){
+	private void registerEFactoryService(<%=genPackage.getPackageInterfaceName()%> ePackage, <%=genPackage.getPrefix()%>EPackageConfigurator packageConfigurator, BundleContext ctx){
 		<%=genModel.getImportedName(Hashtable.class.getName())%><String, Object> properties = new <%=genModel.getImportedName(Hashtable.class.getName())%><String, Object>();
 		properties.putAll(packageConfigurator.getServiceProperties());
 		String[] serviceClasses = new String[] {<%=genPackage.getFactoryInterfaceName()%>.class.getName(), <%=genModel.getImportedName(EFactory.class.getName())%>.class.getName()};
 		eFactoryRegistration = ctx.registerService(serviceClasses, ePackage.get<%=genPackage.getFactoryName()%>(), properties);
 	}
 
-	private void registerConditionService(EPackageConfigurator packageConfigurator, BundleContext ctx){
+	private void registerConditionService(<%=genPackage.getPrefix()%>EPackageConfigurator packageConfigurator, BundleContext ctx){
 		// register the EPackage
 		<%=genModel.getImportedName(Hashtable.class.getName())%><String, Object> properties = new <%=genModel.getImportedName(Hashtable.class.getName())%><String, Object>();
 		properties.putAll(packageConfigurator.getServiceProperties());
@@ -94,7 +94,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 	}
 
 	/**
-	 * Deactivates and unregisteres everything.
+	 * Deactivates and unregisters everything.
 	 *
 	 * @generated
 	 */

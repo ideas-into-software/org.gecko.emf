@@ -22,18 +22,14 @@
 	aQute.libg,\
 	org.eclipse.core.contenttype
 	
--includeresource: \
+-includeresource.resource: \
 	/=resources,\
 	templates,\
 	{resources/version.properties}
 	
-	
 -baseline: test
-	
-Export-Package: org.gecko.emf.osgi.codegen.templates.model
 
-Private-Package: \
-	org.gecko.emf.osgi.codegen.*,\
+-includepackage.test: \
 	org.eclipse.core.runtime;-split-package:=merge-first,\
 	org.eclipse.core.internal.*;-split-package:=merge-first,\
 	org.eclipse.emf.*,\
