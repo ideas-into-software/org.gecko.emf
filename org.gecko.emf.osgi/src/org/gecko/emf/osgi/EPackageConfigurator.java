@@ -6,15 +6,10 @@
  * available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
  *
- * SPDX-License-Identifier: EPL-2.0
- * 
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
 package org.gecko.emf.osgi;
-
-import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.osgi.annotation.versioning.ProviderType;
@@ -41,12 +36,4 @@ public interface EPackageConfigurator {
 	 */
 	public void unconfigureEPackage(EPackage.Registry registry);
 	
-	/**
-	 * The content of this method is usually generated for you, but it can be overwritten to add additional properties or modify the generated ones.
-	 * @return a {@link List} of Service properties to return. They will be used to register any model related service. 
-	 */
-	public default Map<String, Object> getServiceProperties(){
-		return null;
-	}
-
 }
