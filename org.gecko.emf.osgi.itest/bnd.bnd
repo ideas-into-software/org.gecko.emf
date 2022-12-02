@@ -21,7 +21,8 @@ Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.
 	org.gecko.emf.osgi.example.model.manual,\
 	org.osgi.service.condition,\
 	junit-platform-commons,\
-	org.apiguardian.api
+	org.apiguardian.api,\
+	org.eclipse.emf.ecore.xmi
 
 -includeresource: \
 	data/=data/

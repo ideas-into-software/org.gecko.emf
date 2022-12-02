@@ -16,10 +16,20 @@
 
 -plugin.org.gecko.emf.osgi: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		releaseUrl			= "https://repo.maven.apache.org/maven2/";\
-		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/,https://bndtools.jfrog.io/artifactory/libs-snapshot-local/";\
+		releaseUrl			= "https://repo.maven.apache.org/maven2/,https://bndtools.jfrog.io/ui/native/update-rc/";\
+		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/,https://bndtools.jfrog.io/artifactory/update-snapshot";\
 		index               = ${.}/repo_project.maven;\
 		transitive          = false;\
 		poll.time           = -1;\
 		readOnly            = true;\
 		name                = "Project Dependencies"
+
+-plugin.bnd: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+		releaseUrl			= "https://bndtools.jfrog.io/artifactory/update-rc/";\
+		snapshotUrl			= "https://bndtools.jfrog.io/artifactory/update-rc/";\
+		index               = ${.}/repo_bnd.maven;\
+		transitive          = false;\
+		poll.time           = -1;\
+		readOnly            = true;\
+		name                = "BND Dependencies"

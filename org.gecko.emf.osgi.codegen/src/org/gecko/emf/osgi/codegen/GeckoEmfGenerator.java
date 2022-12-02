@@ -50,7 +50,7 @@ import aQute.bnd.service.generate.Generator;
 import aQute.bnd.service.generate.Options;
 import aQute.lib.io.IO;
 
-@ExternalPlugin(name = "geckoEMF", objectClass = Generator.class, version = "4.4.0")
+@ExternalPlugin(name = "geckoEMF", objectClass = Generator.class, version = VersionConstant.CODE_GEN_VERSION)
 public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 
 	/** OUTPUT_DEFAULT */
@@ -230,12 +230,6 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		genModel.setCanGenerate(true);
 		genModel.setUpdateClasspath(false);
 
-//		genModel.getGenPackages().stream().findFirst().ifPresent(p -> {
-//			p.getGenClasses().stream().filter(c -> c.getEcoreClass().getName().equals("Person")).findFirst().ifPresent(genClass -> {
-//				genClass.getGenFeatures().stream().filter(gf -> gf.getEcoreFeature().getName().equals("properties")).findFirst().ifPresent(System.err::println);
-//			});
-//		});
-			
 		info("Starting generator run");
 		Diagnostic diagnostic = gen.generate(genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, CodeGenUtil.EclipseUtil.createMonitor(new LoggingProgressMonitor(), 1));
 		info("Finished generator run");

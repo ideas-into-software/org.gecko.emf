@@ -11,5 +11,14 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-@org.osgi.annotation.versioning.Version("3.1.0")
-package org.gecko.emf.osgi;
+package org.gecko.emf.osgi.codegen;
+
+/**
+ * Version constant
+ * @author Juergen Albert
+ * @since 23 Feb 2022
+ */
+public class VersionConstant {
+
+	public static final String CODE_GEN_VERSION = "4.4.1"; //$NON-NLS-1$
+}
