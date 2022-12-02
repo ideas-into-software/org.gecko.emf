@@ -91,7 +91,7 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 			configuration.update(properties);
 
 			cr.set(configuration);
-		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000)
+		}).untilNoMoreServiceEventWithin(1000).assertWithTimeoutThat(1000)
 				.hasExactlyOneServiceEventRegisteredWith(ResourceSetFactory.class)
 				.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
 				.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
@@ -122,7 +122,7 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 			configuration.update(properties);
 
 			cr.set(configuration);
-		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000)
+		}).untilNoMoreServiceEventWithin(1000).assertWithTimeoutThat(1000)
 				.hasExactlyOneServiceEventRegisteredWith(ResourceSet.class)
 				.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
 				.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
@@ -156,7 +156,7 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 			configuration.update(properties);
 
 			cr.set(configuration);
-		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000)
+		}).untilNoMoreServiceEventWithin(1000).assertWithTimeoutThat(1000)
 				.hasExactlyOneServiceEventRegisteredWith(ResourceSet.class)
 				.hasExactlyOneServiceEventRegisteredWith(ResourceSetFactory.class)
 				.hasExactlyOneServiceEventRegisteredWith(Resource.Factory.Registry.class)
@@ -244,7 +244,7 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 
 		MonitoringAssertion.executeAndObserve(() -> {
 			cr.get().delete();
-		}).untilNoMoreServiceEventWithin(100).assertWithTimeoutThat(1000)
+		}).untilNoMoreServiceEventWithin(1000).assertWithTimeoutThat(1000)
 				.hasExactlyOneServiceEventUnregisteringWith(ResourceSet.class)
 				.hasExactlyOneServiceEventUnregisteringWith(ResourceSetFactory.class)
 				.hasExactlyOneServiceEventUnregisteringWith(Resource.Factory.Registry.class)
