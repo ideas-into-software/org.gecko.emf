@@ -11,7 +11,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package org.gecko.emf.osgi;
+package org.gecko.emf.osgi.provider;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,24 +28,36 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.gecko.emf.osgi.EMFNamespaces;
+import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.ResourceFactoryConfigurator;
+import org.gecko.emf.osgi.ResourceSetConfigurator;
+import org.gecko.emf.osgi.ResourceSetFactory;
 import org.gecko.emf.osgi.factory.ResourceSetPrototypeFactory;
 import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.osgi.framework.Constants;
 import org.osgi.framework.PrototypeServiceFactory;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.ComponentConstants;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.condition.Condition;
 
 /**
- * This Implementation will be removed with Version 5.0. Don't be afraid, 
- * it is still around and can already be found in the package 
- * org.gecko.emf.osgi.provider.
- * @deprecated
+ * Implementation of a {@link ResourceSetFactory}. It hold the {@link EPackage} registry as well as the {@link Factory} registry.
+ * {@link EPackage} are dynamically injected as {@link EPackageProvider} instance. 
+ * {@link Factory} instance are injected dynamically as {@link ServiceReference} instance. So they can be registered using
+ * their properties for contentTyp or fileExtension.
+ * Third additional {@link ResourceSetConfigurator} instance can be injected to customize the {@link ResourceSet} for
+ * further extension like custom serialization. 
+ * @author Mark Hoffmann
+ * @since 28.06.2017
  */
 public class DefaultResourceSetFactory implements ResourceSetFactory {
 
@@ -269,8 +281,8 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	@Override
 	public ResourceSet createResourceSet() {
 		ResourceSet resourceSet = internalCreateResourceSet();
-		resourceSet.setPackageRegistry(packageRegistry);
-		resourceSet.setResourceFactoryRegistry(resourceFactoryRegistry);
+		resourceSet.setPackageRegistry(new EPackageRegistryImpl(packageRegistry));
+		resourceSet.setResourceFactoryRegistry(new DelegatingResourceFactoryRegistry(resourceFactoryRegistry));
 		resourceSetConfigurators.forEach((c)->c.configureResourceSet(resourceSet));
 		return resourceSet;
 	}
