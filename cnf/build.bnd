@@ -28,8 +28,3 @@ github-project: org.gecko.emf
 	"No metadata for revision";\
 		restrict:=error;\
     	is:=warning
-
-		local               =${.}/local;\
-		overwrite           =true;\
-		pretty              =true;\
-		name            	=local
