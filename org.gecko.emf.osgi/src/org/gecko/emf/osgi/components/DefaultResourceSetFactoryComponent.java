@@ -31,7 +31,6 @@ import org.osgi.annotation.bundle.Capability;
 import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.ComponentContext;
-import org.osgi.service.component.ComponentServiceObjects;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -63,7 +62,8 @@ import aQute.bnd.annotation.service.ServiceCapability;
 public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactory {
 
 	
-	private ComponentServiceObjects<Registry> resourceFactoryRegistryObjects;
+	private ServiceReference<Registry> resourceFactoryRegistryObjects;
+	private ComponentContext componentContext;
 
 	/**
 	 * Called before component activation
@@ -74,11 +74,12 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 			@Reference(name="ePackageRegistry", unbind = "unsetRegistry")
 			EPackage.Registry registry,
 			@Reference(name="resourceFactoryRegistry", unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
-			ComponentServiceObjects<Resource.Factory.Registry> resourceFactoryRegistryObjects
+			ServiceReference<Resource.Factory.Registry> resourceFactoryRegistryRegistration
 			) {
-		this.resourceFactoryRegistryObjects = resourceFactoryRegistryObjects;
+		this.componentContext = ctx;
+		this.resourceFactoryRegistryObjects = resourceFactoryRegistryRegistration;
 		super.setEPackageRegistry(registry);
-		super.setResourceFactoryRegistry(resourceFactoryRegistryObjects.getService(), ServicePropertiesHelper.convert(resourceFactoryRegistryObjects.getServiceReference().getProperties()));
+		super.setResourceFactoryRegistry(ctx.getBundleContext().getService(resourceFactoryRegistryRegistration), ServicePropertiesHelper.convert(resourceFactoryRegistryRegistration.getProperties()));
 	}
 	
 	/*
@@ -103,7 +104,16 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	@Deactivate
 	public void deactivate() {
 		super.deactivate();
-		this.resourceFactoryRegistryObjects.ungetService(resourceFactoryRegistry);
+		componentContext.getBundleContext().ungetService(resourceFactoryRegistryObjects);
+	}
+	
+	/**
+	 * Inject a {@link Registry} for resource factories
+	 * @param resourceFactoryRegistry the resource factory to be injected
+	 */
+	@Reference(policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+//		super.setResourceFactoryRegistry(resourceFactoryRegistry, properties);
 	}
 
 	protected void unsetRegistry(org.eclipse.emf.ecore.EPackage.Registry registry) {
