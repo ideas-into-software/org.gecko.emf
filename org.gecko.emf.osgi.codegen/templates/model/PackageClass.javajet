@@ -90,6 +90,7 @@ package <%=genPackage.getReflectionPackageName()%>;
 public class <%=genPackage.getPackageClassName()%> extends <%=genModel.getImportedName("org.eclipse.emf.ecore.impl.EPackageImpl")%><%if (!isInterface){%> implements <%=genPackage.getImportedPackageInterfaceName()%><%}%>
 <%} else {%>
 @<%=genModel.getImportedName("org.osgi.annotation.versioning.ProviderType")%>
+@<%=genModel.getImportedName("org.gecko.emf.osgi.annotation.provide.EPackage")%>(uri = <%=genPackage.getPackageInterfaceName()%>.eNS_URI, genModel = "<%=genModel.getRelativeGenModelLocation()%>")
 public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>
 <%}%>
 {
