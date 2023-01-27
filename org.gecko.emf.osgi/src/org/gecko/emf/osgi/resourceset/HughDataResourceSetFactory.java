@@ -15,9 +15,9 @@ package org.gecko.emf.osgi.resourceset;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.emf.osgi.DefaultResourceSetFactory;
 import org.gecko.emf.osgi.HughDataResourceSet;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 
 /**
  * {@link ResourceSetFactory} that creates a {@link HughDataResourceSet} and configures it to
