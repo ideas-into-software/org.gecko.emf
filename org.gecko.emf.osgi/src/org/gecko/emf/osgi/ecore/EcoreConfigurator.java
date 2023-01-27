@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.annotation.EMFModel;
-import org.gecko.emf.osgi.annotation.provide.ProvideEMFModel;
 import org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator;
 import org.gecko.emf.osgi.annotation.require.RequireEMF;
 import org.osgi.service.component.annotations.Component;
@@ -53,13 +52,6 @@ import org.osgi.service.component.annotations.Component;
 		XMLNamespacePackage.eNS_URI,
 		EcorePackage.eNS_URI}, version="1.0.0")
 @RequireEMF
-@ProvideEMFModel(name = "ecore", nsURI = {
-			XMLTypePackage.eNS_URI,
-			XMLNamespacePackage.eNS_URI,
-			EcorePackage.eNS_URI
-		},
-		version = "1.0.0"
-		)
 @ProvideEMFResourceConfigurator( name = "ecore", 
 	contentType = { 
 			"org.eclipse.emf.ecore", 

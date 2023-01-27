@@ -30,10 +30,10 @@
 	org.eclipse.emf.common;version='[2.23.0,2.23.1)',\
 	org.eclipse.emf.ecore;version='[2.25.0,2.25.1)',\
 	org.osgi.util.promise;version='[1.2.0,1.2.1)',\
-	org.apache.felix.scr;version='[2.2.0,2.2.1)',\
 	org.osgi.service.component;version='[1.5.0,1.5.1)',\
 	org.osgi.service.coordinator;version='[1.0.2,1.0.3)',\
-	org.osgi.util.converter;version='[1.0.8,1.0.9)'
+	org.osgi.util.converter;version='[1.0.8,1.0.9)',\
+	org.apache.felix.scr;version='[2.2.6,2.2.7)'
 -runblacklist: \
 	bnd.identity;id='ch.qos.logback.classic',\
 	bnd.identity;id='ch.qos.logback.core'

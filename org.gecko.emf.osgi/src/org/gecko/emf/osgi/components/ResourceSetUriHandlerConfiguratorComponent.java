@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.URIHandler;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.UriHandlerProvider;
 import org.gecko.emf.osgi.UriMapProvider;
+import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -39,6 +40,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
  * 
  */
 @Component(name="UriHandlerConfigurator", immediate=true, service=ResourceSetConfigurator.class)
+@ProviderType
 public class ResourceSetUriHandlerConfiguratorComponent implements ResourceSetConfigurator
 {
 	private Set<UriHandlerProvider> handlerProviders = new CopyOnWriteArraySet<UriHandlerProvider>();

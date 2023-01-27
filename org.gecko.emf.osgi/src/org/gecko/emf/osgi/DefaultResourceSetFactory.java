@@ -42,7 +42,7 @@ import org.osgi.service.component.ComponentContext;
 import org.osgi.service.condition.Condition;
 
 /**
- * This Implementation will be removed with Version 5.0. Don't be afraid, 
+ * This Implementation will be removed soon. Don't be afraid, 
  * it is still around and can already be found in the package 
  * org.gecko.emf.osgi.provider.
  * @deprecated

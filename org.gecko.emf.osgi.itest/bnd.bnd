@@ -29,3 +29,5 @@ Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.
 
 Export-Package: org.gecko.emf.osgi.itest
 Private-Package: org.gecko.emf.osgi.itest.configurator
+
+-baseline: test

@@ -14,6 +14,9 @@
 package org.gecko.emf.osgi.helper;
 
 import java.util.Collection;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -27,6 +30,22 @@ import java.util.stream.Collectors;
  */
 public class ServicePropertiesHelper {
 
+	
+	/**
+	 * Converts the {@link Dictionary} to a {@link Map}
+	 * @param props the {@link Dictionary} to convert
+	 * @return a {@link Map} representing the given {@link Dictionary}
+	 */
+	public static Map<String, Object> convert(Dictionary<String, Object> props){
+		HashMap<String, Object> result = new HashMap<>();
+		Enumeration<String> keys = props.keys();
+		while(keys.hasMoreElements()) {
+			String key = keys.nextElement();
+			result.put(key, props.get(key));
+		}
+		return result;
+	}
+	
 	/**
 	 * Updates the name set for a given service id
 	 * @param nameMap the map to update

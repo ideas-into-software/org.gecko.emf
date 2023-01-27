@@ -25,3 +25,6 @@ src=${^src},src-gen
 		output=src-gen;\
 		version=${base-version};\
 		clean=false
+
+		
+Provide-Capability: eclipse.emf;emf.nsUri=http://bla;genmodel.path=models/basic.genmodel;tenent=apple

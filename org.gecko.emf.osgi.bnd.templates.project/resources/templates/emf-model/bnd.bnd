@@ -1,6 +1,8 @@
 -buildpath :\
-	org.osgi.service.condition
-
+	org.osgi.annotation.bundle;version='[1.0,2.0)',\
+	org.osgi.annotation.versioning;version='[1.0,2.0)',\
+	org.osgi.framework;version='[1.9,2.0)',\
+	org.osgi.service.condition;version='[1.0,2.0)'
 # sets the usually required buildpath using the bnd library, you can extend it with the normal -buildpath to your liking
 -library: enable-emf
 

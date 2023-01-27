@@ -27,11 +27,14 @@ import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.osgi.annotation.bundle.Capability;
 import org.osgi.annotation.bundle.Requirement;
+import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.ComponentServiceObjects;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -59,37 +62,65 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 
 @Requirement(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
 	name = EPackageConfigurator.EMF_CONFIGURATOR_NAME, filter="(name=ecore)")
+@ProviderType
 public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSetFactory {
 
 	private Dictionary<String, Object> properties;
 
-	/**
-	 * Inject the {@link EPackage.Registry}
-	 * @param registry the registry to inject
-	 */
-	@Reference(name="ePackageRegistry", policy=ReferencePolicy.STATIC, cardinality=ReferenceCardinality.MANDATORY, unbind="unsetRegistry")
-	public void setRegistry(EPackage.Registry registry) {
-		super.setEPackageRegistry(registry);
-	}
+	private ComponentServiceObjects<Registry> resourceFactoryRegistryObjects;
 
 	/**
-	 * Remove the registry on shutdown
-	 * @param registry the registry to be removed
+	 * Creates a new instance.
 	 */
-	public void unsetRegistry(EPackage.Registry registry) {
+	public ConfigurationResourceSetFactoryComponent() {
+	}
+	
+	/**
+	 * Called before component activation
+	 * @param ctx the component context
+	 */
+	@Activate
+	public ConfigurationResourceSetFactoryComponent(ComponentContext ctx,
+			@Reference(name="ePackageRegistry", unbind = "unsetRegistry")
+			EPackage.Registry registry,
+			@Reference(name="resourceFactoryRegistry", unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+			ComponentServiceObjects<Resource.Factory.Registry> resourceFactoryRegistryObjects
+			) {
+		this.resourceFactoryRegistryObjects = resourceFactoryRegistryObjects;
+		super.setEPackageRegistry(registry);
+		super.setResourceFactoryRegistry(resourceFactoryRegistryObjects.getService(), ServicePropertiesHelper.convert(resourceFactoryRegistryObjects.getServiceReference().getProperties()));
+	}
+	
+	/*
+	 * We have a two step activation for history reasons. We use the constructor injection to 
+	 * make sure everything mandatory is available before activation has there had been cases, 
+	 * where mandatory fields have been null at activation for some reason. Felix SCR will also
+	 * look for a method named activate which is present through the DefaultResourceSetFactory
+	 * and will call it after the Constructor. So to avoid activating this twice by accident, 
+	 * we will name the method here explicitly.
+	 *
+	 * (non-Javadoc)
+	 * @see org.gecko.emf.osgi.provider.DefaultResourceSetFactory#activate(org.osgi.service.component.ComponentContext)
+	 */
+	@Activate
+	public void activate(ComponentContext ctx) {
+		properties = ctx.getProperties();
+		registerServices(ctx);
+	}
+	
+	/**
+	 * Called on component deactivation
+	 */
+	@Deactivate
+	public void deactivate() {
+		super.deactivate();
+		this.resourceFactoryRegistryObjects.ungetService(resourceFactoryRegistry);
+	}
+
+	protected void unsetRegistry(org.eclipse.emf.ecore.EPackage.Registry registry) {
 		super.unsetEPackageRegistry(registry);
 	}
-
-	/**
-	 * Inject a {@link Registry} for resource factories
-	 * @param resourceFactoryRegistry the resource factory to be injected
-	 */
-	@Override
-	@Reference(name="resourceFactoryRegistry", policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
-	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
-		super.setResourceFactoryRegistry(resourceFactoryRegistry, properties);
-	}
-
+	
 	public void modifiedResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
 		super.modifiedResourceFactoryRegistry(resourceFactoryRegistry, properties);
 	}
@@ -214,27 +245,6 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	public void removeResourceSetConfigurator(ResourceSetConfigurator resourceSetConfigurator, Map<String, Object> properties) {
 		super.removeResourceSetConfigurator(resourceSetConfigurator, properties);
 	}
-
-	/**
-	 * Called on component activation
-	 * @param ctx the component context
-	 */
-	@Override
-	@Activate
-	public void activate(ComponentContext ctx) {
-		properties = ctx.getProperties();
-		registerServices(ctx);
-	}
-	
-	/**
-	 * Called on component deactivation
-	 */
-	@Override
-	@Deactivate
-	public void deactivate() {
-		super.deactivate();
-	}
-	
 
 	@Override
 	protected Dictionary<String, Object> getDictionary() {

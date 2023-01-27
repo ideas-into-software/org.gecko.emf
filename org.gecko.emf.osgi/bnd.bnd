@@ -11,7 +11,8 @@
 	org.osgi.namespace.service,\
 	org.osgi.util.converter,\
 	org.osgi.service.condition,\
-	org.osgi.namespace.extender
+	org.osgi.namespace.extender,\
+	biz.aQute.bnd.annotation
 	
 Export-Package: \
 	org.gecko.emf.osgi,\

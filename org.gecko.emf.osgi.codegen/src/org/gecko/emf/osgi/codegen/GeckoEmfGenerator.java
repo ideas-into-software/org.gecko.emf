@@ -224,6 +224,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		GenModel genModel = (GenModel) resource.getContents().get(0);
 		org.eclipse.emf.codegen.ecore.generator.Generator gen = new org.eclipse.emf.codegen.ecore.generator.Generator();
 		configureEMFGenerator(gen);
+		
 
 		genModel.setModelDirectory("/" + bsn + (output.startsWith("/") ? "" : "/") + output);
 		gen.setInput(genModel);

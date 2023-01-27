@@ -35,10 +35,10 @@ import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
 
 /**
- * Tests the EMF OSGi integration
+ * Tests the EMF Resource Factory Whiteboard integration
  * 
- * @author Mark Hoffmann
- * @since 25.07.2017
+ * @author Juergen Albert
+ * @since 22.02.2022
  */
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
@@ -55,7 +55,8 @@ public class EMFWhiteboardTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void testGeckoXMLResourceFactoryRegistered(@InjectService ServiceAware<ResourceSetFactory> sa)
+	public void testGeckoXMLResourceFactoryRegistered(@InjectService ServiceAware<ResourceSetFactory> sa,
+			@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, "GeckoXMLResourceFactory"}, cardinality = 1) ServiceAware<Factory> factory)
 			throws IOException {
 
 		ServiceReference<ResourceSetFactory> reference = sa.getServiceReference();
@@ -76,7 +77,7 @@ public class EMFWhiteboardTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void testGeckoXMLResourceFactoryRegisteredInRegistry(@InjectService ServiceAware<Factory> factory)
+	public void testGeckoXMLResourceFactoryRegisteredInRegistry(@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, "GeckoXMLResourceFactory"}, cardinality = 1) ServiceAware<Factory> factory)
 			throws IOException {
 		
 		ServiceReference<Factory> reference = factory.getServiceReference();

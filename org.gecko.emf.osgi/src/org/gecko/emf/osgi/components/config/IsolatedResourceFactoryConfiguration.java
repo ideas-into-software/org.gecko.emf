@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.service.cm.Configuration;
@@ -52,6 +53,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(configurationPid=ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @RequireConfigurationAdmin
+@ProviderType
 public class IsolatedResourceFactoryConfiguration {
 	
 	private static final Logger logger = Logger.getLogger(IsolatedResourceFactoryConfiguration.class.getName());
