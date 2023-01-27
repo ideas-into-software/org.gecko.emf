@@ -28,7 +28,6 @@ import org.gecko.emf.osgi.ResourceSetFactory;
 import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 import org.osgi.annotation.bundle.Capability;
-import org.osgi.annotation.bundle.Requirement;
 import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.ComponentContext;
@@ -60,8 +59,6 @@ import aQute.bnd.annotation.service.ServiceCapability;
 		)
 @ServiceCapability(value = ResourceSet.class)
 @ServiceCapability(value = ResourceSetFactory.class)
-@Requirement(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
-	name = EPackageConfigurator.EMF_CONFIGURATOR_NAME, filter="(name=ecore)")
 @ProviderType
 public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactory {
 

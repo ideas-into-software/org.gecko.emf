@@ -37,10 +37,22 @@
 	org.osgi.test.junit5;version='[1.2.1,1.2.2)',\
 	net.bytebuddy.byte-buddy;version='[1.12.16,1.12.17)',\
 	org.osgi.service.cm;version='[1.6.0,1.6.1)',\
-	org.gecko.emf.osgi.component;version='[4.5.0,4.5.1)',\
 	org.eclipse.emf.common;version='[2.28.0,2.28.1)',\
 	org.eclipse.emf.ecore;version='[2.33.0,2.33.1)',\
 	org.eclipse.emf.ecore.xmi;version='[2.18.0,2.18.1)',\
-	org.gecko.emf.osgi.component;version=snapshot,\
-	org.gecko.emf.osgi.example.model.manual;version='[4.5.0,4.5.1)'
+	org.gecko.emf.osgi.component;version=snapshot
 -runblacklist: bnd.identity;id='org.gecko.emf.osgi.extender'
+-runrepos: \
+	Workspace,\
+	local,\
+	Release,\
+	BND Dependencies,\
+	DIM_Release,\
+	EMF Milestone Dependendencies,\
+	Apache Felix Dependencies,\
+	Jacoco Dependencies,\
+	OSGi-Test Dependencies,\
+	Project Dependencies,\
+	OSGi Spec R7 Dependencies,\
+	OSGi Spec R8 Dependencies,\
+	Slf4j and Logback Dependencies

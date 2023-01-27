@@ -1,10 +1,12 @@
 Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
 # Build dependencies 
 -buildpath: \
-	org.gecko.emf.osgi;version=project,\
-	org.gecko.emf.osgi.model.info;version=project,\
-	org.gecko.emf.osgi.example.model.extended;version=project,\
-	org.gecko.emf.osgi.example.model.basic;version=project,\
+	org.gecko.emf.osgi.api;version=snapshot,\
+	org.gecko.emf.osgi.model.info;version=snapshot,\
+	org.gecko.emf.osgi.example.model.extended;version=snapshot,\
+	org.gecko.emf.osgi.example.model.basic;version=snapshot,\
+	org.gecko.emf.osgi.model.info;version=snapshot,\
+	org.gecko.emf.osgi.example.model.manual;version=snapshot,\
 	junit-jupiter-api,\
 	org.osgi.test.junit5,\
 	org.osgi.framework,\
@@ -15,10 +17,8 @@ Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.
 	org.osgi.test.assertj.monitoring;version=latest,\
 	org.eclipse.emf.common,\
 	org.osgi.util.promise,\
-	org.gecko.emf.osgi.model.info,\
 	org.osgi.annotation.versioning,\
 	org.osgi.test.assertj.framework,\
-	org.gecko.emf.osgi.example.model.manual,\
 	org.osgi.service.condition,\
 	junit-platform-commons,\
 	org.apiguardian.api,\

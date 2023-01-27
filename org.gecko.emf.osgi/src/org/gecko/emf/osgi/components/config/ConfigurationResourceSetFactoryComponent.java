@@ -21,16 +21,15 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
-import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
 import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 import org.osgi.annotation.bundle.Capability;
-import org.osgi.annotation.bundle.Requirement;
 import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.ComponentContext;
@@ -59,9 +58,6 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 		name = ResourceSetFactory.EMF_CAPABILITY_NAME,
 		version = ResourceSetFactory.GECKOPROJECTS_EMF_VERSION
 		)
-
-@Requirement(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
-	name = EPackageConfigurator.EMF_CONFIGURATOR_NAME, filter="(name=ecore)")
 @ProviderType
 public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSetFactory {
 
