@@ -8,7 +8,6 @@
 -runblacklist: bnd.identity;id='osgi.cmpn';version:Version='7.0.0.201802012110'
 -runbundles: \
 	org.apache.felix.configadmin;version='[1.9.22,1.9.23)',\
-	org.apache.felix.scr;version='[2.2.0,2.2.1)',\
 	org.eclipse.emf.common;version='[2.23.0,2.23.1)',\
 	org.eclipse.emf.ecore;version='[2.25.0,2.25.1)',\
 	org.eclipse.emf.ecore.xmi;version='[2.16.0,2.16.1)',\
@@ -27,4 +26,7 @@
 	junit-jupiter-params;version='[5.9.1,5.9.2)',\
 	junit-platform-commons;version='[1.9.1,1.9.2)',\
 	org.osgi.test.common;version='[1.2.1,1.2.2)',\
-	org.osgi.test.junit5;version='[1.2.1,1.2.2)'
+	org.osgi.test.junit5;version='[1.2.1,1.2.2)',\
+	org.apache.felix.scr;version='[2.2.6,2.2.7)',\
+	org.gecko.emf.osgi.component;version='[4.5.0,4.5.1)',\
+	org.osgi.service.cm;version='[1.6.0,1.6.1)'
