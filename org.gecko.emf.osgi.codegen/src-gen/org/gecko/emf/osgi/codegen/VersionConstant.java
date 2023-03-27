@@ -20,5 +20,5 @@ package org.gecko.emf.osgi.codegen;
  */
 public class VersionConstant {
 
-	public static final String CODE_GEN_VERSION = "4.4.1"; //$NON-NLS-1$
+	public static final String CODE_GEN_VERSION = "4.6.0"; //$NON-NLS-1$
 }

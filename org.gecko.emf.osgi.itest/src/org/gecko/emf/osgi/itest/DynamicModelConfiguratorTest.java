@@ -153,7 +153,7 @@ public class DynamicModelConfiguratorTest {
 	public void testCreateDynamicModelUnregister(
 			@InjectService(cardinality = 1) ServiceAware<ResourceSetFactory> resourceSetFactory)
 			throws IOException, InterruptedException {
-
+System.out.println("Test");
 		assertThat(resourceSetFactory.getServices()).hasSize(1);
 		ServiceReference<ResourceSetFactory> reference = resourceSetFactory.getServiceReference();
 		assertThat(reference).isNotNull();
