@@ -23,7 +23,9 @@ Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.
 	org.osgi.service.condition,\
 	junit-platform-commons,\
 	org.apiguardian.api,\
-	org.eclipse.emf.ecore.xmi
+	org.eclipse.emf.ecore.xmi,\
+	org.mockito.junit-jupiter,\
+	org.mockito.mockito-core
 
 -includeresource: \
 	data/=data/
@@ -31,4 +33,4 @@ Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.
 Export-Package: org.gecko.emf.osgi.itest
 Private-Package: org.gecko.emf.osgi.itest.configurator
 
--baseline: test
+#-baseline: test
