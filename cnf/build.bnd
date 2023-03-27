@@ -34,3 +34,10 @@ github-project: org.gecko.emf
 		overwrite           =true;\
 		pretty              =true;\
 		name            	=local
+		
+-plugin.m2: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+		index               = ${.}/m2.maven;\
+		name                = "m2"
+		
+-buildrepo: m2

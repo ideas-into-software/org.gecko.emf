@@ -1,0 +1,17 @@
+org.geckoprojects.emf:org.gecko.emf.osgi.example.model.basic:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.example.model.extended:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.itest:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.api:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.component:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.bnd.library.project:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.bnd.templates.project:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.codegen:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.example.model.extender:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.example.model.manual:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.extender:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.extender.itest:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.model.info:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.bom:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.bnd.library.workspace:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.osgi.test.assertj.monitoring:0.0.2-SNAPSHOT
+org.geckoprojects.emf:test.model:5.0.0-SNAPSHOT

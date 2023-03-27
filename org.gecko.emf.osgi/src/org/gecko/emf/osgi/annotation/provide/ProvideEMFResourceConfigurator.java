@@ -25,6 +25,7 @@ import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.annotation.require.RequireEMF;
 import org.osgi.annotation.bundle.Attribute;
 import org.osgi.annotation.bundle.Capability;
+import org.osgi.service.component.annotations.ComponentPropertyType;
 
 /**
  * Marker annotation that the bundle has the  capability to provide a {@link ResourceSetConfigurator} 
@@ -40,8 +41,11 @@ import org.osgi.annotation.bundle.Capability;
 @Capability(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
 		name = ResourceSetConfigurator.EMF_CONFIGURATOR_NAME)
 @RequireEMF
+@ComponentPropertyType
 public @interface ProvideEMFResourceConfigurator {
 
+	String PREFIX_ = EMFNamespaces.EMF_CONFIGURATOR_PREFIX;
+	
 	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_NAME)
 	String name(); 
 	

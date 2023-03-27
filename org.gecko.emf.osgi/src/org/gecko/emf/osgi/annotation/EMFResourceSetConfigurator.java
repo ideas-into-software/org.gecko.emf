@@ -24,7 +24,7 @@ import org.gecko.emf.osgi.annotation.require.RequireEMF;
 import org.osgi.service.component.annotations.ComponentPropertyType;
 
 /**
- * A meta annotation for the {@link EMFNamespaces#EMF_CONFIGURATOR_FEATURE} property of the {@link ResourceSetConfigurator} 
+ * A meta annotation for the {@link EMFNamespaces#EMF_CONFIGURATOR_FEATURE} property of the {@link ResourceSetConfigurator}
  * @author Juergen Albert
  * @since 12 Feb 2018
  */

@@ -22,8 +22,9 @@ src=${^src},src-gen
 	org.eclipse.text,\
 	biz.aQute.bndlib,\
 	aQute.libg,\
-	org.eclipse.core.contenttype
-	
+	org.eclipse.core.contenttype,\
+	org.osgi.util.promise
+
 -includeresource.resource: \
 	/=resources,\
 	templates,\

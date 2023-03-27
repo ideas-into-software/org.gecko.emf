@@ -15,6 +15,7 @@ package org.gecko.emf.osgi.codegen;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.StringJoiner;
+import java.util.jar.Manifest;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ContentHandler;
@@ -47,6 +49,8 @@ public class ResourceUriHandler implements URIHandler {
 	private final Map<Container, List<String>> buildPathModels;
 	private String bsn;
 	private File base;
+	private URI basePath;
+	private String projectDirName;
 	
 	
 	/**
@@ -56,11 +60,14 @@ public class ResourceUriHandler implements URIHandler {
 		this.buildPathModels = buildPathModels;
 		this.bsn = bsn;
 		this.base = base;
+		URI fileURI = URI.createFileURI(base.getAbsolutePath());
+		this.projectDirName = fileURI.lastSegment();
+		basePath = bsn.equals(projectDirName) ? null: basePath;
 	}
 	
 	@Override
 	public boolean canHandle(URI uri) {
-//		GeckoEmfGenerator.info("Asked to handle " + uri); //$NON-NLS-1$
+		GeckoEmfGenerator.info("Asked to handle " + uri); //$NON-NLS-1$
 		return uri.scheme().equals(UriSanatizer.RESOURCE_SCHEMA_NAME) || uri.toString().startsWith(UriSanatizer.PLATFORM_RESOURCE) || uri.toString().startsWith(UriSanatizer.PLATFORM_PLUGIN); 
 	}
 
@@ -68,17 +75,18 @@ public class ResourceUriHandler implements URIHandler {
 	
 	@Override
 	public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
-//		GeckoEmfGenerator.info("Asked to open InputStream for " + uri); //$NON-NLS-1$
+		GeckoEmfGenerator.info("Asked to open InputStream for " + uri); //$NON-NLS-1$
+		
 		URI theUri = UriSanatizer.trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, InputStream cannot be created"); //$NON-NLS-1$
 			return null;
 		}
-//		GeckoEmfGenerator.info("sanatized uri " + theUri); //$NON-NLS-1$
+		GeckoEmfGenerator.info("sanatized uri " + theUri); //$NON-NLS-1$
 		String uriBSN = theUri.host();
-//		GeckoEmfGenerator.info("bsn according to URI" + uriBSN); //$NON-NLS-1$
+		GeckoEmfGenerator.info("bsn according to URI " + uriBSN); //$NON-NLS-1$
 		if(bsn.equals(uriBSN)) {
-//			GeckoEmfGenerator.info("The bsn segment part fits to: " + bsn); //$NON-NLS-1$
+			GeckoEmfGenerator.info("The bsn segment part fits to: " + bsn); //$NON-NLS-1$
 			StringJoiner joiner = new StringJoiner(UriSanatizer.SLASH);
 			uri.segmentsList().stream().forEach(joiner::add);
 			return IO.stream( new File(base, joiner.toString() ));
@@ -87,12 +95,12 @@ public class ResourceUriHandler implements URIHandler {
 		for (Entry<Container, List<String>> entry : buildPathModels.entrySet()) {
 			Container c = entry.getKey();
 			String containerBSN = getBSN(c);
-//			GeckoEmfGenerator.info("Comparing " + uriBSN + "with container using getBSN() " + containerBSN);  //$NON-NLS-1$//$NON-NLS-2$
+			GeckoEmfGenerator.info("Comparing " + uriBSN + " with container using getBSN() " + containerBSN);  //$NON-NLS-1$//$NON-NLS-2$
 			if(containerBSN.equals(uriBSN)) {
 				GeckoEmfGenerator.info("Match in " + c); //$NON-NLS-1$
 				for(String path : entry.getValue()) {
 					String testUri = UriSanatizer.SCHEMA_RESOURCE + containerBSN + UriSanatizer.SLASH + path;
-//					GeckoEmfGenerator.info("comparing URIs " + testUri + " with the requested " + theUri); //$NON-NLS-1$ //$NON-NLS-2$
+					GeckoEmfGenerator.info("comparing URIs " + testUri + " with the requested " + theUri); //$NON-NLS-1$ //$NON-NLS-2$
 					if(testUri.equals(theUri.toString())) {
 						try(Jar jar = new Jar(c.getFile())){
 							Resource resource = jar.getResource(path);
@@ -107,17 +115,45 @@ public class ResourceUriHandler implements URIHandler {
 				}
 			}
 		}
+
+		GeckoEmfGenerator.info("Nothing worked. Trying a relative path as a last ditch effort.");  //$NON-NLS-1$//$NON-NLS-2$
+
+		URI projectUri = URI.createURI(uri.scheme() + "://"+ projectDirName + "/");
+		URI relative = uri.deresolve(projectUri);
+		if(relative.isRelative()) {
+			File file = new File(base, relative.toString());
+			if(file.exists()) {
+				GeckoEmfGenerator.info("Found it in a relative Path. We hope that there is a corresponding project in your buildpath.");  //$NON-NLS-1$//$NON-NLS-2$
+				return new FileInputStream(file);
+			}
+		}
+		GeckoEmfGenerator.error("Nothing Helped. We have been unable to find anything for " + uri);  //$NON-NLS-1$//$NON-NLS-2$
 		
 		return null;
 	}
 
 	private String getBSN(Container c) {
 		try {
-			String symbolicName = c.getManifest().getMainAttributes().getValue(Constants.BUNDLE_SYMBOLICNAME);
-			if(symbolicName.contains(";")) { //$NON-NLS-1$
-				symbolicName = symbolicName.substring(0, symbolicName.indexOf(';'));
+			Manifest manifest = null;
+			if(c.getFile().getName().endsWith(".jar")) {
+				manifest = c.getManifest();
+			} else {
+				//maybe we look at the generated class folder with a Manifest
+				File manifestFile = new File(c.getFile(), "META-INF/MANIFEST.MF");
+				if(manifestFile.exists()) {
+					manifest = new Manifest(new FileInputStream(manifestFile));
+				} 
 			}
-			return symbolicName;
+				
+			String symbolicName = null;
+			if(manifest != null) {
+				symbolicName = manifest.getMainAttributes().getValue(Constants.BUNDLE_SYMBOLICNAME);
+				if(symbolicName != null && symbolicName.contains(";")) { //$NON-NLS-1$
+					symbolicName = symbolicName.substring(0, symbolicName.indexOf(';'));
+				}
+				return symbolicName;
+			}
+			return c.getBundleSymbolicName();
 		} catch (Exception e) {
 			GeckoEmfGenerator.info(String.format("Could not parse BSN from %s. Error was %s. Returning %s", c, e.getMessage(), c.getBundleSymbolicName())); //$NON-NLS-1$
 			return c.getBundleSymbolicName();
@@ -130,13 +166,13 @@ public class ResourceUriHandler implements URIHandler {
 	 */
 	@Override
 	public OutputStream createOutputStream(URI uri, Map<?, ?> options) throws IOException {
-//		GeckoEmfGenerator.info("Asked to open OutputStream for " + uri); //$NON-NLS-1$
+		GeckoEmfGenerator.info("Asked to open OutputStream for " + uri); //$NON-NLS-1$
 		URI theUri = UriSanatizer.trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, OutputStream cannot be created"); //$NON-NLS-1$
 			return null;
 		}
-//		GeckoEmfGenerator.info("Sanatized " + theUri); //$NON-NLS-1$
+		GeckoEmfGenerator.info("Sanatized " + theUri); //$NON-NLS-1$
 		String uriBSN = theUri.host();
 		if(bsn.equals(uriBSN)) {
 			StringJoiner joiner = new StringJoiner(UriSanatizer.SLASH);
@@ -186,7 +222,7 @@ public class ResourceUriHandler implements URIHandler {
 	 */
 	@Override
 	public boolean exists(URI uri, Map<?, ?> options) {
-//		GeckoEmfGenerator.info("Asked if exists " + uri); //$NON-NLS-1$
+		GeckoEmfGenerator.info("Asked if exists " + uri); //$NON-NLS-1$
 		URI theUri = UriSanatizer.trimmedSanitize(uri);
 		if (theUri == null) {
 			GeckoEmfGenerator.error("URI is null, existence cannot be checked"); //$NON-NLS-1$
@@ -198,7 +234,16 @@ public class ResourceUriHandler implements URIHandler {
 			StringJoiner joiner = new StringJoiner(UriSanatizer.SLASH);
 			uri.segmentsList().stream().skip(1).forEach(joiner::add);
 			return new File(base, joiner.toString() + uri.fileExtension()).exists();
-		} 
+		}
+		
+
+		URI projectUri = URI.createURI(uri.scheme() + "://"+ projectDirName + "/");
+		URI relative = uri.deresolve(projectUri);
+		if(relative.isRelative()) {
+			File file = new File(base, relative.toString());
+			return file.exists();
+		}
+		
 		return false;
 	}
 

@@ -20,6 +20,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -43,6 +44,7 @@ import org.gecko.emf.osgi.codegen.GeckoEmfGenerator.GeneratorOptions;
 import org.gecko.emf.osgi.codegen.adapter.BNDGeneratorAdapterFactory;
 
 import aQute.bnd.build.Container;
+import aQute.bnd.build.Project;
 import aQute.bnd.osgi.Jar;
 import aQute.bnd.service.externalplugin.ExternalPlugin;
 import aQute.bnd.service.generate.BuildContext;
@@ -154,11 +156,14 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 					refModels.put(c, models);
 				}
 			}
+			Project project = (Project) context.getParent();
+			Iterator<String> iterator = project.getBsns().iterator();
+			String bsn = iterator.hasNext() ? iterator.next() : context.getParent()
+					.toString();
 			return doGenerate(genFolder, genmodel, 
 					refModels, 
 					context.getBase(), 
-					context.getParent()
-					.toString());
+					bsn);
 		} catch (Exception e) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			PrintWriter print = new PrintWriter(baos);

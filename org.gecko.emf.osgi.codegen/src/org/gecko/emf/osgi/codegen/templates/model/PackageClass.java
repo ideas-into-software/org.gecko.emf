@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.Literals;
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
+import org.eclipse.emf.common.util.URI;
 
 public class PackageClass
 {
@@ -460,12 +461,19 @@ public class PackageClass
     } else {
     stringBuffer.append(TEXT_24);
     stringBuffer.append(genModel.getImportedName("org.osgi.annotation.versioning.ProviderType"));
+    
+	URI genModelURI = genModel.eResource().getURI();
+    String relativeGenmodelPath = genModelURI.deresolve(genModelURI.trimSegments(genModelURI.segmentCount() - 3).appendSegment("")).toString();
+    if(!relativeGenmodelPath.startsWith("/")){
+        relativeGenmodelPath = "/" + relativeGenmodelPath;
+    }
+
     stringBuffer.append(TEXT_24);
     stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.annotation.provide.EPackage"));
     stringBuffer.append(TEXT_25);
     stringBuffer.append(genPackage.getPackageInterfaceName());
     stringBuffer.append(TEXT_26);
-    stringBuffer.append(genModel.getRelativeGenModelLocation());
+    stringBuffer.append(relativeGenmodelPath);
     stringBuffer.append(TEXT_27);
     stringBuffer.append(genPackage.getPackageInterfaceName());
     stringBuffer.append(TEXT_22);
