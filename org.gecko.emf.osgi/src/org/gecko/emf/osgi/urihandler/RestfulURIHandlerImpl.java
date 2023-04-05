@@ -90,6 +90,8 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		}
 		httpURLConnection.setRequestMethod(method);
 		httpURLConnection.setDoOutput(Boolean.TRUE);
+		httpURLConnection.setConnectTimeout(3000);
+		httpURLConnection.setReadTimeout(3000);
 		setRequestHeaders(httpURLConnection,
 				(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 		if (options.containsKey(PROP_ECLASS)) {
@@ -165,6 +167,8 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		try {
 			URL url = new URL(uri.toString());
 			final HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+			httpURLConnection.setConnectTimeout(3000);
+			httpURLConnection.setReadTimeout(3000);
 			handleBasicAuth(httpURLConnection, options);
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
