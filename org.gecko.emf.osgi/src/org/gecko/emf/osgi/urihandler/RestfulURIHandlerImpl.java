@@ -87,14 +87,8 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			method = options.get(EMFUriHandlerConstants.OPTION_HTTP_METHOD).toString().toUpperCase();
 		}
 		httpURLConnection.setRequestMethod(method);
-		int timeout = getTimeout(options);
-		if (timeout != 0) {
-			httpURLConnection.setConnectTimeout(timeout);
-			httpURLConnection.setReadTimeout(timeout);
-		}
+		setTimeout(httpURLConnection, options);
 		httpURLConnection.setDoOutput(Boolean.TRUE);
-		httpURLConnection.setConnectTimeout(3000);
-		httpURLConnection.setReadTimeout(3000);
 		setRequestHeaders(httpURLConnection,
 				(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 		if (options.containsKey(PROP_ECLASS)) {
@@ -173,11 +167,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		try {
 			URL url = new URL(uri.toString());
 			final HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-			int timeout = getTimeout(options);
-			if (timeout != 0) {
-				httpURLConnection.setConnectTimeout(timeout);
-				httpURLConnection.setReadTimeout(timeout);
-			}
+			setTimeout(httpURLConnection, options);
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 			final int responseCode = httpURLConnection.getResponseCode();
@@ -273,11 +263,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		try {
 			URL url = new URL(uri.toString());
 			final HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-			int timeout = getTimeout(options);
-			if (timeout != 0) {
-				httpURLConnection.setConnectTimeout(timeout);
-				httpURLConnection.setReadTimeout(timeout);
-			}
+			setTimeout(httpURLConnection, options);
 			httpURLConnection.setDoOutput(true);
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
@@ -317,13 +303,9 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			if (requestedAttributes == null || requestedAttributes.contains(URIConverter.ATTRIBUTE_READ_ONLY)) {
 
 				urlConnection = url.openConnection();
+				setTimeout(urlConnection, options);
 				if (urlConnection instanceof HttpURLConnection) {
 					HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
-					int timeout = getTimeout(options);
-					if (timeout != 0) {
-						httpURLConnection.setConnectTimeout(timeout);
-						httpURLConnection.setReadTimeout(timeout);
-					}
 					httpURLConnection.setRequestMethod(HTTP_OPTIONS);
 					setRequestHeaders(httpURLConnection,
 							(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
@@ -341,11 +323,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			if (requestedAttributes == null || requestedAttributes.contains(URIConverter.ATTRIBUTE_TIME_STAMP)) {
 				if (urlConnection == null) {
 					urlConnection = url.openConnection();
-					int timeout = getTimeout(options);
-					if (timeout != 0) {
-						urlConnection.setConnectTimeout(timeout);
-						urlConnection.setReadTimeout(timeout);
-					}
+					setTimeout(urlConnection, options);
 					if (urlConnection instanceof HttpURLConnection) {
 						HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
 						setRequestHeaders(httpURLConnection,
@@ -362,11 +340,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			if (requestedAttributes == null || requestedAttributes.contains(URIConverter.ATTRIBUTE_LENGTH)) {
 				if (urlConnection == null) {
 					urlConnection = url.openConnection();
-					int timeout = getTimeout(options);
-					if (timeout != 0) {
-						urlConnection.setConnectTimeout(timeout);
-						urlConnection.setReadTimeout(timeout);
-					}
+					setTimeout(urlConnection, options);
 					if (urlConnection instanceof HttpURLConnection) {
 						HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
 						setRequestHeaders(httpURLConnection,
@@ -398,11 +372,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		try {
 			URL url = new URL(uri.toString());
 			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-			int timeout = getTimeout(options);
-			if (timeout != 0) {
-				httpURLConnection.setConnectTimeout(timeout);
-				httpURLConnection.setReadTimeout(timeout);
-			}
+			setTimeout(httpURLConnection, options);
 			httpURLConnection.setRequestMethod(HTTP_HEAD);
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
@@ -438,4 +408,24 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		return uri.scheme().equalsIgnoreCase(SCHEMA_HTTP) || uri.scheme().equalsIgnoreCase(SCHEMA_HTTPS);
 	}
 
+	/**
+	 * Returns the value of the {@link URIConverter#OPTION_TIMEOUT timeout option}.
+	 * 
+	 * @param options the options in which to look for the timeout option.
+	 * @return the value of the timeout option, or <code>3000</code> if not present.
+	 */
+	@Override
+	protected int getTimeout(Map<?, ?> options) {
+		Integer timeout = (Integer) options.get(URIConverter.OPTION_TIMEOUT);
+		return timeout == null ? 3000 : timeout.intValue();
+	}
+
+	protected void setTimeout(URLConnection connection, Map<?, ?> options) {
+		int timeout = getTimeout(options);
+		if (timeout != 0) {
+			connection.setConnectTimeout(timeout);
+			connection.setReadTimeout(timeout);
+		}
+	}
+	
 }
