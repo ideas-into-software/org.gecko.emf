@@ -23,11 +23,15 @@ import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.itest.configurator.TestResource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -41,6 +45,7 @@ import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
 import org.mockito.Mock;
+import org.mockito.internal.runners.RunnerFactory;
 
 /**
  * Tests the EMF Resource Factory Whiteboard integration
@@ -59,6 +64,34 @@ public class EMFWhiteboardTest {
 	@Mock
 	Factory factoryMock;
 
+	@Test
+	public void testDelegatingResourceFactoryRegistry(@InjectService ServiceAware<ResourceSetFactory> sa
+			)
+			throws IOException {
+
+		ServiceReference<ResourceSetFactory> reference = sa.getServiceReference();
+		assertNotNull(reference);
+
+		ResourceSet resourceSet = sa.getService().createResourceSet();
+		
+		resourceSet.getResourceFactoryRegistry().getContentTypeToFactoryMap().put("foo/bar", new ResourceFactoryImpl() {
+			/* 
+			 * (non-Javadoc)
+			 * @see org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl#createResource(org.eclipse.emf.common.util.URI)
+			 */
+			@Override
+			public Resource createResource(URI uri) {
+				
+				return new TestResource(uri);
+			}
+		});
+		
+		Resource resource = resourceSet.createResource(URI.createURI("http://test/foo"), "foo/bar");
+		assertTrue(resource instanceof TestResource);
+		
+	}
+
+	
 	//TODO More tests for dynamic registration and unregistration.
 	
 	/**

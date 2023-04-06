@@ -22,7 +22,9 @@ import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl;
 
 /**
- * A {@link Registry} that delegates to a parent {@link Registry} if nothing can be found internally.
+ * A {@link Registry} that delegates to a parent {@link Registry} if nothing can
+ * be found internally.
+ * 
  * @author Juergen Albert
  * @since 25 Nov 2022
  */
@@ -52,7 +54,8 @@ public class DelegatingResourceFactoryRegistry extends ResourceFactoryRegistryIm
 		this.delegate = delegate;
 		protocolToFactoryMap = new DelegatingHashMap<String, Object>(delegate.getProtocolToFactoryMap());
 		extensionToFactoryMap = new DelegatingHashMap<String, Object>(delegate.getExtensionToFactoryMap());
-		contentTypeIdentifierToFactoryMap = new DelegatingHashMap<String, Object>(delegate.getContentTypeToFactoryMap());
+		contentTypeIdentifierToFactoryMap = new DelegatingHashMap<String, Object>(
+				delegate.getContentTypeToFactoryMap());
 	}
 
 	/*
@@ -65,31 +68,42 @@ public class DelegatingResourceFactoryRegistry extends ResourceFactoryRegistryIm
 	protected Factory delegatedGetFactory(URI uri, String contentTypeIdentifier) {
 		return delegate.getFactory(uri, contentTypeIdentifier);
 	}
-	
-	/* 
+
+	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl#getExtensionToFactoryMap()
+	 * 
+	 * @see org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl#
+	 * getExtensionToFactoryMap()
 	 */
 	@Override
 	public Map<String, Object> getExtensionToFactoryMap() {
 		return extensionToFactoryMap;
 	}
-	
-	/* 
+
+	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl#getProtocolToFactoryMap()
+	 * 
+	 * @see org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl#
+	 * getProtocolToFactoryMap()
 	 */
 	@Override
 	public Map<String, Object> getProtocolToFactoryMap() {
 		return protocolToFactoryMap;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl#getContentTypeToFactoryMap()
+	 * 
+	 * @see org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl#
+	 * getContentTypeToFactoryMap()
 	 */
 	@Override
 	public Map<String, Object> getContentTypeToFactoryMap() {
 		return contentTypeIdentifierToFactoryMap;
+	}
+
+	public Resource.Factory getFactory(URI uri, String contentType) {
+		return convert(getFactory(uri, protocolToFactoryMap, extensionToFactoryMap, contentTypeIdentifierToFactoryMap,
+				contentType, true));
 	}
 }
