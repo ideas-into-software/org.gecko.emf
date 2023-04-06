@@ -93,6 +93,8 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			httpURLConnection.setReadTimeout(timeout);
 		}
 		httpURLConnection.setDoOutput(Boolean.TRUE);
+		httpURLConnection.setConnectTimeout(3000);
+		httpURLConnection.setReadTimeout(3000);
 		setRequestHeaders(httpURLConnection,
 				(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 		if (options.containsKey(PROP_ECLASS)) {
