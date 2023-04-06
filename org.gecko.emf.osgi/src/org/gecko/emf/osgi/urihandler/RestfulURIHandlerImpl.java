@@ -31,7 +31,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.URIHandlerImpl;
@@ -39,6 +38,7 @@ import org.gecko.emf.osgi.EMFUriHandlerConstants;
 
 /**
  * URI Handler with basic authentication
+ * 
  * @author Juergen Albert
  * @since 17.12.2012
  */
@@ -70,9 +70,12 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 	private static final String HTTP_PUT = "PUT";
 	private static final Logger LOG = Logger.getLogger(RestfulURIHandlerImpl.class.getName());
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#createOutputStream(org.eclipse.emf.common.util.URI, java.util.Map)
+	 * 
+	 * @see
+	 * org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#createOutputStream(org.
+	 * eclipse.emf.common.util.URI, java.util.Map)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -84,7 +87,11 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			method = options.get(EMFUriHandlerConstants.OPTION_HTTP_METHOD).toString().toUpperCase();
 		}
 		httpURLConnection.setRequestMethod(method);
-		//TODO: Timeout
+		int timeout = getTimeout(options);
+		if (timeout != 0) {
+			httpURLConnection.setConnectTimeout(timeout);
+			httpURLConnection.setReadTimeout(timeout);
+		}
 		httpURLConnection.setDoOutput(Boolean.TRUE);
 		setRequestHeaders(httpURLConnection,
 				(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
@@ -126,7 +133,8 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 						break;
 					}
 					default: {
-						throw new IOException(httpURLConnection.getRequestMethod() + " failed with HTTP response code " + responseCode);
+						throw new IOException(httpURLConnection.getRequestMethod() + " failed with HTTP response code "
+								+ responseCode);
 					}
 					}
 				} finally {
@@ -150,9 +158,12 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		}
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#createInputStream(org.eclipse.emf.common.util.URI, java.util.Map)
+	 * 
+	 * @see
+	 * org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#createInputStream(org.
+	 * eclipse.emf.common.util.URI, java.util.Map)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -160,7 +171,11 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		try {
 			URL url = new URL(uri.toString());
 			final HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-			//TODO: Timeout
+			int timeout = getTimeout(options);
+			if (timeout != 0) {
+				httpURLConnection.setConnectTimeout(timeout);
+				httpURLConnection.setReadTimeout(timeout);
+			}
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 			final int responseCode = httpURLConnection.getResponseCode();
@@ -199,14 +214,15 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 					int responseCode = httpURLConnection.getResponseCode();
 					httpURLConnection.disconnect();
 					switch (responseCode) {
-						case HttpURLConnection.HTTP_OK:
-						case HttpURLConnection.HTTP_CREATED:
-						case HttpURLConnection.HTTP_NO_CONTENT: {
-							break;
-						}
-						default: {
-							throw new IOException(httpURLConnection.getRequestMethod() + " failed with HTTP response code " + responseCode);
-						}
+					case HttpURLConnection.HTTP_OK:
+					case HttpURLConnection.HTTP_CREATED:
+					case HttpURLConnection.HTTP_NO_CONTENT: {
+						break;
+					}
+					default: {
+						throw new IOException(httpURLConnection.getRequestMethod() + " failed with HTTP response code "
+								+ responseCode);
+					}
 					}
 				}
 
@@ -242,9 +258,12 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		return result;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#delete(org.eclipse.emf.common.util.URI, java.util.Map)
+	 * 
+	 * @see
+	 * org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#delete(org.eclipse.emf.
+	 * common.util.URI, java.util.Map)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -252,7 +271,11 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		try {
 			URL url = new URL(uri.toString());
 			final HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-			;
+			int timeout = getTimeout(options);
+			if (timeout != 0) {
+				httpURLConnection.setConnectTimeout(timeout);
+				httpURLConnection.setReadTimeout(timeout);
+			}
 			httpURLConnection.setDoOutput(true);
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
@@ -266,7 +289,8 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 				break;
 			}
 			default: {
-				throw new IOException(httpURLConnection.getRequestMethod() + " failed with HTTP response code " + responseCode);
+				throw new IOException(
+						httpURLConnection.getRequestMethod() + " failed with HTTP response code " + responseCode);
 			}
 			}
 		} catch (RuntimeException exception) {
@@ -274,9 +298,12 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		}
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#getAttributes(org.eclipse.emf.common.util.URI, java.util.Map)
+	 * 
+	 * @see
+	 * org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#getAttributes(org.eclipse.
+	 * emf.common.util.URI, java.util.Map)
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, ?> getAttributes(URI uri, Map<?, ?> options) {
@@ -290,6 +317,11 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 				urlConnection = url.openConnection();
 				if (urlConnection instanceof HttpURLConnection) {
 					HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
+					int timeout = getTimeout(options);
+					if (timeout != 0) {
+						httpURLConnection.setConnectTimeout(timeout);
+						httpURLConnection.setReadTimeout(timeout);
+					}
 					httpURLConnection.setRequestMethod(HTTP_OPTIONS);
 					setRequestHeaders(httpURLConnection,
 							(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
@@ -307,6 +339,11 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			if (requestedAttributes == null || requestedAttributes.contains(URIConverter.ATTRIBUTE_TIME_STAMP)) {
 				if (urlConnection == null) {
 					urlConnection = url.openConnection();
+					int timeout = getTimeout(options);
+					if (timeout != 0) {
+						urlConnection.setConnectTimeout(timeout);
+						urlConnection.setReadTimeout(timeout);
+					}
 					if (urlConnection instanceof HttpURLConnection) {
 						HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
 						setRequestHeaders(httpURLConnection,
@@ -323,6 +360,11 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			if (requestedAttributes == null || requestedAttributes.contains(URIConverter.ATTRIBUTE_LENGTH)) {
 				if (urlConnection == null) {
 					urlConnection = url.openConnection();
+					int timeout = getTimeout(options);
+					if (timeout != 0) {
+						urlConnection.setConnectTimeout(timeout);
+						urlConnection.setReadTimeout(timeout);
+					}
 					if (urlConnection instanceof HttpURLConnection) {
 						HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
 						setRequestHeaders(httpURLConnection,
@@ -341,9 +383,12 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		return result;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#exists(org.eclipse.emf.common.util.URI, java.util.Map)
+	 * 
+	 * @see
+	 * org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#exists(org.eclipse.emf.
+	 * common.util.URI, java.util.Map)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -351,6 +396,11 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		try {
 			URL url = new URL(uri.toString());
 			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+			int timeout = getTimeout(options);
+			if (timeout != 0) {
+				httpURLConnection.setConnectTimeout(timeout);
+				httpURLConnection.setReadTimeout(timeout);
+			}
 			httpURLConnection.setRequestMethod(HTTP_HEAD);
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
@@ -374,17 +424,12 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		}
 	}
 
-	/**
-	 * This implementation delegates to the {@link #getURIConverter(Map) URI
-	 * converter}'s {@link URIConverter#getContentHandlers() content handlers}.
-	 */
-	public Map<String, ?> contentDescription(URI uri, Map<?, ?> options) throws IOException {
-		return ContentHandler.INVALID_CONTENT_DESCRIPTION;
-	}
-
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#canHandle(org.eclipse.emf.common.util.URI)
+	 * 
+	 * @see
+	 * org.eclipse.emf.ecore.resource.impl.URIHandlerImpl#canHandle(org.eclipse.emf.
+	 * common.util.URI)
 	 */
 	@Override
 	public boolean canHandle(URI uri) {
