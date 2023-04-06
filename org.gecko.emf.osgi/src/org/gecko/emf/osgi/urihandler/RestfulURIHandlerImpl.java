@@ -23,7 +23,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -49,10 +48,6 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 	private static final String SCHEMA_HTTPS = "https";
 	/** SCHEMA_HTTP */
 	private static final String SCHEMA_HTTP = "http";
-	/** AUTH_BASIC */
-	private static final String AUTH_BASIC = "Basic ";
-	/** HEADER_AUTHORIZATION */
-	private static final String HEADER_AUTHORIZATION = "Authorization";
 	/** HEADER_CONTENT_LENGTH */
 	private static final String HEADER_CONTENT_LENGTH = "Content-Length";
 	/** HTTP_HEAD */
@@ -89,13 +84,13 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			method = options.get(EMFUriHandlerConstants.OPTION_HTTP_METHOD).toString().toUpperCase();
 		}
 		httpURLConnection.setRequestMethod(method);
+		//TODO: Timeout
 		httpURLConnection.setDoOutput(Boolean.TRUE);
 		setRequestHeaders(httpURLConnection,
 				(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 		if (options.containsKey(PROP_ECLASS)) {
 			httpURLConnection.setRequestProperty(HEADER_CONTENT_CLASS, options.get(PROP_ECLASS).toString());
 		}
-		handleBasicAuth(httpURLConnection, options);
 		return new FilterOutputStream(httpURLConnection.getOutputStream()) {
 			@Override
 			public void close() throws IOException {
@@ -165,7 +160,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 		try {
 			URL url = new URL(uri.toString());
 			final HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-			handleBasicAuth(httpURLConnection, options);
+			//TODO: Timeout
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 			final int responseCode = httpURLConnection.getResponseCode();
@@ -259,7 +254,6 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			final HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 			;
 			httpURLConnection.setDoOutput(true);
-			handleBasicAuth(httpURLConnection, options);
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 			httpURLConnection.setRequestMethod(HTTP_DELETE);
@@ -297,7 +291,6 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 				if (urlConnection instanceof HttpURLConnection) {
 					HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
 					httpURLConnection.setRequestMethod(HTTP_OPTIONS);
-					handleBasicAuth(httpURLConnection, options);
 					setRequestHeaders(httpURLConnection,
 							(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 					int responseCode = httpURLConnection.getResponseCode();
@@ -359,7 +352,6 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			URL url = new URL(uri.toString());
 			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 			httpURLConnection.setRequestMethod(HTTP_HEAD);
-			handleBasicAuth(httpURLConnection, options);
 			setRequestHeaders(httpURLConnection,
 					(Map<String, String>) options.get(EMFUriHandlerConstants.OPTION_HTTP_HEADERS));
 			int responseCode = httpURLConnection.getResponseCode();
@@ -388,26 +380,6 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 	 */
 	public Map<String, ?> contentDescription(URI uri, Map<?, ?> options) throws IOException {
 		return ContentHandler.INVALID_CONTENT_DESCRIPTION;
-	}
-
-	/**
-	 * Handles the basic authentication setting for the {@link URLConnection}
-	 * 
-	 * @param httpURLConnection
-	 *            the {@link URLConnection}
-	 * @param options
-	 *            a map with options
-	 */
-	private void handleBasicAuth(HttpURLConnection httpURLConnection, Map<?, ?> options) {
-		String username = (String) options.get(EMFUriHandlerConstants.OPTIONS_AUTH_USER);
-		String mandant = (String) options.get(EMFUriHandlerConstants.OPTIONS_AUTH_MANDANT);
-		String password = (String) options.get(EMFUriHandlerConstants.OPTIONS_AUTH_PASSWORD);
-		if (username != null && password != null) {
-
-			String userpassword = username + (mandant != null ? "@" + mandant : "") + ":" + password;
-			String encodedAuthorization = Base64.getEncoder().encodeToString(userpassword.getBytes());
-			httpURLConnection.setRequestProperty(HEADER_AUTHORIZATION, AUTH_BASIC + encodedAuthorization);
-		}
 	}
 
 	/* 

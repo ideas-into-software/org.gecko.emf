@@ -50,17 +50,26 @@ public interface EMFUriHandlerConstants {
 	String OPTIONS_LOG_RESPONSE = "log.response";
 	
 	/**
-	 * if set together with password it will be used for basic auth
+	 * They was used for basic authentication, which is not recommended anymore. 
+	 * If you need basic Auth, please handle it manually and set the Header via the 
+	 * {@link EMFUriHandlerConstants#OPTION_HTTP_HEADERS}
+	 * @deprecated
 	 */
 	String OPTIONS_AUTH_USER = "user";
 	
 	/**
-	 * if set together with user it will be used for basic auth
+	 * They was used for basic authentication, which is not recommended anymore. 
+	 * If you need basic Auth, please handle it manually and set the Header via the 
+	 * {@link EMFUriHandlerConstants#OPTION_HTTP_HEADERS}
+	 * @deprecated
 	 */
 	String OPTIONS_AUTH_MANDANT = "mandant";
 	
 	/**
-	 * if set together with user it will be used for basic auth
+	 * They was used for basic authentication, which is not recommended anymore. 
+	 * If you need basic Auth, please handle it manually and set the Header via the 
+	 * {@link EMFUriHandlerConstants#OPTION_HTTP_HEADERS}
+	 * @deprecated
 	 */
 	String OPTIONS_AUTH_PASSWORD = "password";
 
