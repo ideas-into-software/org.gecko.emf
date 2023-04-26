@@ -27,13 +27,13 @@
 	org.eclipse.emf.common;version='[2.28.0,2.28.1)',\
 	org.eclipse.emf.ecore;version='[2.33.0,2.33.1)',\
 	org.eclipse.emf.ecore.xmi;version='[2.18.0,2.18.1)',\
-	org.gecko.emf.osgi.api;version='[4.4.0,4.4.1)',\
-	org.gecko.emf.osgi.bnd.library.project;version='[5.0.0,5.0.1)',\
-	org.gecko.emf.osgi.bnd.templates.project;version='[5.0.0,5.0.1)',\
-	org.gecko.emf.osgi.codegen;version='[5.0.0,5.0.1)',\
-	org.gecko.emf.osgi.component;version='[5.0.0,5.0.1)',\
-	org.gecko.emf.osgi.extender;version='[5.0.0,5.0.1)',\
-	org.gecko.emf.osgi.model.info;version='[5.0.0,5.0.1)'
+	org.gecko.emf.osgi.api;version=snapshot,\
+	org.gecko.emf.osgi.bnd.library.project;version=snapshot,\
+	org.gecko.emf.osgi.bnd.templates.project;version=snapshot,\
+	org.gecko.emf.osgi.codegen;version=snapshot,\
+	org.gecko.emf.osgi.component;version=snapshot,\
+	org.gecko.emf.osgi.extender;version=snapshot,\
+	org.gecko.emf.osgi.model.info;version=snapshot
 -runblacklist: \
 	bnd.identity;id='ch.qos.logback.classic',\
 	bnd.identity;id='ch.qos.logback.core'
