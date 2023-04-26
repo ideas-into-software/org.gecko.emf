@@ -52,11 +52,38 @@ pipeline  {
             		not {
 	                	branch 'main'
 	            	}
+            		not {
+	                	branch 'Version_4_x_release'
+	            	}
+            		not {
+	                	branch 'Version_4_x'
+	            	}
             	}
             }
             steps  {
                 echo "I am building on ${env.JOB_NAME}"
                 sh "./gradlew testOSGi --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
+            }
+        }
+        stage('4.x release') {
+            when { 
+                branch 'branch 'Version_4_x_release'' 
+            }
+            steps {
+                echo "I am building on ${env.BRANCH_NAME}"
+                sh "./gradlew testOSGi release -Drelease.dir=$JENKINS_HOME/repo.gecko/release/org.gecko.emf --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
+            }
+        }
+        stage('4.x snapshot') {
+            when { 
+                branch 'Version_4_x'
+            }
+            steps  {
+                echo "I am building on ${env.JOB_NAME}"
+                sh "./gradlew testOSGi release --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
+                sh "mkdir -p $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf"
+                sh "rm -rf $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf/*"
+                sh "cp -r cnf/release/* $JENKINS_HOME/repo.gecko/snapshot/org.gecko.emf"
             }
         }
     }
