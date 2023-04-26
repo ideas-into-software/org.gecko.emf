@@ -25,10 +25,10 @@ import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.ecore.EcoreConfigurator;
 import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 import org.osgi.annotation.bundle.Capability;
-import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
@@ -58,7 +58,6 @@ import aQute.bnd.annotation.service.ServiceCapability;
 		)
 @ServiceCapability(value = ResourceSet.class)
 @ServiceCapability(value = ResourceSetFactory.class)
-@ProviderType
 public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactory {
 
 	
@@ -80,6 +79,7 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 		this.resourceFactoryRegistryObjects = resourceFactoryRegistryRegistration;
 		super.setEPackageRegistry(registry);
 		super.setResourceFactoryRegistry(ctx.getBundleContext().getService(resourceFactoryRegistryRegistration), ServicePropertiesHelper.convert(resourceFactoryRegistryRegistration.getProperties()));
+		addEcoreConfigurator(new EcoreConfigurator(), EcoreConfigurator.PROPERTIES);
 	}
 	
 	/*
@@ -133,16 +133,6 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	}
 
 	/**
-	 * Injects {@link EPackageConfigurator}, to register the Ecore Package
-	 * @param configurator the {@link EPackageConfigurator} to be registered
-	 * @param properties the service properties
-	 */
-	@Reference(unbind ="removeEPackageConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.AT_LEAST_ONE, target="(emf.model.name=ecore)")
-	public void addEcoreConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
-		super.addEcoreConfigurator(configurator, properties);
-	}
-
-	/**
 	 * Injects {@link EPackageConfigurator}, to register a new {@link EPackage}
 	 * @param configurator the {@link EPackageConfigurator} to be registered
 	 * @param properties the service properties
@@ -168,16 +158,6 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	 */
 	public void removeEPackageConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
 		super.removeEPackageConfigurator(configurator, properties);
-	}
-
-	/**
-	 * Adds a resource factory configurator for the basic Ecore Package
-	 * @param configurator the resource factory configurator to be registered
-	 * @param properties the service properties
-	 */
-	@Reference(unbind = "removeResourceFactoryConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.AT_LEAST_ONE, target="(emf.model.name=ecore)")
-	public void addEcoreResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
-		super.addEcoreResourceFactoryConfigurator(configurator, properties);
 	}
 
 	/**

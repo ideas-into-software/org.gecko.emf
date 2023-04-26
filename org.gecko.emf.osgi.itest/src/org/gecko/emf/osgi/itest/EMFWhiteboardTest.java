@@ -25,8 +25,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.gecko.emf.osgi.EMFNamespaces;
@@ -34,6 +34,7 @@ import org.gecko.emf.osgi.ResourceSetFactory;
 import org.gecko.emf.osgi.itest.configurator.TestResource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -44,8 +45,6 @@ import org.osgi.test.common.dictionary.Dictionaries;
 import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
-import org.mockito.Mock;
-import org.mockito.internal.runners.RunnerFactory;
 
 /**
  * Tests the EMF Resource Factory Whiteboard integration
@@ -100,8 +99,7 @@ public class EMFWhiteboardTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void testGeckoXMLResourceFactoryRegistered(@InjectService ServiceAware<ResourceSetFactory> sa,
-			@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, "GeckoXMLResourceFactory"}, cardinality = 1) ServiceAware<Factory> factory)
+	public void testGeckoXMLResourceFactoryRegistered(@InjectService ServiceAware<ResourceSetFactory> sa)
 			throws IOException {
 
 		ServiceReference<ResourceSetFactory> reference = sa.getServiceReference();
@@ -122,24 +120,9 @@ public class EMFWhiteboardTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void testGeckoXMLResourceFactoryRegisteredInRegistry(@InjectService ServiceAware<ResourceSetFactory> sa, 
-			@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, "GeckoXMLResourceFactory"}, cardinality = 1) ServiceAware<Factory> factory)
+	public void testGeckoXMLResourceFactoryRegisteredInRegistry(@InjectService ServiceAware<ResourceSetFactory> sa)
 			throws IOException {
 		
-		ServiceReference<Factory> reference = factory.getServiceReference();
-		assertNotNull(reference);
-		
-		Object extensions = reference.getProperty(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_FILE_EXT);
-		assertNotNull(extensions);
-		assertTrue(extensions instanceof String[]);
-		List<String> extensionNameList = Arrays.asList((String[]) extensions);
-		assertTrue(extensionNameList.contains("xml"));
-		
-		Object contentType = reference.getProperty(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE);
-		assertNotNull(contentType);
-		assertTrue(contentType instanceof String[]);
-		List<String> contentTypeNameList = Arrays.asList((String[]) contentType);
-		assertTrue(contentTypeNameList.contains("application/xml"));
 		
 		ServiceReference<ResourceSetFactory> rsfReference = sa.getServiceReference();
 		assertNotNull(rsfReference);

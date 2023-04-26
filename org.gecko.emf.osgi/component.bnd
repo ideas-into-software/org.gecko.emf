@@ -3,9 +3,14 @@
 	org.gecko.emf.osgi.components.dynamic,\
 	org.gecko.emf.osgi.components,\
 	org.gecko.emf.osgi.urihandler,\
+	org.gecko.emf.osgi.provider,\
 	org.gecko.emf.osgi.ecore
 
 Export-Package: \
+	org.gecko.emf.osgi,\
+	org.gecko.emf.osgi.helper,\
+	org.gecko.emf.osgi.factory,\
+	org.gecko.emf.osgi.annotation.*,\
 	org.gecko.emf.osgi.resourceset,\
 	org.gecko.emf.osgi.components.config,\
 	org.gecko.emf.osgi.resourceset

@@ -13,6 +13,11 @@
  */
 package org.gecko.emf.osgi.ecore;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -21,12 +26,9 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
-import org.gecko.emf.osgi.annotation.EMFResourceFactoryConfigurator;
-import org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator;
-import org.gecko.emf.osgi.components.DefaultEPackageRegistryComponent;
+import org.gecko.emf.osgi.EMFNamespaces;
+import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * A {@link XMLResourceFactory} with some reasonable defaults.
@@ -34,18 +36,29 @@ import org.osgi.service.component.annotations.Reference;
  * @author Juergen Albert
  * @since 22 Feb 2022
  */
-@Component
-@EMFResourceFactoryConfigurator(name = "GeckoXMLResourceFactory", contentType = "application/xml", fileExtension = "xml")
-@ProvideEMFResourceConfigurator(name = "GeckoXMLResourceFactory", contentType = "application/xml", fileExtension = "xml")
 public class GeckoXMLResourceFactory extends XMLResourceFactoryImpl implements Resource.Factory{
 
+	public static final Map<String, Object> PROPERTIES = GeckoXMLResourceFactory.getProperties();
+	
+	private static Map<String, Object> getProperties(){
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME,"GeckoXMLResourceFactory"); 
+		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE, Arrays.asList( new String[] {
+				"application/xml"})); 
+		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_FILE_EXT, Arrays.asList( new String[] {
+				"xml"})); 
+		result.put(EMFNamespaces.EMF_CONFIGURATOR_VERSION, "1.0.0");
+		result.put(Constants.SERVICE_ID, new Random().nextLong());
+		return result;
+	}
+	
 	private org.eclipse.emf.ecore.EPackage.Registry registry;
 
 	/**
 	 * Creates a new instance.
 	 */
 	@Activate
-	public GeckoXMLResourceFactory(@Reference(name = "EPackageRegistry", target = "(component.name=" +  DefaultEPackageRegistryComponent.NAME + ")") EPackage.Registry registry) {
+	public GeckoXMLResourceFactory(EPackage.Registry registry) {
 		this.registry = registry;
 	}
 	

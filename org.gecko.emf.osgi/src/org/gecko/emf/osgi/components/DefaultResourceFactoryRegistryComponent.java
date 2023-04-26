@@ -22,11 +22,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl;
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.annotation.EMFResourceFactoryConfigurator;
+import org.gecko.emf.osgi.ecore.GeckoXMLResourceFactory;
 import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.framework.BundleContext;
@@ -63,9 +65,12 @@ public class DefaultResourceFactoryRegistryComponent {
 	 * Creates a new instance.
 	 */
 	@Activate
-	public DefaultResourceFactoryRegistryComponent(BundleContext ctx) {
+	public DefaultResourceFactoryRegistryComponent(BundleContext ctx,
+			@Reference(name="ePackageRegistry")
+			EPackage.Registry packageRegistry) {
 		registry = new ResourceFactoryRegistryImpl();
 		serviceRegistration = ctx.registerService(Registry.class, registry, getDictionary());
+		addFactory(new GeckoXMLResourceFactory(packageRegistry), GeckoXMLResourceFactory.PROPERTIES);
 	}
 	
 	@Deactivate

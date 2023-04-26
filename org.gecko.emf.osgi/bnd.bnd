@@ -14,13 +14,6 @@
 	org.osgi.namespace.extender,\
 	biz.aQute.bnd.annotation
 	
-Export-Package: \
-	org.gecko.emf.osgi,\
-	org.gecko.emf.osgi.helper,\
-	org.gecko.emf.osgi.factory,\
-	org.gecko.emf.osgi.annotation.*,\
-	org.gecko.emf.osgi.provider
-
 # We shoudl consider deactivating this. For the Momemnt the Baselining is a bit harsch, e
 # specially given that we know that it is still backward compatible.
 -fixupmessages: \

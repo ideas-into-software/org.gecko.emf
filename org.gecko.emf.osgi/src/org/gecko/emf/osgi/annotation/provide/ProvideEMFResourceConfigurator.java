@@ -38,13 +38,12 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
 @Target({
 		ElementType.TYPE, ElementType.PACKAGE
 })
-@Capability(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
+@Capability(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, 
 		name = ResourceSetConfigurator.EMF_CONFIGURATOR_NAME)
-@RequireEMF
 @ComponentPropertyType
 public @interface ProvideEMFResourceConfigurator {
 
-	String PREFIX_ = EMFNamespaces.EMF_CONFIGURATOR_PREFIX;
+	String PREFIX_ = EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_PREFIX;
 	
 	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_NAME)
 	String name(); 

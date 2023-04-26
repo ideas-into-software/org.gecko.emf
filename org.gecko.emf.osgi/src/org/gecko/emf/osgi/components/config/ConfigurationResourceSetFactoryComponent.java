@@ -27,6 +27,7 @@ import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.ecore.EcoreConfigurator;
 import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 import org.osgi.annotation.bundle.Capability;
@@ -85,6 +86,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 		this.resourceFactoryRegistryObjects = resourceFactoryRegistryObjects;
 		super.setEPackageRegistry(registry);
 		super.setResourceFactoryRegistry(resourceFactoryRegistryObjects.getService(), ServicePropertiesHelper.convert(resourceFactoryRegistryObjects.getServiceReference().getProperties()));
+		addEcoreConfigurator(new EcoreConfigurator(), EcoreConfigurator.PROPERTIES);
 	}
 	
 	/*
@@ -131,17 +133,6 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	}
 
 	/**
-	 * Injects {@link EPackageConfigurator}, to register the Ecore Package
-	 * @param configurator the {@link EPackageConfigurator} to be registered
-	 * @param properties the service properties
-	 */
-	@Override
-	@Reference(unbind ="removeEPackageConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.AT_LEAST_ONE, target="(emf.model.name=ecore)")
-	public void addEcoreConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
-		super.addEcoreConfigurator(configurator, properties);
-	}
-
-	/**
 	 * Injects {@link EPackageConfigurator}, to register a new {@link EPackage}
 	 * @param configurator the {@link EPackageConfigurator} to be registered
 	 * @param properties the service properties
@@ -169,17 +160,6 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	@Override
 	public void removeEPackageConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
 		super.removeEPackageConfigurator(configurator, properties);
-	}
-
-	/**
-	 * Adds a resource factory configurator for the basic Ecore Package
-	 * @param configurator the resource factory configurator to be registered
-	 * @param properties the service properties
-	 */
-	@Override
-	@Reference(unbind = "removeResourceFactoryConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.AT_LEAST_ONE, target="(emf.model.name=ecore)")
-	public void addEcoreResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
-		super.addEcoreResourceFactoryConfigurator(configurator, properties);
 	}
 
 	/**

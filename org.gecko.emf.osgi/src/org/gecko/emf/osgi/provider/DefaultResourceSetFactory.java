@@ -39,6 +39,7 @@ import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.ecore.EcoreConfigurator;
 import org.gecko.emf.osgi.factory.ResourceSetPrototypeFactory;
 import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.osgi.framework.Constants;
@@ -125,8 +126,9 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @param configurator the {@link EPackageConfigurator} to be registered
 	 * @param properties the service properties
 	 */
-	protected void addEcoreConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
+	protected void addEcoreConfigurator(EcoreConfigurator configurator, Map<String, Object> properties) {
 		addEPackageConfigurator(configurator, properties);
+		addResourceFactoryConfigurator(configurator, properties);
 	}
 
 	/**
@@ -162,15 +164,6 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Adds a resource factory configurator for the basic Ecore Package
-	 * @param configurator the resource factory configurator to be registered
-	 * @param properties the service properties
-	 */
-	protected void addEcoreResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
-		addResourceFactoryConfigurator(configurator, properties);
 	}
 
 	/**
