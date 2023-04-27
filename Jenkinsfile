@@ -67,7 +67,7 @@ pipeline  {
         }
         stage('4.x release') {
             when { 
-                branch 'branch 'Version_4_x_release'' 
+                branch 'Version_4_x_release' 
             }
             steps {
                 echo "I am building on ${env.BRANCH_NAME}"
