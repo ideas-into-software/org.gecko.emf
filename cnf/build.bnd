@@ -20,7 +20,7 @@ javac.target: 1.8
 
 github-project: org.gecko.emf
 
--baseline: *
+-baseline: test
 
 -groupid: org.geckoprojects.emf
 
@@ -28,3 +28,11 @@ github-project: org.gecko.emf
 	"No metadata for revision";\
 		restrict:=error;\
     	is:=warning
+
+    			
+#-plugin.m2: \
+#	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+#		index               = ${.}/m2.maven;\
+#		name                = "m2"
+#		
+#-buildrepo: m2

@@ -15,9 +15,7 @@
 	org.opentest4j;version='[1.2.0,1.2.1)',\
 	org.osgi.util.function;version='[1.1.0,1.1.1)',\
 	org.apache.felix.configadmin;version='[1.9.22,1.9.23)',\
-	org.gecko.emf.osgi.api;version=snapshot,\
 	org.gecko.emf.osgi.component;version=snapshot,\
-	org.gecko.emf.osgi.itest;version=snapshot,\
 	org.osgi.util.converter;version='[1.0.8,1.0.9)',\
 	org.osgi.util.promise;version='[1.2.0,1.2.1)',\
 	org.apache.felix.scr;version='[2.2.0,2.2.1)',\
@@ -37,9 +35,22 @@
 	org.eclipse.emf.ecore;version='[2.33.0,2.33.1)',\
 	org.eclipse.emf.ecore.xmi;version='[2.18.0,2.18.1)',\
 	org.osgi.service.cm;version='[1.6.0,1.6.1)',\
-	org.gecko.emf.osgi.api;version='[4.5.0,4.5.1)',\
-	org.gecko.emf.osgi.example.model.basic;version='[4.6.0,4.6.1)',\
-	org.gecko.emf.osgi.example.model.extended;version='[4.6.0,4.6.1)',\
-	org.gecko.emf.osgi.example.model.manual;version='[4.6.0,4.6.1)',\
-	org.osgi.test.assertj.monitoring;version='[0.0.2,0.0.3)'
+	org.gecko.emf.osgi.example.model.basic;version=snapshot,\
+	org.gecko.emf.osgi.example.model.extended;version=snapshot,\
+	org.gecko.emf.osgi.example.model.manual;version=snapshot,\
+	org.gecko.emf.osgi.api;version=snapshot,\
+	org.gecko.emf.osgi.itest;version=snapshot,\
+	org.osgi.test.assertj.monitoring;version=snapshot
 -runblacklist: bnd.identity;id='org.gecko.emf.osgi.extender'
+-runrepos: \
+	Workspace,\
+	Release,\
+	BND Dependencies,\
+	DIM_Release,\
+	Apache Felix Dependencies,\
+	Jacoco Dependencies,\
+	OSGi-Test Dependencies,\
+	Project Dependencies,\
+	OSGi Spec R7 Dependencies,\
+	OSGi Spec R8 Dependencies,\
+	Slf4j and Logback Dependencies

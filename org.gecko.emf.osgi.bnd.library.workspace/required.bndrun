@@ -33,8 +33,19 @@
 	org.gecko.emf.osgi.codegen;version=snapshot,\
 	org.gecko.emf.osgi.component;version=snapshot,\
 	org.gecko.emf.osgi.extender;version=snapshot,\
-	org.gecko.emf.osgi.model.info;version=snapshot,\
-	org.gecko.emf.osgi.api;version='[4.5.0,4.5.1)'
+	org.gecko.emf.osgi.model.info;version=snapshot
 -runblacklist: \
 	bnd.identity;id='ch.qos.logback.classic',\
 	bnd.identity;id='ch.qos.logback.core'
+-runrepos: \
+	Workspace,\
+	Release,\
+	BND Dependencies,\
+	DIM_Release,\
+	Apache Felix Dependencies,\
+	Jacoco Dependencies,\
+	OSGi-Test Dependencies,\
+	Project Dependencies,\
+	OSGi Spec R7 Dependencies,\
+	OSGi Spec R8 Dependencies,\
+	Slf4j and Logback Dependencies
