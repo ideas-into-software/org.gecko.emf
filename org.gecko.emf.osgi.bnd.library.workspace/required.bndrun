@@ -33,7 +33,8 @@
 	org.gecko.emf.osgi.codegen;version=snapshot,\
 	org.gecko.emf.osgi.component;version=snapshot,\
 	org.gecko.emf.osgi.extender;version=snapshot,\
-	org.gecko.emf.osgi.model.info;version=snapshot
+	org.gecko.emf.osgi.model.info;version=snapshot,\
+	org.gecko.emf.osgi.api;version='[4.5.0,4.5.1)'
 -runblacklist: \
 	bnd.identity;id='ch.qos.logback.classic',\
 	bnd.identity;id='ch.qos.logback.core'
