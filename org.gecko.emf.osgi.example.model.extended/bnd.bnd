@@ -1,8 +1,8 @@
 src=${^src},src-gen
 
 -buildpath: \
-	org.gecko.emf.osgi.example.model.basic;version=latest,\
-	org.gecko.emf.osgi.api;version=latest,\
+	org.gecko.emf.osgi.example.model.basic;version=snapshot,\
+	org.gecko.emf.osgi.api;version=snapshot,\
 	org.eclipse.emf.common;version=latest,\
 	org.eclipse.emf.ecore;version=latest,\
 	org.eclipse.emf.ecore.xmi;version=latest,\

@@ -37,3 +37,15 @@
 -runblacklist: \
 	bnd.identity;id='ch.qos.logback.classic',\
 	bnd.identity;id='ch.qos.logback.core'
+-runrepos: \
+	Workspace,\
+	Release,\
+	BND Dependencies,\
+	DIM_Release,\
+	Apache Felix Dependencies,\
+	Jacoco Dependencies,\
+	OSGi-Test Dependencies,\
+	Project Dependencies,\
+	OSGi Spec R7 Dependencies,\
+	OSGi Spec R8 Dependencies,\
+	Slf4j and Logback Dependencies

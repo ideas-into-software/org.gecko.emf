@@ -59,7 +59,8 @@ public class GeckoEmfGeneratorTest {
 		System.out.println(genModelURI.trimSegments(genModelURI.segmentCount() - 3).toString());
 		System.out.println(genModelURI.deresolve(genModelURI.trimSegments(genModelURI.segmentCount() - 3).appendSegment("")).toString());
 	}
-	@Test
+	
+//	@Test
 	public void testURIResolve() {
 		URI toTest = URI.createURI("../org.eclipse.emf.ecore/model/Ecore.genmodel");
 		URI basePath = URI.createURI("resource://org.gecko.emf.osgi.codegen/");

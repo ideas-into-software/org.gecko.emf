@@ -9,9 +9,8 @@ src=${^src},src-gen
 	org.eclipse.emf.ecore.xmi,\
 	org.osgi.service.component.annotations,\
 	org.osgi.framework,\
-	org.gecko.emf.osgi.api,\
 	osgi.cmpn,\
-	org.gecko.emf.osgi.codegen,\
+	org.gecko.emf.osgi.codegen;version=snapshot,\
 	org.osgi.service.condition
 
 -includeresource.model: model=model

@@ -4,7 +4,7 @@
 	org.osgi.util.tracker;version=latest,\
 	org.osgi.service.component;version=latest,\
 	org.osgi.service.coordinator;version=latest,\
-	org.gecko.emf.osgi.api;version=latest,\
+	org.gecko.emf.osgi.api;version=snapshot,\
 	org.osgi.namespace.extender;version=latest,\
 	org.eclipse.emf.common,\
 	org.eclipse.emf.ecore,\
