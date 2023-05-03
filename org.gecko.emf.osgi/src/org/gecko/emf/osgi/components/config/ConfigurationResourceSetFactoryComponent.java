@@ -86,7 +86,9 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 		this.resourceFactoryRegistryObjects = resourceFactoryRegistryObjects;
 		super.setEPackageRegistry(registry);
 		super.setResourceFactoryRegistry(resourceFactoryRegistryObjects.getService(), ServicePropertiesHelper.convert(resourceFactoryRegistryObjects.getServiceReference().getProperties()));
-		addEcoreConfigurator(new EcoreConfigurator(), EcoreConfigurator.PROPERTIES);
+		EcoreConfigurator ecoreConfigurator = new EcoreConfigurator();
+		addEPackageConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
+		addResourceFactoryConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
 	}
 	
 	/*

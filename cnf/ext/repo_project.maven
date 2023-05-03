@@ -30,7 +30,7 @@ org.apache.aries.spifly:org.apache.aries.spifly.dynamic.bundle:jar:1.3.4
 org.apache.felix:org.apache.felix.framework:jar:7.0.1
 org.osgi:org.osgi.util.promise:1.2.0
 
-org.geckoprojects.bnd:org.gecko.bnd.dimc.library:1.2.0
-org.geckoprojects.bnd:org.gecko.bnd.osgitest.library:1.2.0
-org.geckoprojects.bnd:org.gecko.bnd.jacoco.library:1.2.0
+org.geckoprojects.bnd:org.gecko.bnd.dimc.library:1.3.1
+org.geckoprojects.bnd:org.gecko.bnd.osgitest.library:1.3.1
+org.geckoprojects.bnd:org.gecko.bnd.jacoco.library:1.3.1
 org.osgi:org.osgi.service.condition:1.0.0

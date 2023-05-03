@@ -33,8 +33,7 @@
 	org.apache.felix.scr;version='[2.2.6,2.2.7)',\
 	org.eclipse.emf.common;version='[2.28.0,2.28.1)',\
 	org.eclipse.emf.ecore;version='[2.33.0,2.33.1)',\
-	org.eclipse.emf.ecore.xmi;version='[2.18.0,2.18.1)',\
-	org.gecko.emf.osgi.component;version='[4.5.0,4.5.1)'
+	org.eclipse.emf.ecore.xmi;version='[2.18.0,2.18.1)'
 -runblacklist: \
 	bnd.identity;id='ch.qos.logback.classic',\
 	bnd.identity;id='ch.qos.logback.core'
