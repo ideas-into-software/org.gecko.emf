@@ -40,6 +40,5 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>bndtools.core.bndnature</nature>
-		<nature>org.eclipse.ocl.pivot.ui.oclnature</nature>
 	</natures>
 </projectDescription>

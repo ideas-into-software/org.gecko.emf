@@ -20,7 +20,7 @@ javac.target: 1.8
 
 github-project: org.gecko.emf
 
--baseline: nope
+-baseline: *
 
 -groupid: org.geckoprojects.emf
 

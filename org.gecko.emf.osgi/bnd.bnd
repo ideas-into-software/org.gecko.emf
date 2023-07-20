@@ -1,3 +1,9 @@
+Export-Package: \
+	org.gecko.emf.osgi,\
+	org.gecko.emf.osgi.helper,\
+	org.gecko.emf.osgi.factory,\
+	org.gecko.emf.osgi.annotation.*
+
 -buildpath: \
 	org.osgi.framework,\
 	org.osgi.annotation.bundle,\

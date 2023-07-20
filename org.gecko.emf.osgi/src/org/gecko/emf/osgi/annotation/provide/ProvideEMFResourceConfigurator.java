@@ -22,7 +22,6 @@ import java.lang.annotation.Target;
 
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
-import org.gecko.emf.osgi.annotation.require.RequireEMF;
 import org.osgi.annotation.bundle.Attribute;
 import org.osgi.annotation.bundle.Capability;
 import org.osgi.service.component.annotations.ComponentPropertyType;
