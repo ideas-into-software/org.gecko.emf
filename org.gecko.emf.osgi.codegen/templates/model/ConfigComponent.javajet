@@ -16,9 +16,7 @@ package <%=genPackage.getInterfacePackageName()%>.configuration;
  * 
  * @generated
  */
-@Component(name = "<%=genPackage.getPrefix()%>Configurator",
- 	reference = @<%=genModel.getImportedName("org.osgi.service.component.annotations.Reference")%>( name = "ResourceSetFactory", service = <%=ResourceSetFactory.class.getName()%>.class, cardinality = <%=genModel.getImportedName("org.osgi.service.component.annotations.ReferenceCardinality")%>.MANDATORY)
- )
+@Component(name = "<%=genPackage.getPrefix()%>Configurator")
 @<%=genModel.getImportedName("org.osgi.annotation.bundle.Capability")%>( namespace = "osgi.service", attribute = { "objectClass:List<String>=\"<%=genPackage.getQualifiedFactoryInterfaceName()%>, org.eclipse.emf.ecore.EFactory\"" , "uses:=org.eclipse.emf.ecore,<%=genPackage.getInterfacePackageName()%>" })
 @<%=genModel.getImportedName("org.osgi.annotation.bundle.Capability")%>( namespace = "osgi.service", attribute = { "objectClass:List<String>=\"<%=genPackage.getQualifiedPackageInterfaceName()%>, org.eclipse.emf.ecore.EPackage\"" , "uses:=org.eclipse.emf.ecore,<%=genPackage.getInterfacePackageName()%>" })
 @<%=genModel.getImportedName("org.osgi.annotation.bundle.Capability")%>( namespace = "osgi.service", attribute = { "objectClass:List<String>=\"<%=EPackageConfigurator.class.getName()%>\"" , "uses:=org.eclipse.emf.ecore,<%=genPackage.getInterfacePackageName()%>" })
