@@ -29,7 +29,7 @@ public class EPackageConfiguratorClass
   protected final String TEXT_12 = "EPackageConfigurator(";
   protected final String TEXT_13 = " ePackage){" + NL + "\t\tthis.ePackage = ePackage;" + NL + "\t}" + NL + "\t" + NL + "\t/**" + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#configureEPackage(org.eclipse.emf.ecore.EPackage.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void configureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {" + NL + "\t\tregistry.put(";
   protected final String TEXT_14 = ".eNS_URI, ePackage);" + NL + "\t}" + NL + "\t" + NL + "\t/**" + NL + "\t * (non-Javadoc)" + NL + "\t * @see org.gecko.emf.osgi.EPackageRegistryConfigurator#unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry)" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic void unconfigureEPackage(org.eclipse.emf.ecore.EPackage.Registry registry) {" + NL + "\t\tregistry.remove(";
-  protected final String TEXT_15 = ".eNS_URI);" + NL + "\t}" + NL + "\t" + NL + "\t/**" + NL + "\t * A method providing the Prperties the services around this Model should be registered with." + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+  protected final String TEXT_15 = ".eNS_URI);" + NL + "\t}" + NL + "\t" + NL + "\t/**" + NL + "\t * A method providing the Properties the services around this Model should be registered with." + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
   protected final String TEXT_16 = "<String, Object> getServiceProperties() {" + NL + "\t\t";
   protected final String TEXT_17 = "<String, Object> properties = new ";
   protected final String TEXT_18 = "<String, Object>();" + NL + "\t\tproperties.put(";

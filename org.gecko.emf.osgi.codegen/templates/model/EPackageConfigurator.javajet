@@ -50,7 +50,7 @@ public class <%=genPackage.getPrefix()%>EPackageConfigurator implements EPackage
 	}
 	
 	/**
-	 * A method providing the Prperties the services around this Model should be registered with.
+	 * A method providing the Properties the services around this Model should be registered with.
 	 * @generated
 	 */
 	public <%=genModel.getImportedName("java.util.Map")%><String, Object> getServiceProperties() {
