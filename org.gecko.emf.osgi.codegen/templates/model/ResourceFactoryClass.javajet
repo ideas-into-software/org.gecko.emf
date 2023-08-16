@@ -18,7 +18,6 @@ package <%=genPackage.getUtilitiesPackageName()%>;
 
 <%genModel.getImportedName("org.eclipse.emf.common.util.URI");%>
 <%genModel.getImportedName("org.eclipse.emf.ecore.resource.Resource");%>
-<%genModel.addImport("org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator");%>
 <%genModel.addImport(genPackage.getQualifiedPackageInterfaceName());%>
 <%genModel.markImportLocation(stringBuffer);%>
 
@@ -32,25 +31,6 @@ package <%=genPackage.getUtilitiesPackageName()%>;
 <%}%>
  * @generated
  */
- @<%=genModel.getImportedName("org.osgi.service.component.annotations.Component")%>( name = <%=genPackage.getPackageInterfaceName()%>.eNAME + "Factory", service = Resource.Factory.class, scope = <%=genModel.getImportedName("org.osgi.service.component.annotations.ServiceScope")%>.SINGLETON,
- 	reference = @<%=genModel.getImportedName("org.osgi.service.component.annotations.Reference")%>( name = <%=genPackage.getPackageInterfaceName()%>.eNAME + "Package", service = <%=genPackage.getPackageInterfaceName()%>.class, cardinality = <%=genModel.getImportedName("org.osgi.service.component.annotations.ReferenceCardinality")%>.MANDATORY)
- )
- @ProvideEMFResourceConfigurator( name = <%=genPackage.getPackageInterfaceName()%>.eNAME,
-<%if (genPackage.getContentTypeIdentifier() != null) {%>
-	contentType = { "<%=genPackage.getContentTypeIdentifier()%>" },
-<%} else {%>
-	contentType = { "" },
-<%}%> 
-<%if (!genPackage.getFileExtensionList().isEmpty()) {%>
-<%Iterator<String> fileExtensionIterator = genPackage.getFileExtensionList().iterator(); if (fileExtensionIterator.hasNext()) { String fileExtension = fileExtensionIterator.next();%>
-	fileExtension = {
-	"<%=fileExtension%>"<%while(fileExtensionIterator.hasNext()) { fileExtension = fileExtensionIterator.next();%>,
- 	"<%=fileExtension%>"<%}%>
- 	},
-<%}%> 
-<%}%> 
-	version = "<%=Dependencies.getVersion(genPackage)%>"
-)
 <%if (isJDK50 && genPackage.hasAPIDeprecatedTag()) {%>
 @Deprecated
 <%}%>
@@ -135,6 +115,21 @@ public class <%=genPackage.getResourceFactoryClassName()%> extends <%=genPackage
 <%}%>
 		return result;
 <%@ end %><%//ResourceFactoryClass/createResource.override.javajetinc%>
+	}
+
+	/**
+	 * A method providing the Properties the services around this ResourceFactory should be registered with.
+	 * @generated
+	 */
+	public <%=genModel.getImportedName("java.util.Map")%><String, Object> getServiceProperties() {
+		<%=genModel.getImportedName("java.util.Map")%><String, Object> properties = new <%=genModel.getImportedName("java.util.HashMap")%><String, Object>();
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_CONFIGURATOR_NAME, <%=genPackage.getPackageInterfaceName()%>.eNAME);
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_FILE_EXT, "<%=genPackage.getFileExtension()%>");
+    <% if (genPackage.getContentTypeIdentifier() != null) {%>
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_CONTENT_TYPE, "<%=genPackage.getContentTypeIdentifier()%>");
+    <%}%>
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_CONFIGURATOR_VERSION, "<%=Dependencies.getVersion(genPackage)%>");
+		return properties;
 	}
 
 } //<%=genPackage.getResourceFactoryClassName()%>
