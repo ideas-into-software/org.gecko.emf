@@ -3,7 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="extended" nsURI="http://gecko.org/example/model/extendendend/1.0"
     nsPrefix="extended">
   <eAnnotations source="Version">
-    <details key="value" value="1.1.1"/>
+    <details key="value" value="1.2.0"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="ExtendedAddress" eSuperTypes="../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//Address">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="asdasd" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
