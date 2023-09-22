@@ -32,6 +32,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.GenModelFactoryImpl;
+import org.eclipse.emf.codegen.ecore.genmodel.impl.GenModelImpl;
 import org.eclipse.emf.codegen.ecore.genmodel.impl.GenModelPackageImpl;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -151,7 +152,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 				File f = c.getFile();
 				try (Jar jar = new Jar(f)){
 					List<String> models = jar
-							.getResourceNames(s -> s.endsWith(".ecore") || s.endsWith(".genmodel"))
+							.getResourceNames(s -> s.endsWith(".ecore") || s.endsWith(".genmodel") || s.endsWith(".uml"))
 							.collect(Collectors.toList());
 					refModels.put(c, models);
 				}
@@ -237,12 +238,30 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		genModel.setUpdateClasspath(false);
 
 		info("Starting generator run");
-		Diagnostic diagnostic = gen.generate(genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, CodeGenUtil.EclipseUtil.createMonitor(new LoggingProgressMonitor(), 1));
-		info("Finished generator run");
-		printResult(diagnostic);
-		if(diagnostic.getSeverity() != Diagnostic.OK) {
-			return Optional.of(diagnostic.toString());
-		} 
+		try {
+			Diagnostic diagnostic = gen.generate(genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, CodeGenUtil.EclipseUtil.createMonitor(new LoggingProgressMonitor(), 1));
+			info("Finished generator run");
+			printResult(diagnostic);
+			info("==================================");
+			if(diagnostic.getSeverity() != Diagnostic.OK) {
+				return Optional.of(diagnostic.toString());
+			} 
+		} catch (Throwable t) {
+			info("++++++++++++++++++++++++++++++++++");
+			if(t instanceof NullPointerException) {
+				info("We have an NPE");
+				StackTraceElement stackTraceElement = t.getStackTrace()[0];
+				info("first StackTraceElement " + stackTraceElement);
+				if(stackTraceElement.getClassName().equals(GenModelImpl.class.getName()) && stackTraceElement.getMethodName().equals("setImportManager")) {
+					String message = "This usually happens when a referenced Genmodel can't be loaded. It usually Indicates that the genmodel may need to be reloaded in the IDE.";
+					info(message);
+					return Optional.of(message);
+				}
+			}
+			String message = "An error appeared while generating: " + t.getMessage();
+			info(message);
+			return Optional.of(message);
+		}
 		return Optional.empty();
 	}
 
@@ -259,6 +278,15 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 			error(prefix + diagnostic.getMessage() + " - " + diagnostic.getSource()); //$NON-NLS-1$
 			if(diagnostic.getException() != null) {
 				error(prefix, diagnostic.getException());
+				if(diagnostic.getException() instanceof NullPointerException) {
+					Throwable t = diagnostic.getException(); 
+					StackTraceElement stackTraceElement = t.getStackTrace()[0];
+					if(stackTraceElement.getClassName().equals(GenModelImpl.class.getName()) && stackTraceElement.getMethodName().equals("setImportManager")) {
+						String message = prefix + "|-> Nullpointer Exception while setting Import Manager on the Genmodel indicates that the genmodel may need to be reloaded. This usually happens when a referenced Genmodel can't be loaded.";
+						error(message);
+					}
+				}
+				error("");
 			}
 		}
 		diagnostic.getChildren().forEach(c -> printResult(c, prefix + "  "));
