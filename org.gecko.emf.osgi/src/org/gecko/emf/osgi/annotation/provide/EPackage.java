@@ -35,7 +35,8 @@ import org.osgi.annotation.bundle.Capability;
 	attribute = {
 		"class=\"${#value}\"", //
 		"uri=${#uri}",
-		"genModel=${#genModel}"
+		"genModel=${#genModel}",
+		"sourceLocations=\"${#genModelSourceLocations}\""
 	})
 public @interface EPackage {
 
@@ -44,4 +45,6 @@ public @interface EPackage {
 	Class<?> value() default Target.class;
 
 	String genModel();
+
+	String[] genModelSourceLocations() default "";
 }

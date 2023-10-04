@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -56,14 +57,22 @@ import aQute.lib.io.IO;
 @ExternalPlugin(name = "geckoEMF", objectClass = Generator.class, version = VersionConstant.CODE_GEN_VERSION)
 public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 
-	/** OUTPUT_DEFAULT */
+	public static final String ORIGINAL_GEN_MODEL_PATHS = "originalGenModelPaths";
+	public static final String INCLUDE_GEN_MODEL_FOLDER = "includeGenModelFolder";
+	
+	/** The output folders default */
 	private static final String OUTPUT_DEFAULT = "src-gen"; //$NON-NLS-1$
-	/** PROP_GENMODEL */
+	/** which genmodel to generate */
 	private static final String PROP_GENMODEL = "genmodel"; //$NON-NLS-1$
+	/** where the genmodel will end up in the build model, should be used when not in the defaults model folder */
+	private static final String PROP_GENMODEL_INLCLUDE_LOCATION = "genmodelIncludeLocation"; //$NON-NLS-1$
 	/** PROP_OUTPUT */
 	private static final String PROP_OUTPUT = "output"; //$NON-NLS-1$
 	/** PROP_LOGFILE */
 	private static final String PROP_LOGFILE = "logfile"; //$NON-NLS-1$
+
+	
+	
 	private static PrintStream logWriter;
 
 	public static void info(String message) {
@@ -140,6 +149,14 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 				return Optional.of("genmodel attribute not set");
 			}
 
+			String genmodelLocation = context.get(PROP_GENMODEL_INLCLUDE_LOCATION); 
+			if(genmodelLocation == null) {
+				info("genmodelLocation: null");
+			} else {
+				info("genmodelLocation: [" + genmodelLocation + "]");
+			}
+
+			
 			File genmodelFile = new File(context.getBase(), genmodel);
 
 			if(!genmodelFile.exists()) {
@@ -164,7 +181,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 			return doGenerate(genFolder, genmodel, 
 					refModels, 
 					context.getBase(), 
-					bsn);
+					bsn, genmodelLocation);
 		} catch (Exception e) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			PrintWriter print = new PrintWriter(baos);
@@ -207,20 +224,24 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 
 	/**
 	 * @param output
-	 * @param genmodel
+	 * @param genmodelPath
 	 * @param genmodelFile
 	 * @param refModels 
+	 * @param genmodelLocation 
 	 * @param string 
 	 * @param file 
 	 * @return
 	 * @throws IOException
 	 */
-	protected Optional<String> doGenerate(String output, String genmodel, Map<Container, List<String>> refModels, File base, String bsn) throws IOException {
-		info("Running for genmodel " + genmodel + " in " + base.getAbsolutePath()); 
+	protected Optional<String> doGenerate(String output, String genmodelPath, Map<Container, List<String>> refModels, File base, String bsn, String genmodelLocation) throws IOException {
+		info("Running for genmodel " + genmodelPath + " in " + base.getAbsolutePath()); 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		configureEMF(resourceSet, refModels, bsn, base);
-		URI genModelUri = URI.createURI("resource://" + bsn + "/" + genmodel);
+		URI genModelUri = URI.createURI("resource://" + bsn + "/" + genmodelPath);
+		
+		info("Loading " + genModelUri.toString());
+		
 		Resource resource = resourceSet.getResource(genModelUri, true);
 
 		if(!resource.getErrors().isEmpty()) {
@@ -231,33 +252,29 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		org.eclipse.emf.codegen.ecore.generator.Generator gen = new org.eclipse.emf.codegen.ecore.generator.Generator();
 		configureEMFGenerator(gen);
 		
+		String modelDirectory = "/" + bsn + (output.startsWith("/") ? "" : "/") + output;
 
-		genModel.setModelDirectory("/" + bsn + (output.startsWith("/") ? "" : "/") + output);
+		info("Setting modelDirectory" + modelDirectory);
+		
+		genModel.setModelDirectory(modelDirectory);
 		gen.setInput(genModel);
+		
+		Map<String, Object> props = new HashMap<>();
+		props.put(GeckoEmfGenerator.ORIGINAL_GEN_MODEL_PATHS, Arrays.asList(new String[] {genmodelPath, base.getName() + "/" + genmodelPath}));
+		props.put(GeckoEmfGenerator.INCLUDE_GEN_MODEL_FOLDER, genmodelLocation);
+		gen.getOptions().data = new Object[] {props};
+		
 		genModel.setCanGenerate(true);
 		genModel.setUpdateClasspath(false);
 
 		info("Starting generator run");
 		try {
 			Diagnostic diagnostic = gen.generate(genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, CodeGenUtil.EclipseUtil.createMonitor(new LoggingProgressMonitor(), 1));
-			info("Finished generator run");
 			printResult(diagnostic);
-			info("==================================");
 			if(diagnostic.getSeverity() != Diagnostic.OK) {
 				return Optional.of(diagnostic.toString());
 			} 
 		} catch (Throwable t) {
-			info("++++++++++++++++++++++++++++++++++");
-			if(t instanceof NullPointerException) {
-				info("We have an NPE");
-				StackTraceElement stackTraceElement = t.getStackTrace()[0];
-				info("first StackTraceElement " + stackTraceElement);
-				if(stackTraceElement.getClassName().equals(GenModelImpl.class.getName()) && stackTraceElement.getMethodName().equals("setImportManager")) {
-					String message = "This usually happens when a referenced Genmodel can't be loaded. It usually Indicates that the genmodel may need to be reloaded in the IDE.";
-					info(message);
-					return Optional.of(message);
-				}
-			}
 			String message = "An error appeared while generating: " + t.getMessage();
 			info(message);
 			return Optional.of(message);

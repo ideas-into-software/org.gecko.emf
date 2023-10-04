@@ -63,6 +63,18 @@ public class ResourceUriHandler implements URIHandler {
 		URI fileURI = URI.createFileURI(base.getAbsolutePath());
 		this.projectDirName = fileURI.lastSegment();
 		basePath = bsn.equals(projectDirName) ? null: basePath;
+		
+		GeckoEmfGenerator.info("Setting up ResourceUriHandler:");
+		GeckoEmfGenerator.info("    bsn: " + bsn);
+		GeckoEmfGenerator.info("    base: " + base.toString());
+		GeckoEmfGenerator.info("    projectDirName: " + projectDirName);
+		GeckoEmfGenerator.info("    basePath: " + basePath);
+		GeckoEmfGenerator.info("    buildPath:");
+		buildPathModels.forEach((c, r) -> {
+			GeckoEmfGenerator.info("      Container: " + c);
+			r.forEach(s -> GeckoEmfGenerator.info("        |->: " + s));
+		});
+		
 	}
 	
 	@Override
@@ -104,22 +116,30 @@ public class ResourceUriHandler implements URIHandler {
 					if(testUri.equals(theUri.toString())) {
 						try(Jar jar = new Jar(c.getFile())){
 							Resource resource = jar.getResource(path);
-							try {
-								byte[] data = IO.read(resource.openInputStream());
-								return new ByteArrayInputStream(data);
-							} catch (Exception e) {
-								Exceptions.duck(e);
+							if(resource != null) {
+								try {
+									byte[] data = IO.read(resource.openInputStream());
+									return new ByteArrayInputStream(data);
+								} catch (Exception e) {
+									Exceptions.duck(e);
+								}
+							} else {
+								if("genmodel".equals(uri.fileExtension())) {
+									
+								}
 							}
+							
 						}
 					}
 				}
 			}
 		}
 
-		GeckoEmfGenerator.info("Nothing worked. Trying a relative path as a last ditch effort.");  //$NON-NLS-1$//$NON-NLS-2$
+		GeckoEmfGenerator.info("Nothing worked. Trying a relative path as a last ditch effort. ");  //$NON-NLS-1$//$NON-NLS-2$
 
 		URI projectUri = URI.createURI(uri.scheme() + "://"+ projectDirName + "/");
 		URI relative = uri.deresolve(projectUri);
+		GeckoEmfGenerator.info("Deresolving " + projectUri + " against " + uri + " result: " + relative);  //$NON-NLS-1$//$NON-NLS-2$
 		if(relative.isRelative()) {
 			File file = new File(base, relative.toString());
 			if(file.exists()) {
