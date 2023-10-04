@@ -69,12 +69,12 @@ public class ResourceFactoryClass
   protected final String TEXT_51 = "<String, Object> getServiceProperties() {" + NL + "\t\t";
   protected final String TEXT_52 = "<String, Object> properties = new ";
   protected final String TEXT_53 = "<String, Object>();" + NL + "\t\tproperties.put(";
-  protected final String TEXT_54 = ".EMF_CONFIGURATOR_NAME, ";
+  protected final String TEXT_54 = ".EMF_RESOURCE_CONFIGURATOR_NAME, ";
   protected final String TEXT_55 = ".eNAME);" + NL + "\t\tproperties.put(";
-  protected final String TEXT_56 = ".EMF_MODEL_FILE_EXT, \"";
+  protected final String TEXT_56 = ".EMF_RESOURCE_CONFIGURATOR_FILE_EXT, \"";
   protected final String TEXT_57 = "\");";
   protected final String TEXT_58 = NL + "\t\tproperties.put(";
-  protected final String TEXT_59 = ".EMF_MODEL_CONTENT_TYPE, \"";
+  protected final String TEXT_59 = ".EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE, \"";
   protected final String TEXT_60 = ".EMF_CONFIGURATOR_VERSION, \"";
   protected final String TEXT_61 = "\");" + NL + "\t\treturn properties;" + NL + "\t}" + NL + "" + NL + "} //";
 
