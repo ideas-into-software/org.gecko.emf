@@ -122,7 +122,7 @@ public class DynamicConfigurator implements EPackageConfigurator, ResourceFactor
 				throw new IllegalStateException("Loaded ecore file with no content '" + segments[0] + path + "'");
 			}
 			dynamicPackage = (EPackage) resource.getContents().get(0);
-			resource.getContents().clear();
+			resource.setURI(URI.createURI(dynamicPackage.getNsURI()));
 			resourceSet.getResources().clear();
 		} catch (IOException e) {
 			throw new IllegalStateException("Error loading ecore file at '" + segments[0] + path + "'", e);
