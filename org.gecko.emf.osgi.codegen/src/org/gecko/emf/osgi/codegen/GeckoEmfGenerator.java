@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -42,12 +41,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.gecko.emf.osgi.annotation.provide.EPackage;
 import org.gecko.emf.osgi.codegen.GeckoEmfGenerator.GeneratorOptions;
 import org.gecko.emf.osgi.codegen.adapter.BNDGeneratorAdapterFactory;
+import org.osgi.resource.Capability;
 
 import aQute.bnd.build.Container;
 import aQute.bnd.build.Project;
+import aQute.bnd.header.Attrs;
+import aQute.bnd.osgi.Domain;
 import aQute.bnd.osgi.Jar;
+import aQute.bnd.osgi.resource.CapabilityBuilder;
 import aQute.bnd.service.externalplugin.ExternalPlugin;
 import aQute.bnd.service.generate.BuildContext;
 import aQute.bnd.service.generate.Generator;
@@ -57,7 +61,8 @@ import aQute.lib.io.IO;
 @ExternalPlugin(name = "geckoEMF", objectClass = Generator.class, version = VersionConstant.CODE_GEN_VERSION)
 public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 
-	public static final String ORIGINAL_GEN_MODEL_PATHS = "originalGenModelPaths";
+	public static final String ORIGINAL_GEN_MODEL_PATH = "originalGenModelPath";
+	public static final String ORIGINAL_GEN_MODEL_PATHS_EXTRA = "originalGenModelPathsExtra";
 	public static final String INCLUDE_GEN_MODEL_FOLDER = "includeGenModelFolder";
 	
 	/** The output folders default */
@@ -163,17 +168,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 				return Optional.of("No genmodel found at " + genmodelFile.getPath());
 			}
 
-			Collection<Container> buildpath = context.getProject().getBuildpath();
-			Map<Container, List<String>> refModels = new HashMap<>(); 
-			for(Container c : buildpath) {
-				File f = c.getFile();
-				try (Jar jar = new Jar(f)){
-					List<String> models = jar
-							.getResourceNames(s -> s.endsWith(".ecore") || s.endsWith(".genmodel") || s.endsWith(".uml"))
-							.collect(Collectors.toList());
-					refModels.put(c, models);
-				}
-			}
+			Map<Container, Map<String, String>> refModels = extractedLocationsWithCap(context.getProject().getBuildpath());
 			Project project = (Project) context.getParent();
 			Iterator<String> iterator = project.getBsns().iterator();
 			String bsn = iterator.hasNext() ? iterator.next() : context.getParent()
@@ -198,6 +193,84 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 	}
 
 	/**
+	 * org.eclipse.emf.ecore.generated_package;class="org.gecko.emf.osgi.example.model.basic.BasicPackage";uri="http://gecko.org/example/model/basic";genModel="/model/basic.genmodel";sourceLocations="other/main/resources/model/basic.genmodel,org.gecko.emf.osgi.example.model.basic/other/main/resources/model/basic.genmodel"
+	 * @param context
+	 * @return
+	 * @throws Exception
+	 * @throws IOException
+	 */
+	@SuppressWarnings("unchecked")
+	private Map<Container, Map<String,String>> extractedLocationsWithCap(Collection<Container> buildpath)
+			throws Exception, IOException {
+		Map<Container, Map<String, String>> refModels = new HashMap<>(); 
+		for(Container c : buildpath) {
+			File f = c.getFile();
+			Attrs attrs = null;
+			if(!f.isDirectory()) {
+				Domain domain = Domain.domain(c.getManifest());
+				attrs = domain.getProvideCapability().get(EPackage.NAMESPACE);
+			}
+			if(attrs != null) {
+				Map<String, String> result = new HashMap<>();
+				CapabilityBuilder builder = new CapabilityBuilder(EPackage.NAMESPACE);
+				builder.addAttributesOrDirectives(attrs);
+				Capability capability = builder.synthetic();
+				String genModelLocation = (String) capability.getAttributes().get("genModel");
+				List<String> sourceLocations = (List<String>) capability.getAttributes().get("genModelSourceLocations");
+				if(sourceLocations != null) {
+					sourceLocations.forEach(l -> result.put(l, genModelLocation));
+				}
+				result.put(genModelLocation, genModelLocation);
+				String ecoreLocation = (String) capability.getAttributes().get("ecore");
+				if(ecoreLocation != null) {
+					List<String> ecoreSourceLocations = (List<String>) capability.getAttributes().get("ecoreSourceLocations");
+					if(ecoreSourceLocations != null) {
+						ecoreSourceLocations.forEach(l -> result.put(l, ecoreLocation));
+					}
+					result.put(ecoreLocation, ecoreLocation);
+				}
+				refModels.put(c, result);
+				try (Jar jar = new Jar(f)){
+					jar.getResourceNames(s -> s.endsWith(".uml"))
+					.forEach(s -> result.put(s, s));
+					refModels.put(c, result);
+				}
+			} else {
+				try (Jar jar = new Jar(f)){
+					Map<String, String> result = new HashMap<>();
+					jar.getResourceNames(s -> s.endsWith(".ecore") || s.endsWith(".genmodel") || s.endsWith(".uml"))
+							.forEach(s -> result.put(s, s));
+					refModels.put(c, result);
+				}
+			}
+			
+		}
+		return refModels;
+	}
+	
+	/**
+	 * @param context
+	 * @return
+	 * @throws Exception
+	 * @throws IOException
+	 */
+//	private Map<Container, List<String>> extractedGenmodelLocations(BuildContext context)
+//			throws Exception, IOException {
+//		Collection<Container> buildpath = context.getProject().getBuildpath();
+//		Map<Container, List<String>> refModels = new HashMap<>(); 
+//		for(Container c : buildpath) {
+//			File f = c.getFile();
+//			try (Jar jar = new Jar(f)){
+//				List<String> models = jar
+//						.getResourceNames(s -> s.endsWith(".ecore") || s.endsWith(".genmodel") || s.endsWith(".uml"))
+//						.collect(Collectors.toList());
+//				refModels.put(c, models);
+//			}
+//		}
+//		return refModels;
+//	}
+
+	/**
 	 * 
 	 */
 	private static void closeLog() {
@@ -212,7 +285,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		gen.getAdapterFactoryDescriptorRegistry().addDescriptor(GenModelPackage.eNS_URI, BNDGeneratorAdapterFactory.DESCRIPTOR);
 	}
 
-	private void configureEMF(ResourceSet resourceSet, Map<Container, List<String>> refModels, String bsn, File base) {
+	private void configureEMF(ResourceSet resourceSet, Map<Container, Map<String, String>> refModels, String bsn, File base) {
 
 		GenModelPackageImpl.init();
 		GenModelFactoryImpl.init();
@@ -233,7 +306,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 	 * @return
 	 * @throws IOException
 	 */
-	protected Optional<String> doGenerate(String output, String genmodelPath, Map<Container, List<String>> refModels, File base, String bsn, String genmodelLocation) throws IOException {
+	protected Optional<String> doGenerate(String output, String genmodelPath, Map<Container, Map<String, String>> refModels, File base, String bsn, String genmodelLocation) throws IOException {
 		info("Running for genmodel " + genmodelPath + " in " + base.getAbsolutePath()); 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -259,8 +332,10 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		genModel.setModelDirectory(modelDirectory);
 		gen.setInput(genModel);
 		
+		
 		Map<String, Object> props = new HashMap<>();
-		props.put(GeckoEmfGenerator.ORIGINAL_GEN_MODEL_PATHS, Arrays.asList(new String[] {genmodelPath, base.getName() + "/" + genmodelPath}));
+		props.put(GeckoEmfGenerator.ORIGINAL_GEN_MODEL_PATH, genmodelPath);
+		props.put(GeckoEmfGenerator.ORIGINAL_GEN_MODEL_PATHS_EXTRA, Arrays.asList(new String[] {base.getName() + "/" + genmodelPath}));
 		props.put(GeckoEmfGenerator.INCLUDE_GEN_MODEL_FOLDER, genmodelLocation);
 		gen.getOptions().data = new Object[] {props};
 		

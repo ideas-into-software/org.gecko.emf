@@ -14,6 +14,7 @@
 package org.gecko.emf.osgi.codegen.templates.model.helper;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 
 /**
@@ -22,12 +23,8 @@ import org.eclipse.emf.ecore.EAnnotation;
  * @author Juergen Albert
  * @since 29 Aug 2022
  */
-public class Dependencies {
+public class GeneratorHelper {
 	
-	public static boolean isPureOSGi(GenPackage genPackage) {
-		return !genPackage.isLiteralsInterface() && genPackage.getGenModel().isOSGiCompatible();
-	}
-
 	public static String getVersion(GenPackage genPackage) {
 		EAnnotation versionAnnotation = genPackage.getEcorePackage().getEAnnotation("Version");
 		if(versionAnnotation == null) {
@@ -40,4 +37,24 @@ public class Dependencies {
 		return value; 
 	}
 
+	/**
+	 * This method assumes that the relative paths between the genmodel and the ecore will be similar in the resulting bundle. 
+	 * It thus determines a the ecore path relative to the bundleGenmodelPath.
+	 * 
+	 * @param bundleGenModelPath
+	 * @param originalEcoreUri
+	 * @param originalGenModelUri
+	 * @return the ecore URI in the resulting bundle
+	 */
+	public static URI convertToBundleEcoreURI(URI bundleGenModelPath, URI originalEcoreUri, URI originalGenModelUri) {
+		URI relativeEcore = originalEcoreUri.deresolve(originalGenModelUri);
+
+    	URI dummy = URI.createURI("resources://bla/");
+    	URI genModelPathResolved = bundleGenModelPath.resolve(dummy);
+    	URI ecoreResolve = relativeEcore.resolve(genModelPathResolved);
+    	URI finalEcore = ecoreResolve.deresolve(dummy);
+		return finalEcore;
+	}
+
+	
 }

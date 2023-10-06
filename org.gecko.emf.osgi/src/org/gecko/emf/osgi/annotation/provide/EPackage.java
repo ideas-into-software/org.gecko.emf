@@ -31,14 +31,19 @@ import org.osgi.annotation.bundle.Capability;
 @Documented
 @Retention(RetentionPolicy.CLASS)
 @Target({ ElementType.TYPE, ElementType.PACKAGE })
-@Capability(namespace = "org.eclipse.emf.ecore.generated_package",
+@Capability(namespace = EPackage.NAMESPACE,
 	attribute = {
 		"class=\"${#value}\"", //
 		"uri=${#uri}",
 		"genModel=${#genModel}",
-		"sourceLocations=\"${#genModelSourceLocations}\""
+		"genModelSourceLocations:List<String>=\"${#genModelSourceLocations}\"",
+		"ecore=${#ecore}",
+		"ecoreSourceLocations:List<String>=\"${#ecoreSourceLocations}\""
 	})
 public @interface EPackage {
+
+	/** ORG_ECLIPSE_EMF_ECORE_GENERATED_PACKAGE */
+	public static final String NAMESPACE = "org.eclipse.emf.ecore.generated_package";
 
 	String uri();
 
@@ -47,4 +52,8 @@ public @interface EPackage {
 	String genModel();
 
 	String[] genModelSourceLocations() default "";
+
+	String ecore() default "";
+	
+	String[] ecoreSourceLocations() default "";
 }
