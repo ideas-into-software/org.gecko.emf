@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -222,17 +223,19 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 				}
 				result.put(genModelLocation, genModelLocation);
 				String ecoreLocation = (String) capability.getAttributes().get("ecore");
+				AtomicBoolean checkForEcore = new AtomicBoolean(true);
 				if(ecoreLocation != null) {
+					checkForEcore.set(false);
 					List<String> ecoreSourceLocations = (List<String>) capability.getAttributes().get("ecoreSourceLocations");
 					if(ecoreSourceLocations != null) {
 						ecoreSourceLocations.forEach(l -> result.put(l, ecoreLocation));
 					}
 					result.put(ecoreLocation, ecoreLocation);
-				}
+				} 
 				refModels.put(c, result);
 				try (Jar jar = new Jar(f)){
-					jar.getResourceNames(s -> s.endsWith(".uml"))
-					.forEach(s -> result.put(s, s));
+					jar.getResourceNames(s -> (checkForEcore.get() && s.endsWith(".ecore")) ||  s.endsWith(".uml"))
+						.forEach(s -> result.put(s, s));
 					refModels.put(c, result);
 				}
 			} else {
