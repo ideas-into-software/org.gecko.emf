@@ -16,6 +16,7 @@ package org.gecko.emf.osgi.ecore;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -33,6 +34,7 @@ import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.annotation.EMFModel;
 import org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator;
+import org.osgi.framework.Constants;
 
 /**
  * Configurator for for the {@link EcorePackage}, which is a {@link EPackageConfigurator} and {@link ResourceFactoryConfigurator}
@@ -93,6 +95,7 @@ public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryC
 				XMLTypePackage.eNS_URI,
 				XMLNamespacePackage.eNS_URI,
 				EcorePackage.eNS_URI}));
+		result.put(Constants.SERVICE_ID, ThreadLocalRandom.current().nextLong());
 		return result;
 	}
 			
