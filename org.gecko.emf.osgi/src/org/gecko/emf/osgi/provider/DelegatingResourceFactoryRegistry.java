@@ -33,21 +33,6 @@ public class DelegatingResourceFactoryRegistry extends ResourceFactoryRegistryIm
 	private Registry delegate;
 
 	/**
-	 * The protocol map.
-	 */
-	protected Map<String, Object> protocolToFactoryMap = null;
-
-	/**
-	 * The extension map.
-	 */
-	protected Map<String, Object> extensionToFactoryMap = null;
-
-	/**
-	 * The content type identifier map.
-	 */
-	protected Map<String, Object> contentTypeIdentifierToFactoryMap = null;
-
-	/**
 	 * Creates a new instance.
 	 */
 	public DelegatingResourceFactoryRegistry(Resource.Factory.Registry delegate) {

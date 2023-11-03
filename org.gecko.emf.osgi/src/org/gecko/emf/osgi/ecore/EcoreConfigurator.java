@@ -13,11 +13,10 @@
  */
 package org.gecko.emf.osgi.ecore;
 
-import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -75,7 +74,7 @@ import org.osgi.framework.Constants;
 public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryConfigurator {
 
 	public static final Map<String, Object> PROPERTIES = EcoreConfigurator.getProperties();
-	private static final SecureRandom RANDOM = new SecureRandom();
+	private static Random RANDOM = null;
 	
 	private static Map<String, Object> getProperties(){
 		HashMap<String, Object> result = new HashMap<String, Object>();
@@ -97,6 +96,9 @@ public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryC
 				XMLTypePackage.eNS_URI,
 				XMLNamespacePackage.eNS_URI,
 				EcorePackage.eNS_URI}));
+		if (RANDOM == null) {
+			RANDOM = new Random();
+		}
 		result.put(Constants.SERVICE_ID, RANDOM.nextLong());
 		return result;
 	}
