@@ -39,6 +39,8 @@ import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.annotation.EMFResourceFactoryConfigurator;
+import org.gecko.emf.osgi.ecore.GeckoXMLResourceFactory;
 import org.gecko.emf.osgi.factory.ResourceSetPrototypeFactory;
 import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.osgi.framework.Constants;
@@ -48,6 +50,7 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.ComponentConstants;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.condition.Condition;
+import org.osgi.util.converter.Converters;
 
 /**
  * Implementation of a {@link ResourceSetFactory}. It hold the {@link EPackage} registry as well as the {@link Factory} registry.
@@ -284,8 +287,15 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	
 	/**
 	 * Updates the resource factory registry
+	 * Register the XML resource factory to handle XML files 
 	 */
 	protected void updateResourceFactoryRegistry() {
+		GeckoXMLResourceFactory xmlFactory = new GeckoXMLResourceFactory(packageRegistry);
+		EMFResourceFactoryConfigurator configuration = Converters.standardConverter().convert(GeckoXMLResourceFactory.PROPERTIES).to(EMFResourceFactoryConfigurator.class);
+		Arrays.asList(configuration.contentType()).forEach(s -> resourceFactoryRegistry.getContentTypeToFactoryMap().put(s, xmlFactory)); 
+		Arrays.asList(configuration.fileExtension()).forEach(s -> resourceFactoryRegistry.getExtensionToFactoryMap().put(s, xmlFactory)); 
+		Arrays.asList(configuration.protocol()).forEach(s -> resourceFactoryRegistry.getProtocolToFactoryMap().put(s, xmlFactory));
+		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, GeckoXMLResourceFactory.PROPERTIES, true);
 		List<ResourceFactoryConfigurator> providers = new ArrayList<>(resourceFactoryConfigurators);
 		providers.forEach((p)->p.configureResourceFactory(resourceFactoryRegistry));
 	}

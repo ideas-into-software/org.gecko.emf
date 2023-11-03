@@ -61,7 +61,7 @@ import aQute.bnd.annotation.service.ServiceCapability;
 public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactory {
 
 	
-	private ServiceReference<Registry> resourceFactoryRegistryObjects;
+	private ServiceReference<Registry> resourceFactoryRegistryReference;
 	private ComponentContext componentContext;
 
 	/**
@@ -73,12 +73,12 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 			@Reference(name="ePackageRegistry", unbind = "unsetRegistry")
 			EPackage.Registry registry,
 			@Reference(name="resourceFactoryRegistry", unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
-			ServiceReference<Resource.Factory.Registry> resourceFactoryRegistryRegistration
+			ServiceReference<Resource.Factory.Registry> resourceFactoryRegistryReference
 			) {
 		this.componentContext = ctx;
-		this.resourceFactoryRegistryObjects = resourceFactoryRegistryRegistration;
+		this.resourceFactoryRegistryReference = resourceFactoryRegistryReference;
 		super.setEPackageRegistry(registry);
-		super.setResourceFactoryRegistry(ctx.getBundleContext().getService(resourceFactoryRegistryRegistration), ServicePropertiesHelper.convert(resourceFactoryRegistryRegistration.getProperties()));
+		super.setResourceFactoryRegistry(ctx.getBundleContext().getService(resourceFactoryRegistryReference), ServicePropertiesHelper.convert(resourceFactoryRegistryReference.getProperties()));
 		EcoreConfigurator ecoreConfigurator = new EcoreConfigurator();
 		addEPackageConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
 		addResourceFactoryConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
@@ -106,7 +106,7 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	@Deactivate
 	public void deactivate() {
 		super.deactivate();
-		componentContext.getBundleContext().ungetService(resourceFactoryRegistryObjects);
+		componentContext.getBundleContext().ungetService(resourceFactoryRegistryReference);
 	}
 	
 	/**
