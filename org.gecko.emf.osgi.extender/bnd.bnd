@@ -11,4 +11,4 @@
 	org.eclipse.emf.ecore.xmi
 	
 Bundle-Name: EMF OSGI Model Extender
-Bundle-Description: Gecko EMF: OSGi extender implementation for EMF Models
+Bundle-Description: EMF OSGi extender implementation for EMF Models

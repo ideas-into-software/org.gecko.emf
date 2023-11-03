@@ -68,7 +68,6 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	private final Set<EPackageConfigurator> ePackageConfigurators = new CopyOnWriteArraySet<>();
 	private final Set<ResourceFactoryConfigurator> resourceFactoryConfigurators = new CopyOnWriteArraySet<>();
 	private final Map<Long, Set<String>> configuratorNameMap = new ConcurrentHashMap<>();
-//	private final Map<Long, Set<String>> resourceFactoryNameMap = new ConcurrentHashMap<>();
 	private final Map<Long, Set<String>> modelNameMap = new ConcurrentHashMap<>();
 	protected EPackage.Registry packageRegistry;
 	protected Resource.Factory.Registry resourceFactoryRegistry;
@@ -290,12 +289,6 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * Register the XML resource factory to handle XML files 
 	 */
 	protected void updateResourceFactoryRegistry() {
-		GeckoXMLResourceFactory xmlFactory = new GeckoXMLResourceFactory(packageRegistry);
-		EMFResourceFactoryConfigurator configuration = Converters.standardConverter().convert(GeckoXMLResourceFactory.PROPERTIES).to(EMFResourceFactoryConfigurator.class);
-		Arrays.asList(configuration.contentType()).forEach(s -> resourceFactoryRegistry.getContentTypeToFactoryMap().put(s, xmlFactory)); 
-		Arrays.asList(configuration.fileExtension()).forEach(s -> resourceFactoryRegistry.getExtensionToFactoryMap().put(s, xmlFactory)); 
-		Arrays.asList(configuration.protocol()).forEach(s -> resourceFactoryRegistry.getProtocolToFactoryMap().put(s, xmlFactory));
-		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, GeckoXMLResourceFactory.PROPERTIES, true);
 		List<ResourceFactoryConfigurator> providers = new ArrayList<>(resourceFactoryConfigurators);
 		providers.forEach((p)->p.configureResourceFactory(resourceFactoryRegistry));
 	}

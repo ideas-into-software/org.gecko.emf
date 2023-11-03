@@ -1,4 +1,5 @@
 -buildpath.emf = ${emf.lib}
+
 emf.lib: \
 	org.gecko.emf.osgi.api;version=latest,\
 	org.eclipse.emf.common;version=latest,\

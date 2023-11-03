@@ -1,5 +1,5 @@
-Bundle-Name: GeckoEMF BND Project Templates
-Bundle-Description: Project templates for GeckoEMF  
+Bundle-Name: EMF OSGi BND Project Templates
+Bundle-Description: Bndtools project templates for EMF OSGi  
 
 -includeresource: resources
 -resourceonly: true

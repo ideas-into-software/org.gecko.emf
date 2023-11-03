@@ -4,5 +4,5 @@
 -buildpath.extra: \
 	org.osgi.service.component.annotations;version=1.4,\
 	org.osgi.framework;version=1.9,\
-	org.osgi.annotation.versioning,\
-	org.osgi.annotation.bundle
+	org.osgi.annotation.versioning;version=latest,\
+	org.osgi.annotation.bundle;version=latest

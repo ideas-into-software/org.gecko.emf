@@ -5,20 +5,20 @@ Export-Package: \
 	org.gecko.emf.osgi.annotation.*
 
 -buildpath: \
-	org.osgi.framework,\
-	org.osgi.annotation.bundle,\
-	org.osgi.annotation.versioning,\
-	org.osgi.service.component.annotations,\
-	org.osgi.service.cm,\
-	org.osgi.service.component,\
-	org.eclipse.emf.common,\
-	org.eclipse.emf.ecore,\
-	org.eclipse.emf.ecore.xmi,\
-	org.osgi.namespace.service,\
-	org.osgi.util.converter,\
-	org.osgi.service.condition,\
-	org.osgi.namespace.extender,\
-	biz.aQute.bnd.annotation
+	org.osgi.framework;version=latest,\
+	org.osgi.annotation.bundle;version=latest,\
+	org.osgi.annotation.versioning;version=latest,\
+	org.osgi.namespace.service;version=latest,\
+	org.osgi.namespace.extender;version=latest,\
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.service.cm;version=latest,\
+	org.osgi.service.component;version=latest,\
+	org.osgi.service.condition;version=latest,\
+	org.osgi.util.converter;version=latest,\
+	org.eclipse.emf.common;version=latest,\
+	org.eclipse.emf.ecore;version=latest,\
+	org.eclipse.emf.ecore.xmi;version=latest,\
+	biz.aQute.bnd.annotation;version=latest
 	
 # We shoudl consider deactivating this. For the Momemnt the Baselining is a bit harsch, e
 # specially given that we know that it is still backward compatible.

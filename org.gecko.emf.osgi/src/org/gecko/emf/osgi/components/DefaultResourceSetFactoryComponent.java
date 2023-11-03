@@ -108,15 +108,6 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 		super.deactivate();
 		componentContext.getBundleContext().ungetService(resourceFactoryRegistryReference);
 	}
-	
-	/**
-	 * Inject a {@link Registry} for resource factories
-	 * @param resourceFactoryRegistry the resource factory to be injected
-	 */
-	@Reference(policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
-	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
-//		super.setResourceFactoryRegistry(resourceFactoryRegistry, properties);
-	}
 
 	protected void unsetRegistry(org.eclipse.emf.ecore.EPackage.Registry registry) {
 		super.unsetEPackageRegistry(registry);

@@ -22,17 +22,18 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl;
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.annotation.EMFResourceFactoryConfigurator;
+import org.gecko.emf.osgi.ecore.GeckoXMLResourceFactory;
 import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
-import org.osgi.annotation.bundle.Capability;
+import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceRegistration;
-import org.osgi.namespace.service.ServiceNamespace;
 import org.osgi.service.component.ComponentConstants;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -43,16 +44,16 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
 import org.osgi.util.converter.Converters;
 
+import aQute.bnd.annotation.service.ServiceCapability;
+
 /**
  * Component for the {@link ResourceFactoryRegistryImpl}
  * @author Mark Hoffmann
  * @since 25.07.2017
  */
 @Component(name="DefaultResourceFactoryRegistry")
-@Capability(
-		namespace = org.osgi.namespace.service.ServiceNamespace.SERVICE_NAMESPACE,
-		attribute = ServiceNamespace.CAPABILITY_OBJECTCLASS_ATTRIBUTE + ":List<String>=org.eclipse.emf.ecore.resource.Resource.Factory.Registry"
-		)
+@ServiceCapability(value = Registry.class)
+@ProviderType
 public class DefaultResourceFactoryRegistryComponent {
 
 	private final Registry registry;
@@ -64,9 +65,12 @@ public class DefaultResourceFactoryRegistryComponent {
 	 * Creates a new instance.
 	 */
 	@Activate
-	public DefaultResourceFactoryRegistryComponent(BundleContext ctx) {
+	public DefaultResourceFactoryRegistryComponent(BundleContext ctx,
+			@Reference(name="ePackageRegistry")
+			EPackage.Registry packageRegistry) {
 		registry = new ResourceFactoryRegistryImpl();
 		serviceRegistration = ctx.registerService(Registry.class, registry, getDictionary());
+		addFactory(new GeckoXMLResourceFactory(packageRegistry), GeckoXMLResourceFactory.PROPERTIES);
 	}
 	
 	@Deactivate
@@ -75,12 +79,18 @@ public class DefaultResourceFactoryRegistryComponent {
 		serviceRegistration = null;
 	}
 	
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY, target = "(|" + "(" + EMFNamespaces.EMF_MODEL_CONTENT_TYPE + "=*)" + "(" + EMFNamespaces.EMF_MODEL_FILE_EXT + "=* ) " + "( " + EMFNamespaces.EMF_MODEL_PROTOCOL + "=*)" + ")")
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE,
+			policy = ReferencePolicy.DYNAMIC,
+			policyOption = ReferencePolicyOption.GREEDY, 
+			target = 
+				"(|" + 
+					"( " + EMFNamespaces.EMF_MODEL_CONTENT_TYPE + "=*) " + 
+					"( " + EMFNamespaces.EMF_MODEL_FILE_EXT + "=*) " + 
+					"( " + EMFNamespaces.EMF_MODEL_PROTOCOL + "=*) " + 
+				")")
 	public void addFactory(Factory factory, Map<String, Object> props) {
 		EMFResourceFactoryConfigurator configuration = Converters.standardConverter().convert(props).to(EMFResourceFactoryConfigurator.class);
-		Arrays.asList(configuration.contentType()).forEach(s -> {
-			registry.getContentTypeToFactoryMap().put(s, factory);
-		}); 
+		Arrays.asList(configuration.contentType()).forEach(s -> registry.getContentTypeToFactoryMap().put(s, factory)); 
 		Arrays.asList(configuration.fileExtension()).forEach(s -> registry.getExtensionToFactoryMap().put(s, factory)); 
 		Arrays.asList(configuration.protocol()).forEach(s -> registry.getProtocolToFactoryMap().put(s, factory)); 
 		updateProperties(props, true);

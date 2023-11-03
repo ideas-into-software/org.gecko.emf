@@ -56,3 +56,5 @@ Import-Package: \
     gen/**.java; \
         output='src-gen/' ; \
         generate='javagen -o src-gen gen/'
+Bundle-Name: EMF OSGi Bnd Codegen
+Bundle-Description: EMF OSGi code generator for bnd
