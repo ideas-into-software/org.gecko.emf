@@ -13,10 +13,10 @@
  */
 package org.gecko.emf.osgi.ecore;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
@@ -39,7 +39,8 @@ import org.osgi.service.component.annotations.Activate;
 public class GeckoXMLResourceFactory extends XMLResourceFactoryImpl implements Resource.Factory{
 
 	public static final Map<String, Object> PROPERTIES = GeckoXMLResourceFactory.getProperties();
-	
+	private static final SecureRandom RANDOM = new SecureRandom();
+
 	private static Map<String, Object> getProperties(){
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		result.put(EMFNamespaces.EMF_CONFIGURATOR_NAME,"GeckoXMLResourceFactory"); 
@@ -48,7 +49,7 @@ public class GeckoXMLResourceFactory extends XMLResourceFactoryImpl implements R
 		result.put(EMFNamespaces.EMF_MODEL_FILE_EXT, Arrays.asList( new String[] {
 				"xml"})); 
 		result.put(EMFNamespaces.EMF_MODEL_VERSION, "1.0.0");
-		result.put(Constants.SERVICE_ID, ThreadLocalRandom.current().nextLong());
+		result.put(Constants.SERVICE_ID, RANDOM.nextLong());
 		return result;
 	}
 	
