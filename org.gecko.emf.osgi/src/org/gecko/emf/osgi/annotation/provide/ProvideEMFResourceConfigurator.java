@@ -31,6 +31,7 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
  * with certain abilities
  * @author Juergen Albert
  * @since 9 Feb 2018
+ * @deprecated Clarifiy with Jürgen
  */
 @Documented
 @Retention(RetentionPolicy.CLASS)
@@ -42,17 +43,24 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
 @ComponentPropertyType
 public @interface ProvideEMFResourceConfigurator {
 
-	String PREFIX_ = EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_PREFIX;
+	String PREFIX_ = EMFNamespaces.EMF_CONFIGURATOR_PREFIX;
 	
 	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_NAME)
 	String name(); 
 	
-	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_CONTENT_TYPE)
+	@Attribute(EMFNamespaces.EMF_MODEL_NAME)
+	String[] modelName() default "";
+	
+	@Attribute(EMFNamespaces.EMF_MODEL_CONTENT_TYPE)
 	String[] contentType();
 
-	@Attribute(EMFNamespaces.EMF_CONFIGURATOR_FILE_EXT)
+	@Attribute(EMFNamespaces.EMF_MODEL_FILE_EXT)
 	String[] fileExtension();
 	
-//	@Attribute
+	@Attribute(EMFNamespaces.EMF_MODEL_VERSION)
 	String version() default "1.0.0";
+	
+	@Attribute(EMFNamespaces.EMF_MODEL_FEATURE)
+	String feature() default "";
+	
 }

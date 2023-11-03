@@ -105,13 +105,11 @@ public class EMFWhiteboardTest {
 		ServiceReference<ResourceSetFactory> reference = sa.getServiceReference();
 		assertNotNull(reference);
 
-		System.err.println(reference.getProperties());
-		
-		Object extensions = reference.getProperty(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME);
-		assertNotNull(extensions);
-		assertTrue(extensions instanceof String[]);
-		List<String> modelNameList = Arrays.asList((String[]) extensions);
-		assertTrue(modelNameList.contains("GeckoXMLResourceFactory"));
+		Object configurators = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
+		assertNotNull(configurators);
+		assertTrue(configurators instanceof String[]);
+		List<String> configuratorNameList = Arrays.asList((String[]) configurators);
+		assertTrue(configuratorNameList.contains("GeckoXMLResourceFactory"));
 	}
 
 	/**
@@ -145,11 +143,11 @@ public class EMFWhiteboardTest {
 	 */
 	@Test
 	public void testRegisterResourceFactoryInRegistry(@InjectService ServiceAware<ResourceSetFactory> sa, 
-			@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, "foo-bar"}, cardinality = 0) ServiceAware<Factory> factoryAware)
+			@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar"}, cardinality = 0) ServiceAware<Factory> factoryAware)
 					throws IOException, InterruptedException {
 		
 		assertNull(factoryAware.getService());
-		Dictionary<String, Object> properties = Dictionaries.dictionaryOf(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE, new String[]{"foo/bar"}, EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, "foo-bar");
+		Dictionary<String, Object> properties = Dictionaries.dictionaryOf(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, new String[]{"foo/bar"}, EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar");
 		ServiceRegistration<Factory> registration = bc.registerService(Factory.class, factoryMock, properties);
 		
 		Factory factory = factoryAware.waitForService(1000l);
@@ -157,7 +155,7 @@ public class EMFWhiteboardTest {
 		ServiceReference<Factory> reference = factoryAware.getServiceReference();
 		assertNotNull(reference);
 		
-		Object contentType = reference.getProperty(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE);
+		Object contentType = reference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
 		assertNotNull(contentType);
 		assertTrue(contentType instanceof String[]);
 		List<String> contentTypeNameList = Arrays.asList((String[]) contentType);

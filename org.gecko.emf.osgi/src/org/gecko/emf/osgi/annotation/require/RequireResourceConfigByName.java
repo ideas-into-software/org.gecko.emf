@@ -29,6 +29,7 @@ import org.osgi.annotation.bundle.Requirement;
  * Marks the requirement of a specific {@link ResourceSetConfigurator}
  * @author Juergen Albert
  * @since 9 Feb 2018
+ * @deprecated Clarifiy Talk with Jürgen
  */
 @Documented
 @Retention(RetentionPolicy.CLASS)

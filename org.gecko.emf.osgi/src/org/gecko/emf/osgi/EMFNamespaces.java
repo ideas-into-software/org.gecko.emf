@@ -15,7 +15,6 @@ package org.gecko.emf.osgi;
 
 import org.gecko.emf.osgi.annotation.EMFModel;
 import org.gecko.emf.osgi.annotation.EMFResourceFactoryConfigurator;
-import org.gecko.emf.osgi.annotation.EMFResourceSetConfigurator;
 
 /**
  * 
@@ -25,44 +24,20 @@ import org.gecko.emf.osgi.annotation.EMFResourceSetConfigurator;
 public class EMFNamespaces {
 
 	public static final String EMF_NAMESPACE = "emf.core"; //$NON-NLS-1$
+	// Attribute PREFIX for the different configurators and capability namespace
 	public static final String EMF_CONFIGURATOR_NAMESPACE = "emf.configurator"; //$NON-NLS-1$
 	
 	/**
 	 * Attribute name constants for {@link EMFResourceFactoryConfigurator} annotation
 	 */
 
-	// Attribute PREFIX for the ResourceSetFactory configurator name
-	public static final String EMF_RESOURCE_CONFIGURATOR_PREFIX = "emf.resource.configurator."; //$NON-NLS-1$
-	// Attribute name for the ResourceSetFactory configurator name
-	public static final String EMF_RESOURCE_CONFIGURATOR_NAME = EMF_RESOURCE_CONFIGURATOR_PREFIX + "name"; //$NON-NLS-1$
-	// Attribute name for the ResourceSetFactory configurator content type
-	public static final String EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE = EMF_RESOURCE_CONFIGURATOR_PREFIX + "contentType"; //$NON-NLS-1$
-	// Attribute name for the ResourceSetFactory configurator file extension
-	public static final String EMF_RESOURCE_CONFIGURATOR_FILE_EXT = EMF_RESOURCE_CONFIGURATOR_PREFIX + "fileExtension"; //$NON-NLS-1$
-	// Attribute name for the ResourceSetFactory configurator feature
-	public static final String EMF_RESOURCE_CONFIGURATOR_FEATURE = EMF_RESOURCE_CONFIGURATOR_PREFIX + "feature"; //$NON-NLS-1$
-	// Attribute name for the ResourceSetFactory configurator protocol
-	public static final String EMF_RESOURCE_CONFIGURATOR_PROTOCOL = EMF_RESOURCE_CONFIGURATOR_PREFIX + "protocol";
-
-	/**
-	 * Attribute name constants for {@link EMFResourceSetConfigurator} annotation
-	 */
-	
-	// Attribute PREFIX for the ResourceSetFactory configurator 
-	public static final String EMF_CONFIGURATOR_PREFIX= "emf.configurator.";
-	// Attribute name for the ResourceSetFactory configurator name
-	public static final String EMF_CONFIGURATOR_NAME = EMF_CONFIGURATOR_PREFIX + "name";
-	// Attribute name for the ResourceSetFactory configurator content type
-	public static final String EMF_CONFIGURATOR_CONTENT_TYPE = EMF_CONFIGURATOR_PREFIX + "contentType";
-	// Attribute name for the ResourceSetFactory configurator file extension
-	public static final String EMF_CONFIGURATOR_FILE_EXT = EMF_CONFIGURATOR_PREFIX + "fileExtension";
-	// Attribute name for the ResourceSetFactory configurator file extension
-	public static final String EMF_CONFIGURATOR_VERSION = EMF_CONFIGURATOR_PREFIX + "version";
-	// Attribute name for the ResourceSetFactory configurator feature
-	public static final String EMF_CONFIGURATOR_FEATURE = EMF_CONFIGURATOR_PREFIX + "feature";
+	// Attribute name for the name of the configurator types (EPackageConfigurator, ResourceFactoryConfigurator and ResourceSetConfigurator)
+	public static final String EMF_CONFIGURATOR_PREFIX = EMF_CONFIGURATOR_NAMESPACE + "."; //$NON-NLS-1$
+	public static final String EMF_CONFIGURATOR_NAME = EMF_CONFIGURATOR_PREFIX + "name"; //$NON-NLS-1$
 	
 	/**
-	 * Attribute name constants for {@link EMFModel} annotation
+	 * Attribute name constants for {@link EMFModel} annotation.
+	 * They provide additional information about a model, through EPackages our also ResourceFactories or configurators
 	 */
 	// Attribute PREFIX for the EMF model
 	public static final String EMF_MODEL_PREFIX = "emf.model.";
@@ -72,10 +47,14 @@ public class EMFNamespaces {
 	public static final String EMF_MODEL_NSURI = EMF_MODEL_PREFIX + "nsURI";
 	// Attribute name for the EMF model content type
 	public static final String EMF_MODEL_CONTENT_TYPE = EMF_MODEL_PREFIX + "contentType";
+	// Attribute name for the EMF model protocol
+	public static final String EMF_MODEL_PROTOCOL = EMF_MODEL_PREFIX + "protocol";
 	// Attribute name for the EMF model file extension
 	public static final String EMF_MODEL_FILE_EXT = EMF_MODEL_PREFIX + "fileExtension";
 	// Attribute name for the EMF model version
 	public static final String EMF_MODEL_VERSION = EMF_MODEL_PREFIX + "version";
+	// Attribute name for the EMF model feature
+	public static final String EMF_MODEL_FEATURE = EMF_MODEL_PREFIX + "feature";
 	
 	/**
 	 * Constants for the isolated configurable resource set factory

@@ -77,25 +77,24 @@ public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryC
 	
 	private static Map<String, Object> getProperties(){
 		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME,"ecore"); 
-		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE, Arrays.asList( new String[] {
+		result.put(EMFNamespaces.EMF_CONFIGURATOR_NAME,"ecore"); 
+		result.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, Arrays.asList( new String[] {
 				"org.eclipse.emf.ecore", 
 				"org.eclipse.emf.emof", 
 				"application/xmi", 
 				"application/octet-stream"})); 
-		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_FILE_EXT, Arrays.asList( new String[] {
+		result.put(EMFNamespaces.EMF_MODEL_FILE_EXT, Arrays.asList( new String[] {
 				"*", 
 				"xmi", 
 				"ecore", 
 				"emof", 
 				"bin"})); 
-		result.put(EMFNamespaces.EMF_CONFIGURATOR_VERSION, "1.0.0");
+		result.put(EMFNamespaces.EMF_MODEL_VERSION, "1.0.0");
 		result.put(EMFNamespaces.EMF_MODEL_NAME, "ecore");
 		result.put(EMFNamespaces.EMF_MODEL_NSURI, Arrays.asList( new String[] {
 				XMLTypePackage.eNS_URI,
 				XMLNamespacePackage.eNS_URI,
 				EcorePackage.eNS_URI}));
-		result.put(EMFNamespaces.EMF_MODEL_VERSION, "1.0");
 		result.put(Constants.SERVICE_ID, new Random().nextLong());
 		return result;
 	}

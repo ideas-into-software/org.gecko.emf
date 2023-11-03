@@ -123,12 +123,12 @@ public class <%=genPackage.getResourceFactoryClassName()%> extends <%=genPackage
 	 */
 	public <%=genModel.getImportedName("java.util.Map")%><String, Object> getServiceProperties() {
 		<%=genModel.getImportedName("java.util.Map")%><String, Object> properties = new <%=genModel.getImportedName("java.util.HashMap")%><String, Object>();
-		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_RESOURCE_CONFIGURATOR_NAME, <%=genPackage.getPackageInterfaceName()%>.eNAME);
-		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_RESOURCE_CONFIGURATOR_FILE_EXT, "<%=genPackage.getFileExtension()%>");
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_CONFIGURATOR_NAME, <%=genPackage.getPackageInterfaceName()%>.eNAME);
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_FILE_EXT, "<%=genPackage.getFileExtension()%>");
     <% if (genPackage.getContentTypeIdentifier() != null) {%>
-		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE, "<%=genPackage.getContentTypeIdentifier()%>");
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_CONTENT_TYPE, "<%=genPackage.getContentTypeIdentifier()%>");
     <%}%>
-		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_CONFIGURATOR_VERSION, "<%=GeneratorHelper.getVersion(genPackage)%>");
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_VERSION, "<%=GeneratorHelper.getVersion(genPackage)%>");
 		return properties;
 	}
 

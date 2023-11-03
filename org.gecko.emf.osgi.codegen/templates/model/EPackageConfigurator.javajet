@@ -61,7 +61,7 @@ public class <%=genPackage.getPrefix()%>EPackageConfigurator implements EPackage
     <% if (genPackage.getContentTypeIdentifier() != null) {%>
 		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_CONTENT_TYPE, "<%=genPackage.getContentTypeIdentifier()%>");
     <%}%>
-		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_CONFIGURATOR_VERSION, "<%=GeneratorHelper.getVersion(genPackage)%>");
+		properties.put(<%=genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces")%>.EMF_MODEL_VERSION, "<%=GeneratorHelper.getVersion(genPackage)%>");
 		return properties;
 	}
 }

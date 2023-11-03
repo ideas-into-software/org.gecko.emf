@@ -16,7 +16,9 @@ src=${^src},src-gen
 
 -includeresource.model: model=model
 	
--dependson: org.gecko.emf.osgi.codegen
+-dependson: \
+	org.gecko.emf.osgi.codegen,\
+	org.gecko.emf.osgi.example.model.basic
 
 -generate:\
 	model/extendend.genmodel;\

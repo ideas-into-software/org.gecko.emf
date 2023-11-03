@@ -65,7 +65,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	private final Set<EPackageConfigurator> ePackageConfigurators = new CopyOnWriteArraySet<>();
 	private final Set<ResourceFactoryConfigurator> resourceFactoryConfigurators = new CopyOnWriteArraySet<>();
 	private final Map<Long, Set<String>> configuratorNameMap = new ConcurrentHashMap<>();
-	private final Map<Long, Set<String>> resourceFactoryNameMap = new ConcurrentHashMap<>();
+//	private final Map<Long, Set<String>> resourceFactoryNameMap = new ConcurrentHashMap<>();
 	private final Map<Long, Set<String>> modelNameMap = new ConcurrentHashMap<>();
 	protected EPackage.Registry packageRegistry;
 	protected Resource.Factory.Registry resourceFactoryRegistry;
@@ -99,7 +99,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	protected void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
 		this.resourceFactoryRegistry = resourceFactoryRegistry;
 		updateResourceFactoryRegistry();
-		updateProperties(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, properties, true);
+		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, properties, true);
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 */
 	protected void modifiedResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
 		if(this.resourceFactoryRegistry == resourceFactoryRegistry) {
-			updateProperties(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, properties, true);
+			updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, properties, true);
 		}
 	}
 
@@ -165,7 +165,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 		if (resourceFactoryRegistry != null) {
 			configurator.configureResourceFactory(resourceFactoryRegistry);
 		}
-		updateProperties(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, properties, true);
+		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, properties, true);
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 */
 	protected void removeResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
 		resourceFactoryConfigurators.remove(configurator);
-		updateProperties(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, properties, false);
+		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, properties, false);
 		if (resourceFactoryRegistry != null) {
 			configurator.unconfigureResourceFactory(resourceFactoryRegistry);
 		}
@@ -311,10 +311,6 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 				}
 			}
 			switch (type) {
-			case EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME:
-				
-				ServicePropertiesHelper.updateNameMap(resourceFactoryNameMap, nameSet, serviceId);
-				break;
 			case EMFNamespaces.EMF_CONFIGURATOR_NAME:
 				ServicePropertiesHelper.updateNameMap(configuratorNameMap, nameSet, serviceId);
 				break;
@@ -379,11 +375,9 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 		Dictionary<String, Object> properties = new Hashtable<>();
 		String[] configNames = ServicePropertiesHelper.getNamesArray(configuratorNameMap);
 		String[] modelNames = ServicePropertiesHelper.getNamesArray(modelNameMap);
-		String[] resourceFactoryNames = ServicePropertiesHelper.getNamesArray(resourceFactoryNameMap);
 		properties.put(ComponentConstants.COMPONENT_NAME, "DefaultResourcesetFactory");
 		properties.put(EMFNamespaces.EMF_CONFIGURATOR_NAME, configNames);
 		properties.put(EMFNamespaces.EMF_MODEL_NAME, modelNames);
-		properties.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, resourceFactoryNames);
 		properties.put(Constants.SERVICE_CHANGECOUNT, serviceChangeCount++);
 		return properties;
 	}

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 - 2022 Data In Motion and others.
+ * Copyright (c) 2012 - 2023 Data In Motion and others.
  * All rights reserved. 
  * 
  * This program and the accompanying materials are made
@@ -30,11 +30,10 @@ import org.junit.jupiter.api.Test;
 
 /**
  * 
- * @author ungei
+ * @author Jürgen Albert
  * @since 14 Jan 2021
  */
 public class GeckoEmfGeneratorTest {
-
 	
 	@Test
 	public void testURIHandlerDefault() {
@@ -85,7 +84,7 @@ public class GeckoEmfGeneratorTest {
 
 	@Test
 	public void testConvertToSourceEcoreURI() {
-		URI testResult = URI.createURI("src/main/resources/ecore/model/test.ecore");
+		URI testResult = URI.createURI("/src/main/resources/ecore/model/test.ecore");
 		
 		URI ePackageUri = URI.createURI("resource://org.gecko.emf.osgi.example.model.extended/src/main/resources/ecore/model/test.ecore");
 		URI genModelUri = URI.createURI("resource://org.gecko.emf.osgi.example.model.extended/src/main/resources/genmodel/model/test.genmodel");
@@ -93,10 +92,6 @@ public class GeckoEmfGeneratorTest {
 		System.out.println("ecoreResolve : " + finalEcore);
 		Assertions.assertThat(finalEcore).isSameAs(testResult);
 	}
-
-	
-	
-	
 	
 	/**
 	 * Test method for {@link org.gecko.emf.osgi.codegen.GeckoEmfGenerator#doGenerate(java.io.File, java.lang.String, java.io.File)}.

@@ -41,7 +41,7 @@ public class EPackageConfiguratorClass
   protected final String TEXT_24 = "\");";
   protected final String TEXT_25 = NL + "\t\tproperties.put(";
   protected final String TEXT_26 = ".EMF_MODEL_CONTENT_TYPE, \"";
-  protected final String TEXT_27 = ".EMF_CONFIGURATOR_VERSION, \"";
+  protected final String TEXT_27 = ".EMF_MODEL_VERSION, \"";
   protected final String TEXT_28 = "\");" + NL + "\t\treturn properties;" + NL + "\t}" + NL + "}";
 
   public String generate(Object argument)

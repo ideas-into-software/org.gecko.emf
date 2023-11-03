@@ -130,7 +130,7 @@ public class EMFOSGiIntegrationTest {
 		assertFalse(modelNameList.contains("manual"));
 		Object configNames = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
 		assertNotNull(configNames);
-		assertEquals(0, ((String[]) configNames).length);
+		assertEquals(3, ((String[]) configNames).length);
 
 		ResourceSet rs = sa.getService();
 		assertNotNull(rs);
@@ -178,7 +178,7 @@ public class EMFOSGiIntegrationTest {
 		assertFalse(modelNameList.contains("manual"));
 		Object configNames = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
 		assertNotNull(configNames);
-		assertEquals(0, ((String[]) configNames).length);
+		assertEquals(3, ((String[]) configNames).length);
 
 		assertNotNull(reference);
 		ResourceSetFactory factory = sa.getService();
@@ -238,7 +238,7 @@ public class EMFOSGiIntegrationTest {
 		assertTrue(modelNameList.contains("manual"));
 		Object configNames = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
 		assertNotNull(configNames);
-		assertEquals(0, ((String[]) configNames).length);
+		assertEquals(3, ((String[]) configNames).length);
 
 		assertNotNull(reference);
 		ResourceSetFactory factory = serviceAwareRSF.getService();
@@ -906,11 +906,10 @@ public class EMFOSGiIntegrationTest {
 		assertNotNull(configNames);
 		assertTrue(configNames instanceof String[]);
 		List<String> configNameList = Arrays.asList((String[]) configNames);
-		assertEquals(0, configNameList.size());
+		assertEquals(3, configNameList.size());
 
 		Dictionary<String, Object> configProperties = new Hashtable<String, Object>();
-		configProperties.put(EMFNamespaces.EMF_CONFIGURATOR_NAME, "testConfigurator");
-		configProperties.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, "testResourceConfigurator");
+		configProperties.put(EMFNamespaces.EMF_CONFIGURATOR_NAME, new String[]{"testConfigurator", "testResourceConfigurator"});
 
 		TestConfigurator configurator2 = new TestConfigurator();
 
@@ -924,13 +923,8 @@ public class EMFOSGiIntegrationTest {
 		assertNotNull(configNames);
 		assertTrue(configNames instanceof String[]);
 		configNameList = Arrays.asList((String[]) configNames);
-		assertEquals(1, configNameList.size());
+		assertEquals(5, configNameList.size());
 		assertTrue(configNameList.contains("testConfigurator"));
-
-		configNames = reference.getProperty(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME);
-		assertNotNull(configNames);
-		assertTrue(configNames instanceof String[]);
-		configNameList = Arrays.asList((String[]) configNames);
 		assertTrue(configNameList.contains("testResourceConfigurator"));
 
 		ResourceSetFactory factory = serviceAwareRSF.getService();
@@ -971,13 +965,8 @@ public class EMFOSGiIntegrationTest {
 		assertNotNull(configNames);
 		assertTrue(configNames instanceof String[]);
 		configNameList = Arrays.asList((String[]) configNames);
-		assertEquals(0, configNameList.size());
+		assertEquals(3, configNameList.size());
 		assertFalse(configNameList.contains("testConfigurator"));
-
-		configNames = reference.getProperty(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME);
-		assertNotNull(configNames);
-		assertTrue(configNames instanceof String[]);
-		configNameList = Arrays.asList((String[]) configNames);
 		assertFalse(configNameList.contains("testResourceConfigurator"));
 	}
 
@@ -1012,11 +1001,10 @@ public class EMFOSGiIntegrationTest {
 		assertNotNull(configNames);
 		assertTrue(configNames instanceof String[]);
 		List<String> configNameList = Arrays.asList((String[]) configNames);
-		assertEquals(0, configNameList.size());
+		assertEquals(3, configNameList.size());
 
 		Dictionary<String, Object> configProperties = new Hashtable<String, Object>();
-		configProperties.put(EMFNamespaces.EMF_CONFIGURATOR_NAME, "testConfigurator");
-		configProperties.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME, "testResourceConfigurator");
+		configProperties.put(EMFNamespaces.EMF_CONFIGURATOR_NAME, new String[]{"testConfigurator", "testResourceConfigurator"});
 
 		TestConfigurator configurator2 = new TestConfigurator();
 
@@ -1030,13 +1018,8 @@ public class EMFOSGiIntegrationTest {
 		assertNotNull(configNames);
 		assertTrue(configNames instanceof String[]);
 		configNameList = Arrays.asList((String[]) configNames);
-		assertEquals(1, configNameList.size());
+		assertEquals(5, configNameList.size());
 		assertTrue(configNameList.contains("testConfigurator"));
-
-		configNames = reference.getProperty(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME);
-		assertNotNull(configNames);
-		assertTrue(configNames instanceof String[]);
-		configNameList = Arrays.asList((String[]) configNames);
 		assertTrue(configNameList.contains("testResourceConfigurator"));
 
 		ResourceSet rs = serviceAwareRS.getService();
@@ -1076,13 +1059,8 @@ public class EMFOSGiIntegrationTest {
 		assertNotNull(configNames);
 		assertTrue(configNames instanceof String[]);
 		configNameList = Arrays.asList((String[]) configNames);
-		assertEquals(0, configNameList.size());
+		assertEquals(3, configNameList.size());
 		assertFalse(configNameList.contains("testConfigurator"));
-
-		configNames = reference.getProperty(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME);
-		assertNotNull(configNames);
-		assertTrue(configNames instanceof String[]);
-		configNameList = Arrays.asList((String[]) configNames);
 		assertFalse(configNameList.contains("testResourceConfigurator"));
 	}
 

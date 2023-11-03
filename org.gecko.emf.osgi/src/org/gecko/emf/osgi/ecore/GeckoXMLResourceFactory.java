@@ -42,12 +42,12 @@ public class GeckoXMLResourceFactory extends XMLResourceFactoryImpl implements R
 	
 	private static Map<String, Object> getProperties(){
 		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME,"GeckoXMLResourceFactory"); 
-		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE, Arrays.asList( new String[] {
+		result.put(EMFNamespaces.EMF_CONFIGURATOR_NAME,"GeckoXMLResourceFactory"); 
+		result.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, Arrays.asList( new String[] {
 				"application/xml"})); 
-		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_FILE_EXT, Arrays.asList( new String[] {
+		result.put(EMFNamespaces.EMF_MODEL_FILE_EXT, Arrays.asList( new String[] {
 				"xml"})); 
-		result.put(EMFNamespaces.EMF_CONFIGURATOR_VERSION, "1.0.0");
+		result.put(EMFNamespaces.EMF_MODEL_VERSION, "1.0.0");
 		result.put(Constants.SERVICE_ID, new Random().nextLong());
 		return result;
 	}

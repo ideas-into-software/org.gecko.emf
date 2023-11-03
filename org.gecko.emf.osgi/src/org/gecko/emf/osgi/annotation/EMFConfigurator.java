@@ -34,8 +34,8 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.TYPE)
 @RequireEMF
-public @interface EMFResourceFactoryConfigurator {
-	String PREFIX_ = EMFNamespaces.EMF_MODEL_PREFIX;
+public @interface EMFConfigurator {
+	String PREFIX_ = EMFNamespaces.EMF_CONFIGURATOR_PREFIX;
 
 	String name();
 	//TODO: Do we even use this or was this a mistake?
