@@ -79,7 +79,7 @@ public class DefaultResourceFactoryRegistryComponent {
 		serviceRegistration = null;
 	}
 	
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY, target = "(|" + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE + "=* ) " + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_FILE_EXT + "=* ) " + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_PROTOCOL + "=* ) " + ")")
+	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, policyOption = ReferencePolicyOption.GREEDY, target = "(|" + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE + "=*) " + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_FILE_EXT + "=*) " + "( " + EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_PROTOCOL + "=*) " + ")")
 	public void addFactory(Factory factory, Map<String, Object> props) {
 		EMFResourceFactoryConfigurator configuration = Converters.standardConverter().convert(props).to(EMFResourceFactoryConfigurator.class);
 		Arrays.asList(configuration.contentType()).forEach(s -> registry.getContentTypeToFactoryMap().put(s, factory)); 
