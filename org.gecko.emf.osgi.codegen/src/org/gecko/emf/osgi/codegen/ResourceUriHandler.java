@@ -107,7 +107,7 @@ public class ResourceUriHandler implements URIHandler {
 			Container c = entry.getKey();
 			String containerBSN = getBSN(c);
 			GeckoEmfGenerator.info("Comparing " + uriBSN + " with container using getBSN() " + containerBSN);  //$NON-NLS-1$//$NON-NLS-2$
-			if(containerBSN.equals(uriBSN)) {
+			if(containerBSN != null && containerBSN.equals(uriBSN)) {
 				GeckoEmfGenerator.info("Match in " + c); //$NON-NLS-1$
 				for(Map.Entry<String, String> paths : entry.getValue().entrySet()) {
 					String path = paths.getKey();
