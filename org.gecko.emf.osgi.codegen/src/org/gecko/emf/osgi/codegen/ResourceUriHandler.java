@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.StringJoiner;
@@ -46,7 +45,7 @@ import aQute.lib.io.IO;
 public class ResourceUriHandler implements URIHandler {
 
 	
-	private final Map<Container, List<String>> buildPathModels;
+	private final Map<Container, Map<String, String>> buildPathModels;
 	private String bsn;
 	private File base;
 	private URI basePath;
@@ -56,13 +55,25 @@ public class ResourceUriHandler implements URIHandler {
 	/**
 	 * Creates a new instance.
 	 */
-	public ResourceUriHandler(Map<Container, List<String>> buildPathModels, String bsn, File base) {
-		this.buildPathModels = buildPathModels;
+	public ResourceUriHandler(Map<Container, Map<String, String>> refModels, String bsn, File base) {
+		this.buildPathModels = refModels;
 		this.bsn = bsn;
 		this.base = base;
 		URI fileURI = URI.createFileURI(base.getAbsolutePath());
 		this.projectDirName = fileURI.lastSegment();
 		basePath = bsn.equals(projectDirName) ? null: basePath;
+		
+		GeckoEmfGenerator.info("Setting up ResourceUriHandler:");
+		GeckoEmfGenerator.info("    bsn: " + bsn);
+		GeckoEmfGenerator.info("    base: " + base.toString());
+		GeckoEmfGenerator.info("    projectDirName: " + projectDirName);
+		GeckoEmfGenerator.info("    basePath: " + basePath);
+		GeckoEmfGenerator.info("    buildPath:");
+		refModels.forEach((c, r) -> {
+			GeckoEmfGenerator.info("      Container: " + c);
+			r.forEach((k,v) -> GeckoEmfGenerator.info("        |->: " + k + " - " + v));
+		});
+		
 	}
 	
 	@Override
@@ -92,23 +103,29 @@ public class ResourceUriHandler implements URIHandler {
 			return IO.stream( new File(base, joiner.toString() ));
 		} 
 		
-		for (Entry<Container, List<String>> entry : buildPathModels.entrySet()) {
+		for (Entry<Container, Map<String, String>> entry : buildPathModels.entrySet()) {
 			Container c = entry.getKey();
 			String containerBSN = getBSN(c);
 			GeckoEmfGenerator.info("Comparing " + uriBSN + " with container using getBSN() " + containerBSN);  //$NON-NLS-1$//$NON-NLS-2$
 			if(containerBSN.equals(uriBSN)) {
 				GeckoEmfGenerator.info("Match in " + c); //$NON-NLS-1$
-				for(String path : entry.getValue()) {
+				for(Map.Entry<String, String> paths : entry.getValue().entrySet()) {
+					String path = paths.getKey();
+					if(path.startsWith(UriSanatizer.SLASH)) {
+						path = path.substring(1);
+					}
 					String testUri = UriSanatizer.SCHEMA_RESOURCE + containerBSN + UriSanatizer.SLASH + path;
 					GeckoEmfGenerator.info("comparing URIs " + testUri + " with the requested " + theUri); //$NON-NLS-1$ //$NON-NLS-2$
 					if(testUri.equals(theUri.toString())) {
 						try(Jar jar = new Jar(c.getFile())){
-							Resource resource = jar.getResource(path);
-							try {
-								byte[] data = IO.read(resource.openInputStream());
-								return new ByteArrayInputStream(data);
-							} catch (Exception e) {
-								Exceptions.duck(e);
+							Resource resource = jar.getResource(paths.getValue());
+							if(resource != null) {
+								try {
+									byte[] data = IO.read(resource.openInputStream());
+									return new ByteArrayInputStream(data);
+								} catch (Exception e) {
+									Exceptions.duck(e);
+								}
 							}
 						}
 					}
@@ -116,16 +133,21 @@ public class ResourceUriHandler implements URIHandler {
 			}
 		}
 
-		GeckoEmfGenerator.info("Nothing worked. Trying a relative path as a last ditch effort.");  //$NON-NLS-1$//$NON-NLS-2$
+		GeckoEmfGenerator.info("Nothing worked. Trying a relative path as a last ditch effort. ");  //$NON-NLS-1$//$NON-NLS-2$
 
 		URI projectUri = URI.createURI(uri.scheme() + "://"+ projectDirName + "/");
 		URI relative = uri.deresolve(projectUri);
+		GeckoEmfGenerator.info("Deresolving " + projectUri + " against " + uri + " result: " + relative);  //$NON-NLS-1$//$NON-NLS-2$
 		if(relative.isRelative()) {
 			File file = new File(base, relative.toString());
 			if(file.exists()) {
 				GeckoEmfGenerator.info("Found it in a relative Path. We hope that there is a corresponding project in your buildpath.");  //$NON-NLS-1$//$NON-NLS-2$
 				return new FileInputStream(file);
+			} else {
+				GeckoEmfGenerator.info("The File does not seem to exist: " + file.getAbsolutePath());  //$NON-NLS-1$//$NON-NLS-2$
 			}
+		} else {
+			GeckoEmfGenerator.info("This URI does not seem to be relative: " + relative);  //$NON-NLS-1$//$NON-NLS-2$
 		}
 		GeckoEmfGenerator.error("Nothing Helped. We have been unable to find anything for " + uri);  //$NON-NLS-1$//$NON-NLS-2$
 		

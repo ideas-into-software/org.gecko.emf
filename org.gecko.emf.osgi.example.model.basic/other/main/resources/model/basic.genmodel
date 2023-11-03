@@ -4,7 +4,7 @@
     modelDirectory="/org.gecko.emf.osgi.example.model.basic/src" modelPluginID="org.gecko.emf.osgi.example.model.basic"
     modelName="Basic" modelPluginClass="" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" bundleManifest="false" complianceLevel="8.0"
-    copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    copyrightFields="false" usedGenPackages="../../../../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
     operationReflection="true" importOrganizing="true" oSGiCompatible="true">
   <foreignModel>basic.ecore</foreignModel>
   <genPackages prefix="Basic" basePackage="org.gecko.emf.osgi.example.model" resource="XMI"

@@ -1,7 +1,7 @@
 package org.gecko.emf.osgi.codegen.templates.model;
 
 import org.eclipse.emf.codegen.ecore.genmodel.*;
-import org.gecko.emf.osgi.codegen.templates.model.helper.Dependencies;
+import org.gecko.emf.osgi.codegen.templates.model.helper.GeneratorHelper;
 
 public class PackageInfo
 {
@@ -34,7 +34,7 @@ public class PackageInfo
     stringBuffer.append(copyrightHolder.getCopyright(copyrightHolder.getGenModel().getIndentation(stringBuffer)));
     }}
     stringBuffer.append(TEXT_4);
-    stringBuffer.append(Dependencies.getVersion(genPackage));
+    stringBuffer.append(GeneratorHelper.getVersion(genPackage));
     stringBuffer.append(TEXT_5);
     stringBuffer.append(genPackage.getInterfacePackageName());
     stringBuffer.append(TEXT_6);

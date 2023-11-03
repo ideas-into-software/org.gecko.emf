@@ -9,7 +9,10 @@ package <%=genPackage.getInterfacePackageName()%>.configuration;
 <%genModel.addImport("org.osgi.framework.BundleContext");%>
 <%genModel.addImport(genPackage.getQualifiedPackageInterfaceName());%>
 <%genModel.addImport(genPackage.getQualifiedFactoryInterfaceName());%>
-
+<%if (genPackage.getResource() != GenResourceKind.NONE_LITERAL) {%>
+<%genModel.addImport(genPackage.getQualifiedResourceFactoryClassName());%>
+<%genModel.addImport("org.eclipse.emf.ecore.resource.Resource.Factory");%>
+<%}%>
 /**
  * The <b>PackageConfiguration</b> for the model.
  * The package will be registered into a OSGi base model registry.
@@ -28,6 +31,9 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><<%=genModel.getImportedName("org.gecko.emf.osgi.EPackageConfigurator")%>> ePackageConfiguratorRegistration = null;
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> eFactoryRegistration = null;
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> conditionRegistration = null;
+<%if (genPackage.getResource() != GenResourceKind.NONE_LITERAL) {%>
+	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> resourceFactoryRegistration = null;
+<%}%>
 
 	/**
 	 * Activates the Configuration Component.
@@ -39,6 +45,9 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 		<%=genPackage.getPackageInterfaceName()%> ePackage = <%=genModel.getImportedName(genPackage.getQualifiedPackageClassName())%>.eINSTANCE;
 		
 		<%=genPackage.getPrefix()%>EPackageConfigurator packageConfigurator = registerEPackageConfiguratorService(ePackage, ctx);
+<%if (genPackage.getResource() != GenResourceKind.NONE_LITERAL) {%>
+		registerResourceFactoryService(ctx);
+<%}%>
 		registerEPackageService(ePackage, packageConfigurator, ctx);
 		registerEFactoryService(ePackage, packageConfigurator, ctx);
 		registerConditionService(packageConfigurator, ctx);
@@ -58,6 +67,21 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 
 		return packageConfigurator;
 	}
+
+<%if (genPackage.getResource() != GenResourceKind.NONE_LITERAL) {%>
+	/**
+	 * Registers the <%=genPackage.getResourceFactoryClassName()%> as a service.
+	 *
+	 * @generated
+	 */
+	private void registerResourceFactoryService(BundleContext ctx){
+		<%=genPackage.getResourceFactoryClassName()%> factory = new <%=genPackage.getResourceFactoryClassName()%>();
+		Hashtable<String, Object> properties = new Hashtable<String, Object>();
+		properties.putAll(factory.getServiceProperties());
+		String[] serviceClasses = new String[] {<%=genPackage.getResourceFactoryClassName()%>.class.getName(), Factory.class.getName()};
+		resourceFactoryRegistration = ctx.registerService(serviceClasses, factory, properties);
+	}
+<%}%>
 
 	/**
 	 * Registers the <%=genPackage.getPackageInterfaceName()%> as a service.
@@ -101,6 +125,10 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 		conditionRegistration.unregister();
 		eFactoryRegistration.unregister();
 		packageRegistration.unregister();
+<%if (genPackage.getResource() != GenResourceKind.NONE_LITERAL) {%>
+		resourceFactoryRegistration.unregister();
+<%}%>
+
 		ePackageConfiguratorRegistration.unregister();
 		EPackage.Registry.INSTANCE.remove(<%=genPackage.getPackageInterfaceName()%>.eNS_URI);
 	}
