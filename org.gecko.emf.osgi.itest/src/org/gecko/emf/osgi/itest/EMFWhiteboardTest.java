@@ -14,6 +14,7 @@
 package org.gecko.emf.osgi.itest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -156,8 +157,12 @@ public class EMFWhiteboardTest {
 		assertNotNull(reference);
 		
 		Object contentType = reference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
+		Object configuratorName = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
+		assertNotNull(configuratorName);
+		assertInstanceOf(String.class, configuratorName);
+		assertEquals("foo-bar", configuratorName);
 		assertNotNull(contentType);
-		assertTrue(contentType instanceof String[]);
+		assertInstanceOf(String[].class, contentType);
 		List<String> contentTypeNameList = Arrays.asList((String[]) contentType);
 		assertTrue(contentTypeNameList.contains("foo/bar"));
 		
@@ -179,7 +184,6 @@ public class EMFWhiteboardTest {
 		assertNull(factory);
 		fooBarFactory = rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().get("foo/bar");
 		assertNull(fooBarFactory);
-		
 		
 	}
 	

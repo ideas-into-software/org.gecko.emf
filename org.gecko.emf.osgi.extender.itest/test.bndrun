@@ -6,7 +6,7 @@
 -library: enableOSGi-Test
 
 -runfw: org.apache.felix.framework;version='[7.0.1,7.0.1]'
--runee: JavaSE-1.8
+-runee: JavaSE-17
 
 -runblacklist: bnd.identity;id='osgi.cmpn';version:Version='7.0.0.201802012110'
 -runbundles: \

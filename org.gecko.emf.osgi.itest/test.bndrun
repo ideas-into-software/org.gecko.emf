@@ -2,7 +2,7 @@
 
 -runrequires: bnd.identity;id='org.gecko.emf.osgi.itest'
 -runfw: org.apache.felix.framework;version='[7.0.1,7.0.1]'
--runee: JavaSE-1.8
+-runee: JavaSE-17
 -runbundles: \
 	org.gecko.emf.osgi.example.model.basic;version=snapshot,\
 	org.gecko.emf.osgi.example.model.manual;version=snapshot,\
@@ -32,7 +32,8 @@
 	org.mockito.junit-jupiter;version='[4.11.0,4.11.1)',\
 	org.mockito.mockito-core;version='[4.11.0,4.11.1)',\
 	org.osgi.util.converter;version='[1.0.8,1.0.9)',\
-	org.gecko.emf.osgi.example.model.extended;version=snapshot
+	org.gecko.emf.osgi.example.model.extended;version=snapshot,\
+	org.gecko.emf.osgi.api;version=snapshot
 -runblacklist: bnd.identity;id='org.gecko.emf.osgi.extender'
 -runrepos: \
 	Workspace,\

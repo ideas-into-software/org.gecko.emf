@@ -21,7 +21,7 @@
 	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/osgiR8.bnd,\
 	https://raw.githubusercontent.com/geckoprojects-org/org.geckoprojects.bndincludes/main/slf4j.bnd
 	
--require-bnd: "(version>=6.4.0)"
+-require-bnd: "(version>=7.0.0)"
 
 #-testpath.base \
 #   junit-platform-commons;version=latest,\
