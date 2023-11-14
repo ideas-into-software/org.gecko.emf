@@ -28,6 +28,7 @@ import org.gecko.emf.osgi.ResourceSetFactory;
 import org.gecko.emf.osgi.ecore.EcoreConfigurator;
 import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 import org.osgi.annotation.bundle.Capability;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.ComponentContext;
@@ -62,23 +63,23 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 
 	
 	private ServiceReference<Registry> resourceFactoryRegistryReference;
-	private ComponentContext componentContext;
+	private BundleContext cxt;
 
 	/**
 	 * Called before component activation
 	 * @param ctx the component context
 	 */
 	@Activate
-	public DefaultResourceSetFactoryComponent(ComponentContext ctx,
+	public DefaultResourceSetFactoryComponent(BundleContext ctx,
 			@Reference(name="ePackageRegistry", unbind = "unsetRegistry")
 			EPackage.Registry registry,
 			@Reference(name="resourceFactoryRegistry")
 			ServiceReference<Resource.Factory.Registry> resourceFactoryRegistryReference
 			) {
-		this.componentContext = ctx;
+		this.cxt = ctx;
 		this.resourceFactoryRegistryReference = resourceFactoryRegistryReference;
 		super.setEPackageRegistry(registry);
-		super.setResourceFactoryRegistry(ctx.getBundleContext().getService(resourceFactoryRegistryReference), FrameworkUtil.asMap(resourceFactoryRegistryReference.getProperties()));
+		super.setResourceFactoryRegistry(ctx.getService(resourceFactoryRegistryReference), FrameworkUtil.asMap(resourceFactoryRegistryReference.getProperties()));
 		EcoreConfigurator ecoreConfigurator = new EcoreConfigurator();
 		addEPackageConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
 		addResourceFactoryConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
@@ -108,7 +109,7 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	@Deactivate
 	public void deactivate() {
 		super.deactivate();
-		componentContext.getBundleContext().ungetService(resourceFactoryRegistryReference);
+		cxt.ungetService(resourceFactoryRegistryReference);
 	}
 
 	protected void unsetRegistry(org.eclipse.emf.ecore.EPackage.Registry registry) {
@@ -137,6 +138,7 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	 */
 	public void unsetResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
 		super.unsetResourceFactoryRegistry(resourceFactoryRegistry, properties);
+		cxt.ungetService(resourceFactoryRegistryReference);
 	}
 
 	/**
