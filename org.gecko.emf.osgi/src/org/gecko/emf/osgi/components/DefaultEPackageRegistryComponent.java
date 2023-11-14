@@ -22,6 +22,7 @@ import java.util.WeakHashMap;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -33,6 +34,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
  * {@link DefaultEPackageRegistryComponent} to be enabled as OSGi component
  */
 @Component(name = DefaultEPackageRegistryComponent.NAME, service = EPackage.Registry.class)
+@ProviderType
 public class DefaultEPackageRegistryComponent extends HashMap<String, Object> implements EPackage.Registry {
 	
 	/** DEFAULT_E_PACKAGE_REGISTRY */

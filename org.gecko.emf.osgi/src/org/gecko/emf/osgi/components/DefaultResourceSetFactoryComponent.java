@@ -19,17 +19,17 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
-import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.gecko.emf.osgi.ecore.EcoreConfigurator;
+import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
+import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 import org.osgi.annotation.bundle.Capability;
-import org.osgi.annotation.bundle.Requirement;
 import org.osgi.framework.ServiceReference;
-import org.osgi.namespace.service.ServiceNamespace;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -37,6 +37,8 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
+
+import aQute.bnd.annotation.service.ServiceCapability;
 
 /**
  * Implementation of a {@link ResourceSetFactory}. It hold the {@link EPackage} registry as well as the {@link Factory} registry.
@@ -54,45 +56,72 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 		name = ResourceSetFactory.EMF_CAPABILITY_NAME,
 		version = ResourceSetFactory.GECKOPROJECTS_EMF_VERSION
 		)
-@Capability(
-		namespace = org.osgi.namespace.service.ServiceNamespace.SERVICE_NAMESPACE,
-		attribute = ServiceNamespace.CAPABILITY_OBJECTCLASS_ATTRIBUTE + ":List<String>=org.gecko.emf.osgi.ResourceSetFactory"
-		)
-@Capability(
-		namespace = org.osgi.namespace.service.ServiceNamespace.SERVICE_NAMESPACE,
-		attribute = ServiceNamespace.CAPABILITY_OBJECTCLASS_ATTRIBUTE + ":List<String>=org.eclipse.emf.ecore.resource.ResourceSet"
-		)
-
-@Requirement(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
-	name = EPackageConfigurator.EMF_CONFIGURATOR_NAME, filter="(name=ecore)")
+@ServiceCapability(value = ResourceSet.class)
+@ServiceCapability(value = ResourceSetFactory.class)
 public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactory {
 
+	
+	private ServiceReference<Registry> resourceFactoryRegistryObjects;
+	private ComponentContext componentContext;
+
 	/**
-	 * Inject the {@link EPackage.Registry}
-	 * @param registry the registry to inject
+	 * Called before component activation
+	 * @param ctx the component context
 	 */
-	@Reference(policy=ReferencePolicy.STATIC, cardinality=ReferenceCardinality.MANDATORY, unbind="unsetRegistry")
-	public void setRegistry(EPackage.Registry registry) {
+	@Activate
+	public DefaultResourceSetFactoryComponent(ComponentContext ctx,
+			@Reference(name="ePackageRegistry", unbind = "unsetRegistry")
+			EPackage.Registry registry,
+			@Reference(name="resourceFactoryRegistry", unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+			ServiceReference<Resource.Factory.Registry> resourceFactoryRegistryRegistration
+			) {
+		this.componentContext = ctx;
+		this.resourceFactoryRegistryObjects = resourceFactoryRegistryRegistration;
 		super.setEPackageRegistry(registry);
+		super.setResourceFactoryRegistry(ctx.getBundleContext().getService(resourceFactoryRegistryRegistration), ServicePropertiesHelper.convert(resourceFactoryRegistryRegistration.getProperties()));
+		EcoreConfigurator ecoreConfigurator = new EcoreConfigurator();
+		addEPackageConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
+		addResourceFactoryConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
 	}
-
-	/**
-	 * Remove the registry on shutdown
-	 * @param registry the registry to be removed
+	
+	/*
+	 * We have a two step activation for history reasons. We use the constructor injection to 
+	 * make sure everything mandatory is available before activation has there had been cases, 
+	 * where mandatory fields have been null at activation for some reason. Felix SCR will also
+	 * look for a method named activate which is present through the DefaultResourceSetFactory
+	 * and will call it after the Constructor. So to avoid activating this twice by accident, 
+	 * we will name the method here explicitly.
+	 *
+	 * (non-Javadoc)
+	 * @see org.gecko.emf.osgi.provider.DefaultResourceSetFactory#activate(org.osgi.service.component.ComponentContext)
 	 */
-	public void unsetRegistry(EPackage.Registry registry) {
-		super.unsetEPackageRegistry(registry);
+	@Activate
+	public void activate(ComponentContext ctx) {
+		super.activate(ctx);
 	}
-
+	
+	/**
+	 * Called on component deactivation
+	 */
+	@Deactivate
+	public void deactivate() {
+		super.deactivate();
+		componentContext.getBundleContext().ungetService(resourceFactoryRegistryObjects);
+	}
+	
 	/**
 	 * Inject a {@link Registry} for resource factories
 	 * @param resourceFactoryRegistry the resource factory to be injected
 	 */
 	@Reference(policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
 	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
-		super.setResourceFactoryRegistry(resourceFactoryRegistry, properties);
+//		super.setResourceFactoryRegistry(resourceFactoryRegistry, properties);
 	}
 
+	protected void unsetRegistry(org.eclipse.emf.ecore.EPackage.Registry registry) {
+		super.unsetEPackageRegistry(registry);
+	}
+	
 	public void modifiedResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
 		super.modifiedResourceFactoryRegistry(resourceFactoryRegistry, properties);
 	}
@@ -103,16 +132,6 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	 */
 	public void unsetResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry) {
 		super.unsetResourceFactoryRegistry(resourceFactoryRegistry);
-	}
-
-	/**
-	 * Injects {@link EPackageConfigurator}, to register the Ecore Package
-	 * @param configurator the {@link EPackageConfigurator} to be registered
-	 * @param properties the service properties
-	 */
-	@Reference(unbind ="removeEPackageConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.AT_LEAST_ONE, target="(emf.model.name=ecore)")
-	public void addEcoreConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
-		super.addEcoreConfigurator(configurator, properties);
 	}
 
 	/**
@@ -141,16 +160,6 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	 */
 	public void removeEPackageConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
 		super.removeEPackageConfigurator(configurator, properties);
-	}
-
-	/**
-	 * Adds a resource factory configurator for the basic Ecore Package
-	 * @param configurator the resource factory configurator to be registered
-	 * @param properties the service properties
-	 */
-	@Reference(unbind = "removeResourceFactoryConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.AT_LEAST_ONE, target="(emf.model.name=ecore)")
-	public void addEcoreResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
-		super.addEcoreResourceFactoryConfigurator(configurator, properties);
 	}
 
 	/**
@@ -208,22 +217,4 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	public void removeResourceSetConfigurator(ResourceSetConfigurator resourceSetConfigurator, Map<String, Object> properties) {
 		super.removeResourceSetConfigurator(resourceSetConfigurator, properties);
 	}
-
-	/**
-	 * Called on component activation
-	 * @param ctx the component context
-	 */
-	@Activate
-	public void activate(ComponentContext ctx) {
-		super.activate(ctx);
-	}
-	
-	/**
-	 * Called on component deactivation
-	 */
-	@Deactivate
-	public void deactivate() {
-		super.deactivate();
-	}
-
 }

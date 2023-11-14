@@ -9,19 +9,19 @@ src=${^src},src-gen
 	org.eclipse.emf.ecore.xmi,\
 	org.osgi.service.component.annotations,\
 	org.osgi.framework,\
-	org.gecko.emf.osgi.api,\
 	osgi.cmpn,\
-	org.gecko.emf.osgi.codegen,\
+	org.gecko.emf.osgi.codegen;version=snapshot,\
 	org.osgi.service.condition
 
--includeresource.model: model=model
+-includeresource.model: model=other/main/resources/model
 
 -dependson: org.gecko.emf.osgi.codegen
 
 -generate:\
-	model/basic.genmodel;\
-		generate="geckoEMF 1>1.log 2>2.log";\
-		genmodel=model/basic.genmodel;\
+	other/main/resources/model/basic.genmodel;\
+		generate="geckoEMF 1>out.log 2>err.log";\
+		genmodel=other/main/resources/model/basic.genmodel;\
 		output=src-gen;\
 		version=${base-version};\
-		clean=false
+		clean=false;\
+		logfile=test.log

@@ -33,3 +33,12 @@
 		poll.time           = -1;\
 		readOnly            = true;\
 		name                = "BND Dependencies"
+
+-plugin.emf: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+		releaseUrl			= "https://ci.eclipse.org/emf/job/maven-publish/lastSuccessfulBuild/artifact/releng/org.eclipse.emf.releng/publish/target/repository/final/";\
+		snapshotUrl			= "https://ci.eclipse.org/emf/job/maven-publish/lastSuccessfulBuild/artifact/releng/org.eclipse.emf.releng/publish/target/repository/final/";\
+		index               = ${.}/eclipse_emf.maven;\
+		transitive          = false;\
+		readOnly            = true;\
+		name                = "EMF Milestone Dependendencies"

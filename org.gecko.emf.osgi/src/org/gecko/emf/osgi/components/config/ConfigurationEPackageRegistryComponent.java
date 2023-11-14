@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.gecko.emf.osgi.EMFNamespaces;
+import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 
@@ -35,6 +36,7 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
  * This implementation is derived from the default {@link ConfigurationEPackageRegistryComponent} to be enabled as OSGi component
  */
 @Component(service=EPackage.Registry.class, configurationPid=EMFNamespaces.EPACKAGE_REGISTRY_CONFIG_NAME, configurationPolicy=ConfigurationPolicy.REQUIRE)
+@ProviderType
 public class ConfigurationEPackageRegistryComponent extends HashMap<String, Object> implements EPackage.Registry
 {
 	private static final long serialVersionUID = 1L;

@@ -121,15 +121,6 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	}
 
 	/**
-	 * Adds the {@link EPackageConfigurator}, to register the Ecore Package
-	 * @param configurator the {@link EPackageConfigurator} to be registered
-	 * @param properties the service properties
-	 */
-	protected void addEcoreConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
-		addEPackageConfigurator(configurator, properties);
-	}
-
-	/**
 	 * Adds {@link EPackageConfigurator}, to register a new {@link EPackage}
 	 * @param configurator the {@link EPackageConfigurator} to be registered
 	 * @param properties the service properties
@@ -162,15 +153,6 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Adds a resource factory configurator for the basic Ecore Package
-	 * @param configurator the resource factory configurator to be registered
-	 * @param properties the service properties
-	 */
-	protected void addEcoreResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
-		addResourceFactoryConfigurator(configurator, properties);
 	}
 
 	/**

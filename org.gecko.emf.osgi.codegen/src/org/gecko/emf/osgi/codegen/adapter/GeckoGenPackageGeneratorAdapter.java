@@ -16,6 +16,7 @@ package org.gecko.emf.osgi.codegen.adapter;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.codegen.ecore.CodeGenEcorePlugin;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
@@ -227,9 +228,13 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 			message = String.format("Generating package interface info for package '%s'",
 					genPackage.getQualifiedPackageInterfaceName());
 			monitor.subTask(message);
+			
+			@SuppressWarnings("unchecked")
+			Map<String, Object> props = (Map<String, Object>) getAdapterFactory().getGenerator().getOptions().data[0];
+			
 			generateJava(genModel.getModelDirectory(), genPackage.getReflectionPackageName(),
 					genPackage.getPackageInterfaceName(), getJETEmitter(getJETEmitterDescriptors(), PACKAGE_CLASS),
-					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
+					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE, props } },
 					createMonitor(monitor, 1));
 		} else {
 			monitor.worked(1);

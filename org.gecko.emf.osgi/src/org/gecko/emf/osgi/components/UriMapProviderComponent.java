@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.gecko.emf.osgi.UriMapProvider;
+import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -30,6 +31,7 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
  * @since 25.07.2017
  */
 @Component(name="DefaultUriMapProvider", configurationPolicy=ConfigurationPolicy.REQUIRE)
+@ProviderType
 public class UriMapProviderComponent implements UriMapProvider {
 	
 	private Map<URI, URI> uriMap = new HashMap<>();

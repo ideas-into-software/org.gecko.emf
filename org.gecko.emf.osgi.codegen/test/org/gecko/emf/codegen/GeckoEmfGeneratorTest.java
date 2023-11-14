@@ -15,6 +15,7 @@ package org.gecko.emf.codegen;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 import org.assertj.core.api.Assertions;
 import org.eclipse.emf.common.util.URI;
 import org.gecko.emf.osgi.codegen.UriSanatizer;
+import org.gecko.emf.osgi.codegen.templates.model.helper.GeneratorHelper;
 import org.junit.jupiter.api.Test;
 
 
@@ -35,11 +37,66 @@ public class GeckoEmfGeneratorTest {
 
 	
 	@Test
-	public void testURIHandler() {
-		URI toTest = URI.createURI("resource://org.gecko.emf.osgi.example.model.basic/../org.eclipse.emf.ecore/model/Ecore.genmodel");
+	public void testURIHandlerDefault() {
+		URI toTest = URI.createURI("resource://org.gecko.emf.osgi.codegen/../org.eclipse.emf.ecore/model/Ecore.genmodel");
+		System.out.println(new File("").getAbsolutePath());
+		URI basePath = URI.createFileURI(new File("").getAbsolutePath());
+		System.out.println(basePath.lastSegment());
 		URI result = UriSanatizer.trimmedSanitize(toTest);
 		Assertions.assertThat(result).isSameAs(URI.createURI("resource://org.eclipse.emf.ecore/model/Ecore.genmodel"));
 	}
+
+	@Test
+	public void test() {
+		URI genModelURI = URI.createURI("resource://metadata/src/main/resources/model/metadata.genmodel");
+		System.out.println(genModelURI.toString());
+		System.out.println(genModelURI.segmentCount());
+		System.out.println(genModelURI.trimSegments(genModelURI.segmentCount() - 3).toString());
+		System.out.println(genModelURI.deresolve(genModelURI.trimSegments(genModelURI.segmentCount() - 3).appendSegment("")).toString());
+		
+		genModelURI = URI.createURI("resource://org.gecko.emf.osgi.example.model.basic/model/basic.genmodel");
+		System.out.println(genModelURI.toString());
+		System.out.println(genModelURI.segmentCount());
+		System.out.println(genModelURI.trimSegments(genModelURI.segmentCount() - 3).toString());
+		System.out.println(genModelURI.deresolve(genModelURI.trimSegments(genModelURI.segmentCount() - 3).appendSegment("")).toString());
+	}
+//	@Test
+	public void testURIResolve() {
+		URI toTest = URI.createURI("../org.eclipse.emf.ecore/model/Ecore.genmodel");
+		URI basePath = URI.createURI("resource://org.gecko.emf.osgi.codegen");
+		System.out.println(toTest);
+		System.out.println(basePath);
+		URI result = toTest.deresolve(basePath);
+		System.out.println(result);
+		Assertions.assertThat(result).isSameAs(URI.createURI("resource://org.eclipse.emf.ecore/model/Ecore.genmodel"));
+	}
+
+	@Test
+	public void testConvertToBundleEcoreURI() {
+		URI testResult = URI.createURI("/ecore/model/test.ecore");
+		
+		URI genModelPath = URI.createURI("/genmodel/model/test.genmodel");
+		URI ePackageUri = URI.createURI("resource://org.gecko.emf.osgi.example.model.extended/src/main/resources/ecore/model/test.ecore");
+    	URI genModelUri = URI.createURI("resource://org.gecko.emf.osgi.example.model.extended/src/main/resources/genmodel/model/test.genmodel");
+    	URI finalEcore = GeneratorHelper.convertToBundleEcoreURI(genModelPath, ePackageUri, genModelUri);
+    	System.out.println("ecoreResolve : " + finalEcore);
+    	Assertions.assertThat(finalEcore).isSameAs(testResult);
+	}
+
+	@Test
+	public void testConvertToSourceEcoreURI() {
+		URI testResult = URI.createURI("src/main/resources/ecore/model/test.ecore");
+		
+		URI ePackageUri = URI.createURI("resource://org.gecko.emf.osgi.example.model.extended/src/main/resources/ecore/model/test.ecore");
+		URI genModelUri = URI.createURI("resource://org.gecko.emf.osgi.example.model.extended/src/main/resources/genmodel/model/test.genmodel");
+		URI finalEcore = ePackageUri.deresolve(genModelUri, true, false, false);
+		System.out.println("ecoreResolve : " + finalEcore);
+		Assertions.assertThat(finalEcore).isSameAs(testResult);
+	}
+
+	
+	
+	
 	
 	/**
 	 * Test method for {@link org.gecko.emf.osgi.codegen.GeckoEmfGenerator#doGenerate(java.io.File, java.lang.String, java.io.File)}.
