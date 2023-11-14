@@ -85,12 +85,14 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	}
 	
 	/*
-	 * We have a two step activation for history reasons. We use the constructor injection to 
+	 * We have a two step activation for historic reasons. We use the constructor injection to 
 	 * make sure everything mandatory is available before activation has there had been cases, 
 	 * where mandatory fields have been null at activation for some reason. Felix SCR will also
 	 * look for a method named activate which is present through the DefaultResourceSetFactory
-	 * and will call it after the Constructor. So to avoid activating this twice by accident, 
-	 * we will name the method here explicitly.
+	 * and will call it after the Constructor, regardless of the fact that it is already activated 
+	 * through the Constructor. So to avoid activating this twice by accident, we don't call the 
+	 * super activate method in the constructor but let SCR run its course. The Activate 
+	 * annotation is on here, to act as a marker.
 	 *
 	 * (non-Javadoc)
 	 * @see org.gecko.emf.osgi.provider.DefaultResourceSetFactory#activate(org.osgi.service.component.ComponentContext)
