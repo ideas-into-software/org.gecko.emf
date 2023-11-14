@@ -13,13 +13,17 @@
  */
 package org.gecko.emf.osgi.helper;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNull;
+
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,22 +34,6 @@ import java.util.stream.Collectors;
  */
 public class ServicePropertiesHelper {
 
-	
-	/**
-	 * Converts the {@link Dictionary} to a {@link Map}
-	 * @param props the {@link Dictionary} to convert
-	 * @return a {@link Map} representing the given {@link Dictionary}
-	 */
-	public static Map<String, Object> convert(Dictionary<String, Object> props){
-		HashMap<String, Object> result = new HashMap<>();
-		Enumeration<String> keys = props.keys();
-		while(keys.hasMoreElements()) {
-			String key = keys.nextElement();
-			result.put(key, props.get(key));
-		}
-		return result;
-	}
-	
 	/**
 	 * Updates the name set for a given service id
 	 * @param nameMap the map to update
@@ -53,6 +41,10 @@ public class ServicePropertiesHelper {
 	 * @param serviceId the service id the name set belongs to
 	 */
 	public static void updateNameMap(Map<Long, Set<String>> nameMap, Set<String> newNames, Long serviceId) {
+		requireNonNull(nameMap);
+		requireNonNull(newNames);
+		requireNonNull(serviceId);
+		
 		Set<String> nameSet = nameMap.get(serviceId);
 		if (nameSet == null) {
 			nameSet = new HashSet<String>();
@@ -70,10 +62,43 @@ public class ServicePropertiesHelper {
 	public static String[] getNamesArray(Map<Long, Set<String>> nameMap) {
 		return nameMap.entrySet()
 				.stream()
+				.filter(e->Objects.nonNull(e.getValue()))
 				.map(Entry::getValue)
 				.flatMap(Collection::stream)
-				.collect(Collectors.toList())
+				.collect(Collectors.toSet())
 				.toArray(new String[0]);
+	}
+	
+	
+	/**
+	 * returns a String+ value and recognizes Object, Object[] and Collection<Object>
+	 * @param options the property map
+	 * @param key the key to get
+	 * @return a {@link List} of {@link String} or <code>null</code>, if the key is not available
+	 */
+	public static Set<String> getStringPlusValue(Map<String, Object> options, String key) {
+		if (options == null || key == null) {
+			return null;
+		}
+		Object value = options.get(key);
+		if (isNull(value)) {
+			return null;
+		}
+		Collection<?> values;
+		if (value instanceof String) {
+			values = Collections.singletonList((String) value);
+		} else if(value.getClass().isArray()){
+			values = Arrays.asList((Object[])value);
+		} else if (value instanceof Collection<?>) {
+			values = (Collection<?>)value;
+		} else {
+			values =  Collections.singletonList(value.toString());
+		}
+		return values.
+				stream().
+				filter(Objects::nonNull).
+				map(Object::toString).
+				collect(Collectors.toSet());
 	}
 	
 }

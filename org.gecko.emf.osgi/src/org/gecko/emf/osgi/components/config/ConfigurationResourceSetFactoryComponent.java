@@ -28,10 +28,10 @@ import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
 import org.gecko.emf.osgi.ecore.EcoreConfigurator;
-import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 import org.osgi.annotation.bundle.Capability;
 import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.ComponentServiceObjects;
@@ -85,7 +85,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 			) {
 		this.resourceFactoryRegistryObjects = resourceFactoryRegistryObjects;
 		super.setEPackageRegistry(registry);
-		super.setResourceFactoryRegistry(resourceFactoryRegistryObjects.getService(), ServicePropertiesHelper.convert(resourceFactoryRegistryObjects.getServiceReference().getProperties()));
+		super.setResourceFactoryRegistry(resourceFactoryRegistryObjects.getService(), FrameworkUtil.asMap(resourceFactoryRegistryObjects.getServiceReference().getProperties()));
 		EcoreConfigurator ecoreConfigurator = new EcoreConfigurator();
 		addEPackageConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
 		addResourceFactoryConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
