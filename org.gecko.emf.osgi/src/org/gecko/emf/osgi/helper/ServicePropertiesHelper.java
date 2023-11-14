@@ -14,18 +14,23 @@
 package org.gecko.emf.osgi.helper;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.osgi.framework.Constants;
 
 /**
  * A Helper to update the given Service Properties
@@ -99,6 +104,35 @@ public class ServicePropertiesHelper {
 				filter(Objects::nonNull).
 				map(Object::toString).
 				collect(Collectors.toSet());
+	}
+	
+	/**
+	 * Appends the values for the key-property from the sourceMap to the resulting {@link Dictionary}
+	 * @param key the property key to get from the source map
+	 * @param sourceMap the source properties map
+	 * @param dictionary the resulting dictionary
+	 * @return the modified resulting dictionary
+	 */
+	public static Dictionary<String, Object> appendToDictionary(String key, Map<Long, Set<String>> sourceMap, Dictionary<String, Object> dictionary) {
+		requireNonNull(dictionary);
+		requireNonNull(sourceMap);
+		requireNonNull(key);
+		String[] stringArrayValues = ServicePropertiesHelper.getNamesArray(sourceMap);
+		if (nonNull(stringArrayValues) && stringArrayValues.length > 0) {
+			dictionary.put(key, stringArrayValues);
+		}
+		return dictionary;
+	}
+	
+	/**
+	 * Returns an {@link Optional} of the service id extracted out of the given service properties
+	 * @param properties the service properties, must not be <code>null</code>
+	 * @return an {@link Optional} of the service id
+	 */
+	public static Optional<Long> getServiceId(Map<String, Object> properties) {
+		requireNonNull(properties);
+		Long serviceId = (Long) properties.get(Constants.SERVICE_ID);
+		return Optional.ofNullable(serviceId);
 	}
 	
 }

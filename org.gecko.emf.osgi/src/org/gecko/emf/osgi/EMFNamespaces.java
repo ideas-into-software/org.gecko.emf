@@ -34,6 +34,7 @@ public class EMFNamespaces {
 	// Attribute name for the name of the configurator types (EPackageConfigurator, ResourceFactoryConfigurator and ResourceSetConfigurator)
 	public static final String EMF_CONFIGURATOR_PREFIX = EMF_CONFIGURATOR_NAMESPACE + "."; //$NON-NLS-1$
 	public static final String EMF_CONFIGURATOR_NAME = EMF_CONFIGURATOR_PREFIX + "name"; //$NON-NLS-1$
+	public static final String EMF_RESOURCE_FACTORY_CONFIGURATOR_NAME = EMF_CONFIGURATOR_PREFIX + "resourceFactory"; //$NON-NLS-1$
 	
 	/**
 	 * Attribute name constants for {@link EMFModel} annotation.

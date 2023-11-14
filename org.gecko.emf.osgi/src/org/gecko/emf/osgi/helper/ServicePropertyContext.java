@@ -11,42 +11,70 @@
  */
 package org.gecko.emf.osgi.helper;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Dictionary;
 import java.util.Map;
-import java.util.Set;
+
+import org.gecko.emf.osgi.components.ServicePropertyContextImpl;
 
 /**
- * 
- * @author mark
+ * Class to handle the different service properties. It allows to have  
+ * @author Mark Hoffmann
  * @since 09.11.2023
  */
 public interface ServicePropertyContext {
 
 	/**
-	 * Updates the properties for a resource factory configurator or service
+	 * Updates the service properties for a resource factory, configurator or service. 
 	 * @param serviceProperties the service properties
 	 * @param add <code>true</code>, to add this configuration
 	 */
-	void updateResourceFactoryProperties(Map<String, Object> serviceProperties, boolean add);
+	void updateServiceProperties(Map<String, Object> serviceProperties, boolean add);
 
-	void updateModelProperties(Map<String, Object> serviceProperties, boolean add);
+	/**
+	 * Adds a sub-context for a given service id contained in the sub context properties
+	 * @param subContextProperties the service property map of the sub-context
+	 * @return the {@link ServicePropertyContext} instance
+	 */
+	ServicePropertyContext addSubContext(Map<String, Object> subContextProperties);
 	
-	void updateConfiguratorProperties(Map<String, Object> serviceProperties, boolean add,
-			Map<Long, Set<String>> targetConfiguratorMap);
-
+	/**
+	 * Removes the sub-context for the given service properties and returns the removed value or <code>null</code>. 
+	 * @param subContextProperties the service properties of the sub-context to be removed
+	 * @return the {@link ServicePropertyContext} instance, that has been removed or <code>null</code>
+	 */
+	ServicePropertyContext removeSubContext(Map<String, Object> subContextProperties);
+	
+	/**
+	 * Creates a {@link Map} for the stored properties
+	 * @param merged, set to <code>true</code>, to get the merged properties of this context and all registered sub-contexts
+	 * @return a {@link Map} for the stored properties
+	 */
+	Map<String, Object> getProperties(boolean merged);
 
 	/**
-	 * Updates the properties of the service, depending on changes on injected services
-	 * @param type the type of the property to publish 
-	 * @param serviceProperties the service properties from the injected service
-	 * @param add <code>true</code>, if the service was add, <code>false</code> in case of an remove
+	 * Creates a {@link Dictionary} for the stored properties
+	 * @param merged, set to <code>true</code>, to get the merged properties of this context and all registered sub-contexts
+	 * @return a {@link Dictionary} for the stored properties
 	 */
-	void updateProperties(String type, Map<String, Object> serviceProperties, boolean add);
+	Dictionary<String, Object> getDictionary(boolean merged);
 
 	/**
-	 * Creates a dictionary for the stored properties
-	 * @return a dictionary for the stored properties
+	 * Creates a {@link ServicePropertyContext} out of a property map
+	 * @param contextProperties the property map, must not be <code>null</code>
+	 * @return {@link ServicePropertyContext} instance
 	 */
-	Dictionary<String, Object> getDictionary(boolean includeResoureFactory);
+	static ServicePropertyContext create(Map<String, Object> contextProperties) {
+		requireNonNull(contextProperties);
+		return new ServicePropertyContextImpl(contextProperties);
+	}
+	
+	/**
+	 * Merge the given {@link ServicePropertyContext} with this instance
+	 * @param toMerge the contexts to be merged
+	 * @return a new merged instance
+	 */
+	ServicePropertyContext merge(ServicePropertyContext ...toMerge);
 
 }

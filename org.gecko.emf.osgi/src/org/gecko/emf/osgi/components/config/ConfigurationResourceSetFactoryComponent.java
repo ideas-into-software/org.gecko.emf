@@ -75,12 +75,13 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	/**
 	 * Called before component activation
 	 * @param ctx the component context
+	 * @TODO Clarify why we use ComponentServiceObjects here?
 	 */
 	@Activate
 	public ConfigurationResourceSetFactoryComponent(ComponentContext ctx,
 			@Reference(name="ePackageRegistry", unbind = "unsetRegistry")
 			EPackage.Registry registry,
-			@Reference(name="resourceFactoryRegistry", unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+			@Reference(name="resourceFactoryRegistry")
 			ComponentServiceObjects<Resource.Factory.Registry> resourceFactoryRegistryObjects
 			) {
 		this.resourceFactoryRegistryObjects = resourceFactoryRegistryObjects;
@@ -114,11 +115,25 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	@Deactivate
 	public void deactivate() {
 		super.deactivate();
-		this.resourceFactoryRegistryObjects.ungetService(resourceFactoryRegistry);
+		Factory.Registry rfr = getResourceFactoryRegistry().get();
+		if (rfr != null) {
+			this.resourceFactoryRegistryObjects.ungetService(rfr);
+		}
 	}
 
 	protected void unsetRegistry(org.eclipse.emf.ecore.EPackage.Registry registry) {
 		super.unsetEPackageRegistry(registry);
+	}
+	
+	
+
+	/**
+	 * Inject a {@link Registry} for resource factories
+	 * @param resourceFactoryRegistry the resource factory to be injected
+	 */
+	@Reference(policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+//		do nothing here
 	}
 	
 	public void modifiedResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
@@ -130,8 +145,9 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param resourceFactoryRegistry the registry to be removed
 	 */
 	@Override
-	public void unsetResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry) {
-		super.unsetResourceFactoryRegistry(resourceFactoryRegistry);
+	public void unsetResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+		super.unsetResourceFactoryRegistry(resourceFactoryRegistry, properties);
+		this.resourceFactoryRegistryObjects.ungetService(resourceFactoryRegistry);
 	}
 
 	/**

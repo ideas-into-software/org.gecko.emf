@@ -123,7 +123,7 @@ public class DefaultResourceFactoryRegistryComponent {
 	
 	protected void updateProperties(Map<String, Object> serviceProperties, boolean add) {
 		requireNonNull(serviceProperties);
-		propertyContext.updateResourceFactoryProperties(serviceProperties, add);
+		propertyContext.updateServiceProperties(serviceProperties, add);
 		updateRegistrationProperties();
 	}
 	
