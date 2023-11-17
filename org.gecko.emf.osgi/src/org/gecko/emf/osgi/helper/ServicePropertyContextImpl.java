@@ -9,7 +9,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package org.gecko.emf.osgi.components;
+package org.gecko.emf.osgi.helper;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
@@ -17,18 +17,15 @@ import static java.util.Objects.requireNonNull;
 import static org.gecko.emf.osgi.helper.ServicePropertiesHelper.appendToDictionary;
 import static org.gecko.emf.osgi.helper.ServicePropertiesHelper.getStringPlusValue;
 
-import java.util.Collections;
 import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.gecko.emf.osgi.EMFNamespaces;
-import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
-import org.gecko.emf.osgi.helper.ServicePropertyContext;
-import org.osgi.framework.Constants;
 import org.osgi.framework.FrameworkUtil;
 
 /**
@@ -38,45 +35,40 @@ import org.osgi.framework.FrameworkUtil;
  */
 public class ServicePropertyContextImpl implements ServicePropertyContext {
 	
-	private final Map<Long, Set<String>> resourceFactoryNameMap = new ConcurrentHashMap<>();
-	private final Map<Long, Set<String>> configuratorNameMap = new ConcurrentHashMap<>();
-	private final Map<Long, Set<String>> modelNameMap = new ConcurrentHashMap<>();
-	private final Map<Long, Set<String>> fileExtensionMap = new ConcurrentHashMap<>();
-	private final Map<Long, Set<String>> contentTypeMap = new ConcurrentHashMap<>();
-	private final Map<Long, Set<String>> protocolMap = new ConcurrentHashMap<>();
-	private final Map<Long, Set<String>> versionMap = new ConcurrentHashMap<>();
-	private final Map<Long, Set<String>> featureMap = new ConcurrentHashMap<>();
+	// Map with property key as key and the map of service.id and value-set as value
+	final Map<String, Map<Long, Set<String>>> keyMapPairs = new ConcurrentHashMap<>();
+	// Map with service.id and corresponding sub-context instance as value
 	private final Map<Long, ServicePropertyContext> subContextMap = new ConcurrentHashMap<>();
+	// Set of all available properties in EMF OSGi
+	private static Set<String> VALID_KEYS = new HashSet<>();
 	
-	
-	/**
-	 * Creates a new instance.
-	 * @param contextProperties
-	 */
-	public ServicePropertyContextImpl(Map<String, Object> contextProperties) {
-		updateServiceProperties(contextProperties, true);
+	static {
+		VALID_KEYS.add(EMFNamespaces.EMF_CONFIGURATOR_NAME);
+		VALID_KEYS.add(EMFNamespaces.EMF_RESOURCE_FACTORY_CONFIGURATOR_NAME);
+		VALID_KEYS.add(EMFNamespaces.EMF_MODEL_NAME);
+		VALID_KEYS.add(EMFNamespaces.EMF_MODEL_FEATURE);
+		VALID_KEYS.add(EMFNamespaces.EMF_MODEL_VERSION);
+		VALID_KEYS.add(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
+		VALID_KEYS.add(EMFNamespaces.EMF_MODEL_FILE_EXT);
+		VALID_KEYS.add(EMFNamespaces.EMF_MODEL_PROTOCOL);
 	}
 	
 	/**
 	 * Creates a new instance.
 	 */
-	public ServicePropertyContextImpl() {
+	ServicePropertyContextImpl() {
+		init();
 	}
 
 	/* 
 	 * (non-Javadoc)
-	 * @see org.gecko.emf.osgi.helper.ServicePropertyContext#updateServiceProperties(java.util.Map, boolean)
+	 * @see org.gecko.emf.osgi.helper.ServicePropertyContext#updateServiceProperties(java.util.Map)
 	 */
 	@Override
-	public void updateServiceProperties(Map<String, Object> serviceProperties, boolean add) {
-		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, serviceProperties, add);
-		updateProperties(EMFNamespaces.EMF_RESOURCE_FACTORY_CONFIGURATOR_NAME, serviceProperties, add);
-		updateProperties(EMFNamespaces.EMF_MODEL_NAME, serviceProperties, add);
-		updateProperties(EMFNamespaces.EMF_MODEL_FEATURE, serviceProperties, add);
-		updateProperties(EMFNamespaces.EMF_MODEL_VERSION, serviceProperties, add);
-		updateProperties(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, serviceProperties, add);
-		updateProperties(EMFNamespaces.EMF_MODEL_FILE_EXT, serviceProperties, add);
-		updateProperties(EMFNamespaces.EMF_MODEL_PROTOCOL, serviceProperties, add);
+	public void updateServiceProperties(Map<String, Object> serviceProperties) {
+		requireNonNull(serviceProperties);
+		Long serviceId = validateServiceId(serviceProperties);
+		keyMapPairs.keySet().forEach(KEY->updateProperties(KEY, serviceProperties, serviceId));
 	}
 
 	/* 
@@ -86,14 +78,7 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 	@Override
 	public Dictionary<String, Object> getDictionary(boolean merged) {
 		Dictionary<String, Object> properties = new Hashtable<>();
-		appendToDictionary(EMFNamespaces.EMF_MODEL_NAME, modelNameMap, properties);
-		appendToDictionary(EMFNamespaces.EMF_MODEL_FEATURE, featureMap, properties);
-		appendToDictionary(EMFNamespaces.EMF_MODEL_VERSION, versionMap, properties);
-		appendToDictionary(EMFNamespaces.EMF_MODEL_PROTOCOL, protocolMap, properties);
-		appendToDictionary(EMFNamespaces.EMF_MODEL_FILE_EXT, fileExtensionMap, properties);
-		appendToDictionary(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, contentTypeMap, properties);
-		appendToDictionary(EMFNamespaces.EMF_RESOURCE_FACTORY_CONFIGURATOR_NAME, resourceFactoryNameMap, properties);
-		appendToDictionary(EMFNamespaces.EMF_CONFIGURATOR_NAME, configuratorNameMap, properties);
+		keyMapPairs.forEach((KEY, MAP)->appendToDictionary(KEY, MAP, properties));
 		if (!merged) {
 			return properties;
 		} else {
@@ -120,13 +105,11 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 	 */
 	@Override
 	public ServicePropertyContext addSubContext(Map<String, Object> subContextProperties) {
-		if (isNull(subContextProperties)) {
-			return null;
-		}
+		requireNonNull(subContextProperties);
 		return ServicePropertiesHelper.
 				getServiceId(subContextProperties).
 				map(id->addSubContext(id, subContextProperties)).
-				orElse(null);
+				orElseThrow(()->new IllegalStateException("The sub-context properties must contains a service.id entry with a long value"));
 	}
 
 	/* 
@@ -135,9 +118,8 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 	 */
 	@Override
 	public ServicePropertyContext removeSubContext(Map<String, Object> subContextProperties) {
-		if (isNull(subContextProperties)) {
-			return null;
-		}
+		requireNonNull(subContextProperties);
+		validateServiceId(subContextProperties);
 		return ServicePropertiesHelper.
 				getServiceId(subContextProperties).
 				map(this::removeSubContext).
@@ -153,58 +135,32 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 		if (isNull(toMerge)) {
 			return this;
 		}
-		ServicePropertyContext merged = ServicePropertyContext.create(getProperties(false));
+		ServicePropertyContextImpl merged = new ServicePropertyContextImpl();
+		doMerge(this, merged);
 		for (ServicePropertyContext mergeCtx : toMerge) {
-			merged.updateServiceProperties(mergeCtx.getProperties(false), true);
+			if (mergeCtx instanceof ServicePropertyContextImpl) {
+				doMerge((ServicePropertyContextImpl) mergeCtx, merged);
+			}
 		}
 		return merged;
 	}
-
+	
 	/**
 	 * Updates all the needed service properties 
 	 * @param key the property key
 	 * @param serviceProperties the service properties to look into
-	 * @param add set to <code>true</code>, to store the information
 	 */
-	protected void updateProperties(String key, Map<String, Object> serviceProperties, boolean add) {
+	protected void updateProperties(String key, Map<String, Object> serviceProperties, Long serviceId) {
 		requireNonNull(key);
 		requireNonNull(serviceProperties);
+		requireNonNull(serviceId);
 		
 		Set<String> nameSet = getStringPlusValue(serviceProperties, key);
-		Long serviceId = (Long) serviceProperties.get(Constants.SERVICE_ID);
 		if (nonNull(nameSet)) {
-			if (!add) {
-				nameSet = Collections.emptySet();
-			} else {
-				nameSet = new HashSet<String>(nameSet);
-			}
-			switch (key) {
-			case EMFNamespaces.EMF_CONFIGURATOR_NAME:
-				ServicePropertiesHelper.updateNameMap(configuratorNameMap, nameSet, serviceId);
-				break;
-			case EMFNamespaces.EMF_RESOURCE_FACTORY_CONFIGURATOR_NAME:
-				ServicePropertiesHelper.updateNameMap(resourceFactoryNameMap, nameSet, serviceId);
-				break;
-			case EMFNamespaces.EMF_MODEL_NAME:
-				ServicePropertiesHelper.updateNameMap(modelNameMap, nameSet, serviceId);
-				break;
-			case EMFNamespaces.EMF_MODEL_FEATURE:
-				ServicePropertiesHelper.updateNameMap(featureMap, nameSet, serviceId);
-				break;
-			case EMFNamespaces.EMF_MODEL_VERSION:
-				ServicePropertiesHelper.updateNameMap(versionMap, nameSet, serviceId);
-				break;
-			case EMFNamespaces.EMF_MODEL_CONTENT_TYPE:
-				ServicePropertiesHelper.updateNameMap(contentTypeMap, nameSet, serviceId);
-				break;
-			case EMFNamespaces.EMF_MODEL_FILE_EXT:
-				ServicePropertiesHelper.updateNameMap(fileExtensionMap, nameSet, serviceId);
-				break;
-			case EMFNamespaces.EMF_MODEL_PROTOCOL:
-				ServicePropertiesHelper.updateNameMap(protocolMap, nameSet, serviceId);
-				break;
-			default:
-				break;
+			nameSet = new HashSet<String>(nameSet);
+			Map<Long, Set<String>> keyValueMap = keyMapPairs.get(key);
+			if (nonNull(keyValueMap)) {
+				ServicePropertiesHelper.updateNameMap(keyValueMap, nameSet, serviceId);
 			}
 		}
 	}
@@ -236,6 +192,40 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 			subContext = subContextMap.remove(serviceId);
 		}
 		return isNull(subContext) ? null : subContext;
+	}
+
+	/**
+	 * Validates, if the provided service properties contains a service.id entry with a Long value.
+	 * It returns this value otherwise a {@link IllegalStateException} is thrown 
+	 * @param serviceProperties the properties to check
+	 * @return the service id value
+	 */
+	protected Long validateServiceId(Map<String, Object> serviceProperties) {
+		Optional<Long> serviceIdOpt = ServicePropertiesHelper.getServiceId(serviceProperties);
+		if (!serviceIdOpt.isPresent()) {
+			throw new IllegalStateException("Service Properties must contains an entry for the service.id");
+		}
+		return serviceIdOpt.get();
+	}
+
+	/**
+	 * We assign each property key to its own map instance
+	 */
+	private void init() {
+		VALID_KEYS.forEach(KEY->keyMapPairs.put(KEY, new ConcurrentHashMap<>()));
+	}
+
+	/**
+	 * Merges the source context into the target context
+	 * @param source the source context
+	 * @param target the target context
+	 */
+	private void doMerge(ServicePropertyContextImpl source, ServicePropertyContextImpl target) {
+		requireNonNull(source);
+		requireNonNull(target);
+		source.keyMapPairs.forEach((KEY, MAP)->{
+			ServicePropertiesHelper.mergeNameMap(MAP, target.keyMapPairs.get(KEY));
+		});
 	}
 	
 }

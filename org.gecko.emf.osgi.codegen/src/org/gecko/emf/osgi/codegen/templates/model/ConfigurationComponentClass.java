@@ -5,7 +5,6 @@ import org.eclipse.emf.ecore.EFactory;
 import org.gecko.emf.osgi.EPackageConfigurator;
 import java.util.Hashtable;
 import org.osgi.service.condition.Condition;
-import org.gecko.emf.osgi.ResourceSetFactory;
 
 public class ConfigurationComponentClass
 {

@@ -1,4 +1,4 @@
-<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.ecore.EFactory org.gecko.emf.osgi.EPackageConfigurator java.util.Hashtable org.osgi.service.condition.Condition org.gecko.emf.osgi.ResourceSetFactory" class="ConfigurationComponentClass"%>
+<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.ecore.EFactory org.gecko.emf.osgi.EPackageConfigurator java.util.Hashtable org.osgi.service.condition.Condition" class="ConfigurationComponentClass"%>
 <%final GenPackage genPackage = (GenPackage)((Object[])argument)[0]; final GenModel genModel=genPackage.getGenModel();%>
 <%@ include file="Header.javajetinc"%>
 package <%=genPackage.getInterfacePackageName()%>.configuration;

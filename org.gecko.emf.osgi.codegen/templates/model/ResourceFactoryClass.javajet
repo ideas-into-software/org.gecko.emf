@@ -1,4 +1,4 @@
-<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="java.util.* org.eclipse.emf.codegen.ecore.genmodel.* org.gecko.emf.osgi.codegen.templates.model.helper.GeneratorHelper" class="ResourceFactoryClass"%>
+<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.* org.gecko.emf.osgi.codegen.templates.model.helper.GeneratorHelper" class="ResourceFactoryClass"%>
 <%
 /**
  * Copyright (c) 2002-2006 IBM Corporation and others.

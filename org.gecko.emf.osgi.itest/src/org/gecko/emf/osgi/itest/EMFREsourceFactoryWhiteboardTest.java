@@ -57,13 +57,13 @@ import org.osgi.test.junit5.service.ServiceExtension;
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
 @ExtendWith(MockitoExtension.class)
-public class EMFWhiteboardTest {
+public class EMFREsourceFactoryWhiteboardTest {
 
 	@InjectBundleContext
 	BundleContext bc;
 	
 	@Mock
-	Factory factoryMock;
+	Factory factoryOneMock;
 	@Mock
 	Factory factoryTwoMock;
 
@@ -146,21 +146,24 @@ public class EMFWhiteboardTest {
 	 * @throws InterruptedException 
 	 */
 	@Test
-	public void testRegisterResourceFactoryInRegistry(@InjectService ServiceAware<ResourceSetFactory> sa, 
+	public void testRegisterResourceFactoryInRegistry(@InjectService ServiceAware<ResourceSetFactory> rsfAware, 
 			@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar"}, cardinality = 0) ServiceAware<Factory> factoryAware)
 					throws IOException, InterruptedException {
 		
 		assertNull(factoryAware.getService());
+		ServiceReference<ResourceSetFactory> rsfReference = rsfAware.getServiceReference();
+		assertNotNull(rsfReference);
+		
 		Dictionary<String, Object> properties = Dictionaries.dictionaryOf(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, new String[]{"foo/bar"}, EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar");
-		ServiceRegistration<Factory> registration = bc.registerService(Factory.class, factoryMock, properties);
+		ServiceRegistration<Factory> factoryRegistration = bc.registerService(Factory.class, factoryOneMock, properties);
 		
 		Factory factory = factoryAware.waitForService(1000l);
 		assertNotNull(factory);
-		ServiceReference<Factory> reference = factoryAware.getServiceReference();
-		assertNotNull(reference);
+		ServiceReference<Factory> factoryReference = factoryAware.getServiceReference();
+		assertNotNull(factoryReference);
 		
-		Object contentType = reference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
-		Object configuratorName = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
+		Object contentType = factoryReference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
+		Object configuratorName = factoryReference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
 		assertNotNull(configuratorName);
 		assertInstanceOf(String.class, configuratorName);
 		assertEquals("foo-bar", configuratorName);
@@ -169,7 +172,7 @@ public class EMFWhiteboardTest {
 		List<String> contentTypeNameList = Arrays.asList((String[]) contentType);
 		assertTrue(contentTypeNameList.contains("foo/bar"));
 		
-		ServiceReference<ResourceSetFactory> rsfReference = sa.getServiceReference();
+		rsfReference = rsfAware.getServiceReference();
 		assertNotNull(rsfReference);
 		
 		ResourceSetFactory rsf = bc.getService(rsfReference);
@@ -179,9 +182,9 @@ public class EMFWhiteboardTest {
 		
 		Object fooBarFactory = rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().get("foo/bar");
 		assertNotNull(fooBarFactory);
-		assertEquals(factoryMock, fooBarFactory);
+		assertEquals(factoryOneMock, fooBarFactory);
 		
-		registration.unregister();
+		factoryRegistration.unregister();
 		
 		factory = factoryAware.waitForService(1000l);
 		assertNull(factory);
@@ -191,46 +194,46 @@ public class EMFWhiteboardTest {
 	}
 	
 	/**
-	 * Trying to register a mock registry and lookup in the resulting {@link ResourceSet}
+	 * Trying to register a mock registry and lookup in the resulting {@link ResourceSet} properties, if the resource factory properties are delegated to the resource set factory
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException 
 	 */
 	@Test
-	public void testRegisterResourceFactoryInRegistry2(@InjectService ServiceAware<ResourceSetFactory> rsfAware, 
+	public void testRegisterResourceFactoryInResourceSetFactory(@InjectService ServiceAware<ResourceSetFactory> rsfAware, 
 			@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar"}, cardinality = 0) ServiceAware<Factory> factoryAware)
 					throws IOException, InterruptedException {
 		
 		assertFalse(rsfAware.isEmpty());
 		assertTrue(factoryAware.isEmpty());
 		
-		ServiceReference<ResourceSetFactory> reference = rsfAware.getServiceReference();
-		assertNotNull(reference);
+		ServiceReference<ResourceSetFactory> rsfReference = rsfAware.getServiceReference();
+		assertNotNull(rsfReference);
 		
-		Object configuratorName = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
+		Object configuratorName = rsfReference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
 		assertNotNull(configuratorName);
 		assertInstanceOf(String[].class, configuratorName);
 		List<String> configuratorNameList = Arrays.asList((String[]) configuratorName);
 		assertFalse(configuratorNameList.contains("foo-bar"));
 		
-		Object contentType = reference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
+		Object contentType = rsfReference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
 		assertNotNull(contentType);
 		assertInstanceOf(String[].class, contentType);
 		List<String> contentTypeNameList = Arrays.asList((String[]) contentType);
 		assertFalse(contentTypeNameList.contains("foo/bar"));
 		
 		Dictionary<String, Object> properties = Dictionaries.dictionaryOf(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, new String[]{"foo/bar"}, EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar");
-		ServiceRegistration<Factory> registration = bc.registerService(Factory.class, factoryMock, properties);
+		ServiceRegistration<Factory> registration = bc.registerService(Factory.class, factoryOneMock, properties);
 		
 		assertNotNull(factoryAware.waitForService(1000l));
 		
-		configuratorName = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
+		configuratorName = rsfReference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
 		assertNotNull(configuratorName);
 		assertInstanceOf(String[].class, configuratorName);
 		configuratorNameList = Arrays.asList((String[]) configuratorName);
 		assertTrue(configuratorNameList.contains("foo-bar"));
 		
-		contentType = reference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
+		contentType = rsfReference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
 		assertNotNull(contentType);
 		assertInstanceOf(String[].class, contentType);
 		contentTypeNameList = Arrays.asList((String[]) contentType);
@@ -243,33 +246,20 @@ public class EMFWhiteboardTest {
 		
 		Object fooBarFactory = rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().get("foo/bar");
 		assertNotNull(fooBarFactory);
-		assertEquals(factoryMock, fooBarFactory);
-		
-		
-		configuratorName = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
-		assertNotNull(configuratorName);
-		assertInstanceOf(String[].class, configuratorName);
-		configuratorNameList = Arrays.asList((String[]) configuratorName);
-		assertTrue(configuratorNameList.contains("foo-bar"));
-		
-		contentType = reference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
-		assertNotNull(contentType);
-		assertInstanceOf(String[].class, contentType);
-		contentTypeNameList = Arrays.asList((String[]) contentType);
-		assertTrue(contentTypeNameList.contains("foo/bar"));
+		assertEquals(factoryOneMock, fooBarFactory);
 		
 		registration.unregister();
 		
 		fooBarFactory = rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().get("foo/bar");
 		assertNull(fooBarFactory);
 		
-		configuratorName = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
+		configuratorName = rsfReference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
 		assertNotNull(configuratorName);
 		assertInstanceOf(String[].class, configuratorName);
 		configuratorNameList = Arrays.asList((String[]) configuratorName);
 		assertFalse(configuratorNameList.contains("foo-bar"));
 		
-		contentType = reference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
+		contentType = rsfReference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
 		assertNotNull(contentType);
 		assertInstanceOf(String[].class, contentType);
 		contentTypeNameList = Arrays.asList((String[]) contentType);
@@ -279,41 +269,37 @@ public class EMFWhiteboardTest {
 	}
 	
 	/**
-	 * Trying to register a mock registry and lookup in the resulting {@link ResourceSet}
+	 * Trying to register a mock registry and lookup in the resulting {@link ResourceSet} for two resource factories of same content type.
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException 
 	 */
 	@Test
 	public void testRegisterSecondResourceFactoryInRegistry(@InjectService ServiceAware<ResourceSetFactory> rsfAware, 
-			@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar"}, cardinality = 0) ServiceAware<Factory> factoryAware,
+			@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar"}, cardinality = 0) ServiceAware<Factory> factoryOneAware,
 			@InjectService(filter = "(%s=%s)", filterArguments = {EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar2"}, cardinality = 0) ServiceAware<Factory> factoryTwoAware)
 					throws IOException, InterruptedException {
 		
 		assertFalse(rsfAware.isEmpty());
-		assertTrue(factoryAware.isEmpty());
+		assertTrue(factoryOneAware.isEmpty());
 		assertTrue(factoryTwoAware.isEmpty());
 		
 		Dictionary<String, Object> properties = Dictionaries.dictionaryOf(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, new String[]{"foo/bar"}, EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar");
-		ServiceRegistration<Factory> registrationOne = bc.registerService(Factory.class, factoryMock, properties);
+		ServiceRegistration<Factory> registrationOne = bc.registerService(Factory.class, factoryOneMock, properties);
 		
-		assertNotNull(factoryAware.waitForService(1000l));
+		assertNotNull(factoryOneAware.waitForService(1000l));
 		
-		ServiceReference<ResourceSetFactory> reference = rsfAware.getServiceReference();
-		assertNotNull(reference);
+		ServiceReference<ResourceSetFactory> rsfReference = rsfAware.getServiceReference();
+		assertNotNull(rsfReference);
 		
-		Object configuratorName = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
-//		assertNotNull(configuratorName);
-//		assertInstanceOf(String[].class, configuratorName);
+		Object configuratorName = rsfReference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
 		List<String> configuratorNameList = Arrays.asList((String[]) configuratorName);
-//		assertTrue(configuratorNameList.contains("foo-bar"));
-//		assertFalse(configuratorNameList.contains("foo-bar2"));
+		assertTrue(configuratorNameList.contains("foo-bar"));
+		assertFalse(configuratorNameList.contains("foo-bar2"));
 //		
-		Object contentType = reference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
-//		assertNotNull(contentType);
-//		assertInstanceOf(String[].class, contentType);
+		Object contentType = rsfReference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
 		List<String> contentTypeNameList = Arrays.asList((String[]) contentType);
-//		assertTrue(contentTypeNameList.contains("foo/bar"));
+		assertTrue(contentTypeNameList.contains("foo/bar"));
 		
 		ResourceSetFactory rsf = rsfAware.getService();
 		assertNotNull(rsf);
@@ -322,7 +308,7 @@ public class EMFWhiteboardTest {
 		
 		Object fooBarFactory = rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().get("foo/bar");
 		assertNotNull(fooBarFactory);
-		assertEquals(factoryMock, fooBarFactory);
+		assertEquals(factoryOneMock, fooBarFactory);
 		
 		properties = Dictionaries.dictionaryOf(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, new String[]{"foo/bar"}, EMFNamespaces.EMF_CONFIGURATOR_NAME, "foo-bar2");
 		ServiceRegistration<Factory> registrationTwo = bc.registerService(Factory.class, factoryTwoMock, properties);
@@ -333,14 +319,14 @@ public class EMFWhiteboardTest {
 		assertNotNull(fooBarFactory);
 		assertEquals(factoryTwoMock, fooBarFactory);
 		
-		configuratorName = reference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
+		configuratorName = rsfReference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
 		assertNotNull(configuratorName);
 		assertInstanceOf(String[].class, configuratorName);
 		configuratorNameList = Arrays.asList((String[]) configuratorName);
 		assertTrue(configuratorNameList.contains("foo-bar"));
 		assertTrue(configuratorNameList.contains("foo-bar2"));
 		
-		contentType = reference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
+		contentType = rsfReference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
 		assertNotNull(contentType);
 		assertInstanceOf(String[].class, contentType);
 		contentTypeNameList = Arrays.asList((String[]) contentType);
@@ -348,9 +334,39 @@ public class EMFWhiteboardTest {
 		
 		registrationOne.unregister();
 		
+		configuratorName = rsfReference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
+		assertNotNull(configuratorName);
+		assertInstanceOf(String[].class, configuratorName);
+		configuratorNameList = Arrays.asList((String[]) configuratorName);
+		assertFalse(configuratorNameList.contains("foo-bar"));
+		assertTrue(configuratorNameList.contains("foo-bar2"));
+		
+		contentType = rsfReference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
+		assertNotNull(contentType);
+		assertInstanceOf(String[].class, contentType);
+		contentTypeNameList = Arrays.asList((String[]) contentType);
+		assertTrue(contentTypeNameList.contains("foo/bar"));
+		
 		fooBarFactory = rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().get("foo/bar");
 		assertNotNull(fooBarFactory);
 		assertEquals(factoryTwoMock, fooBarFactory);
+		
+		registrationTwo.unregister();
+		fooBarFactory = rs.getResourceFactoryRegistry().getContentTypeToFactoryMap().get("foo/bar");
+		assertNull(fooBarFactory);
+		
+		configuratorName = rsfReference.getProperty(EMFNamespaces.EMF_CONFIGURATOR_NAME);
+		assertNotNull(configuratorName);
+		assertInstanceOf(String[].class, configuratorName);
+		configuratorNameList = Arrays.asList((String[]) configuratorName);
+		assertFalse(configuratorNameList.contains("foo-bar"));
+		assertFalse(configuratorNameList.contains("foo-bar2"));
+		
+		contentType = rsfReference.getProperty(EMFNamespaces.EMF_MODEL_CONTENT_TYPE);
+		assertNotNull(contentType);
+		assertInstanceOf(String[].class, contentType);
+		contentTypeNameList = Arrays.asList((String[]) contentType);
+		assertFalse(contentTypeNameList.contains("foo/bar"));
 		
 		
 	}

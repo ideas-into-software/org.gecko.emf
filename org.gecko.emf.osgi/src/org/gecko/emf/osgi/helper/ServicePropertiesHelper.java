@@ -38,14 +38,29 @@ import org.osgi.framework.Constants;
  * @since 22 Feb 2022
  */
 public class ServicePropertiesHelper {
-
+	
 	/**
-	 * Updates the name set for a given service id
+	 * Merges the source map into the target map and appends the values
+	 * @param source the source map, must not be <code>null</code>
+	 * @param target the map to merge into, must not be <code>null</code>
+	 */
+	public static void mergeNameMap(Map<Long, Set<String>> source, Map<Long, Set<String>> target) {
+		requireNonNull(source);
+		requireNonNull(target);
+		
+		source.forEach((KEY, VALUES)->{
+			appendNameMap(target, VALUES, KEY, true);
+		});
+	}
+	
+	/**
+	 * Updates the name set for a given service id and appends the new names
 	 * @param nameMap the map to update
 	 * @param newNames the new properties
 	 * @param serviceId the service id the name set belongs to
+	 * @param append set to <code>true</code> to append the values instead of replacing them
 	 */
-	public static void updateNameMap(Map<Long, Set<String>> nameMap, Set<String> newNames, Long serviceId) {
+	public static void appendNameMap(Map<Long, Set<String>> nameMap, Set<String> newNames, Long serviceId, boolean append) {
 		requireNonNull(nameMap);
 		requireNonNull(newNames);
 		requireNonNull(serviceId);
@@ -55,8 +70,20 @@ public class ServicePropertiesHelper {
 			nameSet = new HashSet<String>();
 			nameMap.put(serviceId, nameSet);
 		}
-		nameSet.clear();
+		if (!append) {
+			nameSet.clear();
+		}
 		nameSet.addAll(newNames);
+	}
+
+	/**
+	 * Updates the name set for a given service id
+	 * @param nameMap the map to update
+	 * @param newNames the new properties
+	 * @param serviceId the service id the name set belongs to
+	 */
+	public static void updateNameMap(Map<Long, Set<String>> nameMap, Set<String> newNames, Long serviceId) {
+		appendNameMap(nameMap, newNames, serviceId, false);
 	}
 
 	/**
@@ -130,7 +157,9 @@ public class ServicePropertiesHelper {
 	 * @return an {@link Optional} of the service id
 	 */
 	public static Optional<Long> getServiceId(Map<String, Object> properties) {
-		requireNonNull(properties);
+		if (isNull(properties)) {
+			return Optional.empty();
+		}
 		Long serviceId = (Long) properties.get(Constants.SERVICE_ID);
 		return Optional.ofNullable(serviceId);
 	}

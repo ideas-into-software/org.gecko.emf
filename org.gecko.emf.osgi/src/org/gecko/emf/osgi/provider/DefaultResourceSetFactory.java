@@ -42,7 +42,6 @@ import org.gecko.emf.osgi.EPackageConfigurator;
 import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
-import org.gecko.emf.osgi.components.ServicePropertyContextImpl;
 import org.gecko.emf.osgi.factory.ResourceSetPrototypeFactory;
 import org.gecko.emf.osgi.helper.ServicePropertyContext;
 import org.osgi.framework.Constants;
@@ -68,10 +67,8 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	private final Set<ResourceSetConfigurator> resourceSetConfigurators = new CopyOnWriteArraySet<>();
 	private final Set<EPackageConfigurator> ePackageConfigurators = new CopyOnWriteArraySet<>();
 	private final Set<ResourceFactoryConfigurator> resourceFactoryConfigurators = new CopyOnWriteArraySet<>();
-	private final ServicePropertyContext propertyContext = new ServicePropertyContextImpl();
+	private final ServicePropertyContext propertyContext = ServicePropertyContext.create();
 	private final AtomicReference<Resource.Factory.Registry> resourceFactoryRegistry = new AtomicReference<Resource.Factory.Registry>();
-//	private final Map<Long, Set<String>> configuratorNameMap = new ConcurrentHashMap<>();
-//	private final Map<Long, Set<String>> modelNameMap = new ConcurrentHashMap<>();
 	protected EPackage.Registry packageRegistry;
 	protected ServiceRegistration<ResourceSetFactory> rsfRegistration = null;
 	protected ServiceRegistration<ResourceSet> rsRegistration = null;
@@ -127,7 +124,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 			}
 			return registry;
 		});
-//		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, properties, true);
+		updateRegistrationProperties();
 	}
 
 	/**
@@ -143,6 +140,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 			}
 			return rfr;
 		});
+		updateRegistrationProperties();
 	}
 	
 	/**
@@ -160,6 +158,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 			disposeResourceFactoryRegistry(rfr);
 			return null;
 		});
+		updateRegistrationProperties();
 	}
 
 	/**
@@ -168,12 +167,14 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @param properties the service properties
 	 */
 	protected void addEPackageConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
-		ePackageConfigurators.add(configurator);
+		synchronized (ePackageConfigurators) {
+			ePackageConfigurators.add(configurator);
+		}
 		if (packageRegistry != null) {
 			configurator.configureEPackage(packageRegistry);
 		}
-		getPropertyContext().updateServiceProperties(properties, true);
-//		updateProperties(EMFNamespaces.EMF_MODEL_NAME, properties, true);
+		getPropertyContext().addSubContext(properties);
+		updateRegistrationProperties();
 	}
 
 	/**
@@ -183,9 +184,11 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @param properties the service properties
 	 */
 	protected void removeEPackageConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
-		ePackageConfigurators.remove(configurator);
-		getPropertyContext().updateServiceProperties(properties, false);
-//		updateProperties(EMFNamespaces.EMF_MODEL_NAME, properties, false);
+		getPropertyContext().removeSubContext(properties);
+		updateRegistrationProperties();
+		synchronized (ePackageConfigurators) {
+			ePackageConfigurators.remove(configurator);
+		}
 		Object nsUris = properties.get(EMFNamespaces.EMF_MODEL_NSURI);
 		if (packageRegistry != null) {
 			configurator.unconfigureEPackage(packageRegistry);
@@ -205,13 +208,15 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @param properties the service properties
 	 */
 	protected void addResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
-		resourceFactoryConfigurators.add(configurator);
+		synchronized (resourceFactoryConfigurators) {
+			resourceFactoryConfigurators.add(configurator);
+		}
 		Factory.Registry rfr = resourceFactoryRegistry.get();
 		if (rfr != null) {
 			configurator.configureResourceFactory(rfr);
 		}
-		getPropertyContext().updateServiceProperties(properties, true);
-//		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, properties, true);
+		getPropertyContext().addSubContext(properties);
+		updateRegistrationProperties();
 	}
 
 	/**
@@ -220,9 +225,11 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @param properties the service properties
 	 */
 	protected void removeResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
-		resourceFactoryConfigurators.remove(configurator);
-		getPropertyContext().updateServiceProperties(properties, false);
-//		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, properties, false);
+		getPropertyContext().removeSubContext(properties);
+		updateRegistrationProperties();
+		synchronized (resourceFactoryConfigurators) {
+			resourceFactoryConfigurators.remove(configurator);
+		}
 		Factory.Registry rfr = resourceFactoryRegistry.get();
 		if (rfr != null) {
 			configurator.unconfigureResourceFactory(rfr);
@@ -235,9 +242,11 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @param properties the service properties
 	 */
 	protected void addResourceSetConfigurator(ResourceSetConfigurator resourceSetConfigurator, Map<String, Object> properties) {
-		resourceSetConfigurators.add(resourceSetConfigurator);
-		getPropertyContext().updateServiceProperties(properties, true);
-//		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, properties, true);
+		synchronized (resourceSetConfigurator) {
+			resourceSetConfigurators.add(resourceSetConfigurator);
+		}
+		getPropertyContext().addSubContext(properties);
+		updateRegistrationProperties();
 	}
 	
 	/**
@@ -246,9 +255,11 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @param properties the service properties
 	 */
 	protected void removeResourceSetConfigurator(ResourceSetConfigurator resourceSetConfigurator, Map<String, Object> properties) {
-		resourceSetConfigurators.remove(resourceSetConfigurator);
-		getPropertyContext().updateServiceProperties(properties, false);
-//		updateProperties(EMFNamespaces.EMF_CONFIGURATOR_NAME, properties, false);
+		getPropertyContext().removeSubContext(properties);
+		updateRegistrationProperties();
+		synchronized (resourceSetConfigurator) {
+			resourceSetConfigurators.remove(resourceSetConfigurator);
+		}
 	}
 
 	/**
@@ -310,7 +321,6 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 		return new ResourceSetImpl();
 	}
 
-
 	@Override
 	public ResourceSet createResourceSet() {
 		Factory.Registry rfr = resourceFactoryRegistry.get();
@@ -358,40 +368,6 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	}
 	
 	/**
-	 * Updates the properties of the service, depending on changes on injected services
-	 * @param type the type of the property to publish 
-	 * @param serviceProperties the service properties from the injected service
-	 * @param add <code>true</code>, if the service was add, <code>false</code> in case of an remove
-	 */
-//	protected void updateProperties(String type, Map<String, Object> serviceProperties, boolean add) {
-//		Object name = serviceProperties.get(type);
-//		Long serviceId = (Long) serviceProperties.get(Constants.SERVICE_ID);
-//		if (name != null && (name instanceof String || name instanceof String[])) {
-//			Set<String> nameSet;
-//			if (!add) {
-//				nameSet = Collections.emptySet();
-//			} else {
-//				if (name instanceof String) {
-//					nameSet = Collections.singleton(name.toString());
-//				} else {
-//					nameSet = new HashSet<String>(Arrays.asList((String[])name));
-//				}
-//			}
-//			switch (type) {
-//			case EMFNamespaces.EMF_CONFIGURATOR_NAME:
-//				ServicePropertiesHelper.updateNameMap(configuratorNameMap, nameSet, serviceId);
-//				break;
-//			case EMFNamespaces.EMF_MODEL_NAME:
-//				ServicePropertiesHelper.updateNameMap(modelNameMap, nameSet, serviceId);
-//				break;
-//			default:
-//				break;
-//			}
-//			updateRegistrationProperties();
-//		}
-//	}
-	
-	/**
 	 * Updates the service registration properties
 	 */
 	protected void updateRegistrationProperties() {
@@ -409,7 +385,6 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 		}
 	}
 
-	
 	/**
 	 * @param dictionary the dictionary to copy
 	 * @return a copy of the original Dictionary
@@ -440,9 +415,6 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 */
 	protected Dictionary<String, Object> getDictionary() {
 		Dictionary<String, Object> properties = propertyContext.getDictionary(true);
-//		Dictionary<String, Object> properties = new Hashtable<>();
-//		String[] configNames = ServicePropertiesHelper.getNamesArray(configuratorNameMap);
-//		String[] modelNames = ServicePropertiesHelper.getNamesArray(modelNameMap);
 		properties.put(ComponentConstants.COMPONENT_NAME, "DefaultResourcesetFactory");
 		properties.put(Constants.SERVICE_CHANGECOUNT, serviceChangeCount++);
 		return properties;
