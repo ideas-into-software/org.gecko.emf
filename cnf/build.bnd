@@ -34,3 +34,5 @@ github-project: org.gecko.emf
 		overwrite           =true;\
 		pretty              =true;\
 		name            	=local
+
+-jpms-module-info:
