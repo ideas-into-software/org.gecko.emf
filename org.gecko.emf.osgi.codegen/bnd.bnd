@@ -1,29 +1,30 @@
 src=${^src},src-gen
 
 -buildpath: \
-	org.osgi.annotation.bundle,\
-	org.osgi.annotation.versioning,\
-	org.gecko.emf.osgi;version=project,\
+	org.osgi.annotation.bundle;version=latest,\
+	org.osgi.annotation.versioning;version=latest,\
+	org.osgi.util.promise;version=latest,\
+	org.osgi.service.prefs;version=latest,\
 	org.eclipse.emf.ecore.xmi;version=latest,\
 	org.eclipse.emf.ecore;version=latest,\
 	org.eclipse.emf.common;version=latest,\
 	org.eclipse.emf.codegen.ecore;version=latest,\
 	org.eclipse.emf.codegen;version=latest,\
-	org.eclipse.core.expressions,\
-	org.eclipse.core.filesystem,\
-	org.eclipse.core.resources,\
-	org.eclipse.core.runtime,\
-	org.eclipse.core.jobs,\
-	org.eclipse.osgi,\
+	org.eclipse.core.expressions;version=latest,\
+	org.eclipse.core.filesystem;version=latest,\
+	org.eclipse.core.resources;version=latest,\
+	org.eclipse.core.runtime;version=latest,\
+	org.eclipse.core.jobs;version=latest,\
+	org.eclipse.core.contenttype;version=latest,\
+	org.eclipse.osgi;version=latest,\
 	org.eclipse.jdt.core;version=latest,\
 	org.eclipse.equinox.common;version=latest,\
-	org.eclipse.equinox.preferences,\
-	org.eclipse.equinox.registry,\
-	org.eclipse.text,\
-	biz.aQute.bndlib,\
-	aQute.libg,\
-	org.eclipse.core.contenttype,\
-	org.osgi.util.promise
+	org.eclipse.equinox.preferences;version=latest,\
+	org.eclipse.equinox.registry;version=latest,\
+	org.eclipse.text;version=latest,\
+	biz.aQute.bndlib;version=latest,\
+	aQute.libg;version=latest,\
+	org.gecko.emf.osgi;version=project
 
 -includeresource.resource: \
 	/=resources,\

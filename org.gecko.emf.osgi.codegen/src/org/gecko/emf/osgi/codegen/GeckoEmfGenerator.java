@@ -100,14 +100,12 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 	}
 
 	public static void error(String message, Throwable t) {
-		try(ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				PrintWriter print = new PrintWriter(baos)){
-			print.println("Something went wrong: " + t.getMessage()); //$NON-NLS-1$
-			t.printStackTrace(print);
-			String error = new String(baos.toByteArray());
-			error(message + " - " + error); //$NON-NLS-1$
-		} catch (IOException e) {
-			error("Error printing results " + e.getMessage()); //$NON-NLS-1$
+		error(message);
+		if (logWriter != null) {
+			t.printStackTrace(logWriter);
+			logWriter.flush();
+		} else {
+			t.printStackTrace(System.err);
 		}
 	}
 
@@ -354,7 +352,8 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 			} 
 		} catch (Throwable t) {
 			String message = "An error appeared while generating: " + t.getMessage();
-			info(message);
+			error(message, t);
+//			info(message);
 			return Optional.of(message);
 		}
 		return Optional.empty();

@@ -6,14 +6,12 @@ src=${^src},src-gen
 	org.eclipse.emf.common;version=latest,\
 	org.eclipse.emf.ecore;version=latest,\
 	org.eclipse.emf.ecore.xmi;version=latest,\
-	org.osgi.service.component.annotations;version='1.4',\
-	org.osgi.framework;version='1.9',\
-	org.osgi.annotation.versioning,\
-	org.osgi.annotation.bundle,\
-	org.osgi.service.condition
+	org.osgi.framework;version=latest,\
+	org.osgi.service.condition;version=latest,\
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.annotation.versioning;version=latest,\
+	org.osgi.annotation.bundle;version=latest
 	
-
-
 -includeresource.model: model=model
 	
 -dependson: \
@@ -22,8 +20,10 @@ src=${^src},src-gen
 
 -generate:\
 	model/extendend.genmodel;\
-		generate="geckoEMF 1>out.log 2>err.log";\
+		generate="geckoEMF";\
 		genmodel=model/extendend.genmodel;\
 		output=src-gen;\
-		version=${base-version}
+		version=${base-version};\
+		clean=false;\
+		logfile=out.log
 
