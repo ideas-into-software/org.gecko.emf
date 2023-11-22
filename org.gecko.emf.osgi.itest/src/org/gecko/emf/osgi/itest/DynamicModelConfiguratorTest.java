@@ -94,7 +94,7 @@ public class DynamicModelConfiguratorTest {
 		assertNotNull(property);
 		Dictionary<String, Object> properties = new Hashtable<>();
 		properties.put(EMFNamespaces.EMF_MODEL_DYNAMIC_URI,
-				property + "/../org.gecko.emf.osgi.example.model.manual/model/manual.ecore");
+				"file:///" + property + "/../org.gecko.emf.osgi.example.model.manual/model/manual.ecore");
 
 		AtomicReference<Configuration> refConfig = new AtomicReference<>();
 
@@ -175,7 +175,7 @@ public class DynamicModelConfiguratorTest {
 		assertNotNull(property);
 		Dictionary<String, Object> properties = new Hashtable<>();
 		properties.put(EMFNamespaces.EMF_MODEL_DYNAMIC_URI,
-				property + "/../org.gecko.emf.osgi.example.model.manual/model/manual.ecore");
+				"file:///" + property + "/../org.gecko.emf.osgi.example.model.manual/model/manual.ecore");
 
 		AtomicReference<Configuration> refConfig = new AtomicReference<>();
 		MonitoringAssertion.executeAndObserve(() -> {
