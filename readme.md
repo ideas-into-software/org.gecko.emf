@@ -48,6 +48,7 @@ Supported properties are defined in the *EMFNamespaces* constant:
 * **emf.model.feature** - property for special feature of a model
 * **emf.configurator.name** - name of the configurator, when creating an own one
 * **emf.configurator.resourceFactory** - special identifier for own resource factories
+* **emf.model.dynamicEcoreUri** - Uri to the *ecore* when using the dynamic pacakge registration
 
 Usually the right properties are autoamtically set during registration via code generator or extender or the configuration based model registration.
 
@@ -62,6 +63,16 @@ Example:
 * *ResourceSet* would get merged property **emf.configurator.name=[foo, bar]**
 
 The service lifecycle dynamics are handled by Gecko EMF!
+
+### The emf.model.feature Prefix Property for emf.model.feature.* 
+
+As described above, the *emf.model.feature* property can indicate any feature-string. You can filter against this in the *ResourceSet* or *ResourceSetFactory*.
+
+In addition to that sometimes you may want to forward a certain, self defined property to the whole Gecko EMF. You can use the prefix *emf.model.feature.* for your property:
+
+Puttinf *emf.model.feature.foo=bar* as service property of a configurator, will end up as *foo=bar* in the *ResourceSet* or *ResourceSetFactory* service properties.
+
+This functionality works for all configurators and also for the dynamic model registration.
 
 ### Model Registration
 
@@ -103,9 +114,36 @@ Follow the instructions here: [Extender Documentation](org.gecko.emf.osgi.extend
 
 ## Dynamic Package Registration
 
-To dynamically register a EMF model package via configuration you can use a configuration PID ****
+To dynamically register a EMF model package via configuration you can use a configuration PID **DynamicModelConfigurator** with a custom identifier. A sample configuration can look like this:
 
+```json
+{
+	":configurator:resource-version": 1,
+	":configurator:symbolicname": "org.gecko.emf.osgi.demo",
+	":configurator:version": "0.0.0",
+	"DynamicPackageLoader~demo": {
+		"emf.model.dynamicEcoreUri": "https://mymodelpage.org/demo/demo.ecore",
+		"emf.model.feature": ["foo", "bar"],
+		"emf.model.feature.my": "own"
+	}
+}
 
+```
+
+This configuration registers a model package loaded from the given *dynamicEcoreUri* property. The package is then registered with the given properties as *EPackage* and *EPackageConfigurator* service. The package nsUri is also provided from the package.
+
+In this case the properties are:
+
+* *emf.model.name* - `EPackage#getName()`
+* *emf.model.nsUri* - `EPackage#getNsUri()`
+* *emf.model.feature* - forwarded from the configuration, if set
+* *emf.model.feature.\** - forwarded as described in the feature property section. From the example above the result of *emf.model.feature.my* would be *my=own*
+
+This setup works with the configurator as well with the config admin. 
+
+If a package location uri via *dynamicEcoreUri* property changes, this will lead into an un-registration of the former model and a try to reload the model from the new location.
+
+If some of the other properties change, the properties will be updated without any re-registration of the *EPackage*.
 
 
 ## Dependencies

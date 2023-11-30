@@ -36,7 +36,7 @@ import org.osgi.framework.Constants;
  * @author Mark Hoffmann
  * @since 06.11.2023
  */
-public class SystemPropertyContextTest {
+public class ServicePropertyContextTest {
 
 	@Test
 	public void testUpdatePropertiesNull() {
@@ -112,6 +112,48 @@ public class SystemPropertyContextTest {
 		assertEquals(2, spc2.getProperties(false).size());
 		verifyExistingKeys(spc2.getProperties(false), EMFNamespaces.EMF_CONFIGURATOR_NAME, "test");
 		verifyExistingKeys(spc2.getProperties(false), EMFNamespaces.EMF_MODEL_NAME, "one", "two");
+	}
+	
+	@Test
+	public void testUpdateFeatureProperties() {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put(Constants.SERVICE_ID, Long.valueOf(42));
+		ServicePropertyContext spc = ServicePropertyContext.create(map);
+		spc.updateServiceProperties(map);
+		
+		assertTrue(spc.getDictionary(false).isEmpty());
+		assertTrue(spc.getProperties(false).isEmpty());
+		
+		map.put(EMFNamespaces.EMF_CONFIGURATOR_NAME, Collections.singleton("test"));
+		spc.updateServiceProperties(map);
+		assertFalse(spc.getDictionary(false).isEmpty());
+		assertFalse(spc.getProperties(false).isEmpty());
+		assertEquals(1, spc.getProperties(false).size());
+		verifyExistingKeys(spc.getProperties(false), EMFNamespaces.EMF_CONFIGURATOR_NAME, "test");
+		
+		map.put(EMFNamespaces.EMF_MODEL_FEATURE + ".foo", "bar");
+		spc = ServicePropertyContext.create(map);
+		assertFalse(spc.getDictionary(false).isEmpty());
+		assertFalse(spc.getProperties(false).isEmpty());
+		assertEquals(2, spc.getProperties(false).size());
+		verifyExistingKeys(spc.getProperties(false), EMFNamespaces.EMF_CONFIGURATOR_NAME, "test");
+		verifyExistingObjectKeys(spc.getProperties(false), EMFNamespaces.EMF_MODEL_FEATURE + ".foo", "bar");
+		
+		Set<String> modelNames = new HashSet<>();
+		modelNames.add("one");
+		modelNames.add("two");
+		map.put(EMFNamespaces.EMF_MODEL_FEATURE + ".foo", modelNames);
+		
+		spc.updateServiceProperties(map);
+		assertEquals(2, spc.getProperties(false).size());
+		verifyExistingKeys(spc.getProperties(false), EMFNamespaces.EMF_CONFIGURATOR_NAME, "test");
+		verifyExistingObjectKeys(spc.getProperties(false), EMFNamespaces.EMF_MODEL_FEATURE + ".foo", "one", "two");
+		map.put(EMFNamespaces.EMF_MODEL_FEATURE + ".foo", new Object[] {42, 13});
+		spc.updateServiceProperties(map);
+		assertEquals(2, spc.getProperties(false).size());
+		verifyExistingKeys(spc.getProperties(false), EMFNamespaces.EMF_CONFIGURATOR_NAME, "test");
+		verifyExistingObjectKeys(spc.getProperties(false), EMFNamespaces.EMF_MODEL_FEATURE + ".foo", 42, 13);
 	}
 	
 	@Test
@@ -294,6 +336,51 @@ public class SystemPropertyContextTest {
 		verifyExistingKeys(mergedResult, EMFNamespaces.EMF_MODEL_NAME, "one", "two");
 	}
 	
+	@Test
+	public void testMergeFeatureProperties() {
+		Map<String, Object> map = new HashMap<>();
+		map.put(Constants.SERVICE_ID, Long.valueOf(42));
+		Set<String> modelNames = new HashSet<>();
+		modelNames.add("one");
+		modelNames.add("two");
+		map.put(EMFNamespaces.EMF_MODEL_FEATURE + ".foo", modelNames);
+		
+		ServicePropertyContext ctx = ServicePropertyContext.create(map);
+		Map<String, Object> mergedResult = ctx.getProperties(true);
+		assertEquals(1, mergedResult.size());
+		verifyExistingObjectKeys(mergedResult, EMFNamespaces.EMF_MODEL_FEATURE + ".foo", "one", "two");
+		
+		Map<String, Object> subMap = new HashMap<>();
+		subMap.put(Constants.SERVICE_ID, Long.valueOf(2));
+		Set<String> subModelNames = new HashSet<>();
+		subModelNames.add("one");
+		subModelNames.add("three");
+		subMap.put(EMFNamespaces.EMF_MODEL_FEATURE + ".foo", subModelNames);
+		subMap.put(EMFNamespaces.EMF_MODEL_FEATURE + ".bar", Collections.singleton("toast"));
+		
+		ServicePropertyContext subCtx = ctx.addSubContext(subMap);
+		assertNotNull(subCtx);
+		assertEquals(2, subCtx.getProperties(false).size());
+		verifyExistingObjectKeys(subCtx.getProperties(false), EMFNamespaces.EMF_MODEL_FEATURE + ".foo", "one", "three");
+		verifyExistingObjectKeys(subCtx.getProperties(false), EMFNamespaces.EMF_MODEL_FEATURE + ".bar", "toast");
+		
+		mergedResult = ctx.getProperties(true);
+		assertEquals(2, mergedResult.size());
+		verifyExistingObjectKeys(mergedResult, EMFNamespaces.EMF_MODEL_FEATURE + ".foo", "one", "two", "three");
+		verifyExistingObjectKeys(mergedResult, EMFNamespaces.EMF_MODEL_FEATURE + ".bar", "toast");
+		
+		subMap = new HashMap<>();
+		subMap.put(Constants.SERVICE_ID, Long.valueOf(2));
+		subCtx = ctx.removeSubContext(subMap);
+		assertEquals(2, subCtx.getProperties(false).size());
+		verifyExistingObjectKeys(subCtx.getProperties(false), EMFNamespaces.EMF_MODEL_FEATURE + ".foo", "one", "three");
+		verifyExistingObjectKeys(subCtx.getProperties(false), EMFNamespaces.EMF_MODEL_FEATURE + ".bar", "toast");
+		
+		mergedResult = ctx.getProperties(true);
+		assertEquals(1, mergedResult.size());
+		verifyExistingObjectKeys(ctx.getProperties(false), EMFNamespaces.EMF_MODEL_FEATURE + ".foo", "one", "two");
+	}
+	
 	private void verifyExistingKeys(Map<String, Object> source, String key, String...expectedValues) {
 		assertNotNull(source);
 		assertNotNull(key);
@@ -305,6 +392,20 @@ public class SystemPropertyContextTest {
 		List<String> stringValues = Arrays.asList((String[]) value);
 		for (String ev : expectedValues) {
 			assertTrue(stringValues.contains(ev));
+		}
+	}
+	
+	private void verifyExistingObjectKeys(Map<String, Object> source, String key, Object...expectedValues) {
+		assertNotNull(source);
+		assertNotNull(key);
+		assertNotNull(expectedValues);
+		
+		Object value = source.get(key);
+		assertNotNull(value);
+		assertInstanceOf(Object[].class, value);
+		List<Object> values = Arrays.asList((Object[]) value);
+		for (Object ev : expectedValues) {
+			assertTrue(values.contains(ev));
 		}
 	}
 	

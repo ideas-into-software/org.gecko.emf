@@ -138,6 +138,14 @@ public class SystemPropertyHelperTest {
 		assertEquals(2, stringValues.size());
 		assertTrue(stringValues.contains("fizz"));
 		assertTrue(stringValues.contains("42"));
+		l.add(Long.valueOf(123));
+		properties.put(key, l.toArray());
+		stringValues = ServicePropertiesHelper.getStringPlusValue(properties, key);
+		assertEquals(3, stringValues.size());
+		assertTrue(stringValues.contains("fizz"));
+		assertTrue(stringValues.contains("42"));
+		assertTrue(stringValues.contains("123"));
+		
 		properties.put(key,new String[]{"fizz", "buzz"});
 		stringValues = ServicePropertiesHelper.getStringPlusValue(properties, key);
 		assertEquals(2, stringValues.size());
@@ -148,6 +156,36 @@ public class SystemPropertyHelperTest {
 		assertEquals(2, stringValues.size());
 		assertTrue(stringValues.contains("42"));
 		assertTrue(stringValues.contains("buzz"));
+		
+	}
+
+	@Test
+	public void testCreateObjectPlus() {
+		Object[] values = ServicePropertiesHelper.createObjectPlusValue(null);
+		assertNull(values);
+		values = ServicePropertiesHelper.createObjectPlusValue(new HashMap<>());
+		assertNotNull(values);
+		assertEquals(1, values.length);
+		assertInstanceOf(Map.class, values[0]);
+		values = ServicePropertiesHelper.createObjectPlusValue("Test");
+		assertNotNull(values);
+		assertEquals(1, values.length);
+		assertEquals("Test", values[0]);
+		values = ServicePropertiesHelper.createObjectPlusValue(42);
+		assertNotNull(values);
+		assertEquals(1, values.length);
+		assertEquals(42, values[0]);
+		List<Object> list = new ArrayList<>();
+		list.add("fizz");
+		list.add(42);
+		values = ServicePropertiesHelper.createObjectPlusValue(list);
+		assertEquals(2, values.length);
+		assertTrue(Arrays.asList(values).contains("fizz"));
+		assertTrue(Arrays.asList(values).contains(42));
+		values = ServicePropertiesHelper.createObjectPlusValue(new Object[]{Integer.valueOf(42), "buzz"});
+		assertEquals(2, values.length);
+		assertTrue(Arrays.asList(values).contains(42));
+		assertTrue(Arrays.asList(values).contains("buzz"));
 		
 	}
 	
@@ -323,6 +361,75 @@ public class SystemPropertyHelperTest {
 		assertEquals(2, targetMap.get(Long.valueOf(13)).size());
 		assertTrue(targetMap.get(Long.valueOf(13)).contains("two"));
 		assertTrue(targetMap.get(Long.valueOf(13)).contains("three"));
+	}
+	
+	@Test
+	public void testNormalizeProperties() {
+		assertNotNull(ServicePropertiesHelper.normalizeProperties(null, null));
+		assertTrue(ServicePropertiesHelper.normalizeProperties(null, null).isEmpty());
+		Map<String, Object> source = new HashMap<>();
+		assertNotNull(ServicePropertiesHelper.normalizeProperties(null, source));
+		assertTrue(ServicePropertiesHelper.normalizeProperties(null, source).isEmpty());
+		source.put("foo", "bar");
+		assertTrue(ServicePropertiesHelper.normalizeProperties(null, source).isEmpty());
+		
+		assertTrue(ServicePropertiesHelper.normalizeProperties("foo", source).isEmpty());
+		source.put("fooBaz", "bar");
+		Map<String, Object> result = ServicePropertiesHelper.normalizeProperties("foo", source);
+		assertEquals(1, result.size());
+		assertEquals("Baz", result.keySet().iterator().next());
+		assertEquals("bar", result.values().iterator().next());
+		
+		source.put("foo.Baz", "bar2");
+		result = ServicePropertiesHelper.normalizeProperties("foo", source);
+		assertEquals(2, result.size());
+		assertEquals("bar", result.get("Baz"));
+		assertEquals("bar2", result.get(".Baz"));
+		
+		source.put("foo.Baz", "fizz");
+		source.put("fooBaristda", new String[]{"wo"});
+		result = ServicePropertiesHelper.normalizeProperties("foo", source);
+		assertEquals(3, result.size());
+		assertEquals("bar", result.get("Baz"));
+		assertEquals("fizz", result.get(".Baz"));
+		assertEquals("wo", result.get("Baristda"));
+		result = ServicePropertiesHelper.normalizeProperties("foo.", source);
+		assertEquals(1, result.size());
+		assertEquals("fizz", result.get("Baz"));
+		
+		source.put("foo.Baz", new Object[]{"fizz", 42});
+		result = ServicePropertiesHelper.normalizeProperties("foo.", source);
+		assertEquals(1, result.size());
+		Object fb = result.get("Baz");
+		assertTrue(fb.getClass().isArray());
+		List<Object> fbList = Arrays.asList((Object[])fb);
+		assertTrue(fbList.contains(42));
+		assertTrue(fbList.contains("fizz"));
+		
+	}
+	
+	@Test
+	public void testFilterProperties() {
+		assertNotNull(ServicePropertiesHelper.filterProperties(null, null));
+		assertTrue(ServicePropertiesHelper.filterProperties(null, null).isEmpty());
+		Map<String, Object> source = new HashMap<>();
+		assertNotNull(ServicePropertiesHelper.filterProperties(null, source));
+		assertTrue(ServicePropertiesHelper.filterProperties(null, source).isEmpty());
+		source.put("foo", "bar");
+		assertTrue(ServicePropertiesHelper.filterProperties(null, source).isEmpty());
+		
+		assertTrue(ServicePropertiesHelper.filterProperties("foo", source).isEmpty());
+		source.put("fooBaz", "bar");
+		Map<String, Object> result = ServicePropertiesHelper.filterProperties("foo", source);
+		assertEquals(1, result.size());
+		assertEquals("bar", result.get("fooBaz"));
+		
+		source.put("foo.Baz", "bar2");
+		result = ServicePropertiesHelper.filterProperties("foo", source);
+		assertEquals(2, result.size());
+		assertEquals("bar", result.get("fooBaz"));
+		assertEquals("bar2", result.get("foo.Baz"));
+		
 	}
 	
 }

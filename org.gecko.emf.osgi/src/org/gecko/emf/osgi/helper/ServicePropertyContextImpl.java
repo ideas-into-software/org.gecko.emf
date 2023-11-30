@@ -15,8 +15,10 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
 import static org.gecko.emf.osgi.helper.ServicePropertiesHelper.appendToDictionary;
+import static org.gecko.emf.osgi.helper.ServicePropertiesHelper.filterProperties;
 import static org.gecko.emf.osgi.helper.ServicePropertiesHelper.getStringPlusValue;
 
+import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -41,6 +43,7 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 	private final Map<Long, ServicePropertyContext> subContextMap = new ConcurrentHashMap<>();
 	// Set of all available properties in EMF OSGi
 	private static Set<String> VALID_KEYS = new HashSet<>();
+	private final Map<String, Object> customFeatureProperties = new ConcurrentHashMap<>();
 	
 	static {
 		VALID_KEYS.add(EMFNamespaces.EMF_CONFIGURATOR_NAME);
@@ -68,6 +71,7 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 	public void updateServiceProperties(Map<String, Object> serviceProperties) {
 		requireNonNull(serviceProperties);
 		Long serviceId = validateServiceId(serviceProperties);
+		updateFeatureProperties(serviceProperties);
 		keyMapPairs.keySet().forEach(KEY->updateProperties(KEY, serviceProperties, serviceId));
 	}
 
@@ -79,6 +83,7 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 	public Dictionary<String, Object> getDictionary(boolean merged) {
 		Dictionary<String, Object> properties = new Hashtable<>();
 		keyMapPairs.forEach((KEY, MAP)->appendToDictionary(KEY, MAP, properties));
+		customFeatureProperties.forEach((KEY, VALUE)->properties.put(KEY, VALUE));
 		if (!merged) {
 			return properties;
 		} else {
@@ -143,6 +148,31 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 			}
 		}
 		return merged;
+	}
+	
+	/**
+	 * Extract all properties that start  with the given feature prefix 
+	 * @param serviceProperties the service properties
+	 */
+	protected void updateFeatureProperties(Map<String, Object> serviceProperties) {
+		requireNonNull(serviceProperties);
+		
+		Map<String, Object> featureProperties = filterProperties(EMFNamespaces.EMF_MODEL_FEATURE + ".", serviceProperties);
+		featureProperties.forEach((KEY, VALUE)->{
+			// append to customFeatureMap
+			customFeatureProperties.computeIfPresent(KEY, (CK, CV) -> {
+				Set<Object> result = new HashSet<>();
+				result.addAll(Arrays.asList((Object[])CV));
+				Object[] newValue = ServicePropertiesHelper.createObjectPlusValue(VALUE);
+				if (nonNull(newValue)) {
+					result.addAll(Arrays.asList(newValue));
+				}
+				return result.toArray();
+			});
+			customFeatureProperties.computeIfAbsent(KEY, CK -> {
+				return ServicePropertiesHelper.createObjectPlusValue(VALUE);
+			});
+		});
 	}
 	
 	/**
@@ -223,6 +253,7 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 	private void doMerge(ServicePropertyContextImpl source, ServicePropertyContextImpl target) {
 		requireNonNull(source);
 		requireNonNull(target);
+		target.updateFeatureProperties(source.customFeatureProperties);
 		source.keyMapPairs.forEach((KEY, MAP)->{
 			ServicePropertiesHelper.mergeNameMap(MAP, target.keyMapPairs.get(KEY));
 		});

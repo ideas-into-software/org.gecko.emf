@@ -236,4 +236,91 @@ public class DynamicModelConfiguratorTest {
 		});
 
 	}
+	
+	/**
+	 * Trying to load an instance with a registered {@link EPackage}. Change the
+	 * dynamic package location and try to update the loader again.
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	public void testCreateDynamicModelModify(
+			@InjectService(cardinality = 1) ServiceAware<ResourceSetFactory> resourceSetFactory)
+					throws IOException, InterruptedException {
+		assertThat(resourceSetFactory.getServices()).hasSize(1);
+		ServiceReference<ResourceSetFactory> reference = resourceSetFactory.getServiceReference();
+		assertThat(reference).isNotNull();
+		
+		DictionaryAssert.assertThat(reference.getProperties()).containsKey(EMFNamespaces.EMF_MODEL_NAME)
+		.extractingByKey(EMFNamespaces.EMF_MODEL_NAME).isNotNull()
+		.isInstanceOfSatisfying(String[].class, arr -> {
+			assertThat(arr).contains("ecore");
+			assertThat(arr).doesNotContain("manual");
+		});
+		
+		String property = System.getProperty("ecoreBase");
+		assertNotNull(property);
+		final Dictionary<String, Object> properties = new Hashtable<>();
+		properties.put(EMFNamespaces.EMF_MODEL_DYNAMIC_URI,
+				"file:///" + property + "/../org.gecko.emf.osgi.example.model.manual/model/manual.ecore");
+		
+		AtomicReference<Configuration> refConfig = new AtomicReference<>();
+		MonitoringAssertion.executeAndObserve(() -> {
+			
+			Configuration c = ca.getFactoryConfiguration(EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME, "test", "?");
+			c.update(properties);
+			refConfig.set(c);
+			
+		}).untilNoMoreServiceEventModifiedWithin(1000, ResourceSetFactory.class).assertWithTimeoutThat(10000)
+		.isNotTimedOut().hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
+		
+		reference = resourceSetFactory.getServiceReference();
+		assertThat(reference).isNotNull();
+		
+		DictionaryAssert.assertThat(reference.getProperties()).containsKey(EMFNamespaces.EMF_MODEL_NAME)
+		.extractingByKey(EMFNamespaces.EMF_MODEL_NAME).isNotNull()
+		.isInstanceOfSatisfying(String[].class, arr -> {
+			assertThat(arr).contains("ecore", "manual");
+		});
+		
+		final Dictionary<String, Object> properties2 = new Hashtable<>();
+		properties2.put(EMFNamespaces.EMF_MODEL_DYNAMIC_URI,
+				"file:///" + property + "/../org.gecko.emf.osgi.example.model.manual/model/manual-copy.ecore");
+		
+		MonitoringAssertion.executeAndObserve(() -> {
+			
+			Configuration c = ca.getFactoryConfiguration(EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME, "test", "?");
+			assertEquals(c, refConfig.get());
+			c.update(properties2);
+			
+		}).untilNoMoreServiceEventModifiedWithin(1000, ResourceSetFactory.class).assertWithTimeoutThat(10000)
+		.isNotTimedOut().hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
+		
+		reference = resourceSetFactory.getServiceReference();
+		assertThat(reference).isNotNull();
+		
+		DictionaryAssert.assertThat(reference.getProperties()).containsKey(EMFNamespaces.EMF_MODEL_NAME)
+		.extractingByKey(EMFNamespaces.EMF_MODEL_NAME).isNotNull()
+		.isInstanceOfSatisfying(String[].class, arr -> {
+			assertThat(arr).contains("ecore", "manual2");
+			assertThat(arr).doesNotContain("manual");
+		});
+				
+		MonitoringAssertion.executeAndObserve(() -> {
+			
+			refConfig.get().delete();
+			
+		}).untilNoMoreServiceEventModifiedWithin(1000, ResourceSetFactory.class).assertWithTimeoutThat(10000)
+		.isNotTimedOut().hasAtLeastOneServiceEventModifiedWith(ResourceSetFactory.class);
+		
+		DictionaryAssert.assertThat(reference.getProperties()).containsKey(EMFNamespaces.EMF_MODEL_NAME)
+		.extractingByKey(EMFNamespaces.EMF_MODEL_NAME).isNotNull()
+		.isInstanceOfSatisfying(String[].class, arr -> {
+			assertThat(arr).contains("ecore");
+			assertThat(arr).doesNotContain("manual2");
+			assertThat(arr).doesNotContain("manual");
+		});
+	}
+	
 }

@@ -11,11 +11,14 @@
  */
 package org.gecko.emf.osgi.components.dynamic;
 
+import static java.util.Objects.requireNonNull;
 import static org.gecko.emf.osgi.EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME;
 
 import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import org.eclipse.emf.common.util.URI;
@@ -24,6 +27,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
@@ -33,6 +37,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.RequireMetaTypeImplementation;
@@ -64,27 +69,52 @@ public class DynamicPackageLoader{
 	
 	private EPackage dynamicPackage = null;
 	private BundleContext ctx;
+	private DynamicEMFModel modelConfig;
 
 	private ServiceRegistration<EPackage> packageRegistration;
 	private ServiceRegistration<EPackageConfigurator> configuratorRegistration;
 
+
 	/**
 	 * Called on components activation
-	 * @param ctx the component context
-	 * @param properties the component properties
+	 * @param ctx the bundle context
+	 * @param modelConfig the config object
+	 * @param properties the properties map
 	 * @throws ConfigurationException
 	 */
 	@Activate
-	public void activate(BundleContext ctx, DynamicEMFModel modelConfig) throws ConfigurationException {
+	public void activate(BundleContext ctx, DynamicEMFModel modelConfig, Map<String, Object> properties) throws ConfigurationException {
 		logger.info("Trying to load Package for " + modelConfig.dynamicEcoreUri());
 		this.ctx = ctx;
-		try {
-			loadModel(modelConfig);
-		} catch (Exception e) {
-			throw new ConfigurationException("url", "The EMF model at " + modelConfig.dynamicEcoreUri() + " could not be loaded.", e);
+		this.modelConfig = modelConfig;
+		registerModel(modelConfig, properties);
+	}
+
+	/**
+	 * Called on components modification
+	 * @param modelConfig the config object
+	 * @param properties the properties map
+	 * @throws ConfigurationException
+	 */
+	@Modified
+	public void modified(DynamicEMFModel modelConfig, Map<String, Object> properties) throws ConfigurationException {
+		logger.info("Trying to update Package for " + modelConfig.dynamicEcoreUri());
+		if (!modelConfig.dynamicEcoreUri().equalsIgnoreCase(this.modelConfig.dynamicEcoreUri())) {
+			unregisterModel();
+			registerModel(modelConfig, properties);
+		} else {
+			updateModelProperties(modelConfig, properties);
 		}
 	}
 	
+	/**
+	 * Called on de-activation
+	 */
+	@Deactivate
+	public void deactivate() {
+		unregisterModel();
+	}
+
 	/**
 	 * Loads the model from the given URL
 	 * @param config the model config
@@ -107,27 +137,75 @@ public class DynamicPackageLoader{
 		} finally {
 			resourceSetServiceObjects.ungetService(resourceSet);
 		}
-		Dictionary<String, Object> properties = new Hashtable<String, Object>();
-		properties.put(EMFNamespaces.EMF_MODEL_NAME, dynamicPackage.getName());
-		properties.put(EMFNamespaces.EMF_MODEL_NSURI, dynamicPackage.getNsURI());
+	}
+
+	/**
+	 * Returns the current service properties
+	 * @param config the model config
+	 * @param properties all provided properties
+	 * @return the service properties
+	 */
+	private Dictionary<String, Object> getServiceProperties(DynamicEMFModel config, Map<String, Object> properties) {
+		requireNonNull(config);
+		requireNonNull(properties);
+		
+		Dictionary<String, Object> props = new Hashtable<String, Object>();
+		props.put(EMFNamespaces.EMF_MODEL_NAME, dynamicPackage.getName());
+		props.put(EMFNamespaces.EMF_MODEL_NSURI, dynamicPackage.getNsURI());
 		if (config.feature().length > 0) {
-			properties.put(EMFNamespaces.EMF_MODEL_FEATURE, config.feature());
+			props.put(EMFNamespaces.EMF_MODEL_FEATURE, config.feature());
 		}
 		if (!config.version().isEmpty()) {
-			properties.put(EMFNamespaces.EMF_MODEL_VERSION, config.version());
+			props.put(EMFNamespaces.EMF_MODEL_VERSION, config.version());
 		}
-
-		logger.info("Registering Package " + dynamicPackage.getName() + " for with nsURI " + dynamicPackage.getNsURI());
-		
-		EPackage.Registry.INSTANCE.put(dynamicPackage.getNsURI(),dynamicPackage);
-		configuratorRegistration = ctx.registerService(EPackageConfigurator.class, new DynamicPackageConfiguratorImpl(dynamicPackage), properties);
-		packageRegistration =  ctx.registerService(EPackage.class, dynamicPackage, properties);
+		// normalize properties with the prefix and remove the prefix from the properties keys
+		Map<String, Object> featureProperties = ServicePropertiesHelper.filterProperties(EMFNamespaces.EMF_MODEL_FEATURE + ".", properties);
+		requireNonNull(featureProperties);
+		featureProperties.forEach((k,v)->props.put(k, v));
+		return props;
 	}
 	
-	@Deactivate
-	public void deactivate() {
+	/**
+	 * Registers a dynamic model 
+	 * @param modelConfig the model config
+	 * @param properties all service properties
+	 * @throws ConfigurationException
+	 */
+	private void registerModel(DynamicEMFModel modelConfig, Map<String, Object> properties) throws ConfigurationException {
+		try {
+			loadModel(modelConfig);
+		} catch (Exception e) {
+			throw new ConfigurationException("url", "The EMF model at " + modelConfig.dynamicEcoreUri() + " could not be loaded.", e);
+		}
+		Dictionary<String, Object> serviceProps = getServiceProperties(modelConfig, properties);
+		EPackage.Registry.INSTANCE.put(dynamicPackage.getNsURI(),dynamicPackage);
+		configuratorRegistration = ctx.registerService(EPackageConfigurator.class, new DynamicPackageConfiguratorImpl(dynamicPackage), serviceProps);
+		packageRegistration =  ctx.registerService(EPackage.class, dynamicPackage, serviceProps);
+	}
+
+	/**
+	 * Updates the current registration properties
+	 * @param modelConfig the model config
+	 * @param properties all service properties
+	 */
+	private void updateModelProperties(DynamicEMFModel modelConfig, Map<String, Object> properties) {
+		requireNonNull(packageRegistration);
+		requireNonNull(configuratorRegistration);
+		Dictionary<String, Object> serviceProps = getServiceProperties(modelConfig, properties);
+		packageRegistration.setProperties(serviceProps);
+		configuratorRegistration.setProperties(serviceProps);
+	}
+
+	/**
+	 * Un-registers the dynamic model and cleans up the resources
+	 */
+	private void unregisterModel() {
 		packageRegistration.unregister();
 		configuratorRegistration.unregister();
 		EPackage.Registry.INSTANCE.remove(dynamicPackage.getNsURI());
+		if (Objects.nonNull(dynamicPackage.eResource())) {
+			dynamicPackage.eResource().unload();
+			dynamicPackage = null;
+		}
 	}
 }

@@ -43,8 +43,10 @@ import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
 import org.gecko.emf.osgi.factory.ResourceSetPrototypeFactory;
+import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.gecko.emf.osgi.helper.ServicePropertyContext;
 import org.osgi.framework.Constants;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.PrototypeServiceFactory;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
@@ -415,6 +417,8 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 */
 	protected Dictionary<String, Object> getDictionary() {
 		Dictionary<String, Object> properties = propertyContext.getDictionary(true);
+		Map<String, Object> features = ServicePropertiesHelper.normalizeProperties(EMFNamespaces.EMF_MODEL_FEATURE + ".", FrameworkUtil.asMap(properties));
+		features.forEach((K, V)->properties.put(K, V));
 		properties.put(ComponentConstants.COMPONENT_NAME, "DefaultResourcesetFactory");
 		properties.put(Constants.SERVICE_CHANGECOUNT, serviceChangeCount++);
 		return properties;
