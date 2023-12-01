@@ -51,7 +51,6 @@ public class GeckoGenEnumGeneratorAdapter extends GenEnumGeneratorAdapter {
 	 */
 	public GeckoGenEnumGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
 		super(generatorAdapterFactory);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -59,10 +58,12 @@ public class GeckoGenEnumGeneratorAdapter extends GenEnumGeneratorAdapter {
 	 * The contents of the returned array should never be changed. Rather,
 	 * subclasses may override this method to return a different array altogether.
 	 */
+	@Override
 	protected JETEmitterDescriptor[] getJETEmitterDescriptors() {
 		return JET_EMITTER_DESCRIPTORS;
 	}
 
+	@Override
 	protected void generateEnumClass(GenEnum genEnum, Monitor monitor) {
 		monitor.subTask(message);
 		generateJava(genEnum.getGenModel().getModelDirectory(), genEnum.getGenPackage().getInterfacePackageName(),

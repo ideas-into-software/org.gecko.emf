@@ -84,7 +84,7 @@ public class DelegatingHashMap<K, V> implements Map<K, V> {
 	 */
 	@Override
 	public Set<Entry<K, V>> entrySet() {
-		Set<Entry<K, V>> set = new HashSet<Map.Entry<K,V>>(delegate.entrySet());
+		Set<Entry<K, V>> set = new HashSet<>(delegate.entrySet());
 		set.addAll(main.entrySet());
 		return set;
 	}

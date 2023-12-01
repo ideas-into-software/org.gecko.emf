@@ -19,6 +19,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
@@ -54,6 +55,7 @@ import aQute.bnd.annotation.service.ServiceCapability;
 @ProviderType
 public class DefaultResourceFactoryRegistryComponent {
 
+	private static Logger logger = Logger.getLogger(DefaultResourceFactoryRegistryComponent.class.getName());
 	private final Registry registry;
 	private final ServicePropertyContext propertyContext;
 	private ServiceRegistration<Registry> serviceRegistration;
@@ -148,7 +150,7 @@ public class DefaultResourceFactoryRegistryComponent {
 		if(nonNull(removed) && compare.equals(removed)) {
 			factoryMap.remove(parameter);
 		} else {
-			System.err.println("Cannot remove the factory, because it seems to be overwritten");
+			logger.fine("Cannot remove the factory, because a newer on was already set");
 		}
 	}
 }

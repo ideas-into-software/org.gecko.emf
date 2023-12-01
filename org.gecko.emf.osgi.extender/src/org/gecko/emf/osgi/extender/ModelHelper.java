@@ -18,6 +18,9 @@
  */
 package org.gecko.emf.osgi.extender;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+import static java.util.Objects.requireNonNull;
 import static org.gecko.emf.osgi.EMFNamespaces.EMF_MODEL_EXTENDER_DEFAULT_PATH;
 import static org.gecko.emf.osgi.EMFNamespaces.EMF_MODEL_EXTENDER_PROP_MODELS_NAME;
 
@@ -25,6 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -41,6 +45,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.extender.model.Model;
+import org.osgi.annotation.bundle.Requirement;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleRequirement;
 import org.osgi.framework.wiring.BundleWire;
@@ -54,12 +59,15 @@ import org.osgi.namespace.extender.ExtenderNamespace;
  */
 public class ModelHelper {
 	
-	private static Logger LOGGER = Logger.getLogger(ModelHelper.class.getName());
+	private static Logger logger = Logger.getLogger(ModelHelper.class.getName());
 
 	public static final class Diagnostic {
 
 		public final List<String> warnings = new ArrayList<>();
 		public final List<String> errors = new ArrayList<>();
+	}
+	
+	private ModelHelper() {
 	}
 
 	/**
@@ -78,7 +86,7 @@ public class ModelHelper {
 			return Collections.emptyList();
 		} else {
 			return paths.stream().
-					map((path)->readModel(bundle, resourceSet, path, diagnostic)).
+					map(path->readModel(bundle, resourceSet, path, diagnostic)).
 					flatMap(List::stream).
 					collect(Collectors.toList());
 		}
@@ -97,7 +105,7 @@ public class ModelHelper {
 			final String path,
 			final Diagnostic diagnostic) {
 		final List<Model> models = new ArrayList<>();
-		Map<String, String> properties = new HashMap<String, String>();
+		Map<String, String> properties = new HashMap<>();
 		String plainPath = extractProperties(path, properties);
 		final Enumeration<URL> urls;
 		if (plainPath != null && plainPath.endsWith(".ecore")) {
@@ -110,12 +118,29 @@ public class ModelHelper {
 		} else {
 			urls = bundle.findEntries(plainPath, "*.ecore", false);
 		}
-		if ( urls != null ) {
+		readModelInstance(bundle, resourceSet, path, diagnostic, models, properties, plainPath, urls);
+		return models;
+	}
+
+	/**
+	 * @param bundle
+	 * @param resourceSet
+	 * @param path
+	 * @param diagnostic
+	 * @param models
+	 * @param properties
+	 * @param plainPath
+	 * @param urls
+	 */
+	private static void readModelInstance(final Bundle bundle, final ResourceSet resourceSet, final String path,
+			final Diagnostic diagnostic, final List<Model> models, Map<String, String> properties, String plainPath,
+			final Enumeration<URL> urls) {
+		if ( nonNull(urls) ) {
 			while ( urls.hasMoreElements() ) {
 				final URL url = urls.nextElement();
 				try {
 					final Model model = loadModelInstance(bundle.getBundleId(), resourceSet, url, properties, diagnostic);
-					if ( model != null ) {
+					if ( nonNull(model) ) {
 						models.add(model);
 					}
 				} catch ( final IOException ioe ) {
@@ -125,7 +150,6 @@ public class ModelHelper {
 		} else {
 			diagnostic.errors.add("No ecore models found at path " + path);
 		}
-		return models;
 	}
 
 	/**
@@ -137,14 +161,13 @@ public class ModelHelper {
 	 * @return
 	 */
 	public static String extractProperties(String path, Map<String, String> properties) {
-		if (path == null || path.isEmpty()) {
+		if (isNull(path) || path.isEmpty()) {
 			return path;
 		}
 		String[] parts = path.split(";");
 		if (parts.length > 1) {
 			for (int i = 1; i < parts.length; i++) {
-				String propString = parts[i];
-				String[] kvArray = propString.split("=");
+				String[] kvArray = parts[i].split("=");
 				if (kvArray.length > 0 && properties != null) {
 					String value = kvArray.length > 1 ? kvArray[1] : null;
 					properties.put(kvArray[0], value);
@@ -177,15 +200,14 @@ public class ModelHelper {
 			r.load(url.openStream(), null);
 			if (!r.getContents().isEmpty()) {
 				EPackage ePackage = (EPackage) r.getContents().get(0);
-				Hashtable<String, Object> serviceProperties = new Hashtable<>();
+				Dictionary<String, Object> serviceProperties = new Hashtable<>();
 				if (properties != null) {
 					properties.forEach(serviceProperties::put);
 				}
 				String nsUri = ePackage.getNsURI();
 				serviceProperties.put(EMFNamespaces.EMF_MODEL_NAME, ePackage.getName());
 				serviceProperties.put(EMFNamespaces.EMF_MODEL_NSURI, nsUri);
-				Model m = new Model(ePackage, url, serviceProperties, bundleId);
-				return m;
+				return new Model(ePackage, url, serviceProperties, bundleId);
 			}
 			return null;
 		} finally {
@@ -205,45 +227,55 @@ public class ModelHelper {
      * @param modelBundleId The bundle id of the model bundle to check the wiring
      * @return Set of locations or {@code null}
      */
-    @SuppressWarnings("unchecked")
     public static Set<String> isModelBundle(final Bundle bundle, final long modelBundleId) {
         // check for bundle wiring
         final BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
-        if ( bundleWiring == null ) {
-            return null;
+        if ( isNull(bundleWiring) ) {
+            return Collections.emptySet();
         }
 
         // check for bundle requirement to extender namespace
         final List<BundleRequirement> requirements = bundleWiring.getRequirements(ExtenderNamespace.EXTENDER_NAMESPACE);
-        if ( requirements == null || requirements.isEmpty() ) {
-            return null;
+        if ( isNull(requirements) || requirements.isEmpty() ) {
+            return Collections.emptySet();
         }
         // get all wires for the implementation namespace
         final List<BundleWire> wires = bundleWiring.getRequiredWires(ExtenderNamespace.EXTENDER_NAMESPACE);
         for(final BundleWire wire : wires) {
             // if the wire is to this bundle (EMF extender), it must be the correct
             // requirement (no need to do additional checks like version etc.)
-            if ( wire.getProviderWiring() != null
+            if ( nonNull(wire.getProviderWiring())
                  && wire.getProviderWiring().getBundle().getBundleId() == modelBundleId ) {
-                final Object val = wire.getRequirement().getAttributes().get(EMF_MODEL_EXTENDER_PROP_MODELS_NAME);
-                if ( val != null ) {
-                    if ( val instanceof String ) {
-                        return Collections.singleton((String)val);
-                    }
-                    if ( val instanceof List ) {
-                        final List<String> paths = (List<String>)val;
-                        final Set<String> result = new HashSet<>();
-                        for(final String p : paths) {
-                            result.add(p);
-                        }
-                        return result;
-                    }
-                    LOGGER.severe(()->"Attribute " + EMF_MODEL_EXTENDER_PROP_MODELS_NAME + " for EMF models requirement has an invalid type: " + val +
-                                       ". Using default model path.");
-                }
-                return Collections.singleton(EMF_MODEL_EXTENDER_DEFAULT_PATH);
+                return extractModelPath(wire);
             }
         }
-        return null;
+        return Collections.emptySet();
     }
+
+	/**
+	 * Etracts the path attribute from a {@link Bundle} 
+	 * @param wire the {@link BundleWire}
+	 * @return the {@link Set} of path, extracted from the {@link Requirement}
+	 */
+	@SuppressWarnings("unchecked")
+	private static Set<String> extractModelPath(final BundleWire wire) {
+		requireNonNull(wire);
+		final Object val = wire.getRequirement().getAttributes().get(EMF_MODEL_EXTENDER_PROP_MODELS_NAME);
+		if ( nonNull(val) ) {
+		    if ( val instanceof String ) {
+		        return Collections.singleton((String)val);
+		    }
+		    if ( val instanceof List ) {
+		        final List<String> paths = (List<String>)val;
+		        final Set<String> result = new HashSet<>();
+		        for(final String p : paths) {
+		            result.add(p);
+		        }
+		        return result;
+		    }
+		    logger.severe(()->"Attribute " + EMF_MODEL_EXTENDER_PROP_MODELS_NAME + " for EMF models requirement has an invalid type: " + val +
+		                       ". Using default model path.");
+		}
+		return Collections.singleton(EMF_MODEL_EXTENDER_DEFAULT_PATH);
+	}
 }

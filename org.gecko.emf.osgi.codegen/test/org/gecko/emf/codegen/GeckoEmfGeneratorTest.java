@@ -33,10 +33,10 @@ import org.junit.jupiter.api.Test;
  * @author Jürgen Albert
  * @since 14 Jan 2021
  */
-public class GeckoEmfGeneratorTest {
+class GeckoEmfGeneratorTest {
 	
 	@Test
-	public void testURIHandlerDefault() {
+	void testURIHandlerDefault() {
 		URI toTest = URI.createURI("resource://org.gecko.emf.osgi.codegen/../org.eclipse.emf.ecore/model/Ecore.genmodel");
 		System.out.println(new File("").getAbsolutePath());
 		URI basePath = URI.createFileURI(new File("").getAbsolutePath());
@@ -46,7 +46,7 @@ public class GeckoEmfGeneratorTest {
 	}
 
 	@Test
-	public void test() {
+	void test() {
 		URI genModelURI = URI.createURI("resource://metadata/src/main/resources/model/metadata.genmodel");
 		System.out.println(genModelURI.toString());
 		System.out.println(genModelURI.segmentCount());
@@ -60,7 +60,7 @@ public class GeckoEmfGeneratorTest {
 		System.out.println(genModelURI.deresolve(genModelURI.trimSegments(genModelURI.segmentCount() - 3).appendSegment("")).toString());
 	}
 //	@Test
-	public void testURIResolve() {
+	void testURIResolve() {
 		URI toTest = URI.createURI("../org.eclipse.emf.ecore/model/Ecore.genmodel");
 		URI basePath = URI.createURI("resource://org.gecko.emf.osgi.codegen");
 		System.out.println(toTest);
@@ -71,25 +71,23 @@ public class GeckoEmfGeneratorTest {
 	}
 
 	@Test
-	public void testConvertToBundleEcoreURI() {
+	void testConvertToBundleEcoreURI() {
 		URI testResult = URI.createURI("/ecore/model/test.ecore");
 		
 		URI genModelPath = URI.createURI("/genmodel/model/test.genmodel");
 		URI ePackageUri = URI.createURI("resource://org.gecko.emf.osgi.example.model.extended/src/main/resources/ecore/model/test.ecore");
     	URI genModelUri = URI.createURI("resource://org.gecko.emf.osgi.example.model.extended/src/main/resources/genmodel/model/test.genmodel");
     	URI finalEcore = GeneratorHelper.convertToBundleEcoreURI(genModelPath, ePackageUri, genModelUri);
-    	System.out.println("ecoreResolve : " + finalEcore);
     	Assertions.assertThat(finalEcore).isSameAs(testResult);
 	}
 
 	@Test
-	public void testConvertToSourceEcoreURI() {
+	void testConvertToSourceEcoreURI() {
 		URI testResult = URI.createURI("/src/main/resources/ecore/model/test.ecore");
 		
 		URI ePackageUri = URI.createURI("resource://org.gecko.emf.osgi.example.model.extended/src/main/resources/ecore/model/test.ecore");
 		URI genModelUri = URI.createURI("resource://org.gecko.emf.osgi.example.model.extended/src/main/resources/genmodel/model/test.genmodel");
 		URI finalEcore = ePackageUri.deresolve(genModelUri, true, false, false);
-		System.out.println("ecoreResolve : " + finalEcore);
 		Assertions.assertThat(finalEcore).isSameAs(testResult);
 	}
 	
@@ -98,16 +96,9 @@ public class GeckoEmfGeneratorTest {
 	 * @throws IOException 
 	 */
 	@Test
-	public void testDoGenerate() throws IOException {
+	void testDoGenerate() throws IOException {
 
 		URI toSanatize = URI.createURI("resource://org.gecko.emf.osgi.codegen.test/../org.eclipse.emf.ecore/model/Ecore.genmodel");
-//		URI toResolve = URI.createURI("resource://org.gecko.emf.osgi.codegen.test/model/test.genmodel");
-//		URI theOther = URI.createURI("resource://org.gecko.emf.osgi.codegen.test/");
-		
-//		System.out.println(toResolve.deresolve(theOther));
-//		System.out.println(toResolve.resolve(toResolve));
-//		System.out.println(theOther.deresolve(toResolve));
-		System.out.println(toSanatize);
 		
 		String uri = "";
 		for(int i = toSanatize.segmentCount() -1; i >= 0;  i--) {
@@ -146,18 +137,6 @@ public class GeckoEmfGeneratorTest {
 		sb.append(segments);
 		System.out.println(sb.toString());
 		assertNotNull(uri);
-//		String genmodelPath = "testdata/model/basic.genmodel";
-//		
-//		File genmodel = new File(genmodelPath);
-//		
-//		assertTrue(genmodel.exists());
-//		
-//		GeckoEmfGenerator geckoEmfGenerator = new GeckoEmfGenerator();
-//		File out = new File("out");
-//		out.mkdir();
-//		
-//		Optional<String> result = geckoEmfGenerator.doGenerate("out", genmodelPath, Collections.emptyMap(), new File("."), "test.bsn");
-//		assertTrue(!result.isPresent());
 	}
 
 }

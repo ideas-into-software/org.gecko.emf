@@ -43,8 +43,8 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 @ProviderType
 public class ResourceSetUriHandlerConfiguratorComponent implements ResourceSetConfigurator
 {
-	private Set<UriHandlerProvider> handlerProviders = new CopyOnWriteArraySet<UriHandlerProvider>();
-	private Set<UriMapProvider> mapProviders = new CopyOnWriteArraySet<UriMapProvider>();
+	private Set<UriHandlerProvider> handlerProviders = new CopyOnWriteArraySet<>();
+	private Set<UriMapProvider> mapProviders = new CopyOnWriteArraySet<>();
 
 
 	@Override

@@ -31,6 +31,7 @@ import org.osgi.annotation.bundle.Requirement;
  * @since 9 Feb 2018
  * @deprecated Clarifiy Talk with Jürgen
  */
+@Deprecated
 @Documented
 @Retention(RetentionPolicy.CLASS)
 @Target({

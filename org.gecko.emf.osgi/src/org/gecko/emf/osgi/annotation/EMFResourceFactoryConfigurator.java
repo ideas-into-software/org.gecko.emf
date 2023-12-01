@@ -38,7 +38,6 @@ public @interface EMFResourceFactoryConfigurator {
 	String PREFIX_ = EMFNamespaces.EMF_MODEL_PREFIX;
 
 	String name();
-	//TODO: Do we even use this or was this a mistake?
 	String[] feature() default "";
 	String[] protocol() default "";
 	String[] contentType() default "";

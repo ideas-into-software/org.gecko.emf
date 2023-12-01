@@ -48,7 +48,7 @@ import org.osgi.framework.Constants;
  * <li>application/xmi XMI</li>
  * <li>application/xml XML</li>
  * <li>application/octet-stream Binary</li>
- * 
+ * s
  * @author Mark Hoffmann
  * @since 25.07.2017
  */
@@ -73,38 +73,48 @@ import org.osgi.framework.Constants;
 )
 public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryConfigurator {
 
+	/** OCTET_STREAM */
+	private static final String OCTET_STREAM = "application/octet-stream";
+	/** APPLICATION_XMI */
+	private static final String APPLICATION_XMI = "application/xmi";
+	/** EMF_EMOF */
+	private static final String EMF_EMOF = "org.eclipse.emf.emof";
+	/** EMF_ECORE */
+	private static final String EMF_ECORE = "org.eclipse.emf.ecore";
+	/** ECORE */
+	private static final String ECORE = "ecore";
 	public static final Map<String, Object> PROPERTIES = EcoreConfigurator.getProperties();
-	private static SecureRandom RANDOM = null;
+	private static SecureRandom random = null;
 	
 	private static Map<String, Object> getProperties(){
-		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put(EMFNamespaces.EMF_CONFIGURATOR_NAME,"ecore"); 
-		result.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, Arrays.asList( new String[] {
-				"org.eclipse.emf.ecore", 
-				"org.eclipse.emf.emof", 
-				"application/xmi", 
-				"application/octet-stream"})); 
-		result.put(EMFNamespaces.EMF_MODEL_FILE_EXT, Arrays.asList( new String[] {
+		HashMap<String, Object> result = new HashMap<>();
+		result.put(EMFNamespaces.EMF_CONFIGURATOR_NAME,ECORE); 
+		result.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, Arrays.asList( 
+				EMF_ECORE, 
+				EMF_EMOF, 
+				APPLICATION_XMI, 
+				OCTET_STREAM)); 
+		result.put(EMFNamespaces.EMF_MODEL_FILE_EXT, Arrays.asList( 
 				"*", 
 				"xmi", 
-				"ecore", 
+				ECORE, 
 				"emof", 
-				"bin"})); 
+				"bin")); 
 		result.put(EMFNamespaces.EMF_MODEL_VERSION, "1.0.0");
-		result.put(EMFNamespaces.EMF_MODEL_NAME, "ecore");
-		result.put(EMFNamespaces.EMF_MODEL_NSURI, Arrays.asList( new String[] {
+		result.put(EMFNamespaces.EMF_MODEL_NAME, ECORE);
+		result.put(EMFNamespaces.EMF_MODEL_NSURI, Arrays.asList( 
 				XMLTypePackage.eNS_URI,
 				XMLNamespacePackage.eNS_URI,
-				EcorePackage.eNS_URI}));
-		if (RANDOM == null) {
-			RANDOM = new SecureRandom();
+				EcorePackage.eNS_URI));
+		if (random == null) {
+			random = new SecureRandom();
 		}
-		result.put(Constants.SERVICE_ID, RANDOM.nextLong());
+		result.put(Constants.SERVICE_ID, random.nextLong());
 		return result;
 	}
 			
 	
-	private static Resource.Factory BINARY_FACTORY = new ResourceFactoryImpl(){
+	private static Resource.Factory binaryFactory = new ResourceFactoryImpl(){
 		@Override
 		public Resource createResource(URI uri) {
 			return new BinaryResourceImpl(uri);
@@ -115,25 +125,25 @@ public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryC
 	public void configureResourceFactory(Registry registry) {
 		registry.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 		registry.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		registry.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+		registry.getExtensionToFactoryMap().put(ECORE, new EcoreResourceFactoryImpl());
 		registry.getExtensionToFactoryMap().put("emof", new EMOFResourceFactoryImpl());
-		registry.getExtensionToFactoryMap().put("bin", BINARY_FACTORY);
-		registry.getContentTypeToFactoryMap().put("org.eclipse.emf.ecore", new EcoreResourceFactoryImpl());
-		registry.getContentTypeToFactoryMap().put("org.eclipse.emf.emof", new EcoreResourceFactoryImpl());
-		registry.getContentTypeToFactoryMap().put("application/xmi", new XMIResourceFactoryImpl());
-		registry.getContentTypeToFactoryMap().put("application/octet-stream", BINARY_FACTORY);
+		registry.getExtensionToFactoryMap().put("bin", binaryFactory);
+		registry.getContentTypeToFactoryMap().put(EMF_ECORE, new EcoreResourceFactoryImpl());
+		registry.getContentTypeToFactoryMap().put(EMF_EMOF, new EcoreResourceFactoryImpl());
+		registry.getContentTypeToFactoryMap().put(APPLICATION_XMI, new XMIResourceFactoryImpl());
+		registry.getContentTypeToFactoryMap().put(OCTET_STREAM, binaryFactory);
 	}
 
 	@Override
 	public void unconfigureResourceFactory(Registry registry) {
 		registry.getExtensionToFactoryMap().remove("*");
 		registry.getExtensionToFactoryMap().remove("xmi");
-		registry.getExtensionToFactoryMap().remove("ecore");
+		registry.getExtensionToFactoryMap().remove(ECORE);
 		registry.getExtensionToFactoryMap().remove("emof");
-		registry.getContentTypeToFactoryMap().remove("org.eclipse.emf.ecore");
-		registry.getContentTypeToFactoryMap().remove("org.eclipse.emf.emof");
-		registry.getContentTypeToFactoryMap().remove("application/xmi");
-		registry.getContentTypeToFactoryMap().remove("application/octet-stream");
+		registry.getContentTypeToFactoryMap().remove(EMF_ECORE);
+		registry.getContentTypeToFactoryMap().remove(EMF_EMOF);
+		registry.getContentTypeToFactoryMap().remove(APPLICATION_XMI);
+		registry.getContentTypeToFactoryMap().remove(OCTET_STREAM);
 	}
 
 	@Override

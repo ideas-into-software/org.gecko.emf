@@ -75,7 +75,6 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	/**
 	 * Called before component activation
 	 * @param ctx the component context
-	 * @TODO Clarify why we use ComponentServiceObjects here?
 	 */
 	@Activate
 	public ConfigurationResourceSetFactoryComponent(ComponentContext ctx,
@@ -104,6 +103,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @see org.gecko.emf.osgi.provider.DefaultResourceSetFactory#activate(org.osgi.service.component.ComponentContext)
 	 */
 	@Activate
+	@Override
 	public void activate(ComponentContext ctx) {
 		properties = ctx.getProperties();
 		registerServices(ctx);
@@ -112,6 +112,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	/**
 	 * Called on component deactivation
 	 */
+	@Override
 	@Deactivate
 	public void deactivate() {
 		super.deactivate();
@@ -131,11 +132,13 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * Inject a {@link Registry} for resource factories
 	 * @param resourceFactoryRegistry the resource factory to be injected
 	 */
+	@Override
 	@Reference(policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
 	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
 //		do nothing here
 	}
 	
+	@Override
 	public void modifiedResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
 		super.modifiedResourceFactoryRegistry(resourceFactoryRegistry, properties);
 	}

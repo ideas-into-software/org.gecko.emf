@@ -38,6 +38,9 @@ import org.osgi.framework.Constants;
  */
 public class ServicePropertiesHelper {
 	
+	private ServicePropertiesHelper() {
+	}
+	
 	/**
 	 * Merges the source map into the target map and appends the values
 	 * @param source the source map, must not be <code>null</code>
@@ -47,9 +50,7 @@ public class ServicePropertiesHelper {
 		requireNonNull(source);
 		requireNonNull(target);
 		
-		source.forEach((KEY, VALUES)->{
-			appendNameMap(target, VALUES, KEY, true);
-		});
+		source.forEach((key, value)->appendNameMap(target, value, key, true));
 	}
 	
 	/**
@@ -66,7 +67,7 @@ public class ServicePropertiesHelper {
 		
 		Set<String> nameSet = nameMap.get(serviceId);
 		if (isNull(nameSet)) {
-			nameSet = new HashSet<String>();
+			nameSet = new HashSet<>();
 			nameMap.put(serviceId, nameSet);
 		}
 		if (!append) {
@@ -221,7 +222,7 @@ public class ServicePropertiesHelper {
 		return filterProperties(prefix, properties)
 				.entrySet()
 				.stream()
-				.collect(Collectors.toMap(e->e.getKey().substring(prefix.length()), (e)->{
+				.collect(Collectors.toMap(e->e.getKey().substring(prefix.length()), e->{
 					Object value = e.getValue();
 					if (value.getClass().isArray()) {
 						Object[] values = (Object[]) value;

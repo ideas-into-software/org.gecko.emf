@@ -44,6 +44,10 @@ import org.gecko.emf.osgi.EMFUriHandlerConstants;
  */
 public class RestfulURIHandlerImpl extends URIHandlerImpl {
 
+	/** ERROR_WITH_RESPONSE_CODE */
+	private static final String ERROR_WITH_RESPONSE_CODE = " failed with HTTP response code ";
+	/** ERROR_LAST_MODIFIED */
+	private static final String ERROR_LAST_MODIFIED = "Error reading last modified header from the response";
 	/** SCHEMA_HTTPS */
 	private static final String SCHEMA_HTTPS = "https";
 	/** SCHEMA_HTTP */
@@ -102,15 +106,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 					int responseCode = httpURLConnection.getResponseCode();
 					Map<Object, Object> response = getResponse(options);
 					if (response != null) {
-						try {
-							String lastModified = httpURLConnection.getHeaderField(HEADER_LAST_MODIFIED);
-							if (lastModified != null) {
-								Long lm = Long.parseLong(lastModified);
-								response.put(URIConverter.RESPONSE_TIME_STAMP_PROPERTY, lm);
-							}
-						} catch (Exception e) {
-							LOG.log(Level.SEVERE, "Error reading last modified header from the response", e);
-						}
+						setLastModified(httpURLConnection, response);
 						response.put(PROP_HTTP_RESPONSE_CODE, responseCode);
 						response.putAll(httpURLConnection.getHeaderFields());
 					}
@@ -129,7 +125,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 						break;
 					}
 					default: {
-						throw new IOException(httpURLConnection.getRequestMethod() + " failed with HTTP response code "
+						throw new IOException(httpURLConnection.getRequestMethod() + ERROR_WITH_RESPONSE_CODE
 								+ responseCode);
 					}
 					}
@@ -173,15 +169,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			final int responseCode = httpURLConnection.getResponseCode();
 			Map<Object, Object> response = getResponse(options);
 			if (response != null) {
-				try {
-					String lastModified = httpURLConnection.getHeaderField(HEADER_LAST_MODIFIED);
-					if (lastModified != null) {
-						Long lm = Long.parseLong(lastModified);
-						response.put(URIConverter.RESPONSE_TIME_STAMP_PROPERTY, lm);
-					}
-				} catch (Exception e) {
-					LOG.log(Level.SEVERE, "Error reading last modified header from the response", e);
-				}
+				setLastModified(httpURLConnection, response);
 			}
 			InputStream result = extreactStreamAndLogResponse(options, httpURLConnection);
 			return new FilterInputStream(result) {
@@ -212,7 +200,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 						break;
 					}
 					default: {
-						throw new IOException(httpURLConnection.getRequestMethod() + " failed with HTTP response code "
+						throw new IOException(httpURLConnection.getRequestMethod() + ERROR_WITH_RESPONSE_CODE
 								+ responseCode);
 					}
 					}
@@ -221,6 +209,22 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			};
 		} catch (RuntimeException exception) {
 			throw new Resource.IOWrappedException(exception);
+		}
+	}
+
+	/**
+	 * @param httpURLConnection
+	 * @param response
+	 */
+	private void setLastModified(final HttpURLConnection httpURLConnection, Map<Object, Object> response) {
+		try {
+			String lastModified = httpURLConnection.getHeaderField(HEADER_LAST_MODIFIED);
+			if (lastModified != null) {
+				Long lm = Long.parseLong(lastModified);
+				response.put(URIConverter.RESPONSE_TIME_STAMP_PROPERTY, lm);
+			}
+		} catch (Exception e) {
+			LOG.log(Level.SEVERE, ERROR_LAST_MODIFIED, e);
 		}
 	}
 
@@ -278,7 +282,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			}
 			default: {
 				throw new IOException(
-						httpURLConnection.getRequestMethod() + " failed with HTTP response code " + responseCode);
+						httpURLConnection.getRequestMethod() + ERROR_WITH_RESPONSE_CODE + responseCode);
 			}
 			}
 		} catch (RuntimeException exception) {
@@ -294,8 +298,9 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 	 * emf.common.util.URI, java.util.Map)
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public Map<String, ?> getAttributes(URI uri, Map<?, ?> options) {
-		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<>();
 		Set<String> requestedAttributes = getRequestedAttributes(options);
 		try {
 			URL url = new URL(uri.toString());
@@ -386,7 +391,7 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 						response.put(URIConverter.RESPONSE_TIME_STAMP_PROPERTY, lm);
 					}
 				} catch (Exception e) {
-					LOG.log(Level.SEVERE, "Error reading last modified header from the response", e);
+					LOG.log(Level.SEVERE, ERROR_LAST_MODIFIED, e);
 				}
 			}
 			httpURLConnection.disconnect();

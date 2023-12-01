@@ -151,7 +151,7 @@ public class DynamicPackageLoader{
 		requireNonNull(config);
 		requireNonNull(properties);
 		
-		Dictionary<String, Object> props = new Hashtable<String, Object>();
+		Dictionary<String, Object> props = new Hashtable<>();
 		props.put(EMFNamespaces.EMF_MODEL_NAME, dynamicPackage.getName());
 		props.put(EMFNamespaces.EMF_MODEL_NSURI, dynamicPackage.getNsURI());
 		if (config.feature().length > 0) {
@@ -163,7 +163,7 @@ public class DynamicPackageLoader{
 		// normalize properties with the prefix and remove the prefix from the properties keys
 		Map<String, Object> featureProperties = ServicePropertiesHelper.filterProperties(EMFNamespaces.EMF_MODEL_FEATURE + ".", properties);
 		requireNonNull(featureProperties);
-		featureProperties.forEach((k,v)->props.put(k, v));
+		featureProperties.forEach(props::put);
 		return props;
 	}
 	

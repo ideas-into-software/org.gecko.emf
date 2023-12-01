@@ -39,6 +39,7 @@ public class GeckoGenClassGeneratorAdapter extends GenClassGeneratorAdapter {
 	 * The contents of the returned array should never be changed. Rather,
 	 * subclasses may override this method to return a different array altogether.
 	 */
+	@Override
 	protected JETEmitterDescriptor[] getJETEmitterDescriptors() {
 		return JET_EMITTER_DESCRIPTORS;
 	}
@@ -62,21 +63,19 @@ public class GeckoGenClassGeneratorAdapter extends GenClassGeneratorAdapter {
 	 */
 	@Override
 	protected void generateInterface(GenClass genClass, Monitor monitor) {
-		{
-			GenModel genModel = genClass.getGenModel();
-			GenPackage genPackage = genClass.getGenPackage();
+		GenModel genModel = genClass.getGenModel();
+		GenPackage genPackage = genClass.getGenPackage();
 
-			if (!genClass.isExternalInterface() && (!genModel.isSuppressInterfaces() || genClass.isInterface())) {
-				message = CodeGenEcorePlugin.INSTANCE.getString("_UI_GeneratingJavaInterface_message",
-						new Object[] { genPackage.getInterfacePackageName() + "." + genClass.getInterfaceName() });
-				monitor.subTask(message);
-				generateJava(genModel.getModelDirectory(), genPackage.getInterfacePackageName(),
-						genClass.getInterfaceName(), getJETEmitter(getJETEmitterDescriptors(), CLASS_ID),
-						new Object[] { new Object[] { genClass, Boolean.TRUE, Boolean.FALSE } },
-						createMonitor(monitor, 1));
-			} else {
-				monitor.worked(1);
-			}
+		if (!genClass.isExternalInterface() && (!genModel.isSuppressInterfaces() || genClass.isInterface())) {
+			message = CodeGenEcorePlugin.INSTANCE.getString("_UI_GeneratingJavaInterface_message",
+					new Object[] { genPackage.getInterfacePackageName() + "." + genClass.getInterfaceName() });
+			monitor.subTask(message);
+			generateJava(genModel.getModelDirectory(), genPackage.getInterfacePackageName(),
+					genClass.getInterfaceName(), getJETEmitter(getJETEmitterDescriptors(), CLASS_ID),
+					new Object[] { new Object[] { genClass, Boolean.TRUE, Boolean.FALSE } },
+					createMonitor(monitor, 1));
+		} else {
+			monitor.worked(1);
 		}
 	}
 }

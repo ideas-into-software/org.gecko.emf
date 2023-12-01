@@ -39,20 +39,20 @@ import org.osgi.service.component.annotations.Activate;
 public class GeckoXMLResourceFactory extends XMLResourceFactoryImpl implements Resource.Factory{
 
 	public static final Map<String, Object> PROPERTIES = GeckoXMLResourceFactory.getProperties();
-	private static SecureRandom RANDOM = null;
+	private static SecureRandom random = null;
 
 	private static Map<String, Object> getProperties(){
-		HashMap<String, Object> result = new HashMap<String, Object>();
+		HashMap<String, Object> result = new HashMap<>();
 		result.put(EMFNamespaces.EMF_CONFIGURATOR_NAME,"GeckoXMLResourceFactory"); 
-		result.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, Arrays.asList( new String[] {
-				"application/xml"})); 
-		result.put(EMFNamespaces.EMF_MODEL_FILE_EXT, Arrays.asList( new String[] {
-				"xml"})); 
+		result.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, Arrays.asList( 
+				"application/xml")); 
+		result.put(EMFNamespaces.EMF_MODEL_FILE_EXT, Arrays.asList( 
+				"xml")); 
 		result.put(EMFNamespaces.EMF_MODEL_VERSION, "1.0.0");
-		if (RANDOM == null) {
-			RANDOM = new SecureRandom();
+		if (random == null) {
+			random = new SecureRandom();
 		}
-		result.put(Constants.SERVICE_ID, RANDOM.nextLong());
+		result.put(Constants.SERVICE_ID, random.nextLong());
 		return result;
 	}
 	

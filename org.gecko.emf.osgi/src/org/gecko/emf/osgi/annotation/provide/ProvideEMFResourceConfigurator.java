@@ -33,6 +33,7 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
  * @since 9 Feb 2018
  * @deprecated Clarifiy with Jürgen
  */
+@Deprecated
 @Documented
 @Retention(RetentionPolicy.CLASS)
 @Target({

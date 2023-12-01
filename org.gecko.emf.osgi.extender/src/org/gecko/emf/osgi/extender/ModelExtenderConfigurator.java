@@ -29,7 +29,7 @@ import org.gecko.emf.osgi.ResourceFactoryConfigurator;
  */
 public class ModelExtenderConfigurator implements EPackageConfigurator, ResourceFactoryConfigurator {
 	
-	private static Logger LOGGER = Logger.getLogger(ModelExtenderConfigurator.class.getName());
+	private static Logger logger = Logger.getLogger(ModelExtenderConfigurator.class.getName());
 	private final EPackage ePackage;
 	private final String contentTypeIdentifier;
 	private final String fileExtension;
@@ -84,7 +84,7 @@ public class ModelExtenderConfigurator implements EPackageConfigurator, Resource
 		if (ePackage != null) {
 			registry.put(ePackage.getNsURI(), ePackage);
 		} else {
-			LOGGER.log(Level.SEVERE, ()->"Error registering a NULL package, that should never happen");
+			logger.log(Level.SEVERE, ()->"Error registering a NULL package, that should never happen");
 		}
 	}
 
@@ -97,7 +97,7 @@ public class ModelExtenderConfigurator implements EPackageConfigurator, Resource
 		if (ePackage != null) {
 			registry.remove(ePackage.getNsURI());
 		} else {
-			LOGGER.log(Level.SEVERE, ()->"Error un-registering a NULL package, that should never happen");
+			logger.log(Level.SEVERE, ()->"Error un-registering a NULL package, that should never happen");
 		}
 	}
 

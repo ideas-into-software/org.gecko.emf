@@ -70,7 +70,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	private final Set<EPackageConfigurator> ePackageConfigurators = new CopyOnWriteArraySet<>();
 	private final Set<ResourceFactoryConfigurator> resourceFactoryConfigurators = new CopyOnWriteArraySet<>();
 	private final ServicePropertyContext propertyContext = ServicePropertyContext.create();
-	private final AtomicReference<Resource.Factory.Registry> resourceFactoryRegistry = new AtomicReference<Resource.Factory.Registry>();
+	private final AtomicReference<Resource.Factory.Registry> resourceFactoryRegistry = new AtomicReference<>();
 	protected EPackage.Registry packageRegistry;
 	protected ServiceRegistration<ResourceSetFactory> rsfRegistration = null;
 	protected ServiceRegistration<ResourceSet> rsRegistration = null;
@@ -229,9 +229,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	protected void removeResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
 		getPropertyContext().removeSubContext(properties);
 		updateRegistrationProperties();
-		synchronized (resourceFactoryConfigurators) {
-			resourceFactoryConfigurators.remove(configurator);
-		}
+		resourceFactoryConfigurators.remove(configurator);
 		Factory.Registry rfr = resourceFactoryRegistry.get();
 		if (rfr != null) {
 			configurator.unconfigureResourceFactory(rfr);
@@ -244,9 +242,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @param properties the service properties
 	 */
 	protected void addResourceSetConfigurator(ResourceSetConfigurator resourceSetConfigurator, Map<String, Object> properties) {
-		synchronized (resourceSetConfigurator) {
-			resourceSetConfigurators.add(resourceSetConfigurator);
-		}
+		resourceSetConfigurators.add(resourceSetConfigurator);
 		getPropertyContext().addSubContext(properties);
 		updateRegistrationProperties();
 	}
@@ -259,9 +255,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	protected void removeResourceSetConfigurator(ResourceSetConfigurator resourceSetConfigurator, Map<String, Object> properties) {
 		getPropertyContext().removeSubContext(properties);
 		updateRegistrationProperties();
-		synchronized (resourceSetConfigurator) {
-			resourceSetConfigurators.remove(resourceSetConfigurator);
-		}
+		resourceSetConfigurators.remove(resourceSetConfigurator);
 	}
 
 	/**
@@ -332,7 +326,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 		ResourceSet resourceSet = internalCreateResourceSet();
 		resourceSet.setPackageRegistry(new EPackageRegistryImpl(packageRegistry));
 		resourceSet.setResourceFactoryRegistry(new DelegatingResourceFactoryRegistry(rfr));
-		resourceSetConfigurators.forEach((c)->c.configureResourceSet(resourceSet));
+		resourceSetConfigurators.forEach(c->c.configureResourceSet(resourceSet));
 		return resourceSet;
 	}
 
@@ -346,7 +340,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 */
 	protected void updatePackageRegistry() {
 		List<EPackageConfigurator> providers = new ArrayList<>(ePackageConfigurators);
-		providers.forEach((p)->p.configureEPackage(packageRegistry));
+		providers.forEach(p->p.configureEPackage(packageRegistry));
 	}
 	
 	/**
@@ -356,7 +350,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	protected void updateResourceFactoryRegistry(final Factory.Registry rfRegistry) {
 		requireNonNull(rfRegistry);
 		List<ResourceFactoryConfigurator> providers = new ArrayList<>(resourceFactoryConfigurators);
-		providers.forEach((p)->p.configureResourceFactory(rfRegistry));
+		providers.forEach(p->p.configureResourceFactory(rfRegistry));
 	}
 	
 	/**
@@ -366,7 +360,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	protected void disposeResourceFactoryRegistry(final Factory.Registry rfRegistry) {
 		requireNonNull(rfRegistry);
 		List<ResourceFactoryConfigurator> providers = new ArrayList<>(resourceFactoryConfigurators);
-		providers.forEach((p)->p.unconfigureResourceFactory(rfRegistry));
+		providers.forEach(p->p.unconfigureResourceFactory(rfRegistry));
 	}
 	
 	/**
@@ -402,10 +396,10 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @return a copy of the original Dictionary
 	 */
 	private Dictionary<String, Object> copyDictionary(Dictionary<String, Object> dictionary) {
-		Hashtable<String, Object> props = new Hashtable<String, Object>();
+		Hashtable<String, Object> props = new Hashtable<>();
 		Enumeration<String> enumeration = dictionary.keys();
 		while (enumeration.hasMoreElements()) {
-			String string = (String) enumeration.nextElement();
+			String string = enumeration.nextElement();
 			props.put(string, dictionary.get(string));
 		}
 		return props;
@@ -418,7 +412,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	protected Dictionary<String, Object> getDictionary() {
 		Dictionary<String, Object> properties = propertyContext.getDictionary(true);
 		Map<String, Object> features = ServicePropertiesHelper.normalizeProperties(EMFNamespaces.EMF_MODEL_FEATURE + ".", FrameworkUtil.asMap(properties));
-		features.forEach((K, V)->properties.put(K, V));
+		features.forEach(properties::put);
 		properties.put(ComponentConstants.COMPONENT_NAME, "DefaultResourcesetFactory");
 		properties.put(Constants.SERVICE_CHANGECOUNT, serviceChangeCount++);
 		return properties;

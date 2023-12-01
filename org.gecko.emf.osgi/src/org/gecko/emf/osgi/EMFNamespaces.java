@@ -22,6 +22,9 @@ import org.gecko.emf.osgi.annotation.EMFResourceFactoryConfigurator;
  * @since 9 Feb 2018
  */
 public class EMFNamespaces {
+	
+	private EMFNamespaces() {
+	}
 
 	public static final String EMF_NAMESPACE = "emf.core"; //$NON-NLS-1$
 	// Attribute PREFIX for the different configurators and capability namespace

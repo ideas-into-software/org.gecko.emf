@@ -25,6 +25,7 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceRegistration;
 
 public class Model implements Serializable {
@@ -44,7 +45,7 @@ public class Model implements Serializable {
     private URL url;
 
     /** The model properties. */
-    private Hashtable<String, Object> properties;
+    private Dictionary<String, Object> properties;
     
     private transient EPackage ePackage = null;
     private transient ServiceRegistration<EPackage> modelRegistration = null;
@@ -55,13 +56,13 @@ public class Model implements Serializable {
 
     public Model(final EPackage ePackage,
     		final URL url,
-            final Hashtable<String, Object> properties,
+            final Dictionary<String, Object> properties,
             final long bundleId) {
         this.ePackage = ePackage;
         this.ns = ePackage.getNsURI();
         this.url = url;
         this.bundleId = bundleId;
-        this.properties = new Hashtable<>(properties);
+        this.properties = new Hashtable<>(FrameworkUtil.asMap(properties));
     }
 
     /**

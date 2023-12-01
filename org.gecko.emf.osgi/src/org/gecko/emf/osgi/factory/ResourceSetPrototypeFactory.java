@@ -42,7 +42,7 @@ public class ResourceSetPrototypeFactory implements PrototypeServiceFactory<Reso
 
 	@Override
 	public synchronized void ungetService(Bundle bundle, ServiceRegistration<ResourceSet> registration, ResourceSet service) {
-		service.getResources().forEach((r)->r.getContents().clear());
+		service.getResources().forEach(r->r.getContents().clear());
 		service.getResources().clear();
 	}
 
