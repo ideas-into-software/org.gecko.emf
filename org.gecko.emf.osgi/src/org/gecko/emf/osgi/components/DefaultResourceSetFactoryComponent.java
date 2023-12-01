@@ -85,12 +85,14 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	}
 	
 	/*
-	 * We have a two step activation for history reasons. We use the constructor injection to 
+	 * We have a two step activation for historic reasons. We use the constructor injection to 
 	 * make sure everything mandatory is available before activation has there had been cases, 
 	 * where mandatory fields have been null at activation for some reason. Felix SCR will also
 	 * look for a method named activate which is present through the DefaultResourceSetFactory
-	 * and will call it after the Constructor. So to avoid activating this twice by accident, 
-	 * we will name the method here explicitly.
+	 * and will call it after the Constructor, regardless of the fact that it is already activated 
+	 * through the Constructor. So to avoid activating this twice by accident, we don't call the 
+	 * super activate method in the constructor but let SCR run its course. The Activate 
+	 * annotation is on here, to act as a marker.
 	 *
 	 * (non-Javadoc)
 	 * @see org.gecko.emf.osgi.provider.DefaultResourceSetFactory#activate(org.osgi.service.component.ComponentContext)
@@ -107,6 +109,18 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	public void deactivate() {
 		super.deactivate();
 		componentContext.getBundleContext().ungetService(resourceFactoryRegistryReference);
+	}
+	
+	/**
+	 * This is a bit of a hack. To make sure that we have the Registry as early as possible, we use constructor Injection. 
+	 * We want to know about the property updates as well, which is not possible for constructor injected references. 
+	 * We know that our Default registry is a singleton. Thus, we create a second Reference, that does nothing on set, 
+	 * but reacts to changes of the properties. Not nice, but it works.   
+	 * @param resourceFactoryRegistry the resource factory to be injected
+	 */
+	@Reference(policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+//		Do nothing here
 	}
 
 	protected void unsetRegistry(org.eclipse.emf.ecore.EPackage.Registry registry) {
