@@ -384,19 +384,11 @@ public class RestfulURIHandlerImpl extends URIHandlerImpl {
 			int responseCode = httpURLConnection.getResponseCode();
 			Map<Object, Object> response = getResponse(options);
 			if (response != null) {
-				try {
-					String lastModified = httpURLConnection.getHeaderField(HEADER_LAST_MODIFIED);
-					if (lastModified != null) {
-						Long lm = Long.parseLong(httpURLConnection.getHeaderField(HEADER_LAST_MODIFIED));
-						response.put(URIConverter.RESPONSE_TIME_STAMP_PROPERTY, lm);
-					}
-				} catch (Exception e) {
-					LOG.log(Level.SEVERE, ERROR_LAST_MODIFIED, e);
-				}
+				setLastModified(httpURLConnection, response);
 			}
 			httpURLConnection.disconnect();
 			return responseCode == HttpURLConnection.HTTP_OK;
-		} catch (Throwable exception) {
+		} catch (Exception exception) {
 			return false;
 		}
 	}

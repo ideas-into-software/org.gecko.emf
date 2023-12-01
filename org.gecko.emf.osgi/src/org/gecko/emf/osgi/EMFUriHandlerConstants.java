@@ -53,6 +53,7 @@ public interface EMFUriHandlerConstants {
 	 * They was used for basic authentication, which is not recommended anymore. 
 	 * If you need basic Auth, please handle it manually and set the Header via the 
 	 * {@link EMFUriHandlerConstants#OPTION_HTTP_HEADERS}
+	 * @deprecated will not be replaced
 	 */
 	@Deprecated
 	String OPTIONS_AUTH_USER = "user";
@@ -61,6 +62,7 @@ public interface EMFUriHandlerConstants {
 	 * They was used for basic authentication, which is not recommended anymore. 
 	 * If you need basic Auth, please handle it manually and set the Header via the 
 	 * {@link EMFUriHandlerConstants#OPTION_HTTP_HEADERS}
+	 * @deprecated will not be replaced
 	 */
 	@Deprecated
 	String OPTIONS_AUTH_MANDANT = "mandant";
@@ -69,6 +71,7 @@ public interface EMFUriHandlerConstants {
 	 * They was used for basic authentication, which is not recommended anymore. 
 	 * If you need basic Auth, please handle it manually and set the Header via the 
 	 * {@link EMFUriHandlerConstants#OPTION_HTTP_HEADERS}
+	 * @deprecated will not be replaced
 	 */
 	@Deprecated
 	String OPTIONS_AUTH_PASSWORD = "password";
