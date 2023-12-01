@@ -38,6 +38,8 @@ public @interface EMFModel {
 	String[] nsURI();
 	String[] contentType() default "";
 	String[] fileExtension() default "";
+	String[] protocol() default "";
+	String feature() default "" ;
 	String version() default "" ;
 	
 }

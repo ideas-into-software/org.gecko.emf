@@ -2,7 +2,7 @@
 
 This is an implementation of an OSGi Extender. It tracks all bundle Manifest for a special *Requirement*.
 
-This defines the *ecore* model folders. The extender looks into these folders and tries to load the model files  for the given paths. The loaded models are then registered to the Gecko EMF infrastructure. that means, that each *ecore* model gets an own *EPackageConfigurator*
+This defines the *ecore* model folders. The extender looks into these folders and tries to load the model files  for the given paths. The loaded models are then registered to the Gecko EMF infrastructure. That means each *ecore* model will get an own *EPackageConfigurator*
 
 Each model will be registered with the service properties *emf.model.name* and *emf.model.nsURI*. Additional properties are appended to the service properties.
 
@@ -57,7 +57,7 @@ For each model location entry, additional key value pairs can be provided. They 
 
 `/model;foo=bar;test=me`
 
-This provided additional properties **foo=bar** and **tesT=me** to each *ecore* model in the folder *model*
+This provided additional properties **foo=bar** and **test=me** to each *ecore* model in the folder *model*
 
 For single model files it works as well.
 

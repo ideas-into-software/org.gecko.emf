@@ -16,7 +16,11 @@ javac.target: 1.8
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
+-require-bnd: "(version>=7.0.0)"
 
+-library: geckoDIMC,\
+ 	geckoOSGi-Test,\
+	geckoJacoco
 
 github-project: org.gecko.emf
 
@@ -29,6 +33,15 @@ dimcBaselining: true
 	"No metadata for revision";\
 		restrict:=error;\
     	is:=warning
+    	
+-plugin.3.Central: \
+    aQute.bnd.repository.maven.provider.MavenBndRepository; \
+        snapshotUrl="https://oss.sonatype.org/content/repositories/snapshots/"; \
+        releaseUrl=https://repo.maven.apache.org/maven2/; \
+        index=${.}/central.mvn; \
+        readOnly=true; \
+        poll.time=-1; \
+        name="Central"
 
 -plugin: aQute.bnd.deployer.repository.LocalIndexedRepo;\
 		local               =${.}/local;\

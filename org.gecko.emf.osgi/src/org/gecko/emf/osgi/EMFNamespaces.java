@@ -34,6 +34,7 @@ public class EMFNamespaces {
 	// Attribute name for the name of the configurator types (EPackageConfigurator, ResourceFactoryConfigurator and ResourceSetConfigurator)
 	public static final String EMF_CONFIGURATOR_PREFIX = EMF_CONFIGURATOR_NAMESPACE + "."; //$NON-NLS-1$
 	public static final String EMF_CONFIGURATOR_NAME = EMF_CONFIGURATOR_PREFIX + "name"; //$NON-NLS-1$
+	public static final String EMF_RESOURCE_FACTORY_CONFIGURATOR_NAME = EMF_CONFIGURATOR_PREFIX + "resourceFactory"; //$NON-NLS-1$
 	
 	/**
 	 * Attribute name constants for {@link EMFModel} annotation.
@@ -55,6 +56,8 @@ public class EMFNamespaces {
 	public static final String EMF_MODEL_VERSION = EMF_MODEL_PREFIX + "version";
 	// Attribute name for the EMF model feature
 	public static final String EMF_MODEL_FEATURE = EMF_MODEL_PREFIX + "feature";
+	// Attribute name for the EMF dynamic model configurator ecore path '<bsn>:(<version>)/(<path>)/<file>.ecore'
+	public static final String EMF_MODEL_DYNAMIC_URI = EMF_MODEL_PREFIX + "dynamicEcoreUri";
 	
 	/**
 	 * Constants for the isolated configurable resource set factory
@@ -63,13 +66,6 @@ public class EMFNamespaces {
 	public static final String PROP_RESOURCE_SET_FACTORY_NAME = "rsf.name";
 	// property name for the resource set factory model target filter
 	public static final String PROP_MODEL_TARGET_FILTER = "rsf.model.target.filter";
-	// property name for the dynmaic model configurator ecore path '<bsn>:(<version>)/(<path>)/<file>.ecore'
-	public static final String PROP_DYNAMIC_CONFIG_ECORE_PATH = "dynamic.ecore.path";
-	// property name for the dynmaic model configurator content type
-	public static final String PROP_DYNAMIC_CONFIG_CONTENT_TYPE = "dynamic.ecore.contentType";
-	// property name for the dynmaic model configurator file extension
-	public static final String PROP_DYNAMIC_CONFIG_FILE_EXTENSION = "dynamic.ecore.fileExtension";
-	
 	
 	// Configuration pid for the EPackage registry 
 	public static final String EPACKAGE_REGISTRY_CONFIG_NAME = "EPackageRegistry";

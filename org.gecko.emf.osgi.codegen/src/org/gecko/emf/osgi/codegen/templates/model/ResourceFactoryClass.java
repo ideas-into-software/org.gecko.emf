@@ -1,6 +1,5 @@
 package org.gecko.emf.osgi.codegen.templates.model;
 
-import java.util.*;
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.gecko.emf.osgi.codegen.templates.model.helper.GeneratorHelper;
 

@@ -140,9 +140,9 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 	 */
 	@Test
 	public void testResourceSetFactoryRegister(
-			@InjectService(filter = "(rsf.name=manual)", cardinality = 0) ServiceAware<AnyService> serviceAwareAny,
-			@InjectService(filter = "(rsf.name=manual)", cardinality = 0) ServiceAware<ResourceSet> serviceAwareRS,
-			@InjectService(filter = "(rsf.name=manual)", cardinality = 0) ServiceAware<ResourceSetFactory> serviceAwareF)
+			@InjectService(filter = "(rsf.name=manual)", cardinality = 0) ServiceAware<AnyService> anyAware,
+			@InjectService(filter = "(rsf.name=manual)", cardinality = 0) ServiceAware<ResourceSet> rsAware,
+			@InjectService(filter = "(rsf.name=manual)", cardinality = 0) ServiceAware<ResourceSetFactory> rsfAware)
 			throws IOException, InterruptedException, InvalidSyntaxException {
 
 		Dictionary<String, Object> properties = new Hashtable<>();
@@ -163,7 +163,7 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 				.hasExactlyOneServiceEventRegisteredWith(EPackage.Registry.class);
 
 
-		ServiceReference<?> rsfRef = serviceAwareF.getServiceReference();
+		ServiceReference<?> rsfRef = rsfAware.getServiceReference();
 		Object modelNames = rsfRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);
@@ -172,7 +172,7 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		assertFalse(modelNameList.contains("manual"));
 		assertFalse(modelNameList.contains("manual2"));
 
-		ServiceReference<?> rsRef = serviceAwareRS.getServiceReference();
+		ServiceReference<?> rsRef = rsAware.getServiceReference();
 		modelNames = rsRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);
@@ -181,17 +181,17 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		assertFalse(modelNameList.contains("manual"));
 		assertFalse(modelNameList.contains("manual2"));
 
-		Dictionary<String, Object> epackageProperties = new Hashtable<String, Object>();
-		epackageProperties.put(EMFNamespaces.EMF_MODEL_NAME, ManualPackage.eNAME);
+		Dictionary<String, Object> manualProperties = new Hashtable<String, Object>();
+		manualProperties.put(EMFNamespaces.EMF_MODEL_NAME, ManualPackage.eNAME);
 		ManualPackageConfigurator manualPackageConfigurator = new ManualPackageConfigurator();
 
-		ServiceRegistration<?> reg1 = bc.registerService(
+		ServiceRegistration<?> manualRegistration = bc.registerService(
 				new String[] { EPackageConfigurator.class.getName(), ResourceFactoryConfigurator.class.getName() },
-				manualPackageConfigurator, epackageProperties);
+				manualPackageConfigurator, manualProperties);
 
 		Thread.sleep(4000);
-		;
-		rsfRef = serviceAwareRS.getServiceReference();
+		
+		rsfRef = rsAware.getServiceReference();
 		modelNames = rsfRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);
@@ -200,7 +200,7 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		assertTrue(modelNameList.contains("manual"));
 		assertFalse(modelNameList.contains("manual2"));
 
-		rsRef = serviceAwareF.getServiceReference();
+		rsRef = rsfAware.getServiceReference();
 		modelNames = rsRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);
@@ -209,8 +209,8 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		assertTrue(modelNameList.contains("manual"));
 		assertFalse(modelNameList.contains("manual2"));
 
-		epackageProperties = new Hashtable<String, Object>();
-		epackageProperties.put(EMFNamespaces.EMF_MODEL_NAME, BasicPackage.eNAME + "2");
+		manualProperties = new Hashtable<String, Object>();
+		manualProperties.put(EMFNamespaces.EMF_MODEL_NAME, BasicPackage.eNAME + "2");
 		/*
 		 * No change expected because target filter does not match
 		 */
@@ -218,9 +218,9 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		ManualPackageConfigurator configurator2 = new ManualPackageConfigurator();
 		ServiceRegistration<?> reg2 = bc.registerService(
 				new String[] { EPackageConfigurator.class.getName(), ResourceFactoryConfigurator.class.getName() },
-				configurator2, epackageProperties);
+				configurator2, manualProperties);
 
-		rsfRef = serviceAwareF.getServiceReference();
+		rsfRef = rsfAware.getServiceReference();
 		modelNames = rsfRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
 		assertTrue(modelNames instanceof String[]);
@@ -229,7 +229,7 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		assertTrue(modelNameList.contains("manual"));
 		assertFalse(modelNameList.contains("manual2"));
 
-		rsRef = serviceAwareRS.getServiceReference();
+		rsRef = rsAware.getServiceReference();
 		;
 		modelNames = rsRef.getProperty(EMFNamespaces.EMF_MODEL_NAME);
 		assertNotNull(modelNames);
@@ -239,7 +239,7 @@ public class IsolatedResourceSetFactoryIntegrationTest {
 		assertTrue(modelNameList.contains("manual"));
 		assertFalse(modelNameList.contains("manual2"));
 
-		reg1.unregister();
+		manualRegistration.unregister();
 		reg2.unregister();
 
 		MonitoringAssertion.executeAndObserve(() -> {

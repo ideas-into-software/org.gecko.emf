@@ -1,23 +1,14 @@
 -library: enableOSGi-Test
-
 -runrequires: bnd.identity;id='org.gecko.emf.osgi.itest'
--runfw: org.apache.felix.framework;version='[7.0.1,7.0.1]'
+-runfw: org.apache.felix.framework;version='[7.0.5,7.0.5]'
 -runee: JavaSE-17
 -runbundles: \
 	org.gecko.emf.osgi.example.model.basic;version=snapshot,\
 	org.gecko.emf.osgi.example.model.manual;version=snapshot,\
 	org.gecko.emf.osgi.model.info;version=snapshot,\
-	org.opentest4j;version='[1.2.0,1.2.1)',\
-	org.osgi.util.function;version='[1.1.0,1.1.1)',\
-	org.apache.felix.configadmin;version='[1.9.22,1.9.23)',\
 	org.gecko.emf.osgi.itest;version=snapshot,\
 	org.osgi.test.assertj.monitoring;version=snapshot,\
-	org.osgi.util.promise;version='[1.2.0,1.2.1)',\
 	org.apache.felix.scr;version='[2.2.6,2.2.7)',\
-	org.osgi.service.component;version='[1.5.0,1.5.1)',\
-	junit-jupiter-api;version='[5.9.1,5.9.2)',\
-	junit-jupiter-params;version='[5.9.1,5.9.2)',\
-	junit-platform-commons;version='[1.9.1,1.9.2)',\
 	org.osgi.test.assertj.framework;version='[1.2.1,1.2.2)',\
 	org.osgi.test.common;version='[1.2.1,1.2.2)',\
 	org.osgi.test.junit5;version='[1.2.1,1.2.2)',\
@@ -26,26 +17,24 @@
 	org.eclipse.emf.ecore.xmi;version='[2.18.0,2.18.1)',\
 	org.gecko.emf.osgi.component;version=snapshot,\
 	org.objenesis;version='[3.3.0,3.3.1)',\
-	assertj-core;version='[3.24.1,3.24.2)',\
-	net.bytebuddy.byte-buddy;version='[1.12.21,1.12.22)',\
-	net.bytebuddy.byte-buddy-agent;version='[1.12.21,1.12.22)',\
 	org.mockito.junit-jupiter;version='[4.11.0,4.11.1)',\
 	org.mockito.mockito-core;version='[4.11.0,4.11.1)',\
-	org.osgi.util.converter;version='[1.0.8,1.0.9)',\
 	org.gecko.emf.osgi.example.model.extended;version=snapshot,\
-	org.gecko.emf.osgi.api;version=snapshot
+	org.apache.felix.configadmin;version='[1.9.26,1.9.27)',\
+	org.gecko.emf.osgi.api;version=snapshot,\
+	org.osgi.service.cm;version='[1.6.1,1.6.2)',\
+	org.osgi.service.component;version='[1.5.1,1.5.2)',\
+	org.osgi.util.converter;version='[1.0.9,1.0.10)',\
+	org.osgi.util.function;version='[1.2.0,1.2.1)',\
+	org.osgi.util.promise;version='[1.3.0,1.3.1)',\
+	org.apache.felix.metatype;version='[1.2.4,1.2.5)',\
+	org.osgi.service.log;version='[1.5.0,1.5.1)',\
+	assertj-core;version='[3.24.2,3.24.3)',\
+	junit-jupiter-api;version='[5.10.1,5.10.2)',\
+	junit-jupiter-params;version='[5.10.1,5.10.2)',\
+	junit-platform-commons;version='[1.10.1,1.10.2)',\
+	net.bytebuddy.byte-buddy;version='[1.14.9,1.14.10)',\
+	net.bytebuddy.byte-buddy-agent;version='[1.14.9,1.14.10)',\
+	org.opentest4j;version='[1.3.0,1.3.1)'
 -runblacklist: bnd.identity;id='org.gecko.emf.osgi.extender'
--runrepos: \
-	Workspace,\
-	local,\
-	Release,\
-	BND Dependencies,\
-	DIM_Release,\
-	EMF Milestone Dependendencies,\
-	Apache Felix Dependencies,\
-	Jacoco Dependencies,\
-	OSGi-Test Dependencies,\
-	Project Dependencies,\
-	OSGi Spec R7 Dependencies,\
-	OSGi Spec R8 Dependencies,\
-	Slf4j and Logback Dependencies
+-runvm: -DecoreBase=${.}

@@ -28,10 +28,10 @@ import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
 import org.gecko.emf.osgi.ecore.EcoreConfigurator;
-import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 import org.osgi.annotation.bundle.Capability;
 import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.ComponentServiceObjects;
@@ -75,17 +75,18 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	/**
 	 * Called before component activation
 	 * @param ctx the component context
+	 * @TODO Clarify why we use ComponentServiceObjects here?
 	 */
 	@Activate
 	public ConfigurationResourceSetFactoryComponent(ComponentContext ctx,
 			@Reference(name="ePackageRegistry", unbind = "unsetRegistry")
 			EPackage.Registry registry,
-			@Reference(name="resourceFactoryRegistry", unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+			@Reference(name="resourceFactoryRegistry")
 			ComponentServiceObjects<Resource.Factory.Registry> resourceFactoryRegistryObjects
 			) {
 		this.resourceFactoryRegistryObjects = resourceFactoryRegistryObjects;
 		super.setEPackageRegistry(registry);
-		super.setResourceFactoryRegistry(resourceFactoryRegistryObjects.getService(), ServicePropertiesHelper.convert(resourceFactoryRegistryObjects.getServiceReference().getProperties()));
+		super.setResourceFactoryRegistry(resourceFactoryRegistryObjects.getService(), FrameworkUtil.asMap(resourceFactoryRegistryObjects.getServiceReference().getProperties()));
 		EcoreConfigurator ecoreConfigurator = new EcoreConfigurator();
 		addEPackageConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
 		addResourceFactoryConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
@@ -114,11 +115,25 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	@Deactivate
 	public void deactivate() {
 		super.deactivate();
-		this.resourceFactoryRegistryObjects.ungetService(resourceFactoryRegistry);
+		Factory.Registry rfr = getResourceFactoryRegistry().get();
+		if (rfr != null) {
+			this.resourceFactoryRegistryObjects.ungetService(rfr);
+		}
 	}
 
 	protected void unsetRegistry(org.eclipse.emf.ecore.EPackage.Registry registry) {
 		super.unsetEPackageRegistry(registry);
+	}
+	
+	
+
+	/**
+	 * Inject a {@link Registry} for resource factories
+	 * @param resourceFactoryRegistry the resource factory to be injected
+	 */
+	@Reference(policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+//		do nothing here
 	}
 	
 	public void modifiedResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
@@ -130,8 +145,9 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param resourceFactoryRegistry the registry to be removed
 	 */
 	@Override
-	public void unsetResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry) {
-		super.unsetResourceFactoryRegistry(resourceFactoryRegistry);
+	public void unsetResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+		super.unsetResourceFactoryRegistry(resourceFactoryRegistry, properties);
+		this.resourceFactoryRegistryObjects.ungetService(resourceFactoryRegistry);
 	}
 
 	/**
