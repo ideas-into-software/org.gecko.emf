@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
  * @author mark
  * @since 17.10.2022
  */
+@java.lang.SuppressWarnings({"java:S5786"})
 class ModelUtilsTest {
 	
 	@Test

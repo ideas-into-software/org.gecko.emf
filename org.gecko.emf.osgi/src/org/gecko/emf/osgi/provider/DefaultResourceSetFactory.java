@@ -396,7 +396,7 @@ public class DefaultResourceSetFactory implements ResourceSetFactory {
 	 * @return a copy of the original Dictionary
 	 */
 	private Dictionary<String, Object> copyDictionary(Dictionary<String, Object> dictionary) {
-		Hashtable<String, Object> props = new Hashtable<>();
+		Dictionary<String, Object> props = new Hashtable<>();
 		Enumeration<String> enumeration = dictionary.keys();
 		while (enumeration.hasMoreElements()) {
 			String string = enumeration.nextElement();

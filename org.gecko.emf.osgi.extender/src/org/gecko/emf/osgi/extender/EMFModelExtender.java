@@ -83,7 +83,7 @@ public class EMFModelExtender {
 	 * @param bc The bundle context
 	 */
 	public EMFModelExtender(final BundleContext bc) {
-		this.queue = Executors.newSingleThreadExecutor((r)->{
+		this.queue = Executors.newSingleThreadExecutor(r->{
 			Thread t = Executors.defaultThreadFactory().newThread(r);
 			t.setDaemon(true);
 			t.setName("Gecko EMF Model Extender Worker Thread");

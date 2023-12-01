@@ -41,6 +41,7 @@ import org.osgi.framework.Constants;
  * @author Mark Hoffmann
  * @since 06.11.2023
  */
+@java.lang.SuppressWarnings({"java:S5786"})
 public class SystemPropertyHelperTest {
 
 	@Test

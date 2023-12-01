@@ -34,10 +34,11 @@ import org.junit.jupiter.api.Test;
 import org.osgi.framework.Constants;
 
 /**
- * 
+ * Suppress warning makes sonar ignoring test classes and methods that are public 
  * @author Mark Hoffmann
  * @since 06.11.2023
  */
+@java.lang.SuppressWarnings({"java:S5786"})
 public class ServicePropertyContextTest {
 
 	@Test
