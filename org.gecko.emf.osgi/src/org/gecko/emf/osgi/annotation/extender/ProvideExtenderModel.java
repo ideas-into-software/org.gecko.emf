@@ -11,7 +11,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package org.gecko.emf.osgi.annotation.require;
+package org.gecko.emf.osgi.annotation.extender;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -19,7 +19,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.gecko.emf.osgi.EMFNamespaces;
+import org.gecko.emf.osgi.constants.EMFNamespaces;
 import org.osgi.annotation.bundle.Attribute;
 import org.osgi.annotation.bundle.Requirement;
 import org.osgi.namespace.extender.ExtenderNamespace;
@@ -29,7 +29,7 @@ import org.osgi.namespace.extender.ExtenderNamespace;
  * used directly, or as a meta-annotation.
  * <p>
  * This annotation allows users to define custom locations that should be
- * searched for EMF ecore files using {@link RequireModel#value()}
+ * searched for EMF ecore files using {@link ProvideExtenderModel#value()}
  * 
  * @author Mark Hoffmann
  * @since 13.10.2022
@@ -42,7 +42,7 @@ import org.osgi.namespace.extender.ExtenderNamespace;
 @Requirement(namespace = ExtenderNamespace.EXTENDER_NAMESPACE, //
 		name = EMFNamespaces.EMF_MODEL_EXTENDER_NAME, //
 		version = "1.0.0")
-public @interface RequireModel {
+public @interface ProvideExtenderModel {
 
 	/**
 	 * This attribute can be used to define one or more locations that the

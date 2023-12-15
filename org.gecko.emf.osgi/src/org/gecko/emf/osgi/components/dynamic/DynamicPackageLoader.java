@@ -14,7 +14,7 @@
 package org.gecko.emf.osgi.components.dynamic;
 
 import static java.util.Objects.requireNonNull;
-import static org.gecko.emf.osgi.EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.DYNAMIC_MODEL_CONFIGURATOR_CONFIG_NAME;
 
 import java.io.IOException;
 import java.util.Dictionary;
@@ -27,8 +27,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.emf.osgi.EMFNamespaces;
-import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.configurator.EPackageConfigurator;
+import org.gecko.emf.osgi.constants.EMFNamespaces;
 import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;

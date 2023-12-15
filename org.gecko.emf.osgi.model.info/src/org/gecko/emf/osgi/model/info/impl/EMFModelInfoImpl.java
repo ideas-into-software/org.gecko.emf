@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
-import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.configurator.EPackageConfigurator;
 import org.gecko.emf.osgi.model.info.EMFModelInfo;
 import org.osgi.annotation.bundle.Capability;
 import org.osgi.service.component.annotations.Component;

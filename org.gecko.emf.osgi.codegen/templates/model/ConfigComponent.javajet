@@ -1,4 +1,4 @@
-<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.ecore.EFactory org.gecko.emf.osgi.EPackageConfigurator java.util.Hashtable org.osgi.service.condition.Condition" class="ConfigurationComponentClass"%>
+<%@ jet package="org.gecko.emf.osgi.codegen.templates.model" imports="org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.ecore.EFactory org.gecko.emf.osgi.configurator.EPackageConfigurator java.util.Hashtable org.osgi.service.condition.Condition" class="ConfigurationComponentClass"%>
 <%final GenPackage genPackage = (GenPackage)((Object[])argument)[0]; final GenModel genModel=genPackage.getGenModel();%>
 <%@ include file="Header.javajetinc"%>
 package <%=genPackage.getInterfacePackageName()%>.configuration;
@@ -29,7 +29,7 @@ public class <%=genPackage.getPrefix()%>ConfigurationComponent
 {
 	
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> packageRegistration = null;
-	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><<%=genModel.getImportedName("org.gecko.emf.osgi.EPackageConfigurator")%>> ePackageConfiguratorRegistration = null;
+	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><<%=genModel.getImportedName("org.gecko.emf.osgi.configurator.EPackageConfigurator")%>> ePackageConfiguratorRegistration = null;
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> eFactoryRegistration = null;
 	private <%=genModel.getImportedName("org.osgi.framework.ServiceRegistration")%><?> conditionRegistration = null;
 <%if (genPackage.getResource() != GenResourceKind.NONE_LITERAL) {%>

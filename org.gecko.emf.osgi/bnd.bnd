@@ -1,8 +1,12 @@
+src=${^src},src-gen
+
 Export-Package: \
 	org.gecko.emf.osgi,\
 	org.gecko.emf.osgi.helper,\
 	org.gecko.emf.osgi.factory,\
-	org.gecko.emf.osgi.annotation.*
+	org.gecko.emf.osgi.annotation.*,\
+	org.gecko.emf.osgi.configurator,\
+	org.gecko.emf.osgi.constants
 
 -buildpath: \
 	org.osgi.framework;version=latest,\
@@ -20,14 +24,10 @@ Export-Package: \
 	org.eclipse.emf.ecore.xmi;version=latest,\
 	biz.aQute.bnd.annotation;version=latest
 	
-# We shoudl consider deactivating this. For the Momemnt the Baselining is a bit harsch, e
-# specially given that we know that it is still backward compatible.
--fixupmessages: \
-	"Baseline mismatch";\
-		restrict:=error;\
-    	is:=warning,\
-	"The bundle version";\
-		restrict:=error;\
-    	is:=warning
-	
 -sub: *.bnd
+
+#populates the VersionConstant class, with the current geckoEMF Version 
+-generate:   \
+    src-version/**.java; \
+        output='src-gen/' ; \
+        generate='javagen -o src-gen src-version/'

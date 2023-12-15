@@ -11,7 +11,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package org.gecko.emf.osgi.codegen;
+package org.gecko.emf.osgi.constants;
 
 /**
  * Version constant
@@ -20,5 +20,6 @@ package org.gecko.emf.osgi.codegen;
  */
 public class VersionConstant {
 
-	public static final String CODE_GEN_VERSION = "6.0.0"; //$NON-NLS-1$
+	public static final String GECKOPROJECTS_EMF_VERSION = "6.0.0"; //$NON-NLS-1$
+	public static final String GECKOPROJECTS_EMF_MAJOR_VERSION = "6;"; //$NON-NLS-1$
 }

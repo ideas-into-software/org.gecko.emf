@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.gecko.emf.osgi.annotation.provide.EPackage;
 import org.gecko.emf.osgi.codegen.GeckoEmfGenerator.GeneratorOptions;
 import org.gecko.emf.osgi.codegen.adapter.BNDGeneratorAdapterFactory;
+import org.gecko.emf.osgi.constants.VersionConstant;
 import org.osgi.resource.Capability;
 
 import aQute.bnd.build.Container;
@@ -59,7 +60,7 @@ import aQute.bnd.service.generate.Generator;
 import aQute.bnd.service.generate.Options;
 import aQute.lib.io.IO;
 
-@ExternalPlugin(name = "geckoEMF", objectClass = Generator.class, version = VersionConstant.CODE_GEN_VERSION)
+@ExternalPlugin(name = "geckoEMF", objectClass = Generator.class, version = VersionConstant.GECKOPROJECTS_EMF_VERSION)
 public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 
 	public static final String ORIGINAL_GEN_MODEL_PATH = "originalGenModelPath";

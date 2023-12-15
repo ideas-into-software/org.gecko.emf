@@ -30,9 +30,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.IOWrappedException;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.gecko.emf.osgi.EPackageConfigurator;
-import org.gecko.emf.osgi.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.configurator.EPackageConfigurator;
+import org.gecko.emf.osgi.configurator.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.example.model.basic.BasicPackage;
 import org.gecko.emf.osgi.example.model.manual.Foo;
 import org.gecko.emf.osgi.example.model.manual.ManualFactory;
@@ -155,7 +155,7 @@ public class ResourceSetRegistriesIsolationTest {
 	 * Registers Packages in as Service and Manually in the {@link ResourceSet} registry and checks if they are properly scoped.
 	 */
 	@Test
-	public void testFacotryScoping(@InjectService ResourceSetFactory factory)
+	public void testFactoryScoping(@InjectService ResourceSetFactory factory)
 			throws IOException, InvalidSyntaxException {
 		
 		

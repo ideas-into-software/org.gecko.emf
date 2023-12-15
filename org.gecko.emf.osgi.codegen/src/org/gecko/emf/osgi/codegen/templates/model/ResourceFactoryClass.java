@@ -225,23 +225,23 @@ public class ResourceFactoryClass
     stringBuffer.append(TEXT_52);
     stringBuffer.append(genModel.getImportedName("java.util.HashMap"));
     stringBuffer.append(TEXT_53);
-    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces"));
+    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.constants.EMFNamespaces"));
     stringBuffer.append(TEXT_54);
     stringBuffer.append(genPackage.getPackageInterfaceName());
     stringBuffer.append(TEXT_55);
-    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces"));
+    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.constants.EMFNamespaces"));
     stringBuffer.append(TEXT_56);
     stringBuffer.append(genPackage.getFileExtension());
     stringBuffer.append(TEXT_57);
      if (genPackage.getContentTypeIdentifier() != null) {
     stringBuffer.append(TEXT_58);
-    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces"));
+    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.constants.EMFNamespaces"));
     stringBuffer.append(TEXT_59);
     stringBuffer.append(genPackage.getContentTypeIdentifier());
     stringBuffer.append(TEXT_57);
     }
     stringBuffer.append(TEXT_58);
-    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EMFNamespaces"));
+    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.constants.EMFNamespaces"));
     stringBuffer.append(TEXT_60);
     stringBuffer.append(GeneratorHelper.getVersion(genPackage));
     stringBuffer.append(TEXT_61);

@@ -14,8 +14,8 @@
 package org.gecko.emf.osgi.itest.configurator;
 
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
-import org.gecko.emf.osgi.ResourceFactoryConfigurator;
-import org.gecko.emf.osgi.ResourceSetConfigurator;
+import org.gecko.emf.osgi.configurator.ResourceFactoryConfigurator;
+import org.gecko.emf.osgi.configurator.ResourceSetConfigurator;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**

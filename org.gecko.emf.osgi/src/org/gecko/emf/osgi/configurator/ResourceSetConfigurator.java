@@ -11,7 +11,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package org.gecko.emf.osgi;
+package org.gecko.emf.osgi.configurator;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.osgi.annotation.versioning.ProviderType;

@@ -29,11 +29,9 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
-import org.gecko.emf.osgi.EMFNamespaces;
-import org.gecko.emf.osgi.EPackageConfigurator;
-import org.gecko.emf.osgi.ResourceFactoryConfigurator;
-import org.gecko.emf.osgi.annotation.EMFModel;
-import org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator;
+import org.gecko.emf.osgi.configurator.EPackageConfigurator;
+import org.gecko.emf.osgi.configurator.ResourceFactoryConfigurator;
+import org.gecko.emf.osgi.constants.EMFNamespaces;
 import org.osgi.framework.Constants;
 
 /**
@@ -52,25 +50,6 @@ import org.osgi.framework.Constants;
  * @author Mark Hoffmann
  * @since 25.07.2017
  */
-@EMFModel(name="ecore", nsURI={XMLTypePackage.eNS_URI,
-		XMLNamespacePackage.eNS_URI,
-		EcorePackage.eNS_URI}, version="1.0.0")
-@ProvideEMFResourceConfigurator( name = "ecore", 
-	contentType = { 
-			"org.eclipse.emf.ecore", 
-			"org.eclipse.emf.emof", 
-			"application/xmi", 
-			"application/octet-stream"
-			}, 
-	fileExtension = { 
-			"*", 
-			"xmi", 
-			"ecore", 
-			"emof", 
-			"bin"
-			},
-	version = "1.0"
-)
 public class EcoreConfigurator implements EPackageConfigurator, ResourceFactoryConfigurator {
 
 	/** OCTET_STREAM */

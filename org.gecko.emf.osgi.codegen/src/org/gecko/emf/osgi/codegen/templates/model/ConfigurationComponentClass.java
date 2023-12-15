@@ -2,7 +2,7 @@ package org.gecko.emf.osgi.codegen.templates.model;
 
 import org.eclipse.emf.codegen.ecore.genmodel.*;
 import org.eclipse.emf.ecore.EFactory;
-import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.configurator.EPackageConfigurator;
 import java.util.Hashtable;
 import org.osgi.service.condition.Condition;
 
@@ -144,7 +144,7 @@ public class ConfigurationComponentClass
     stringBuffer.append(TEXT_17);
     stringBuffer.append(genModel.getImportedName("org.osgi.framework.ServiceRegistration"));
     stringBuffer.append(TEXT_18);
-    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.EPackageConfigurator"));
+    stringBuffer.append(genModel.getImportedName("org.gecko.emf.osgi.configurator.EPackageConfigurator"));
     stringBuffer.append(TEXT_19);
     stringBuffer.append(genModel.getImportedName("org.osgi.framework.ServiceRegistration"));
     stringBuffer.append(TEXT_20);

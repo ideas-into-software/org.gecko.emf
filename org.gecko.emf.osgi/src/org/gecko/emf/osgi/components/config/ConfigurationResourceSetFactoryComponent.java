@@ -22,11 +22,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.emf.osgi.EMFNamespaces;
-import org.gecko.emf.osgi.EPackageConfigurator;
-import org.gecko.emf.osgi.ResourceFactoryConfigurator;
-import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.configurator.EPackageConfigurator;
+import org.gecko.emf.osgi.configurator.ResourceFactoryConfigurator;
+import org.gecko.emf.osgi.configurator.ResourceSetConfigurator;
+import org.gecko.emf.osgi.constants.EMFNamespaces;
+import org.gecko.emf.osgi.constants.VersionConstant;
 import org.gecko.emf.osgi.ecore.EcoreConfigurator;
 import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 import org.osgi.annotation.bundle.Capability;
@@ -57,7 +58,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 @Capability(
 		namespace = EMFNamespaces.EMF_NAMESPACE,
 		name = ResourceSetFactory.EMF_CAPABILITY_NAME,
-		version = ResourceSetFactory.GECKOPROJECTS_EMF_VERSION
+		version = VersionConstant.GECKOPROJECTS_EMF_VERSION
 		)
 @ProviderType
 public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSetFactory {

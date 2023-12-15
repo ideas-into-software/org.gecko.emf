@@ -16,6 +16,7 @@ package org.gecko.emf.osgi;
 import java.util.Collection;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.gecko.emf.osgi.configurator.ResourceSetConfigurator;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -27,7 +28,6 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface ResourceSetFactory
 {
 	public static final String EMF_CAPABILITY_NAME = "osgi";
-	public static final String GECKOPROJECTS_EMF_VERSION = "2.1";
 	public static final String CONDITION_ID = "org.gecko.emf.osgi.ResourceSetFactory";
 	
 	/**

@@ -11,7 +11,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package org.gecko.emf.osgi;
+package org.gecko.emf.osgi.constants;
 
 import org.gecko.emf.osgi.annotation.EMFModel;
 import org.gecko.emf.osgi.annotation.EMFResourceFactoryConfigurator;

@@ -9,8 +9,7 @@
 	bnd.identity;id='org.gecko.emf.osgi.extender',\
 	bnd.identity;id='org.gecko.emf.osgi.model.info',\
 	bnd.identity;id='org.gecko.emf.osgi.bnd.library.project',\
-	bnd.identity;id='org.gecko.emf.osgi.bnd.templates.project',\
-	bnd.identity;id='slf4j.simple'
+	bnd.identity;id='org.gecko.emf.osgi.bnd.templates.project'
 -runbundles: \
 	org.gecko.emf.osgi.codegen;version=snapshot,\
 	org.gecko.emf.osgi.component;version=snapshot,\
@@ -28,9 +27,9 @@
 	org.osgi.util.converter;version='[1.0.9,1.0.10)',\
 	org.osgi.util.function;version='[1.2.0,1.2.1)',\
 	org.osgi.util.promise;version='[1.3.0,1.3.1)',\
-	slf4j.api;version='[1.7.36,1.7.37)',\
-	slf4j.simple;version='[1.7.36,1.7.37)',\
-	org.gecko.emf.osgi.model.info;version=snapshot
+	org.gecko.emf.osgi.model.info;version=snapshot,\
+	org.apache.felix.metatype;version='[1.2.4,1.2.5)',\
+	org.osgi.service.log;version='[1.5.0,1.5.1)'
 -runblacklist: \
 	bnd.identity;id='ch.qos.logback.classic',\
 	bnd.identity;id='ch.qos.logback.core'

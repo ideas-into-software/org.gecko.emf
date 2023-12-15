@@ -9,8 +9,7 @@ src=${^src},src-gen
 	org.osgi.annotation.versioning;version=latest,\
 	org.osgi.service.component.annotations;version=latest,\
 	org.osgi.service.condition;version=latest,\
-	org.osgi.framework;version=latest,\
-	org.gecko.emf.osgi.codegen;version=snapshot
+	org.osgi.framework;version=latest
 
 -includeresource.model: model=other/main/resources/model
 

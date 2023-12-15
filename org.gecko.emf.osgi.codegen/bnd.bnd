@@ -1,4 +1,4 @@
-src=${^src},src-gen
+src=${^src}
 
 -buildpath: \
 	org.osgi.annotation.bundle;version=latest,\
@@ -53,9 +53,5 @@ src=${^src},src-gen
 Import-Package: \
 	!*
 
--generate:   \
-    gen/**.java; \
-        output='src-gen/' ; \
-        generate='javagen -o src-gen gen/'
 Bundle-Name: EMF OSGi Bnd Codegen
 Bundle-Description: EMF OSGi code generator for bnd
