@@ -4,9 +4,11 @@ Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.
 
 # Build dependencies 
 -buildpath: \
+	org.osgi.dto;version=latest,\
 	org.osgi.framework;version=latest,\
 	org.osgi.service.cm;version=latest,\
 	org.osgi.service.condition;version=latest,\
+	org.osgi.service.component;version=latest,\
 	org.osgi.annotation.versioning;version=latest,\
 	org.osgi.util.promise;version=latest,\
 	org.eclipse.emf.ecore;version=latest,\
@@ -17,7 +19,6 @@ Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.
 	org.gecko.emf.osgi.model.info;version=snapshot,\
 	org.gecko.emf.osgi.example.model.extended;version=snapshot,\
 	org.gecko.emf.osgi.example.model.basic;version=snapshot,\
-	org.gecko.emf.osgi.model.info;version=snapshot,\
 	org.gecko.emf.osgi.example.model.manual;version=snapshot,\
 	org.osgi.test.assertj.monitoring;version=snapshot
 

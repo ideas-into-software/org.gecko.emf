@@ -11,7 +11,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package org.gecko.emf.osgi.annotation;
+package org.gecko.emf.osgi.annotation.provide;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -19,9 +19,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.gecko.emf.osgi.annotation.ConfiguratorType;
 import org.gecko.emf.osgi.annotation.require.RequireEMF;
 import org.gecko.emf.osgi.configurator.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.constants.EMFNamespaces;
+import org.osgi.annotation.bundle.Capability;
 import org.osgi.service.component.annotations.ComponentPropertyType;
 
 /**
@@ -33,11 +35,21 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
 @ComponentPropertyType
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.TYPE)
+@Capability(
+		namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, 
+		name = "${#type}", 
+		attribute = {
+				"configurator.name=${#emf.configurator.name}", 
+				"feature:List<String>=\"${#emf.model.feature}\"", 
+				"protocol:List<String>=\"${#emf.model.protocol}\"", 
+				"fileExtension:List<String>=\"${#emf.model.fileExtension}\"", 
+				"contentType:List<String>=\"${#emf.model.contentType}\""})
 @RequireEMF
 public @interface EMFConfigurator {
-	String PREFIX_ = EMFNamespaces.EMF_CONFIGURATOR_PREFIX;
+	String PREFIX_ = EMFNamespaces.EMF_PREFIX;
 
-	String name();
+	ConfiguratorType configuratorType() default ConfiguratorType.EPACKAGE;
+	String configuratorName();
 	String[] feature() default "";
 	String[] protocol() default "";
 	String[] contentType() default "";

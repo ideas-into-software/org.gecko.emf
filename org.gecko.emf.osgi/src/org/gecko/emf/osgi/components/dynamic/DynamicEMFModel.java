@@ -36,7 +36,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 		description = "A URL can be configured, where a ecore is expected. The EPackage will then be loaded and registered for further use. Only the first EPackage is registered."
 		)
 public @interface DynamicEMFModel {
-	static String PREFIX_ = EMFNamespaces.EMF_MODEL_PREFIX;
+	static String PREFIX_ = EMFNamespaces.EMF_PREFIX;
 	String dynamicEcoreUri();
 	@AttributeDefinition(description = "The model custom feature", required = false)
 	String[] feature() default "" ;

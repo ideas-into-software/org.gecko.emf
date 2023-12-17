@@ -14,7 +14,6 @@
 package org.gecko.emf.osgi.constants;
 
 import org.gecko.emf.osgi.annotation.EMFModel;
-import org.gecko.emf.osgi.annotation.EMFResourceFactoryConfigurator;
 
 /**
  * 
@@ -31,36 +30,38 @@ public class EMFNamespaces {
 	public static final String EMF_CONFIGURATOR_NAMESPACE = "emf.configurator"; //$NON-NLS-1$
 	
 	/**
-	 * Attribute name constants for {@link EMFResourceFactoryConfigurator} annotation
+	 * Attribute name constants for {@link EMFConfigurator} annotation
 	 */
 
-	// Attribute name for the name of the configurator types (EPackageConfigurator, ResourceFactoryConfigurator and ResourceSetConfigurator)
-	public static final String EMF_CONFIGURATOR_PREFIX = EMF_CONFIGURATOR_NAMESPACE + "."; //$NON-NLS-1$
-	public static final String EMF_CONFIGURATOR_NAME = EMF_CONFIGURATOR_PREFIX + "name"; //$NON-NLS-1$
-	public static final String EMF_RESOURCE_FACTORY_CONFIGURATOR_NAME = EMF_CONFIGURATOR_PREFIX + "resourceFactory"; //$NON-NLS-1$
+//	public static final String EMF_CONFIGURATOR_PREFIX = EMF_CONFIGURATOR_NAMESPACE + "."; //$NON-NLS-1$
+//	public static final String EMF_RESOURCE_FACTORY_CONFIGURATOR_NAME = EMF_CONFIGURATOR_PREFIX + "resourceFactory"; //$NON-NLS-1$
 	
 	/**
 	 * Attribute name constants for {@link EMFModel} annotation.
 	 * They provide additional information about a model, through EPackages our also ResourceFactories or configurators
 	 */
+	// Attribute PREFIX for the EMF models and confiogurators
+	public static final String EMF_PREFIX = "emf.";
+	// Attribute name constants for {@link EMFConfigurator} annotation
+	public static final String EMF_CONFIGURATOR_NAME = EMF_PREFIX + "configuratorName"; //$NON-NLS-1$
 	// Attribute PREFIX for the EMF model
-	public static final String EMF_MODEL_PREFIX = "emf.model.";
+//	public static final String EMF_MODEL_PREFIX = "emf.model.";
 	// Attribute name for the EMF model name
-	public static final String EMF_MODEL_NAME = EMF_MODEL_PREFIX + "name";
+	public static final String EMF_MODEL_NAME = EMF_PREFIX + "name";
 	// Attribute name for the EMF model namespace
-	public static final String EMF_MODEL_NSURI = EMF_MODEL_PREFIX + "nsURI";
+	public static final String EMF_MODEL_NSURI = EMF_PREFIX + "nsURI";
 	// Attribute name for the EMF model content type
-	public static final String EMF_MODEL_CONTENT_TYPE = EMF_MODEL_PREFIX + "contentType";
+	public static final String EMF_MODEL_CONTENT_TYPE = EMF_PREFIX + "contentType";
 	// Attribute name for the EMF model protocol
-	public static final String EMF_MODEL_PROTOCOL = EMF_MODEL_PREFIX + "protocol";
+	public static final String EMF_MODEL_PROTOCOL = EMF_PREFIX + "protocol";
 	// Attribute name for the EMF model file extension
-	public static final String EMF_MODEL_FILE_EXT = EMF_MODEL_PREFIX + "fileExtension";
+	public static final String EMF_MODEL_FILE_EXT = EMF_PREFIX + "fileExtension";
 	// Attribute name for the EMF model version
-	public static final String EMF_MODEL_VERSION = EMF_MODEL_PREFIX + "version";
+	public static final String EMF_MODEL_VERSION = EMF_PREFIX + "version";
 	// Attribute name for the EMF model feature
-	public static final String EMF_MODEL_FEATURE = EMF_MODEL_PREFIX + "feature";
+	public static final String EMF_MODEL_FEATURE = EMF_PREFIX + "feature";
 	// Attribute name for the EMF dynamic model configurator ecore path '<bsn>:(<version>)/(<path>)/<file>.ecore'
-	public static final String EMF_MODEL_DYNAMIC_URI = EMF_MODEL_PREFIX + "dynamicEcoreUri";
+	public static final String EMF_MODEL_DYNAMIC_URI = EMF_PREFIX + "dynamicEcoreUri";
 	
 	/**
 	 * Constants for the isolated configurable resource set factory

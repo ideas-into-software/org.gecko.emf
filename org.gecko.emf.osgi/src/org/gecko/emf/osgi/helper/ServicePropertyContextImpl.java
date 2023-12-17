@@ -49,7 +49,6 @@ public class ServicePropertyContextImpl implements ServicePropertyContext {
 	
 	static {
 		validKeys.add(EMFNamespaces.EMF_CONFIGURATOR_NAME);
-		validKeys.add(EMFNamespaces.EMF_RESOURCE_FACTORY_CONFIGURATOR_NAME);
 		validKeys.add(EMFNamespaces.EMF_MODEL_NAME);
 		validKeys.add(EMFNamespaces.EMF_MODEL_FEATURE);
 		validKeys.add(EMFNamespaces.EMF_MODEL_VERSION);

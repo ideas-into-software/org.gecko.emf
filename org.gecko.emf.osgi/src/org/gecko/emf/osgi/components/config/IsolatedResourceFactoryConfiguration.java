@@ -13,6 +13,7 @@
  */
 package org.gecko.emf.osgi.components.config;
 
+import static java.util.Objects.isNull;
 import static org.gecko.emf.osgi.constants.EMFNamespaces.EMF_MODEL_NAME;
 import static org.gecko.emf.osgi.constants.EMFNamespaces.EPACKAGE_REGISTRY_CONFIG_NAME;
 import static org.gecko.emf.osgi.constants.EMFNamespaces.EPACKAGE_REGISTRY_TARGET;
@@ -140,10 +141,10 @@ public class IsolatedResourceFactoryConfiguration {
 	 */
 	private String getFilter(Map<String, Object> properties) throws ConfigurationException {
 		String filterString = (String) properties.get(PROP_MODEL_TARGET_FILTER);
-		if (filterString == null) {
+		if (isNull(filterString)) {
 			filterString = "(" + EMF_MODEL_NAME + "=*)";
 		}
-		filterString = "(&(!(emf.model.name=ecore))" + filterString + ")";
+		filterString = "(&(!(" + EMF_MODEL_NAME + "=ecore))" + filterString + ")";
 		try {
 			FrameworkUtil.createFilter(filterString);
 		} catch (InvalidSyntaxException e1) {

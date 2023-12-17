@@ -19,10 +19,10 @@ private ResourceSet resourceSet;
 
 This is achieved registering a prototype service factory for the resource sets. Alternatively a `ResourceSetFactory` can also be injected. 
 
-To ensure that a model is regsitered in a resource set, the target filtering against the *emf.model.name* and other supported properties can be used:
+To ensure that a model is regsitered in a resource set, the target filtering against the *emf.name* and other supported properties can be used:
 
 ```java
-@Reference(target="(emf.model.name=foo)")
+@Reference(target="(emf.name=foo)")
 private ResourceSet resourceSet;
 ```
 ### Configurators
@@ -39,16 +39,15 @@ There are additional properties that can be provided.
 
 Supported properties are defined in the *EMFNamespaces* constant:
 
-* **emf.model.name** - the model name (String[])
-* **emf.model.nsUri** - the model package namenspace uri
-* **emf.model.fileExtension** - file extension for resource factories
-* **emf.model.protocol** - protocol value for resource factories
-* **emf.model.contentType** - content type definition for resource factories
-* **emf.model.version** - the model version
-* **emf.model.feature** - property for special feature of a model
-* **emf.configurator.name** - name of the configurator, when creating an own one
-* **emf.configurator.resourceFactory** - special identifier for own resource factories
-* **emf.model.dynamicEcoreUri** - Uri to the *ecore* when using the dynamic pacakge registration
+* **emf.name** - the model name (String[])
+* **emf.nsUri** - the model package namenspace uri
+* **emf.fileExtension** - file extension for resource factories
+* **emf.protocol** - protocol value for resource factories
+* **emf.contentType** - content type definition for resource factories
+* **emf.version** - the model version
+* **emf.feature** - property for special feature of a model
+* **emf.configuratorName** - name of the configurator, when creating an own one
+* **emf.dynamicEcoreUri** - Uri to the *ecore* when using the dynamic pacakge registration
 
 Usually the right properties are autoamtically set during registration via code generator or extender or the configuration based model registration.
 
@@ -58,19 +57,19 @@ If a configurator disappears, the properties of the *ResourceSet* service factor
 
 Example:
 
-* *FooEPackageConfigurator* with **emf.configurator.name=foo**
-* *BarEPackageConfigurator* with **emf.configurator.name=bar**
-* *ResourceSet* would get merged property **emf.configurator.name=[foo, bar]**
+* *FooEPackageConfigurator* with **emf.configuratorName=foo**
+* *BarEPackageConfigurator* with **emf.configuratorName=bar**
+* *ResourceSet* would get merged property **emf.configuratorName=[foo, bar]**
 
 The service lifecycle dynamics are handled by Gecko EMF!
 
-### The emf.model.feature Prefix Property for emf.model.feature.* 
+### The emf.feature Prefix Property for emf.feature.* 
 
-As described above, the *emf.model.feature* property can indicate any feature-string. You can filter against this in the *ResourceSet* or *ResourceSetFactory*.
+As described above, the *emf.feature* property can indicate any feature-string. You can filter against this in the *ResourceSet* or *ResourceSetFactory*.
 
-In addition to that sometimes you may want to forward a certain, self defined property to the whole Gecko EMF. You can use the prefix *emf.model.feature.* for your property:
+In addition to that sometimes you may want to forward a certain, self defined property to the whole Gecko EMF. You can use the prefix *emf.feature.* for your property:
 
-Puttinf *emf.model.feature.foo=bar* as service property of a configurator, will end up as *foo=bar* in the *ResourceSet* or *ResourceSetFactory* service properties.
+Puttinf *emf.feature.foo=bar* as service property of a configurator, will end up as *foo=bar* in the *ResourceSet* or *ResourceSetFactory* service properties.
 
 This functionality works for all configurators and also for the dynamic model registration.
 
@@ -99,12 +98,12 @@ After that a new *configuration* package is created and two two classes are gene
 
 The following services are registered with the generated code and can be used:
 
-* *EPackage, GeneratedEPackage* - Service with the generated EPackage instance, with the provided properties e.g. *emf.model.name, emf.model.fileExt, emf.model.contentType, emf.model.protocol*
-* *EFactory, GeneratedEFactory* - Service with the generated EFactory instance, with the provided properties e.g. *emf.model.name, emf.model.fileExt, emf.model.contentType, emf.model.protocol*
-* *Resource.Factory, GeneratedResourceFactory* - Service with the generated ResourceFactory and provided properties e.g. *emf.model.name, emf.model.fileExt, emf.model.contentType, emf.model.protocol*
+* *EPackage, GeneratedEPackage* - Service with the generated EPackage instance, with the provided properties e.g. *emf.name, emf.fileExt, emf.contentType, emf.protocol*
+* *EFactory, GeneratedEFactory* - Service with the generated EFactory instance, with the provided properties e.g. *emf.name, emf.fileExt, emf.contentType, emf.protocol*
+* *Resource.Factory, GeneratedResourceFactory* - Service with the generated ResourceFactory and provided properties e.g. *emf.name, emf.fileExt, emf.contentType, emf.protocol*
 * *Condition* - OSGi Condition service with all model related properties
 
-Compared to the static access to EFactory or EPackage, one can access these instances using services, by either injecting the generated EPackage or EFactory interface or the abstract EFactory or EPackage directly. To filter the right model the target filter can be used against the service properties e.g. *emf.model.name=<your-model>*
+Compared to the static access to EFactory or EPackage, one can access these instances using services, by either injecting the generated EPackage or EFactory interface or the abstract EFactory or EPackage directly. To filter the right model the target filter can be used against the service properties e.g. *emf.name=<your-model>*
 
 ## Gecko EMF Extender
 
@@ -122,9 +121,9 @@ To dynamically register a EMF model package via configuration you can use a conf
 	":configurator:symbolicname": "org.gecko.emf.osgi.demo",
 	":configurator:version": "0.0.0",
 	"DynamicPackageLoader~demo": {
-		"emf.model.dynamicEcoreUri": "https://mymodelpage.org/demo/demo.ecore",
-		"emf.model.feature": ["foo", "bar"],
-		"emf.model.feature.my": "own"
+		"emf.dynamicEcoreUri": "https://mymodelpage.org/demo/demo.ecore",
+		"emf.feature": ["foo", "bar"],
+		"emf.feature.my": "own"
 	}
 }
 
@@ -134,10 +133,10 @@ This configuration registers a model package loaded from the given *dynamicEcore
 
 In this case the properties are:
 
-* *emf.model.name* - `EPackage#getName()`
-* *emf.model.nsUri* - `EPackage#getNsUri()`
-* *emf.model.feature* - forwarded from the configuration, if set
-* *emf.model.feature.\** - forwarded as described in the feature property section. From the example above the result of *emf.model.feature.my* would be *my=own*
+* *emf.name* - `EPackage#getName()`
+* *emf.nsUri* - `EPackage#getNsUri()`
+* *emf.feature* - forwarded from the configuration, if set
+* *emf.feature.\** - forwarded as described in the feature property section. From the example above the result of *emf.feature.my* would be *my=own*
 
 This setup works with the configurator as well with the config admin. 
 

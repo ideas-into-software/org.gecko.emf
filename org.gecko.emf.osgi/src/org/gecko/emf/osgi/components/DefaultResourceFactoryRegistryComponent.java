@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl;
-import org.gecko.emf.osgi.annotation.EMFResourceFactoryConfigurator;
+import org.gecko.emf.osgi.annotation.provide.EMFConfigurator;
 import org.gecko.emf.osgi.constants.EMFNamespaces;
 import org.gecko.emf.osgi.ecore.GeckoXMLResourceFactory;
 import org.gecko.emf.osgi.helper.ServicePropertyContext;
@@ -95,7 +95,7 @@ public class DefaultResourceFactoryRegistryComponent {
 					"( " + EMFNamespaces.EMF_MODEL_PROTOCOL + "=*) " + 
 				")")
 	public void addFactory(Factory factory, Map<String, Object> properties) {
-		EMFResourceFactoryConfigurator configuration = Converters.standardConverter().convert(properties).to(EMFResourceFactoryConfigurator.class);
+		EMFConfigurator configuration = Converters.standardConverter().convert(properties).to(EMFConfigurator.class);
 		Arrays.asList(configuration.contentType()).forEach(s -> registry.getContentTypeToFactoryMap().put(s, factory)); 
 		Arrays.asList(configuration.fileExtension()).forEach(s -> registry.getExtensionToFactoryMap().put(s, factory)); 
 		Arrays.asList(configuration.protocol()).forEach(s -> registry.getProtocolToFactoryMap().put(s, factory));
@@ -109,7 +109,7 @@ public class DefaultResourceFactoryRegistryComponent {
 	 * @param properties the service properties 
 	 */
 	public void removeFactory(Factory factory, Map<String, Object> properties) {
-		EMFResourceFactoryConfigurator configuration = Converters.standardConverter().convert(properties).to(EMFResourceFactoryConfigurator.class);
+		EMFConfigurator configuration = Converters.standardConverter().convert(properties).to(EMFConfigurator.class);
 		Arrays.asList(configuration.contentType()).forEach(s->verifyRemove(registry.getContentTypeToFactoryMap(), s, factory)); 
 		Arrays.asList(configuration.fileExtension()).forEach(s->verifyRemove(registry.getExtensionToFactoryMap(), s, factory)); 
 		Arrays.asList(configuration.protocol()).forEach(s->verifyRemove(registry.getProtocolToFactoryMap(), s, factory));

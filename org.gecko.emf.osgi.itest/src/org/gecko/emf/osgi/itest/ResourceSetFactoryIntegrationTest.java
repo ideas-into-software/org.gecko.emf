@@ -62,7 +62,7 @@ public class ResourceSetFactoryIntegrationTest {
 			@InjectService BasicPackage basicPackage
 			) {
 		
-		
+		assertThat(basicPackage).isNotNull();
 		ServiceReference<Condition> reference = condition.getServiceReference();
 		assertThat(reference).isNotNull();
 

@@ -13,6 +13,8 @@
  */
 package org.gecko.emf.osgi.components;
 
+import static org.gecko.emf.osgi.constants.EMFNamespaces.EMF_MODEL_NAME;
+
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -153,7 +155,7 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	 * @param properties the service properties
 	 */
 	@Override
-	@Reference(policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, target="(!(emf.model.name=ecore))", updated = "modifyEPackageConfigurator", unbind = "removeEPackageConfigurator")
+	@Reference(policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, target="(!(" + EMF_MODEL_NAME + "=ecore))", updated = "modifyEPackageConfigurator", unbind = "removeEPackageConfigurator")
 	public void addEPackageConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
 		super.addEPackageConfigurator(configurator, properties);
 	}
@@ -183,7 +185,7 @@ public class DefaultResourceSetFactoryComponent extends DefaultResourceSetFactor
 	 * @param properties the service properties
 	 */
 	@Override
-	@Reference(policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, target="(!(emf.model.name=ecore))", updated = "modifyResourceFactoryConfigurator")
+	@Reference(policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, target="(!(" + EMF_MODEL_NAME + "=ecore))", updated = "modifyResourceFactoryConfigurator")
 	public void addResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
 		super.addResourceFactoryConfigurator(configurator, properties);
 	}

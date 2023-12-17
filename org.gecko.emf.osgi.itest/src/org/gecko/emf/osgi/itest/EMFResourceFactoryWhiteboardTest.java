@@ -57,7 +57,7 @@ import org.osgi.test.junit5.service.ServiceExtension;
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
 @ExtendWith(MockitoExtension.class)
-public class EMFREsourceFactoryWhiteboardTest {
+public class EMFResourceFactoryWhiteboardTest {
 
 	@InjectBundleContext
 	BundleContext bc;

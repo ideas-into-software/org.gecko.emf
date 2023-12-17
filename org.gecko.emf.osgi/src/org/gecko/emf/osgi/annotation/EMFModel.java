@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
 @Target(ElementType.TYPE)
 @RequireEMF
 public @interface EMFModel {
-	static String PREFIX_ = EMFNamespaces.EMF_MODEL_PREFIX;
+	static String PREFIX_ = EMFNamespaces.EMF_PREFIX;
 	String name();
 	String[] nsURI();
 	String[] contentType() default "";

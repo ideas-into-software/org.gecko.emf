@@ -26,12 +26,12 @@ public class ConfigurationComponentClass
   protected final String TEXT_6 = NL + "/**" + NL + " * The <b>PackageConfiguration</b> for the model." + NL + " * The package will be registered into a OSGi base model registry." + NL + " * " + NL + " * @generated" + NL + " */" + NL + "@Component(name = \"";
   protected final String TEXT_7 = "Configurator\")" + NL + "@";
   protected final String TEXT_8 = "( namespace = \"osgi.service\", attribute = { \"objectClass:List<String>=\\\"";
-  protected final String TEXT_9 = ", org.eclipse.emf.ecore.resource.Resource.Factory\\\"\" , \"uses:=org.eclipse.emf.ecore.resource,";
-  protected final String TEXT_10 = ".util\" })" + NL + "@";
-  protected final String TEXT_11 = ", org.eclipse.emf.ecore.EFactory\\\"\" , \"uses:=org.eclipse.emf.ecore,";
-  protected final String TEXT_12 = "\" })" + NL + "@";
-  protected final String TEXT_13 = ", org.eclipse.emf.ecore.EPackage\\\"\" , \"uses:=org.eclipse.emf.ecore,";
-  protected final String TEXT_14 = "\\\"\" , \"uses:=org.eclipse.emf.ecore,";
+  protected final String TEXT_9 = ", org.eclipse.emf.ecore.resource.Resource.Factory\\\"\" , \"uses:=\\\"org.eclipse.emf.ecore.resource,";
+  protected final String TEXT_10 = ".util\\\"\" })" + NL + "@";
+  protected final String TEXT_11 = ", org.eclipse.emf.ecore.EFactory\\\"\" , \"uses:=\\\"org.eclipse.emf.ecore,";
+  protected final String TEXT_12 = "\\\"\" })" + NL + "@";
+  protected final String TEXT_13 = ", org.eclipse.emf.ecore.EPackage\\\"\" , \"uses:=\\\"org.eclipse.emf.ecore,";
+  protected final String TEXT_14 = "\\\"\" , \"uses:=\\\"org.eclipse.emf.ecore,";
   protected final String TEXT_15 = "\\\"\" , \"uses:=org.osgi.service.condition\" })" + NL + "public class ";
   protected final String TEXT_16 = "ConfigurationComponent" + NL + "{" + NL + "\t" + NL + "\tprivate ";
   protected final String TEXT_17 = "<?> packageRegistration = null;" + NL + "\tprivate ";

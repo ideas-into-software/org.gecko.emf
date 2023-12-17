@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.gecko.emf.osgi.configurator.EPackageConfigurator;
+import org.gecko.emf.osgi.constants.EMFNamespaces;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -85,7 +86,7 @@ public class EMFModelExtenderRestartTest {
 	}
 	
 	@Test
-	public void stopBundleTest(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<ResourceSet> rsAware, @InjectService(filter = "(emf.model.name=manual)") ServiceAware<EPackage> ePackageAware) {
+	public void stopBundleTest(@InjectService(filter = "(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)") ServiceAware<ResourceSet> rsAware, @InjectService(filter = "(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)") ServiceAware<EPackage> ePackageAware) {
 		ResourceSet rs = rsAware.getService();
 		assertNotNull(rs);
 		EPackage ePackageService = ePackageAware.getService();
@@ -103,7 +104,7 @@ public class EMFModelExtenderRestartTest {
 		
 		Collection<ServiceReference<EPackageConfigurator>> configurators = Collections.emptyList();
 		try {
-			configurators = ctx.getServiceReferences(EPackageConfigurator.class, "(emf.model.name=manual)");
+			configurators = ctx.getServiceReferences(EPackageConfigurator.class, "(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)");
 		} catch (InvalidSyntaxException e1) {
 			fail("Invalid filter");
 		}
@@ -131,7 +132,7 @@ public class EMFModelExtenderRestartTest {
 	}
 	
 	@Test
-	public void restartBundleTest(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<ResourceSet> rsAware, @InjectService(filter = "(emf.model.name=manual)") ServiceAware<EPackage> ePackageAware) {
+	public void restartBundleTest(@InjectService(filter = "(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)") ServiceAware<ResourceSet> rsAware, @InjectService(filter = "(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)") ServiceAware<EPackage> ePackageAware) {
 		ResourceSet rs = rsAware.getService();
 		assertNotNull(rs);
 		EPackage ePackageService = ePackageAware.getService();
@@ -149,7 +150,7 @@ public class EMFModelExtenderRestartTest {
 		
 		Collection<ServiceReference<EPackageConfigurator>> configurators = Collections.emptyList();
 		try {
-			configurators = ctx.getServiceReferences(EPackageConfigurator.class, "(emf.model.name=manual)");
+			configurators = ctx.getServiceReferences(EPackageConfigurator.class, "(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)");
 		} catch (InvalidSyntaxException e1) {
 			fail("Invalid filter");
 		}
@@ -189,7 +190,7 @@ public class EMFModelExtenderRestartTest {
 		assertFalse(rsAware.isEmpty());
 		assertFalse(ePackageAware.isEmpty());
 		try {
-			configurators = ctx.getServiceReferences(EPackageConfigurator.class, "(emf.model.name=manual)");
+			configurators = ctx.getServiceReferences(EPackageConfigurator.class, "(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)");
 		} catch (InvalidSyntaxException e1) {
 			fail("Invalid filter");
 		}

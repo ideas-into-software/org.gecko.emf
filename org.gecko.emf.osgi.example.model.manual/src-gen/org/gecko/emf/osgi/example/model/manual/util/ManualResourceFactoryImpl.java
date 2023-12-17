@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
  * @see org.gecko.emf.osgi.example.model.manual.util.ManualResourceImpl
- * @generated NOT
+ * @generated
  */
 public class ManualResourceFactoryImpl extends ResourceFactoryImpl {
 	/**

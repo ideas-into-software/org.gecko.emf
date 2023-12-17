@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 - 2022 Data In Motion and others.
+ * Copyright (c) 2012 - 2023 Data In Motion and others.
  * All rights reserved. 
  * 
  * This program and the accompanying materials are made
@@ -11,5 +11,16 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-@org.osgi.annotation.versioning.Version("3.0.0")
 package org.gecko.emf.osgi.annotation;
+
+/**
+ * Type of Gecko EMF OSGi configurators 
+ * @author Mark Hoffmann
+ * @since 15.12.2023
+ */
+public enum ConfiguratorType {
+
+	EPACKAGE,
+	RESOURCE_SET,
+	RESOURCE_FACTORY
+}
