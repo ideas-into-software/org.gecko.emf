@@ -37,13 +37,14 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
 @Target(ElementType.TYPE)
 @Capability(
 		namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, 
-		name = "${#type}", 
+		name = "${#configuratorType}", 
 		attribute = {
-				"configurator.name=${#emf.configurator.name}", 
-				"feature:List<String>=\"${#emf.model.feature}\"", 
-				"protocol:List<String>=\"${#emf.model.protocol}\"", 
-				"fileExtension:List<String>=\"${#emf.model.fileExtension}\"", 
-				"contentType:List<String>=\"${#emf.model.contentType}\""})
+				"configuratorName=${#configuratorName}", 
+				"feature:List<String>=\"${#feature}\"", 
+				"protocol:List<String>=\"${#protocol}\"", 
+				"fileExtension:List<String>=\"${#fileExtension}\"", 
+				"contentType:List<String>=\"${#contentType}\""},
+		version = "${#version}")
 @RequireEMF
 public @interface EMFConfigurator {
 	String PREFIX_ = EMFNamespaces.EMF_PREFIX;
@@ -54,5 +55,6 @@ public @interface EMFConfigurator {
 	String[] protocol() default "";
 	String[] contentType() default "";
 	String[] fileExtension() default "";
+	String version() default "0.0.0";
 	
 }

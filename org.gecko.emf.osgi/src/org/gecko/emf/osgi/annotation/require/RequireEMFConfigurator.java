@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.gecko.emf.osgi.annotation.ConfiguratorType;
 import org.gecko.emf.osgi.configurator.ResourceFactoryConfigurator;
 import org.gecko.emf.osgi.constants.EMFNamespaces;
-import org.osgi.annotation.bundle.Capability;
 import org.osgi.annotation.bundle.Requirement;
 
 /**
@@ -32,15 +31,6 @@ import org.osgi.annotation.bundle.Requirement;
  * @author Juergen Albert
  * @since 12 Feb 2018
  */
-@Capability(
-		namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, 
-		name = "${#type}", 
-		attribute = {
-				"configurator.name=${#name}", 
-				"feature:List<String>=\"${#feature}\"", 
-				"protocol:List<String>=\"${#protocol}\"", 
-				"fileExtension:List<String>=\"${#fileExtension}\"", 
-				"contentType:List<String>=\"${#contentType}\""})
 @Documented
 @Retention(RetentionPolicy.CLASS)
 @Target({
@@ -48,7 +38,7 @@ import org.osgi.annotation.bundle.Requirement;
 })
 @Requirement(namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, //
 		name = "${#type}", //
-		filter = "(name=${#name})")
+		filter = "(configuratorName=${#name})")
 public @interface RequireEMFConfigurator {
 
 	ConfiguratorType type() default ConfiguratorType.EPACKAGE;
