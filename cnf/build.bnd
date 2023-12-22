@@ -24,10 +24,10 @@ javac.target: 1.8
 
 github-project: org.gecko.emf
 
-dimcBaselining: true
+dimcBaselining: false
 mavenCentral: true
 
--baseline: *
+#-baseline: *
 
 -groupid: org.geckoprojects.emf
 
