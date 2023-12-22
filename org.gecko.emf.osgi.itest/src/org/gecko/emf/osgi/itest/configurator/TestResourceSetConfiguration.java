@@ -16,7 +16,7 @@ package org.gecko.emf.osgi.itest.configurator;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.emf.osgi.ResourceSetConfigurator;
+import org.gecko.emf.osgi.configurator.ResourceSetConfigurator;
 
 /**
  * 

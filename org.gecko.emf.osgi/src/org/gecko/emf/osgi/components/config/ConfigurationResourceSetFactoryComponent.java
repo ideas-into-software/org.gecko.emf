@@ -13,6 +13,8 @@
  */
 package org.gecko.emf.osgi.components.config;
 
+import static org.gecko.emf.osgi.constants.EMFNamespaces.EMF_MODEL_NAME;
+
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Map;
@@ -22,16 +24,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.emf.osgi.EMFNamespaces;
-import org.gecko.emf.osgi.EPackageConfigurator;
-import org.gecko.emf.osgi.ResourceFactoryConfigurator;
-import org.gecko.emf.osgi.ResourceSetConfigurator;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.configurator.EPackageConfigurator;
+import org.gecko.emf.osgi.configurator.ResourceFactoryConfigurator;
+import org.gecko.emf.osgi.configurator.ResourceSetConfigurator;
+import org.gecko.emf.osgi.constants.EMFNamespaces;
+import org.gecko.emf.osgi.constants.VersionConstant;
 import org.gecko.emf.osgi.ecore.EcoreConfigurator;
-import org.gecko.emf.osgi.helper.ServicePropertiesHelper;
 import org.gecko.emf.osgi.provider.DefaultResourceSetFactory;
 import org.osgi.annotation.bundle.Capability;
 import org.osgi.annotation.versioning.ProviderType;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.ComponentServiceObjects;
@@ -57,7 +60,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 @Capability(
 		namespace = EMFNamespaces.EMF_NAMESPACE,
 		name = ResourceSetFactory.EMF_CAPABILITY_NAME,
-		version = ResourceSetFactory.GECKOPROJECTS_EMF_VERSION
+		version = VersionConstant.GECKOPROJECTS_EMF_VERSION
 		)
 @ProviderType
 public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSetFactory {
@@ -80,12 +83,12 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	public ConfigurationResourceSetFactoryComponent(ComponentContext ctx,
 			@Reference(name="ePackageRegistry", unbind = "unsetRegistry")
 			EPackage.Registry registry,
-			@Reference(name="resourceFactoryRegistry", unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+			@Reference(name="resourceFactoryRegistry")
 			ComponentServiceObjects<Resource.Factory.Registry> resourceFactoryRegistryObjects
 			) {
 		this.resourceFactoryRegistryObjects = resourceFactoryRegistryObjects;
 		super.setEPackageRegistry(registry);
-		super.setResourceFactoryRegistry(resourceFactoryRegistryObjects.getService(), ServicePropertiesHelper.convert(resourceFactoryRegistryObjects.getServiceReference().getProperties()));
+		super.setResourceFactoryRegistry(resourceFactoryRegistryObjects.getService(), FrameworkUtil.asMap(resourceFactoryRegistryObjects.getServiceReference().getProperties()));
 		EcoreConfigurator ecoreConfigurator = new EcoreConfigurator();
 		addEPackageConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
 		addResourceFactoryConfigurator(ecoreConfigurator, EcoreConfigurator.PROPERTIES);
@@ -103,6 +106,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @see org.gecko.emf.osgi.provider.DefaultResourceSetFactory#activate(org.osgi.service.component.ComponentContext)
 	 */
 	@Activate
+	@Override
 	public void activate(ComponentContext ctx) {
 		properties = ctx.getProperties();
 		registerServices(ctx);
@@ -111,16 +115,33 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	/**
 	 * Called on component deactivation
 	 */
+	@Override
 	@Deactivate
 	public void deactivate() {
 		super.deactivate();
-		this.resourceFactoryRegistryObjects.ungetService(resourceFactoryRegistry);
+		Factory.Registry rfr = getResourceFactoryRegistry().get();
+		if (rfr != null) {
+			this.resourceFactoryRegistryObjects.ungetService(rfr);
+		}
 	}
 
 	protected void unsetRegistry(org.eclipse.emf.ecore.EPackage.Registry registry) {
 		super.unsetEPackageRegistry(registry);
 	}
 	
+	
+
+	/**
+	 * Inject a {@link Registry} for resource factories
+	 * @param resourceFactoryRegistry the resource factory to be injected
+	 */
+	@Override
+	@Reference(policy=ReferencePolicy.STATIC, unbind="unsetResourceFactoryRegistry", updated = "modifiedResourceFactoryRegistry")
+	public void setResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+//		do nothing here
+	}
+	
+	@Override
 	public void modifiedResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
 		super.modifiedResourceFactoryRegistry(resourceFactoryRegistry, properties);
 	}
@@ -130,8 +151,9 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param resourceFactoryRegistry the registry to be removed
 	 */
 	@Override
-	public void unsetResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry) {
-		super.unsetResourceFactoryRegistry(resourceFactoryRegistry);
+	public void unsetResourceFactoryRegistry(Resource.Factory.Registry resourceFactoryRegistry, Map<String, Object> properties) {
+		super.unsetResourceFactoryRegistry(resourceFactoryRegistry, properties);
+		this.resourceFactoryRegistryObjects.ungetService(resourceFactoryRegistry);
 	}
 
 	/**
@@ -140,7 +162,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param properties the service properties
 	 */
 	@Override
-	@Reference(name="ePackageConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, target="(!(emf.model.name=ecore))", updated = "modifyEPackageConfigurator", unbind = "removeEPackageConfigurator")
+	@Reference(name="ePackageConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, target="(!(" + EMF_MODEL_NAME + "=ecore))", updated = "modifyEPackageConfigurator", unbind = "removeEPackageConfigurator")
 	public void addEPackageConfigurator(EPackageConfigurator configurator, Map<String, Object> properties) {
 		super.addEPackageConfigurator(configurator, properties);
 	}
@@ -170,7 +192,7 @@ public class ConfigurationResourceSetFactoryComponent extends DefaultResourceSet
 	 * @param properties the service properties
 	 */
 	@Override
-	@Reference(name="resourceFactoryConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, target="(!(emf.model.name=ecore))", updated = "modifyResourceFactoryConfigurator")
+	@Reference(name="resourceFactoryConfigurator", policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.MULTIPLE, target="(!(" + EMF_MODEL_NAME + "=ecore))", updated = "modifyResourceFactoryConfigurator")
 	public void addResourceFactoryConfigurator(ResourceFactoryConfigurator configurator, Map<String, Object> properties) {
 		super.addResourceFactoryConfigurator(configurator, properties);
 	}

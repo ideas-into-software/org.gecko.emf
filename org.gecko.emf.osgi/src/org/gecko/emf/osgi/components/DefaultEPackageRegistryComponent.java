@@ -13,6 +13,9 @@
  */
 package org.gecko.emf.osgi.components;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +48,7 @@ public class DefaultEPackageRegistryComponent extends HashMap<String, Object> im
 	/**
 	 * The delegate registry.
 	 */
-	protected EPackage.Registry delegateRegistry;
+	protected transient EPackage.Registry delegateRegistry;
 
 	/**
 	 * Creates a non-delegating instance.
@@ -106,8 +109,7 @@ public class DefaultEPackageRegistryComponent extends HashMap<String, Object> im
 			return result.getEFactoryInstance();
 		} else if (ePackage instanceof EPackage.Descriptor) {
 			EPackage.Descriptor ePackageDescriptor = (EPackage.Descriptor) ePackage;
-			EFactory result = ePackageDescriptor.getEFactory();
-			return result;
+			return ePackageDescriptor.getEFactory();
 		} else {
 			return delegatedGetEFactory(nsURI);
 		}
@@ -117,6 +119,7 @@ public class DefaultEPackageRegistryComponent extends HashMap<String, Object> im
 	 * Creates a delegating instance.
 	 */
 	protected void initialize(EPackage ePackage) {
+		// Nothing to do here
 	}
 
 	/**
@@ -161,7 +164,7 @@ public class DefaultEPackageRegistryComponent extends HashMap<String, Object> im
 	/**
 	 * A map from class loader to its associated registry.
 	 */
-	protected static Map<ClassLoader, EPackage.Registry> classLoaderToRegistryMap = new WeakHashMap<ClassLoader, EPackage.Registry>();
+	protected static Map<ClassLoader, EPackage.Registry> classLoaderToRegistryMap = new WeakHashMap<>();
 
 	/**
 	 * Returns the package registry associated with the given class loader.
@@ -171,13 +174,11 @@ public class DefaultEPackageRegistryComponent extends HashMap<String, Object> im
 	 */
 	public static synchronized EPackage.Registry getRegistry(ClassLoader classLoader) {
 		EPackage.Registry result = classLoaderToRegistryMap.get(classLoader);
-		if (result == null) {
-			if (classLoader != null) {
-				DefaultEPackageRegistryComponent newRegistry = new DefaultEPackageRegistryComponent();
-				newRegistry.setDelegateRegistry(getRegistry(classLoader.getParent()));
-				result = newRegistry;
-				classLoaderToRegistryMap.put(classLoader, result);
-			}
+		if (isNull(result) && nonNull(classLoader)) {
+			DefaultEPackageRegistryComponent newRegistry = new DefaultEPackageRegistryComponent();
+			newRegistry.setDelegateRegistry(getRegistry(classLoader.getParent()));
+			result = newRegistry;
+			classLoaderToRegistryMap.put(classLoader, result);
 		}
 		return result;
 	}
@@ -232,7 +233,6 @@ public class DefaultEPackageRegistryComponent extends HashMap<String, Object> im
 		}
 
 		public Object put(String key, Object value) {
-			// TODO Binary incompatibility; an old override must override putAll.
 			Class<?> valueClass = value.getClass();
 			if (valueClass == EPackageImpl.class) {
 				return delegateRegistry().put(key, value);

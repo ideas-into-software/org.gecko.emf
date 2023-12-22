@@ -2,16 +2,14 @@ src=${^src},src-gen
 
 -buildpath: \
 	org.gecko.emf.osgi;version=project,\
-	org.eclipse.emf.ecore,\
-	org.eclipse.emf.common,\
-	org.osgi.annotation.bundle,\
-	org.osgi.annotation.versioning,\
-	org.eclipse.emf.ecore.xmi,\
-	org.osgi.service.component.annotations,\
-	org.osgi.framework,\
-	osgi.cmpn,\
-	org.gecko.emf.osgi.codegen;version=snapshot,\
-	org.osgi.service.condition
+	org.eclipse.emf.ecore;version=latest,\
+	org.eclipse.emf.common;version=latest,\
+	org.eclipse.emf.ecore.xmi;version=latest,\
+	org.osgi.annotation.bundle;version=latest,\
+	org.osgi.annotation.versioning;version=latest,\
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.service.condition;version=latest,\
+	org.osgi.framework;version=latest
 
 -includeresource.model: model=other/main/resources/model
 
@@ -19,9 +17,9 @@ src=${^src},src-gen
 
 -generate:\
 	other/main/resources/model/basic.genmodel;\
-		generate="geckoEMF 1>out.log 2>err.log";\
+		generate="geckoEMF";\
 		genmodel=other/main/resources/model/basic.genmodel;\
 		output=src-gen;\
 		version=${base-version};\
 		clean=false;\
-		logfile=test.log
+		logfile=out.log

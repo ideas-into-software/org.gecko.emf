@@ -25,6 +25,9 @@ import org.eclipse.emf.ecore.EAnnotation;
  */
 public class GeneratorHelper {
 	
+	private GeneratorHelper() {
+	}
+	
 	public static String getVersion(GenPackage genPackage) {
 		EAnnotation versionAnnotation = genPackage.getEcorePackage().getEAnnotation("Version");
 		if(versionAnnotation == null) {
@@ -47,12 +50,12 @@ public class GeneratorHelper {
 	 * @return the ecore URI in the resulting bundle
 	 */
 	public static URI convertToBundleEcoreURI(URI bundleGenModelPath, URI originalEcoreUri, URI originalGenModelUri) {
-		URI relativeEcore = originalEcoreUri.deresolve(originalGenModelUri);
-
     	URI dummy = URI.createURI("resources://bla/");
     	URI genModelPathResolved = bundleGenModelPath.resolve(dummy);
-    	URI ecoreResolve = relativeEcore.resolve(genModelPathResolved);
-    	URI finalEcore = ecoreResolve.deresolve(dummy);
+    	URI finalEcore = originalEcoreUri.
+    			deresolve(originalGenModelUri).
+    			resolve(genModelPathResolved).
+    			deresolve(dummy);
 		return finalEcore;
 	}
 

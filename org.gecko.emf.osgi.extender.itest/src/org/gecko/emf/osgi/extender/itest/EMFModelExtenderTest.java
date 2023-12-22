@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.configurator.EPackageConfigurator;
+import org.gecko.emf.osgi.constants.EMFNamespaces;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -54,7 +55,7 @@ public class EMFModelExtenderTest {
 	}
 	
 	@Test
-	public void simpleTest(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<ResourceSet> rsAware) {
+	public void simpleTest(@InjectService(filter = "(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)") ServiceAware<ResourceSet> rsAware) {
 		ResourceSet rs = rsAware.getService();
 		assertNotNull(rs);
 		EFactory eFactory = rs.getPackageRegistry().getEFactory("http://gecko.org/example/model/manual/1.0");
@@ -69,7 +70,7 @@ public class EMFModelExtenderTest {
 	}
 	
 	@Test
-	public void simpleTestEPackage(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<EPackage> epackageAware) {
+	public void simpleTestEPackage(@InjectService(filter = "(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)") ServiceAware<EPackage> epackageAware) {
 		assertNotNull(epackageAware);
 		EPackage ePackage = epackageAware.getService();
 		assertNotNull(ePackage);
@@ -81,7 +82,7 @@ public class EMFModelExtenderTest {
 	}
 	
 	@Test
-	public void simpleMultipleFolders(@InjectService(filter = "(&(emf.model.name=manual)(emf.model.name=foobar))") ServiceAware<ResourceSet> rsAware) {
+	public void simpleMultipleFolders(@InjectService(filter = "(&(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)(" + EMFNamespaces.EMF_MODEL_NAME + "=foobar))") ServiceAware<ResourceSet> rsAware) {
 		ResourceSet rs = rsAware.getService();
 		assertNotNull(rs);
 		EFactory manualFactory = rs.getPackageRegistry().getEFactory("http://gecko.org/example/model/manual/1.0");
@@ -107,7 +108,7 @@ public class EMFModelExtenderTest {
 	}
 	
 	@Test
-	public void simpleMultipleFoldersEPackage(@InjectService(filter = "(emf.model.name=manual)") ServiceAware<EPackage> manualAware, @InjectService(filter = "(emf.model.name=foobar)") ServiceAware<EPackage> fooAware) {
+	public void simpleMultipleFoldersEPackage(@InjectService(filter = "(" + EMFNamespaces.EMF_MODEL_NAME + "=manual)") ServiceAware<EPackage> manualAware, @InjectService(filter = "(" + EMFNamespaces.EMF_MODEL_NAME + "=foobar)") ServiceAware<EPackage> fooAware) {
 		EPackage manualPackage = manualAware.getService();
 		assertNotNull(manualPackage);
 		// Foo class exists
@@ -141,10 +142,10 @@ public class EMFModelExtenderTest {
 			String foo = (String) reference.getProperty("foo");
 			switch (foo) {
 			case "bar":
-				assertEquals("manual", reference.getProperty("emf.model.name"));
+				assertEquals("manual", reference.getProperty(EMFNamespaces.EMF_MODEL_NAME));
 				break;
 			case "baz":
-				assertEquals("foobar", reference.getProperty("emf.model.name"));
+				assertEquals("foobar", reference.getProperty(EMFNamespaces.EMF_MODEL_NAME));
 				break;
 			default:
 				fail("Unecpected value");

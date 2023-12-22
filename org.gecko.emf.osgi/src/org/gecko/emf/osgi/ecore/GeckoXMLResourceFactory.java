@@ -13,10 +13,10 @@
  */
 package org.gecko.emf.osgi.ecore;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
-import org.gecko.emf.osgi.EMFNamespaces;
+import org.gecko.emf.osgi.constants.EMFNamespaces;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Activate;
 
@@ -39,16 +39,20 @@ import org.osgi.service.component.annotations.Activate;
 public class GeckoXMLResourceFactory extends XMLResourceFactoryImpl implements Resource.Factory{
 
 	public static final Map<String, Object> PROPERTIES = GeckoXMLResourceFactory.getProperties();
-	
+	private static SecureRandom random = null;
+
 	private static Map<String, Object> getProperties(){
-		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_NAME,"GeckoXMLResourceFactory"); 
-		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_CONTENT_TYPE, Arrays.asList( new String[] {
-				"application/xml"})); 
-		result.put(EMFNamespaces.EMF_RESOURCE_CONFIGURATOR_FILE_EXT, Arrays.asList( new String[] {
-				"xml"})); 
-		result.put(EMFNamespaces.EMF_CONFIGURATOR_VERSION, "1.0.0");
-		result.put(Constants.SERVICE_ID, new Random().nextLong());
+		HashMap<String, Object> result = new HashMap<>();
+		result.put(EMFNamespaces.EMF_CONFIGURATOR_NAME,"GeckoXMLResourceFactory"); 
+		result.put(EMFNamespaces.EMF_MODEL_CONTENT_TYPE, Arrays.asList( 
+				"application/xml")); 
+		result.put(EMFNamespaces.EMF_MODEL_FILE_EXT, Arrays.asList( 
+				"xml")); 
+		result.put(EMFNamespaces.EMF_MODEL_VERSION, "1.0.0");
+		if (random == null) {
+			random = new SecureRandom();
+		}
+		result.put(Constants.SERVICE_ID, random.nextLong());
 		return result;
 	}
 	

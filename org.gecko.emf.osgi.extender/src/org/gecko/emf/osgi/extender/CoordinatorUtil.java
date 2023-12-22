@@ -29,7 +29,10 @@ import org.osgi.service.coordinator.Coordinator;
  */
 public class CoordinatorUtil {
 	
-	private static Logger LOGGER = Logger.getLogger(CoordinatorUtil.class.getName());
+	private static Logger logger = Logger.getLogger(CoordinatorUtil.class.getName());
+	
+	private CoordinatorUtil() {
+	}
 
     public static Object getCoordination(final Object object) {
         final Coordinator coordinator = (Coordinator) object;
@@ -38,7 +41,7 @@ public class CoordinatorUtil {
             try {
                 return coordinator.create("org.apache.felix.configurator", 0L);
             } catch (final Exception e) {
-                LOGGER.log(Level.SEVERE, e, ()->"Unable to create new coordination with coordinator " + coordinator);
+                logger.log(Level.SEVERE, e, ()->"Unable to create new coordination with coordinator " + coordinator);
             }
         }
         return null;
@@ -49,7 +52,7 @@ public class CoordinatorUtil {
         try {
             coordination.end();
         } catch (final Exception e) {
-        	LOGGER.log(Level.SEVERE, e, ()->"Error ending coordination " + coordination);
+        	logger.log(Level.SEVERE, e, ()->"Error ending coordination " + coordination);
         }
     }
 }

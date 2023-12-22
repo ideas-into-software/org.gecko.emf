@@ -28,17 +28,18 @@ import org.junit.jupiter.api.Test;
  * @author mark
  * @since 17.10.2022
  */
-public class ModelUtilsTest {
+@java.lang.SuppressWarnings({"java:S5786"})
+class ModelUtilsTest {
 	
 	@Test
-	public void testExtractPropertiesNoProperties() {
+	void testExtractPropertiesNoProperties() {
 		assertNull(ModelHelper.extractProperties(null, null));
 		assertEquals("/test", ModelHelper.extractProperties("/test", null));
 		assertEquals("/test", ModelHelper.extractProperties("/test;blub", null));
 	}
 	
 	@Test
-	public void testExtractPropertiesPath() {
+	void testExtractPropertiesPath() {
 		Map<String, String> props = new HashMap<String, String>();
 		assertEquals("/test", ModelHelper.extractProperties("/test", props));
 		assertTrue(props.isEmpty());
@@ -53,7 +54,7 @@ public class ModelUtilsTest {
 	}
 	
 	@Test
-	public void testExtractPropertiesWorking() {
+	void testExtractPropertiesWorking() {
 		Map<String, String> props = new HashMap<String, String>();
 		assertEquals("/test", ModelHelper.extractProperties("/test;blub", props));
 		assertFalse(props.isEmpty());

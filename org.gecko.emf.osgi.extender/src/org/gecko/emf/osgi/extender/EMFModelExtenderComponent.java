@@ -32,7 +32,7 @@ import org.osgi.service.component.ComponentContext;
 @Component
 public class EMFModelExtenderComponent {
 	
-	private static Logger LOGGER = Logger.getLogger(EMFModelExtenderComponent.class.getName());
+	private static Logger logger = Logger.getLogger(EMFModelExtenderComponent.class.getName());
 
     /** The current EMF extender. */
     private EMFModelExtender modelExtender;
@@ -41,12 +41,12 @@ public class EMFModelExtenderComponent {
 	public void activate(ComponentContext ctx) {
 		modelExtender = new EMFModelExtender(ctx.getBundleContext());
 		modelExtender.start();
-		LOGGER.info("Start EMF Model Extender");
+		logger.info("Start EMF Model Extender");
 	}
 	@Deactivate
 	public void deactivate(ComponentContext ctx) {
 		modelExtender.shutdown();
-		LOGGER.info("Shutdown EMF Model Extender");
+		logger.info("Shutdown EMF Model Extender");
 		
 	}
 	

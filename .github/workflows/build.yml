@@ -27,7 +27,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        java: [ 11, 17 ]
+        java: [ 17 ]
         runner: [ 'xvfb-run --auto-servernum {0}' ]
     name: JDK${{ matrix.java }} ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -37,10 +37,11 @@ jobs:
     - name: Gradle Wrapper Validation
       uses: gradle/wrapper-validation-action@v1
     - name: Set up Java ${{ matrix.java }}
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
+        distribution: "temurin"
+        cache: "gradle"
         java-version: ${{ matrix.java }}
-        distribution: temurin
     - name: Grant execute permission for gradlew
       run: chmod +x ./gradlew
     - name: Gradle version
@@ -49,7 +50,7 @@ jobs:
       run: ./gradlew build
     - name: Upload Test Reports
       if: ${{ always() && ((steps.build.outcome == 'success') || (steps.build.outcome == 'failure')) }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: JDK${{ matrix.java }}_${{ matrix.os }}-test-reports
         path: |

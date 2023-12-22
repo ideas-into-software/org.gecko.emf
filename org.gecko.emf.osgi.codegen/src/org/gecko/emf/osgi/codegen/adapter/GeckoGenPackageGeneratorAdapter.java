@@ -39,6 +39,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  */
 public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter {
 
+	/** PACKAGE_INFO_NAME */
+	private static final String PACKAGE_INFO_NAME = "package-info";
 	protected static final int PACKAGE_OSGI_CONFIGURATION = 14;
 	protected static final int PACKAGE_INFO = 15;
 	protected static final int PACKAGE_INFO_IMPL = 16;
@@ -75,8 +77,9 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 	 * The contents of the returned array should never be changed. Rather,
 	 * subclasses may override this method to return a different array altogether.
 	 */
+	@Override
 	protected JETEmitterDescriptor[] getJETEmitterDescriptors() {
-		List<JETEmitterDescriptor> descs = new LinkedList<JETEmitterDescriptor>();
+		List<JETEmitterDescriptor> descs = new LinkedList<>();
 		descs.addAll(Arrays.asList(super.getJETEmitterDescriptors()));
 		descs.addAll(Arrays.asList(JET_EMITTER_DESCRIPTORS));
 		return descs.toArray(new JETEmitterDescriptor[descs.size()]);
@@ -189,11 +192,11 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 		if (genPackage.hasClassifiers()) {
 			message = String.format("Generating package info for package '%s'", genPackage.getPackageName());
 			monitor.subTask(message);
-			generateJava(genModel.getModelDirectory(), genPackage.getInterfacePackageName(), "package-info",
+			generateJava(genModel.getModelDirectory(), genPackage.getInterfacePackageName(), PACKAGE_INFO_NAME,
 					getJETEmitter(getJETEmitterDescriptors(), PACKAGE_INFO),
 					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
 					createMonitor(monitor, 1));
-			generateJava(genModel.getModelDirectory(), getClassPackageName(genPackage), "package-info",
+			generateJava(genModel.getModelDirectory(), getClassPackageName(genPackage), PACKAGE_INFO_NAME,
 					getJETEmitter(getJETEmitterDescriptors(), PACKAGE_INFO_IMPL),
 					new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
 					createMonitor(monitor, 1));
@@ -202,7 +205,7 @@ public class GeckoGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter 
 					|| (genPackage.hasClassifiers() && genPackage.isAdapterFactory()
 							&& !genPackage.getGenClasses().isEmpty())
 					|| (genPackage.hasClassifiers() && genPackage.hasConstraints())) {
-				generateJava(genModel.getModelDirectory(), genPackage.getUtilitiesPackageName(), "package-info",
+				generateJava(genModel.getModelDirectory(), genPackage.getUtilitiesPackageName(), PACKAGE_INFO_NAME,
 						getJETEmitter(getJETEmitterDescriptors(), PACKAGE_INFO_UTIL),
 						new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } },
 						createMonitor(monitor, 1));

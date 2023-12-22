@@ -78,7 +78,7 @@ public class HughDataResourceSetImpl extends ResourceSetImpl implements HughData
 	    return resources;
 	}
 
-	class GeckoResourceEList<T> extends ResourceSetImpl.ResourcesEList<Resource> {
+	class GeckoResourceEList <T> extends ResourceSetImpl.ResourcesEList<Resource> {
 		/** serialVersionUID */
 		private static final long serialVersionUID = 1L;
 
@@ -152,7 +152,7 @@ public class HughDataResourceSetImpl extends ResourceSetImpl implements HughData
 				}
 			}
 		} else {
-			if (resourceLocator != null && resourceLocator instanceof HughDataResourceLocator) {
+			if (resourceLocator instanceof HughDataResourceLocator) {
 				((HughDataResourceLocator)resourceLocator).dispose();
 				resourceLocator = null;
 			}

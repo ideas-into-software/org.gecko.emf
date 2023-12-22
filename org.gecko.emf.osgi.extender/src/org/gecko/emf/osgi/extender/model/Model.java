@@ -22,9 +22,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceRegistration;
 
 public class Model implements Serializable {
@@ -44,7 +47,7 @@ public class Model implements Serializable {
     private URL url;
 
     /** The model properties. */
-    private Hashtable<String, Object> properties;
+    private Map<String, Object> properties;
     
     private transient EPackage ePackage = null;
     private transient ServiceRegistration<EPackage> modelRegistration = null;
@@ -55,13 +58,13 @@ public class Model implements Serializable {
 
     public Model(final EPackage ePackage,
     		final URL url,
-            final Hashtable<String, Object> properties,
+            final Dictionary<String, Object> properties,
             final long bundleId) {
         this.ePackage = ePackage;
         this.ns = ePackage.getNsURI();
         this.url = url;
         this.bundleId = bundleId;
-        this.properties = new Hashtable<>(properties);
+        this.properties = new HashMap<>(FrameworkUtil.asMap(properties));
     }
 
     /**
@@ -137,7 +140,7 @@ public class Model implements Serializable {
      * @return The model properties
      */
     public Dictionary<String, Object> getProperties() {
-        return this.properties;
+        return FrameworkUtil.asDictionary(this.properties);
     }
 
     /**

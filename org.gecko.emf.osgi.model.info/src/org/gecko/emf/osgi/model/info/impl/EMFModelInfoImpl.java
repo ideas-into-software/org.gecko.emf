@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
-import org.gecko.emf.osgi.EPackageConfigurator;
+import org.gecko.emf.osgi.configurator.EPackageConfigurator;
 import org.gecko.emf.osgi.model.info.EMFModelInfo;
 import org.osgi.annotation.bundle.Capability;
 import org.osgi.service.component.annotations.Component;
@@ -52,13 +52,10 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	/** serialVersionUID */
 	private static final long serialVersionUID = 7749336016374647599L;
 
-//	private Map<String, EPackage> packages = new ConcurrentHashMap<>();
-	private Map<Class<?>, EClassifier> classes = new ConcurrentHashMap<>();
-	private Map<EClass, List<EClass>> upperHirachy = new ConcurrentHashMap<>();
-
-	private Map<EClass, List<EClass>> needsRevisiting = new ConcurrentHashMap<>();
-
-	private List<EPackageConfigurator> list = new ArrayList<>();
+	private transient Map<Class<?>, EClassifier> classes = new ConcurrentHashMap<>();
+	private transient Map<EClass, List<EClass>> upperHierarchy = new ConcurrentHashMap<>();
+	private transient Map<EClass, List<EClass>> needsRevisiting = new ConcurrentHashMap<>();
+	private transient List<EPackageConfigurator> list = new ArrayList<>();
 	
 	private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
@@ -71,7 +68,7 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	 */
 	@Override
 	public Optional<EClassifier> getEClassifierForClass(Class<?> clazz) {
-		return classes.entrySet().stream().filter(e -> e.getKey().equals(clazz)).map(e -> e.getValue()).findFirst();
+		return classes.entrySet().stream().filter(e -> e.getKey().equals(clazz)).map(Entry::getValue).findFirst();
 	}
 
 	/*
@@ -86,7 +83,7 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 		lock.readLock().lock();
 		try {
 			return classes.entrySet().stream().filter(e -> e.getKey().getName().equals(fullQualifiedClassName))
-					.map(e -> e.getValue()).findFirst();
+					.map(Entry::getValue).findFirst();
 		} finally {
 			lock.readLock().unlock();
 		}
@@ -104,15 +101,11 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	}
 
 	private synchronized void refresh() {
-//		packages = new ConcurrentHashMap<>();
 		classes = new ConcurrentHashMap<>();
-		upperHirachy = new ConcurrentHashMap<>();
-
+		upperHierarchy = new ConcurrentHashMap<>();
 		needsRevisiting = new ConcurrentHashMap<>();
 
-		list.forEach(c -> {
-			c.configureEPackage(this);
-		});
+		list.forEach(c -> c.configureEPackage(this));
 
 	}
 
@@ -136,7 +129,6 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	public Object put(String uri, Object value) {
 		if (value instanceof EPackage) {
 			EPackage ePackage = (EPackage) value;
-//			packages.put(uri, ePackage);
 			addEClassesOfEPackage(ePackage);
 		}
 		return null;
@@ -164,13 +156,13 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 		if (thisHirachy == null) {
 			thisHirachy = Collections.synchronizedList(new LinkedList<EClass>());
 		}
-		upperHirachy.put(eClass, thisHirachy);
+		upperHierarchy.put(eClass, thisHirachy);
 		eClass.getEAllSuperTypes().forEach(superEClass -> {
 			if (superEClass.equals(EcorePackage.Literals.ECLASS)) {
 				return;
 			}
-			if (upperHirachy.containsKey(superEClass)) {
-				List<EClass> hierarchy = upperHirachy.get(superEClass);
+			if (upperHierarchy.containsKey(superEClass)) {
+				List<EClass> hierarchy = upperHierarchy.get(superEClass);
 				if (!hierarchy.contains(superEClass)) {
 					hierarchy.add(eClass);
 				}
@@ -201,7 +193,6 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	 */
 	@Override
 	public EPackage getEPackage(String nsUri) {
-//		return packages.get(nsUri);
 		throw new UnsupportedOperationException("This method must not be called");
 
 	}
@@ -217,11 +208,11 @@ public class EMFModelInfoImpl extends HashMap<String, Object> implements EMFMode
 	public List<EClass> getUpperTypeHierarchyForEClass(EClass eClass) {
 		lock.readLock().lock();
 		try {
-			if (!upperHirachy.containsKey(eClass)) {
+			if (!upperHierarchy.containsKey(eClass)) {
 				return Collections.emptyList();
 			}
 			
-			return upperHirachy.get(eClass);
+			return upperHierarchy.get(eClass);
 		} finally {
 			lock.readLock().unlock();
 		}

@@ -37,6 +37,9 @@ public class UriSanatizer {
 	/** PLATFORM_RESOURCE */
 	public static final String PLATFORM_RESOURCE = "platform:/resource/"; //$NON-NLS-1$
 	
+	private UriSanatizer() {
+	}
+	
 	public static Optional<URI> sanitize(URI toSanatize) {
 		if (toSanatize == null) {
 			return Optional.empty();
@@ -69,7 +72,7 @@ public class UriSanatizer {
 				}
 				return Optional.of(URI.createURI(toSanitize.scheme() + "://"+ host + SLASH + uri.toString())); //$NON-NLS-1$
 			}
-		};
+		}
 		return Optional.empty();
 	}
 

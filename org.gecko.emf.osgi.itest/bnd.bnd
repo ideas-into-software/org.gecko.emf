@@ -1,36 +1,34 @@
 Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
+
+-library: enableOSGi-Test
+
 # Build dependencies 
 -buildpath: \
+	org.osgi.dto;version=latest,\
+	org.osgi.framework;version=latest,\
+	org.osgi.service.cm;version=latest,\
+	org.osgi.service.condition;version=latest,\
+	org.osgi.service.component;version=latest,\
+	org.osgi.annotation.versioning;version=latest,\
+	org.osgi.util.promise;version=latest,\
+	org.eclipse.emf.ecore;version=latest,\
+	org.eclipse.emf.common;version=latest,\
+	org.eclipse.emf.ecore.xmi;version=latest,\
 	org.gecko.emf.osgi.api;version=snapshot,\
 	org.gecko.emf.osgi.component;version=snapshot,\
 	org.gecko.emf.osgi.model.info;version=snapshot,\
 	org.gecko.emf.osgi.example.model.extended;version=snapshot,\
 	org.gecko.emf.osgi.example.model.basic;version=snapshot,\
-	org.gecko.emf.osgi.model.info;version=snapshot,\
 	org.gecko.emf.osgi.example.model.manual;version=snapshot,\
-	junit-jupiter-api,\
-	org.osgi.test.junit5,\
-	org.osgi.framework,\
-	org.eclipse.emf.ecore,\
-	org.osgi.test.common,\
-	assertj-core,\
-	org.osgi.service.cm,\
-	org.osgi.test.assertj.monitoring;version=latest,\
-	org.eclipse.emf.common,\
-	org.osgi.util.promise,\
-	org.osgi.annotation.versioning,\
-	org.osgi.test.assertj.framework,\
-	org.osgi.service.condition,\
-	junit-platform-commons,\
-	org.apiguardian.api,\
-	org.eclipse.emf.ecore.xmi,\
-	org.mockito.junit-jupiter,\
-	org.mockito.mockito-core
+	org.osgi.test.assertj.monitoring;version=snapshot
 
 -includeresource: \
 	data/=data/
 
 Export-Package: org.gecko.emf.osgi.itest
 Private-Package: org.gecko.emf.osgi.itest.configurator
+
+Bundle-Name: EMF OSGi Tests
+Bundle-Description: Gecko EMF OSGi integration tests
 
 #-baseline: test

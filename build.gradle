@@ -1,5 +1,5 @@
 plugins {
-  id "org.sonarqube" version "3.3"
+  id "org.sonarqube" version "3.5.0.2730"
   id "jacoco"
   id "java"
 }
@@ -8,11 +8,19 @@ repositories {
     mavenCentral()
 }
 
-// Available to customize the build
 subprojects {
-  tasks.withType(Test) {
-    useJUnitPlatform()
-  }
+
+    //  Apply plugin: 'jacoco' to all submodules JUnit tests are generated as generated/jacoco/test.exec
+    apply plugin: 'jacoco'
+    // We need to define a repository, otherwise Jacoco dependencies cannot be resolved
+    repositories {
+        mavenCentral()
+    }
+    // Allow gradle to enable JUnit support in submodules
+    test {
+        useJUnitPlatform()
+    }
+    
 }
 
 sonarqube {
@@ -22,25 +30,24 @@ sonarqube {
     property "sonar.organization", "geckoprojects-org"
     property "sonar.host.url", "https://sonarcloud.io"
     property "sonar.coverage.jacoco.xmlReportPaths", "${rootDir}/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
-    property "sonar.exclusions", "org.gecko.emf.osgi.example.model.basic/**/*.java, org.gecko.emf.osgi.example.model.extended/**/*.java, org.gecko.emf.osgi.example.model.extender/**/*.java, org.gecko.emf.osgi.example.model.manual/**/*.java, org.gecko.emf.osgi.example.model.basic/**/*.java, org.gecko.emf.osgi.bnd.library/**/*.java, org.gecko.emf.osgi.bnd.library.project/**/*.java, org.gecko.emf.osgi.bnd.templates.project/**/*.java, org.gecko.emf.osgi.codegen/**/templates/model/*.java, org.gecko.emf.osgi.doc.mermaid.itest/**/*.java, org.gecko.emf.osgi.itest/**/*.java, org.gecko.emf.osgi.extender.itest/**/*.java, org.gecko.emf.osgi.doc.mermaid.itest/**/*.java"
+    property "sonar.source", "src"
+    property "sonar.test", "test"
+    property "sonar.exclusions", "org.osgi.test.assertj.monitoring/**/*.java, org.gecko.emf.osgi.example.model.basic/**/*.java, org.gecko.emf.osgi.example.model.extended/**/*.java, org.gecko.emf.osgi.example.model.extender/**/*.java, org.gecko.emf.osgi.example.model.manual/**/*.java, org.gecko.emf.osgi.example.model.basic/**/*.java, org.gecko.emf.osgi.bnd.library/**/*.java, org.gecko.emf.osgi.bnd.library.project/**/*.java, org.gecko.emf.osgi.bnd.templates.project/**/*.java, org.gecko.emf.osgi.codegen/**/templates/model/*.java, org.gecko.emf.osgi.itest/**/*.java, org.gecko.emf.osgi.extender.itest/**/*.java, org.gecko.emf.osgi.codegen/**/*.java"
   }
 }
 
-tasks.named('wrapper') {
-  jarFile = rootProject.file('.gradle-wrapper/gradle-wrapper.jar')
-}
-
-
 task codeCoverageReport(type: JacocoReport) {
-    dependsOn test
-    // Gather execution data from all subprojects
-    executionData fileTree(project.rootDir.absolutePath).include("**/**/jacoco.exec")
+    dependsOn(test)
+    // Gather execution data from all subprojects for JUnit generated/jacoco/test.exec for OSGi Tests generated/tmp/testOSGi/generated/jacoco.exec
+    // Latter are generated via agent in the test.bndrun
+    executionData fileTree(project.rootDir.absolutePath).include("**/**/*.exec")
 
     // Add all relevant sourcesets from the subprojects
     subprojects.each {
         sourceSets it.sourceSets.main
     }
 
+    // Generate xml reposrt for tools like sonar and html for humans
     reports {
         xml.enabled true
         html.enabled true
@@ -48,7 +55,7 @@ task codeCoverageReport(type: JacocoReport) {
     }
 }
 
-tasks.named("sonarqube") {
+tasks.named("sonar") {
     dependsOn(codeCoverageReport)
 }
 

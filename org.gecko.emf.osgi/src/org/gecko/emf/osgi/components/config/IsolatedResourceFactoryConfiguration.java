@@ -13,17 +13,18 @@
  */
 package org.gecko.emf.osgi.components.config;
 
-import static org.gecko.emf.osgi.EMFNamespaces.EMF_MODEL_NAME;
-import static org.gecko.emf.osgi.EMFNamespaces.EPACKAGE_REGISTRY_CONFIG_NAME;
-import static org.gecko.emf.osgi.EMFNamespaces.EPACKAGE_REGISTRY_TARGET;
-import static org.gecko.emf.osgi.EMFNamespaces.EPACKAGE_TARGET;
-import static org.gecko.emf.osgi.EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME;
-import static org.gecko.emf.osgi.EMFNamespaces.PROP_MODEL_TARGET_FILTER;
-import static org.gecko.emf.osgi.EMFNamespaces.PROP_RESOURCE_SET_FACTORY_NAME;
-import static org.gecko.emf.osgi.EMFNamespaces.RESOURCE_FACTORY_CONFIG_NAME;
-import static org.gecko.emf.osgi.EMFNamespaces.RESOURCE_FACTORY_REGISTRY_TARGET;
-import static org.gecko.emf.osgi.EMFNamespaces.RESOURCE_FACTORY_TARGET;
-import static org.gecko.emf.osgi.EMFNamespaces.RESOURCE_SET_FACTORY_CONFIG_NAME;
+import static java.util.Objects.isNull;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.EMF_MODEL_NAME;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.EPACKAGE_REGISTRY_CONFIG_NAME;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.EPACKAGE_REGISTRY_TARGET;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.EPACKAGE_TARGET;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.ISOLATED_RESOURCE_SET_FACTORY_CONFIG_NAME;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.PROP_MODEL_TARGET_FILTER;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.PROP_RESOURCE_SET_FACTORY_NAME;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.RESOURCE_FACTORY_CONFIG_NAME;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.RESOURCE_FACTORY_REGISTRY_TARGET;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.RESOURCE_FACTORY_TARGET;
+import static org.gecko.emf.osgi.constants.EMFNamespaces.RESOURCE_SET_FACTORY_CONFIG_NAME;
 
 import java.io.IOException;
 import java.util.Dictionary;
@@ -140,10 +141,10 @@ public class IsolatedResourceFactoryConfiguration {
 	 */
 	private String getFilter(Map<String, Object> properties) throws ConfigurationException {
 		String filterString = (String) properties.get(PROP_MODEL_TARGET_FILTER);
-		if (filterString == null) {
+		if (isNull(filterString)) {
 			filterString = "(" + EMF_MODEL_NAME + "=*)";
 		}
-		filterString = "(&(!(emf.model.name=ecore))" + filterString + ")";
+		filterString = "(&(!(" + EMF_MODEL_NAME + "=ecore))" + filterString + ")";
 		try {
 			FrameworkUtil.createFilter(filterString);
 		} catch (InvalidSyntaxException e1) {

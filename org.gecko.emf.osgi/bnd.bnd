@@ -1,33 +1,33 @@
+src=${^src},src-gen
+
 Export-Package: \
 	org.gecko.emf.osgi,\
 	org.gecko.emf.osgi.helper,\
 	org.gecko.emf.osgi.factory,\
-	org.gecko.emf.osgi.annotation.*
+	org.gecko.emf.osgi.annotation.*,\
+	org.gecko.emf.osgi.configurator,\
+	org.gecko.emf.osgi.constants
 
 -buildpath: \
-	org.osgi.framework,\
-	org.osgi.annotation.bundle,\
-	org.osgi.annotation.versioning,\
-	org.osgi.service.component.annotations,\
-	org.osgi.service.cm,\
-	org.osgi.service.component,\
-	org.eclipse.emf.common,\
-	org.eclipse.emf.ecore,\
-	org.eclipse.emf.ecore.xmi,\
-	org.osgi.namespace.service,\
-	org.osgi.util.converter,\
-	org.osgi.service.condition,\
-	org.osgi.namespace.extender,\
-	biz.aQute.bnd.annotation
-	
-# We shoudl consider deactivating this. For the Momemnt the Baselining is a bit harsch, e
-# specially given that we know that it is still backward compatible.
--fixupmessages: \
-	"Baseline mismatch";\
-		restrict:=error;\
-    	is:=warning,\
-	"The bundle version";\
-		restrict:=error;\
-    	is:=warning
+	org.osgi.framework;version=latest,\
+	org.osgi.annotation.bundle;version=latest,\
+	org.osgi.annotation.versioning;version=latest,\
+	org.osgi.namespace.service;version=latest,\
+	org.osgi.namespace.extender;version=latest,\
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.service.cm;version=latest,\
+	org.osgi.service.component;version=latest,\
+	org.osgi.service.condition;version=latest,\
+	org.osgi.util.converter;version=latest,\
+	org.eclipse.emf.common;version=latest,\
+	org.eclipse.emf.ecore;version=latest,\
+	org.eclipse.emf.ecore.xmi;version=latest,\
+	biz.aQute.bnd.annotation;version=latest
 	
 -sub: *.bnd
+
+#populates the VersionConstant class, with the current geckoEMF Version 
+-generate:   \
+    src-version/**.java; \
+        output='src-gen/' ; \
+        generate='javagen -o src-gen src-version/'

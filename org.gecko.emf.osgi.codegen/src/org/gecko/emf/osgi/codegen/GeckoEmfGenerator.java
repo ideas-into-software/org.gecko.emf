@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.gecko.emf.osgi.annotation.provide.EPackage;
 import org.gecko.emf.osgi.codegen.GeckoEmfGenerator.GeneratorOptions;
 import org.gecko.emf.osgi.codegen.adapter.BNDGeneratorAdapterFactory;
+import org.gecko.emf.osgi.constants.VersionConstant;
 import org.osgi.resource.Capability;
 
 import aQute.bnd.build.Container;
@@ -59,7 +60,7 @@ import aQute.bnd.service.generate.Generator;
 import aQute.bnd.service.generate.Options;
 import aQute.lib.io.IO;
 
-@ExternalPlugin(name = "geckoEMF", objectClass = Generator.class, version = VersionConstant.CODE_GEN_VERSION)
+@ExternalPlugin(name = "geckoEMF", objectClass = Generator.class, version = VersionConstant.GECKOPROJECTS_EMF_VERSION)
 public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 
 	public static final String ORIGINAL_GEN_MODEL_PATH = "originalGenModelPath";
@@ -100,14 +101,12 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 	}
 
 	public static void error(String message, Throwable t) {
-		try(ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				PrintWriter print = new PrintWriter(baos)){
-			print.println("Something went wrong: " + t.getMessage()); //$NON-NLS-1$
-			t.printStackTrace(print);
-			String error = new String(baos.toByteArray());
-			error(message + " - " + error); //$NON-NLS-1$
-		} catch (IOException e) {
-			error("Error printing results " + e.getMessage()); //$NON-NLS-1$
+		error(message);
+		if (logWriter != null) {
+			t.printStackTrace(logWriter);
+			logWriter.flush();
+		} else {
+			t.printStackTrace(System.err);
 		}
 	}
 
@@ -198,11 +197,10 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 	 * @param context
 	 * @return
 	 * @throws Exception
-	 * @throws IOException
 	 */
 	@SuppressWarnings("unchecked")
 	private Map<Container, Map<String,String>> extractedLocationsWithCap(Collection<Container> buildpath)
-			throws Exception, IOException {
+			throws Exception {
 		Map<Container, Map<String, String>> refModels = new HashMap<>(); 
 		for(Container c : buildpath) {
 			File f = c.getFile();
@@ -250,28 +248,6 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		}
 		return refModels;
 	}
-	
-	/**
-	 * @param context
-	 * @return
-	 * @throws Exception
-	 * @throws IOException
-	 */
-//	private Map<Container, List<String>> extractedGenmodelLocations(BuildContext context)
-//			throws Exception, IOException {
-//		Collection<Container> buildpath = context.getProject().getBuildpath();
-//		Map<Container, List<String>> refModels = new HashMap<>(); 
-//		for(Container c : buildpath) {
-//			File f = c.getFile();
-//			try (Jar jar = new Jar(f)){
-//				List<String> models = jar
-//						.getResourceNames(s -> s.endsWith(".ecore") || s.endsWith(".genmodel") || s.endsWith(".uml"))
-//						.collect(Collectors.toList());
-//				refModels.put(c, models);
-//			}
-//		}
-//		return refModels;
-//	}
 
 	/**
 	 * 
@@ -309,7 +285,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 	 * @return
 	 * @throws IOException
 	 */
-	protected Optional<String> doGenerate(String output, String genmodelPath, Map<Container, Map<String, String>> refModels, File base, String bsn, String genmodelLocation) throws IOException {
+	protected Optional<String> doGenerate(String output, String genmodelPath, Map<Container, Map<String, String>> refModels, File base, String bsn, String genmodelLocation) {
 		info("Running for genmodel " + genmodelPath + " in " + base.getAbsolutePath()); 
 		ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -338,7 +314,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		
 		Map<String, Object> props = new HashMap<>();
 		props.put(GeckoEmfGenerator.ORIGINAL_GEN_MODEL_PATH, genmodelPath);
-		props.put(GeckoEmfGenerator.ORIGINAL_GEN_MODEL_PATHS_EXTRA, Arrays.asList(new String[] {base.getName() + "/" + genmodelPath}));
+		props.put(GeckoEmfGenerator.ORIGINAL_GEN_MODEL_PATHS_EXTRA, Arrays.asList(base.getName() + "/" + genmodelPath));
 		props.put(GeckoEmfGenerator.INCLUDE_GEN_MODEL_FOLDER, genmodelLocation);
 		gen.getOptions().data = new Object[] {props};
 		
@@ -352,9 +328,9 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 			if(diagnostic.getSeverity() != Diagnostic.OK) {
 				return Optional.of(diagnostic.toString());
 			} 
-		} catch (Throwable t) {
-			String message = "An error appeared while generating: " + t.getMessage();
-			info(message);
+		} catch (Exception e) {
+			String message = "An error appeared while generating: " + e.getMessage();
+			error(message, e);
 			return Optional.of(message);
 		}
 		return Optional.empty();
@@ -412,7 +388,6 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 
 		@Override
 		public boolean isCanceled() {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
@@ -433,7 +408,6 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 		@Override
 		public void subTask(String name) {
 			info("subtask " + name);
-
 		}
 
 

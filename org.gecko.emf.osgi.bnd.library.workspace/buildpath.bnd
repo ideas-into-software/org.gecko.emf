@@ -2,7 +2,8 @@
 
 -buildpath: ${-runbundles}
 -buildpath.extra: \
-	org.osgi.service.component.annotations;version=1.4,\
-	org.osgi.framework;version=1.9,\
-	org.osgi.annotation.versioning,\
-	org.osgi.annotation.bundle
+	org.osgi.service.condition;version=latest,\
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.framework;version=latest,\
+	org.osgi.annotation.versioning;version=latest,\
+	org.osgi.annotation.bundle;version=latest

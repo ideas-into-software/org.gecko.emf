@@ -25,12 +25,10 @@ import org.gecko.emf.osgi.codegen.GeckoEmfGenerator;
  */
 public class BNDGeneratorAdapterFactory extends GenModelGeneratorAdapterFactory {
 
-	public static final GeneratorAdapterFactory.Descriptor DESCRIPTOR = new GeneratorAdapterFactory.Descriptor(){
-		public GeneratorAdapterFactory createAdapterFactory(){
+	public static final GeneratorAdapterFactory.Descriptor DESCRIPTOR = ()->{
 			GeckoEmfGenerator.info("Creating BNDGeneratorAdapterFactory");
 			return new BNDGeneratorAdapterFactory();
-		}
-	};
+		};
 
 	
 	@Override

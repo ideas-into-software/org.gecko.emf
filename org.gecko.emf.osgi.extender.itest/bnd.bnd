@@ -1,17 +1,14 @@
 Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
 
+-library: enableOSGi-Test
+
 -buildpath: \
-	org.gecko.emf.osgi.api;version=snapshot,\
-	junit-jupiter-api;version=latest,\
-	junit-platform-commons;version=latest,\
-	org.osgi.test.junit5;version=latest,\
-	org.apiguardian.api;version=latest,\
-	org.osgi.test.common;version=latest,\
-	org.osgi.test.assertj.framework;version=latest,\
+	org.osgi.framework;version=latest,\
 	org.eclipse.emf.common;version=latest,\
 	org.eclipse.emf.ecore;version=latest,\
 	org.eclipse.emf.ecore.xmi;version=latest,\
-	org.osgi.framework;version=latest
+	org.gecko.emf.osgi.api;version=snapshot
+	
 Bundle-Name: EMF Model Extender Tests
 Bundle-Description: Gecko EMF OSGi model extender integration tests
 

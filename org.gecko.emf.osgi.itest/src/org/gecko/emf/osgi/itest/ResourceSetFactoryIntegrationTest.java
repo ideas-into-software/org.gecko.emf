@@ -16,8 +16,8 @@ package org.gecko.emf.osgi.itest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.constants.EMFNamespaces;
 import org.gecko.emf.osgi.example.model.basic.BasicPackage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -62,7 +62,7 @@ public class ResourceSetFactoryIntegrationTest {
 			@InjectService BasicPackage basicPackage
 			) {
 		
-		
+		assertThat(basicPackage).isNotNull();
 		ServiceReference<Condition> reference = condition.getServiceReference();
 		assertThat(reference).isNotNull();
 

@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
-import org.gecko.emf.osgi.EPackageConfigurator;
-import org.gecko.emf.osgi.ResourceFactoryConfigurator;
+import org.gecko.emf.osgi.configurator.EPackageConfigurator;
+import org.gecko.emf.osgi.configurator.ResourceFactoryConfigurator;
 
 /**
  * Implementation for Gecko EMF configurators, used by the extender.
@@ -29,7 +29,7 @@ import org.gecko.emf.osgi.ResourceFactoryConfigurator;
  */
 public class ModelExtenderConfigurator implements EPackageConfigurator, ResourceFactoryConfigurator {
 	
-	private static Logger LOGGER = Logger.getLogger(ModelExtenderConfigurator.class.getName());
+	private static Logger logger = Logger.getLogger(ModelExtenderConfigurator.class.getName());
 	private final EPackage ePackage;
 	private final String contentTypeIdentifier;
 	private final String fileExtension;
@@ -84,7 +84,7 @@ public class ModelExtenderConfigurator implements EPackageConfigurator, Resource
 		if (ePackage != null) {
 			registry.put(ePackage.getNsURI(), ePackage);
 		} else {
-			LOGGER.log(Level.SEVERE, ()->"Error registering a NULL package, that should never happen");
+			logger.log(Level.SEVERE, ()->"Error registering a NULL package, that should never happen");
 		}
 	}
 
@@ -97,7 +97,7 @@ public class ModelExtenderConfigurator implements EPackageConfigurator, Resource
 		if (ePackage != null) {
 			registry.remove(ePackage.getNsURI());
 		} else {
-			LOGGER.log(Level.SEVERE, ()->"Error un-registering a NULL package, that should never happen");
+			logger.log(Level.SEVERE, ()->"Error un-registering a NULL package, that should never happen");
 		}
 	}
 

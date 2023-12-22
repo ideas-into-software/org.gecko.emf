@@ -5,3 +5,5 @@
 		index            = "${.}/geckoEMF.maven" ;\
 		readOnly            = true;\
 		name="GeckoEMF Dependencies"
+		
+-require-bnd: "(version>=7.0.0)"

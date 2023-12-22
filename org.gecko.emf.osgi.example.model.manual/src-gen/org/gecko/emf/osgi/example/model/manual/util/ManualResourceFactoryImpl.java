@@ -14,19 +14,8 @@
 package org.gecko.emf.osgi.example.model.manual.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-
-import org.gecko.emf.osgi.annotation.provide.ProvideEMFResourceConfigurator;
-
-import org.gecko.emf.osgi.example.model.manual.ManualPackage;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,16 +24,6 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @see org.gecko.emf.osgi.example.model.manual.util.ManualResourceImpl
  * @generated
  */
- @Component( name = ManualPackage.eNAME + "Factory", service = Resource.Factory.class, scope = ServiceScope.SINGLETON,
- 	reference = @Reference( name = ManualPackage.eNAME + "Package", service = ManualPackage.class, cardinality = ReferenceCardinality.MANDATORY)
- )
- @ProvideEMFResourceConfigurator( name = ManualPackage.eNAME,
-	contentType = { "manual#1.0" }, 
-	fileExtension = {
-	"manual"
- 	},  
-	version = "1.0"
-)
 public class ManualResourceFactoryImpl extends ResourceFactoryImpl {
 	/**
 	 * Creates an instance of the resource factory.

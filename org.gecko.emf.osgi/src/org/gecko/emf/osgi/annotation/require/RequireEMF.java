@@ -20,8 +20,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.gecko.emf.osgi.EMFNamespaces;
 import org.gecko.emf.osgi.ResourceSetFactory;
+import org.gecko.emf.osgi.constants.EMFNamespaces;
+import org.gecko.emf.osgi.constants.VersionConstant;
 import org.osgi.annotation.bundle.Requirement;
 
 /**
@@ -36,7 +37,7 @@ import org.osgi.annotation.bundle.Requirement;
 })
 @Requirement(namespace = EMFNamespaces.EMF_NAMESPACE, //
 		name = ResourceSetFactory.EMF_CAPABILITY_NAME, //
-		version = ResourceSetFactory.GECKOPROJECTS_EMF_VERSION)
+		version = VersionConstant.GECKOPROJECTS_EMF_MAJOR_VERSION)
 public @interface RequireEMF {
 
 }
