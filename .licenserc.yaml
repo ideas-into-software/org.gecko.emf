@@ -54,6 +54,7 @@ header:
     - '.github/**'
     - '.gitignore'
     - 'cnf/release/**.*'
+    - 'cnf/local/**.*'
     - '.gradle-wrapper/gradle-wrapper.properties'
     - '.licenserc.yaml'
     - '**/.project'
