@@ -31,8 +31,6 @@ src=${^src}
 	templates,\
 	{resources/version.properties}
 	
--baseline: test
-
 -privatepackage.add: \
 	org.eclipse.core.runtime;-split-package:=merge-first,\
 	org.eclipse.core.internal.*;-split-package:=merge-first,\
