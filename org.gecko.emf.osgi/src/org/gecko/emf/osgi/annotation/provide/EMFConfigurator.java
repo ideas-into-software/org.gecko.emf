@@ -39,11 +39,11 @@ import org.osgi.service.component.annotations.ComponentPropertyType;
 		namespace = EMFNamespaces.EMF_CONFIGURATOR_NAMESPACE, 
 		name = "${#configuratorType}", 
 		attribute = {
-				"configuratorName=${#configuratorName}", 
-				"feature:List<String>=\"${#feature}\"", 
-				"protocol:List<String>=\"${#protocol}\"", 
-				"fileExtension:List<String>=\"${#fileExtension}\"", 
-				"contentType:List<String>=\"${#contentType}\""},
+				EMFNamespaces.EMF_CONFIGURATOR_NAME + "=${#configuratorName}", 
+				EMFNamespaces.EMF_MODEL_FEATURE + ":List<String>=\"${#feature}\"", 
+				EMFNamespaces.EMF_MODEL_PROTOCOL + ":List<String>=\"${#protocol}\"", 
+				EMFNamespaces.EMF_MODEL_FILE_EXT + ":List<String>=\"${#fileExtension}\"", 
+				EMFNamespaces.EMF_MODEL_CONTENT_TYPE + ":List<String>=\"${#contentType}\""},
 		version = "${#version}")
 @RequireEMF
 public @interface EMFConfigurator {
