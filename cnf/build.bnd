@@ -24,7 +24,7 @@ javac.target: 1.8
 
 github-project: org.gecko.emf
 
-dimcBaselining: false
+dimcBaselining: true
 mavenCentral: true
 
 #-baseline: *
