@@ -17,7 +17,6 @@
 	org.mockito.mockito-core;version='[4.11.0,4.11.1)',\
 	org.gecko.emf.osgi.example.model.extended;version=snapshot,\
 	org.apache.felix.configadmin;version='[1.9.26,1.9.27)',\
-	org.gecko.emf.osgi.api;version=snapshot,\
 	org.osgi.service.cm;version='[1.6.1,1.6.2)',\
 	org.osgi.service.component;version='[1.5.1,1.5.2)',\
 	org.osgi.util.converter;version='[1.0.9,1.0.10)',\
