@@ -11,5 +11,5 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-@org.osgi.annotation.versioning.Version("6.0.1")
+@org.osgi.annotation.versioning.Version("6.0.2")
 package org.gecko.emf.osgi.components.config;
