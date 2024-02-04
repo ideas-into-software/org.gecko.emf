@@ -33,6 +33,7 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.IOWrappedException;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -954,6 +955,7 @@ public class EMFOSGiIntegrationTest {
 			throws IOException, InterruptedException {
 		Dictionary<String, Object> epackageProperties = new Hashtable<String, Object>();
 		epackageProperties.put(EMF_MODEL_NAME, ManualPackage.eNAME);
+		epackageProperties.put(EMF_MODEL_NSURI, ManualPackage.eNS_URI);
 		ManualPackageConfigurator configurator = new ManualPackageConfigurator();
 
 		ServiceRegistration<?> sreg = bc.registerService(
@@ -968,6 +970,13 @@ public class EMFOSGiIntegrationTest {
 		List<String> modelNameList = Arrays.asList((String[]) modelNames);
 		assertTrue(modelNameList.contains("ecore"));
 		assertTrue(modelNameList.contains("manual"));
+
+		Object modelUris = reference.getProperty(EMF_MODEL_NSURI);
+		assertNotNull(modelUris);
+		assertTrue(modelUris instanceof String[]);
+		List<String> modelUrisList = Arrays.asList((String[]) modelUris);
+		assertTrue(modelUrisList.contains(EcorePackage.eNS_URI));
+		assertTrue(modelUrisList.contains(ManualPackage.eNS_URI));
 		Object configNames = reference.getProperty(EMF_CONFIGURATOR_NAME);
 		assertNotNull(configNames);
 		assertTrue(configNames instanceof String[]);
@@ -1018,12 +1027,12 @@ public class EMFOSGiIntegrationTest {
 		assertEquals("Emil", result.getValue());
 
 		sreg.unregister();
-		modelNames = reference.getProperty(EMF_MODEL_NAME);
-		assertNotNull(modelNames);
-		assertTrue(modelNames instanceof String[]);
-		modelNameList = Arrays.asList((String[]) modelNames);
-		assertTrue(modelNameList.contains("ecore"));
-		assertFalse(modelNameList.contains("manual"));
+		modelUris = reference.getProperty(EMF_MODEL_NAME);
+		assertNotNull(modelUris);
+		assertTrue(modelUris instanceof String[]);
+		modelUrisList = Arrays.asList((String[]) modelUris);
+		assertTrue(modelUrisList.contains("ecore"));
+		assertFalse(modelUrisList.contains("manual"));
 
 		sreg2.unregister();
 
