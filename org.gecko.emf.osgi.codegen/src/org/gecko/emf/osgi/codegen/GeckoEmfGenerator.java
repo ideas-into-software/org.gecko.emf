@@ -232,7 +232,7 @@ public class GeckoEmfGenerator implements Generator<GeneratorOptions> {
 				} 
 				refModels.put(c, result);
 				try (Jar jar = new Jar(f)){
-					jar.getResourceNames(s -> (checkForEcore.get() && s.endsWith(".ecore")) ||  s.endsWith(".uml"))
+					jar.getResourceNames(s -> (checkForEcore.get() && s.endsWith(".ecore")) || s.endsWith(".genmodel") ||  s.endsWith(".uml"))
 						.forEach(s -> result.put(s, s));
 					refModels.put(c, result);
 				}
