@@ -11,14 +11,14 @@ src=${^src},src-gen
 	org.osgi.service.condition;version=latest,\
 	org.osgi.framework;version=latest
 
--includeresource.model: model=other/main/resources/model
+-includeresource.model: model=model
 
 -dependson: org.gecko.emf.osgi.codegen
 
 -generate:\
-	other/main/resources/model/basic.genmodel;\
+	model/basic.genmodel;\
 		generate="geckoEMF";\
-		genmodel=other/main/resources/model/basic.genmodel;\
+		genmodel=model/basic.genmodel;\
 		output=src-gen;\
 		version=${base-version};\
 		clean=false;\

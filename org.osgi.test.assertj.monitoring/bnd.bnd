@@ -24,7 +24,7 @@ Private-Package: org.osgi.test.assertj.monitoring.internal
 
 -maven-release: local
 -runfw: org.apache.felix.framework;version='[7.0.1,7.0.1]'
--runee: JavaSE-1.8
+-runee: JavaSE-17
 -runrequires: bnd.identity;id='org.osgi.test.assertj.monitoring'
 -runbundles: \
 	assertj-core;version='[3.23.1,3.23.2)',\

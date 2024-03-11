@@ -15,6 +15,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="AnInterface" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="InterfaceImpl" eSuperTypes="#//AnInterface"/>
   <eClassifiers xsi:type="ecore:EClass" name="InterfaceWithExtendsImpl" eSuperTypes="#//AnInterface #//ExtendedAddress"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendedGeometry" eSuperTypes="../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//Geometry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="oneCoordinate" lowerBound="1"
+        eType="ecore:EDataType ../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//Coordinates"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="oneMultiDimensionalCoordinate"
+        lowerBound="1" eType="ecore:EDataType ../../org.gecko.emf.osgi.example.model.basic/model/basic.ecore#//MultiDimensionCoordinates"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value=""/>

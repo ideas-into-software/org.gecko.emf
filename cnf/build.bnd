@@ -1,12 +1,9 @@
-javac.source: 1.8
-javac.target: 1.8
-
 # Copyright 2021 Data In Motion Consulting GmbH
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #    http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
@@ -16,6 +13,13 @@ javac.target: 1.8
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
+
+java: java
+javac: javac
+javac.source: 17
+javac.target: 17
+javac.debug:  on
+
 -require-bnd: "(version>=7.0.0)"
 
 -library: geckoDIMC,\
@@ -27,6 +31,15 @@ github-project: org.gecko.emf
 dimcBaselining: true
 mavenCentral: true
 
+-plugin.baseline:\
+    aQute.bnd.repository.maven.provider.MavenBndRepository; \
+        snapshotUrl="https://oss.sonatype.org/content/repositories/snapshots/"; \
+        releaseUrl=https://repo.maven.apache.org/maven2/; \
+        index=${.}/baseline.mvn; \
+        readOnly=true;\
+		name=Baseline
+
+-baselinerepo: Baseline
 -baseline: *
 
 -groupid: org.geckoprojects.emf
@@ -35,7 +48,7 @@ mavenCentral: true
 	"No metadata for revision";\
 		restrict:=error;\
     	is:=warning
-    	
+
 -plugin.3.Central: \
     aQute.bnd.repository.maven.provider.MavenBndRepository; \
         snapshotUrl="https://oss.sonatype.org/content/repositories/snapshots/"; \
@@ -46,7 +59,13 @@ mavenCentral: true
         name="Central"
 
 -plugin: aQute.bnd.deployer.repository.LocalIndexedRepo;\
-		local               =${.}/local;\
+		local =${build}/local;\
 		overwrite           =true;\
 		pretty              =true;\
 		name            	=local
+
+-plugin.Temp: \
+    aQute.bnd.deployer.repository.LocalIndexedRepo; \
+      name = Temp; \
+      pretty = true; \
+    	local = ${build}/cache/temp
